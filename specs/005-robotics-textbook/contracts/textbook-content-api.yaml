@@ -1,0 +1,132 @@
+# Textbook Content API Contract
+
+## Overview
+This contract defines the data structures used by the Physical AI & Humanoid Robotics Textbook. Since this is a static site, the "API" represents the data structures that would be available to the frontend components.
+
+## Module Data Structure
+
+### Module Object
+```json
+{
+  "id": "string",
+  "title": "string",
+  "position": "integer",
+  "description": "string",
+  "chapters": "Chapter[]",
+  "prerequisites": "string[]",
+  "estimatedTime": "string",
+  "learningObjectives": "string[]",
+  "slug": "string"
+}
+```
+
+### Chapter Object
+```json
+{
+  "id": "string",
+  "title": "string",
+  "position": "integer",
+  "moduleId": "string",
+  "moduleTitle": "string",
+  "learningObjectives": "string[]",
+  "prerequisites": "string[]",
+  "estimatedTime": "string",
+  "exercises": "Exercise[]",
+  "troubleshooting": "TroubleshootingSection",
+  "slug": "string",
+  "nextChapter": "string | null",
+  "prevChapter": "string | null"
+}
+```
+
+### Exercise Object
+```json
+{
+  "id": "string",
+  "title": "string",
+  "objective": "string",
+  "difficulty": "easy | medium | hard",
+  "timeEstimate": "string",
+  "requirements": "string[]",
+  "starterCode": "string",
+  "deliverable": "string",
+  "testCommands": "string[]",
+  "expectedOutput": "string",
+  "hints": "Hint[]"
+}
+```
+
+### Hint Object
+```json
+{
+  "id": "string",
+  "content": "string",
+  "level": "integer"
+}
+```
+
+### TroubleshootingSection Object
+```json
+{
+  "id": "string",
+  "problems": "TroubleshootingProblem[]"
+}
+```
+
+### TroubleshootingProblem Object
+```json
+{
+  "id": "string",
+  "title": "string",
+  "symptoms": "string[]",
+  "cause": "string",
+  "solution": "string",
+  "verification": "string[]"
+}
+```
+
+## Component API
+
+### ReadingTime Component
+- **Props**: `{ minutes: number }`
+- **Description**: Displays estimated reading time badge
+- **Usage**: `<ReadingTime minutes={15} />`
+
+### ViewToggle Component
+- **Props**: `{}`
+- **Description**: Provides toggle between Full Lesson and Summary views
+- **Usage**: `<ViewToggle />`
+
+## Navigation API
+
+### Sidebar Structure
+The sidebar follows the Docusaurus category structure with:
+- 6 main categories (modules 0-5)
+- Each category contains 4-8 pages (chapters)
+- Automatic next/previous navigation
+
+### Breadcrumb Navigation
+- Module → Chapter → Section
+- Consistent navigation path throughout the textbook
+
+## Search API
+
+### Search Index
+- Full-text search across all chapters
+- Searchable by:
+  - Chapter titles
+  - Section headings
+  - Code examples
+  - Exercise descriptions
+
+## Content Delivery
+
+### Static Generation
+- All content pre-built at build time
+- Optimized for fast loading
+- SEO-friendly URLs following pattern: `/module-name/chapter-name`
+
+### Asset Optimization
+- Images optimized for web delivery
+- Code blocks with syntax highlighting
+- Responsive design for all device sizes

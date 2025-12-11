@@ -1,0 +1,26 @@
+openapi: 3.0.0
+info:
+  title: Health API
+  version: 1.0.0
+paths:
+  /api/health:
+    get:
+      summary: Check system health and service connectivity
+      responses:
+        '200':
+          description: All services healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  qdrant_connected:
+                    type: boolean
+                  postgres_connected:
+                    type: boolean
+                  openai_configured:
+                    type: boolean
+        '503':
+          description: One or more services unavailable

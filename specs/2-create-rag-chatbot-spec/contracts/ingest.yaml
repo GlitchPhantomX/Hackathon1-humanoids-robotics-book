@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: Ingest API
+  version: 1.0.0
+paths:
+  /api/ingest:
+    post:
+      summary: Trigger document ingestion/re-ingestion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                force_refresh:
+                  type: boolean
+                  default: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  documents_processed:
+                    type: integer
+                  chunks_created:
+                    type: integer
+                  message:
+                    type: string
+        '500':
+          description: Ingestion failed

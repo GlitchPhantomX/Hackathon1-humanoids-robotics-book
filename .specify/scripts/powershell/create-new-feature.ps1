@@ -6,17 +6,10 @@ param(
     [string]$ShortName,
     [int]$Number = 0,
     [switch]$Help,
-    [string]$FeatureDescriptionFile,
     [Parameter(ValueFromRemainingArguments = $true)]
     [string[]]$FeatureDescription
 )
 $ErrorActionPreference = 'Stop'
-
-if ($FeatureDescriptionFile) {
-    $FeatureDescription = Get-Content -Path $FeatureDescriptionFile -Raw
-}
-
-Write-Host "FeatureDescription: $FeatureDescription"
 
 # Show help if requested
 if ($Help) {

@@ -1,0 +1,8 @@
+{
+  "label": "03 - NVIDIA Isaac: AI-Powered Robotics",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Isaac Sim, perception, and navigation for humanoid robots"
+  }
+}

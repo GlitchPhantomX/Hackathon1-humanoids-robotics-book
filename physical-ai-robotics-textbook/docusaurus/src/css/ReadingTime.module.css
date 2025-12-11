@@ -1,0 +1,89 @@
+.readingTimeContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0;
+  padding: 0;
+}
+
+.readingTimeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #f77e3d 0%, #ffa879 100%);
+  border-radius: 24px;
+  box-shadow: 0 2px 8px rgba(247, 126, 61, 0.25);
+  transition: all 0.3s ease;
+}
+
+.readingTimeBadge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(247, 126, 61, 0.35);
+}
+
+.readingTimeIcon {
+  font-size: 20px;
+  line-height: 1;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.readingTimeText {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1;
+}
+
+.readingTimeText strong {
+  font-weight: 700;
+}
+
+.longReadIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  background: var(--color-badge-background);
+  color: var(--color-accent);
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Dark mode adjustments */
+[data-theme='dark'] .readingTimeBadge {
+  background: linear-gradient(135deg, #e6641f 0%, #f77e3d 100%);
+  box-shadow: 0 2px 8px rgba(230, 100, 31, 0.3);
+}
+
+[data-theme='dark'] .readingTimeBadge:hover {
+  box-shadow: 0 4px 12px rgba(230, 100, 31, 0.4);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .readingTimeContainer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .readingTimeBadge {
+    padding: 8px 16px;
+  }
+  
+  .readingTimeText {
+    font-size: 13px;
+  }
+}

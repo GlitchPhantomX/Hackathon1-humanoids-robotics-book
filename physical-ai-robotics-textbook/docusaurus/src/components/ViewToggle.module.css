@@ -1,0 +1,61 @@
+.viewToggleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  margin: 1rem 0;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 0.375rem;
+  font-family: inherit;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.viewToggleBtn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.viewToggleBtn:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.viewToggleBtn.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.viewIndicator {
+  display: flex;
+  align-items: center;
+}
+
+.viewLabel {
+  font-size: 0.875rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .viewToggleContainer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .buttonGroup {
+    justify-content: center;
+  }
+}

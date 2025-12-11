@@ -1,0 +1,8 @@
+{
+  "label": "02 - Simulation: Virtual Worlds for Real Robots",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Gazebo, SDF, and simulation environments for humanoid robots"
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Physical AI Textbook RAG API",
+    "version": "1.0.0",
+    "description": "RAG-powered chatbot for Physical AI & Humanoid Robotics textbook"
+  },
+  "paths": {
+    "/api/chat": {
+      "post": {
+        "summary": "Handle chat messages",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/conversations/{conversation_id}": {
+      "get": {
+        "summary": "Get conversation history",
+        "parameters": [
+          {
+            "name": "conversation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/api/ingest": {
+      "post": {
+        "summary": "Trigger document ingestion",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IngestRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IngestResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "summary": "Health check",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ChatRequest": {
+        "type": "object",
+        "properties": {
+          "message": { "type": "string" },
+          "conversation_id": { "type": "string" },
+          "selected_text": { "type": "string" },
+          "page_url": { "type": "string" }
+        },
+        "required": ["message"]
+      },
+      "ChatResponse": {
+        "type": "object",
+        "properties": {
+          "answer": { "type": "string" },
+          "sources": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Source" }
+          },
+          "conversation_id": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        }
+      },
+      "Source": {
+        "type": "object",
+        "properties": {
+          "content": { "type": "string" },
+          "metadata": { "type": "object" },
+          "score": { "type": "number" }
+        }
+      },
+      "IngestRequest": {
+        "type": "object",
+        "properties": {
+          "force_refresh": { "type": "boolean" }
+        }
+      },
+      "IngestResponse": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string" },
+          "documents_processed": { "type": "integer" },
+          "chunks_created": { "type": "integer" },
+          "message": { "type": "string" }
+        }
+      },
+      "HealthResponse": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string" },
+          "qdrant_connected": { "type": "boolean" },
+          "postgres_connected": { "type": "boolean" },
+          "openai_configured": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

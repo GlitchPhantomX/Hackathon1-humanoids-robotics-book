@@ -1,0 +1,302 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/**
+ * Custom CSS for Docusaurus
+ * This file imports the Tailwind CSS styles
+ */
+
+ @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
+ 
+ 
+:root {
+  /* Light Mode Colors */
+  --color-bg: #ffffff;
+  --color-text: #1a1a1a;
+  --color-accent: #f77e3d; /* Orange */
+  --color-muted: #444444;
+  --color-description-text:  #4b5563;
+  --color-badge-background: rgb(253 186 116 / 0.15);
+  --color-dark-button-background: #e6641f;
+  --color-hover-button-background:#dc5912;
+  --color-card-description-text: #374151;
+  --color-background-card-example: #fff7ed;
+  --color-moving-demo-button-shadow-color: #f3f4f6;
+  --color-learning-journey-card-shadow-color: #d1d5db;
+  --color-great-shift-from-shadow-color: #fff7ed;
+  --color-great-shift-to-shadow-color: #fff;
+  --color-physical-from-CTA-background: #fff;
+  --color-physical-to-CTA-background: rgb(255 247 237 / 0.3);
+  --color-footer-via-background: rgb(255 237 213 / 0.6);
+  --color-footer-to-background: rgb(254 215 170 / 0.6);
+  --color-badge-background-top: rgb(251 146 60 / 0.1);
+  --color-physical-from-pillars-card-hover-shadow: rgb(255 247 237 / 0.3);
+  --color-physical-to-pillars-card-hover-shadow:  rgb(255 247 237 / 0.1);
+  --color-physical-from-shift-hover-shadow-effect: rgb(249 250 251 / 0.5);
+  --color-physical-to-shift-hover-shadow-effect: rgb(249 250 251 / 0.2);
+}
+
+[data-theme='dark'] {
+  /* Dark Mode Colors */
+  --color-bg: #111111;
+  --color-text: #ffffff;
+  --color-accent: #ffa879; /* Light Orange for dark mode */
+  --color-muted: #cccccc;
+  --color-description-text:  #7b7d81;
+  --color-badge-background: #b49380;
+  --color-dark-button-background: #e6641f;
+  --color-hover-button-background:#d15410;
+  --color-card-description-text: #bebebe;
+  --color-background-card-example: #fff7ed;
+  --color-moving-demo-button-shadow-color: #121314;
+  --color-learning-journey-card-shadow-color: #262729;
+  --color-great-shift-from-shadow-color: #fff7ed;
+  --color-great-shift-to-shadow-color: #fff;
+  --color-physical-from-CTA-background: #151313;
+  --color-physical-to-CTA-background: rgba(77, 77, 75, 0.3);
+  --color-footer-via-background: rgba(33, 33, 33, 0.6);
+  --color-footer-to-background: rgba(22, 22, 21, 0.6);
+  --color-badge-background-top: #ffd3bb;
+  --color-physical-from-pillars-card-hover-shadow: rgba(49, 43, 36, 0.3);
+  --color-physical-to-pillars-card-hover-shadow:  rgba(103, 100, 95, 0.1);
+  --color-physical-from-shift-hover-shadow-effect: rgba(23, 24, 24, 0.5);
+  --color-physical-to-shift-hover-shadow-effect: rgba(16, 17, 17, 0.2);
+}
+ /* Navbar Title Styling */
+ .navbar__title {
+   font-family: 'Orbitron', sans-serif !important;
+   font-weight: 700 !important;
+   font-size: 1.5rem !important;
+   background: linear-gradient(135deg, #d15410 0%, #f4b695 100%);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+   letter-spacing: 0.5px;
+   text-transform: uppercase;
+   transition: all 0.3s ease;
+ }
+ 
+ .navbar__title:hover {
+   background: linear-gradient(135deg, #863204 0%, #f6ab83 100%);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+   transform: scale(1.02);
+ }
+ 
+ /* Dark mode navbar title */
+ [data-theme='dark'] .navbar__title {
+   background: linear-gradient(135deg, #d15410 0%, #f4b695 100%);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   background-clip: text;
+ }
+ 
+ /* Signup Button Styling */
+ .navbar-signup-button {
+   background: linear-gradient(135deg, #f77e3d 0%, #ffa879 100%);
+   color: white !important;
+   padding: 8px 20px !important;
+   border-radius: 20px;
+   font-weight: 600;
+   transition: all 0.3s ease;
+   margin-right: 10px;
+   border: none;
+ }
+ 
+ .navbar-signup-button:hover {
+   background: linear-gradient(135deg, #fd803d 0%, #ea844d 100%);
+   transform: translateY(-2px);
+   box-shadow: 0 4px 8px rgb(255, 195, 173);
+ }
+ 
+ /* Login Button Styling */
+ .navbar-login-button {
+   background: transparent;
+   color: var(--ifm-navbar-link-color) !important;
+   padding: 8px 20px !important;
+   border-radius: 20px;
+   font-weight: 600;
+   border: 2px solid #f77e3d;
+   transition: all 0.3s ease;
+   margin-right: 10px;
+ }
+ 
+ .navbar-login-button:hover {
+   background: linear-gradient(135deg, #f77e3d 0%, #ffa879 100%);
+   color: white !important;
+   border-color: transparent;
+   transform: translateY(-2px);
+   box-shadow: 0 4px 8px rgb(255, 195, 173);
+ }
+ 
+ /* Dark mode button adjustments */
+ [data-theme='dark'] .navbar-login-button {
+   border-color: #f77e3d;
+ }
+ 
+ [data-theme='dark'] .navbar-login-button:hover {
+  background: linear-gradient(135deg, #fd803d 0%, #ea844d 100%);
+ }
+ 
+ /* Language dropdown styling */
+ .navbar__item.dropdown {
+   margin-right: 10px;
+ }
+ 
+ /* Improve navbar spacing */
+ .navbar__items--right > .navbar__item {
+   padding-left: 8px;
+   padding-right: 8px;
+ }
+ 
+ /* Book link styling */
+ .navbar__link {
+   font-weight: 500;
+   font-family: 'Space Grotesk', sans-serif;
+ }
+ 
+ /* Theme toggle enhancement (optional) */
+ button[class*='toggle'] {
+   border-radius: 50%;
+   transition: all 0.3s ease;
+ }
+ 
+ button[class*='toggle']:hover {
+   transform: rotate(180deg);
+ }
+ 
+ /* Responsive adjustments */
+ @media (max-width: 996px) {
+   .navbar__title {
+     font-size: 1.2rem !important;
+   }
+   
+   .navbar-signup-button,
+   .navbar-login-button {
+     padding: 6px 16px !important;
+     font-size: 0.9rem;
+   }
+ }
+ 
+ /* Make navbar items more polished */
+ .navbar__link {
+   transition: all 0.2s ease;
+ }
+ 
+ .navbar__link:hover {
+   color: #f77e3d;
+ }
+ 
+ [data-theme='dark'] .navbar__link:hover {
+   color: #f77e3d;
+ }
+ 
+
+.faq-heading {
+    border-left: 4px solid #f77e3d; /* orange vertical line */
+    padding-left: 12px;             /* space between line and text */
+    margin-bottom: 16px;
+    margin-top: 16px;
+  }
+  
+/* Sidebar ke sabhi links ke left side border ke liye */
+.menu__link {
+    border-left: 3px solid transparent; /* default border invisible */
+    padding-left: 8px;
+    transition: border-color 0.2s ease; /* smooth hover effect */
+  }
+
+  /* Hover ya active link ke liye color */
+  .menu__link:hover,
+  .menu__link--active {
+    border-left-color: #f77e3d; /* ya koi aur color */
+  }
+
+/* Global modal and z-index management */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  position: relative;
+  z-index: 1001;
+}
+
+.dropdown-menu {
+  position: absolute;
+  z-index: 1001;
+}
+
+/* Ensure highest z-index for authentication modals and dropdowns */
+.auth-modal,
+.auth-dropdown {
+  z-index: 9999 !important;
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+.main-heading {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.second-heading {
+  font-size: 35px;
+  font-weight: bold;
+  border-left: 4px solid orangered;  
+  line-height: 1.4;   
+  padding-left: 10px; 
+  border-radius: 7px;
+}
+
+.underline-class {
+  width: 120px;
+  height: 5px;
+  background-color: gray;
+  border-radius: 50px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+.border-line {
+  width: 100%;
+  height: 1px;
+  background-color: #32363d;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.third-heading {
+  font-size: 25px;
+  font-weight: bold;
+  margin-left: 25px;
+  border-left: 4px solid orangered;   
+  line-height: 1.4;   
+  padding-left: 10px; 
+  border-radius: 7px;   
+  margin-bottom: 20px;
+}
+
+.fourth-heading {
+  font-size: 17px;
+  font-weight: bold;
+  padding-left: 10px;         
+  border-left: 4px solid orangered;   
+  line-height: 1.4;   
+  padding-left: 10px; 
+  border-radius: 7px;       
+}
