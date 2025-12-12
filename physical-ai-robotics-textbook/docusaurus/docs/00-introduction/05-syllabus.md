@@ -987,8 +987,8 @@ Begin with [Module 1: ROS 2 Architecture](../01-ros2/01-architecture.md) to star
 <h2 className="second-heading">
 Navigation
 </h2>
-
+<div className="border-line"></div>
 
 [← Previous Chapter](./04-how-to-use.md) | [Module 1: ROS 2 Architecture →](../01-ros2/01-architecture.md)
-
+<div className="border-line"></div>
 </div>

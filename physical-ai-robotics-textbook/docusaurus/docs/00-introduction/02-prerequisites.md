@@ -629,8 +629,11 @@ In this chapter, you learned:
 - ✅ How to set up your development environment for robotics
 - ✅ How to verify your system meets hardware requirements
 - ✅ Common issues and how to resolve them
+<div className="border-line"></div>
 
 **Key Takeaways**:
+<div className="border-line"></div>
+
 - • Proper environment setup is crucial for a smooth learning experience
 - • The prerequisites ensure you can follow along with hands-on exercises
 - • Troubleshooting skills are essential for robotics development
@@ -662,16 +665,26 @@ In this chapter, you learned:
  Navigation
 </h2>
 <div className="underline-class"></div>
+<div className="border-line"></div>
 
 [← Previous Chapter](./01-welcome.md) | [Next Chapter →](./03-hardware-requirements.md)
-
+<div className="border-line"></div>
 </div>
 
 <div className="summary-content">
 
-## 📝 Chapter Summary
+<h2 className="second-heading">
+Chapter Summary
+</h2>
+ 
+<div className="border-line"></div>
 
-### Key Concepts
+<h2 className="third-heading">
+Key Concepts
+</h2>
+
+<div className="border-line"></div>
+
 - **Prerequisites**: Knowledge (Python, Linux, math), software (ROS 2, development tools), and hardware requirements for robotics development
 - **Environment Setup**: Proper installation and configuration of ROS 2, Python, and development tools
 - **Verification**: Testing that all components are properly installed and configured
@@ -720,13 +733,18 @@ What You Built
 - Created and tested ROS 2 workspace
 <div className="border-line"></div>
 
-### Next Steps
-Continue to [Hardware Requirements](./03-hardware-requirements.md) to understand the physical components needed for robotics projects.
+<div className="third-heading">
+Next Steps
+</div>
 
+Continue to [Hardware Requirements](./03-hardware-requirements.md) to understand the physical components needed for robotics projects.
+<div className="border-line"></div>
 ---
 
-## Navigation
+<div className="second-heading">
+Navigation
+</div>
 
 [← Previous Chapter](./01-welcome.md) | [Next Chapter →](./03-hardware-requirements.md)
-
+<div className="border-line"></div>
 </div>

@@ -1218,7 +1218,11 @@ Additional Resources
 Chapter Summary
 </h2>
 <div className="border-line"></div>
-### Key Concepts
+
+<h2 className="second-heading">
+Key Concepts
+</h2>
+
 <div className="border-line"></div>
 - ➣ **Publish-Subscribe Pattern**: Asynchronous communication enabling loose coupling between nodes
 - ➣ **Node Structure**: Standard initialization, entity creation, processing, and cleanup patterns
@@ -1281,8 +1285,12 @@ What You Built
 - ➛ Multi-node publisher-subscriber system
 - ➛ Custom message type handling
 - ➛ Performance-optimized communication patterns
+<div className="border-line"></div>
+<h2 className="third-heading">
+Next Steps
+</h2>
+<div className="border-line"></div>
 
-### Next Steps
 Continue to [Services and Actions](./03-services-actions.md) to learn about synchronous communication and goal-oriented interactions.
 
 </div>

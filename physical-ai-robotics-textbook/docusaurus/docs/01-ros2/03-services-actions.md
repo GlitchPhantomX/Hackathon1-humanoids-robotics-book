@@ -10,41 +10,53 @@ import ViewToggle from '@site/src/components/ViewToggle';
 <ReadingTime minutes={20} />
 <ViewToggle />
 
-# Services and Actions: Synchronous and Goal-Oriented Communication
+<h1 className="main-heading">Services and Actions: Synchronous and Goal-Oriented Communication</h1>
+<div className="underline-class"></div>
 
 <div className="full-content">
 
 **Module**: 01 - ROS 2
 **Learning Objectives**:
-- Implement ROS 2 services for synchronous communication with proper request-response handling
-- Create and use ROS 2 actions for goal-oriented tasks with feedback and cancellation
-- Design appropriate communication patterns for different use cases in humanoid robotics
-- Handle service and action responses, feedback, and errors effectively
-- Debug common service and action issues and implement proper error handling
+- • Implement ROS 2 services for synchronous communication with proper request-response handling
+- • Create and use ROS 2 actions for goal-oriented tasks with feedback and cancellation
+- • Design appropriate communication patterns for different use cases in humanoid robotics
+- • Handle service and action responses, feedback, and errors effectively
+- • Debug common service and action issues and implement proper error handling
 
 **Prerequisites**: Understanding of ROS 2 architecture, nodes, and topics
 **Estimated Time**: 3-4 hours
 
+<div className="border-line"></div>
 ---
 
-## Introduction
+<h2 className="second-heading">
+ Introduction
+</h2>
+<div className="underline-class"></div>
 
 While topics enable asynchronous publish-subscribe communication, services and actions provide synchronous request-response and goal-oriented communication patterns respectively. These are essential for humanoid robotics applications requiring reliable, stateful interactions. Services are ideal for simple request-response operations like configuration changes or calibration procedures, while actions are designed for long-running tasks that require feedback and cancellation capabilities, such as navigation or manipulation sequences.
 
 The synchronous nature of services makes them perfect for operations that require immediate results, while the goal-feedback-result pattern of actions enables complex, long-running tasks with progress monitoring. Understanding when and how to use each communication pattern is crucial for building robust humanoid robotics applications.
 
+<div className="border-line"></div>
 ---
 
-## Services: Synchronous Request-Response Communication
+<h2 className="second-heading">
+ Services: Synchronous Request-Response Communication
+</h2>
+<div className="underline-class"></div>
 
 Services provide a synchronous client-server communication pattern where a client sends a request and waits for a response from the server. This pattern is ideal for operations that require immediate results or acknowledgments.
 
-### Service Architecture
+<h3 className="third-heading">
+- Service Architecture
+</h3>
+<div className="underline-class"></div>
 
-- **Service Server**: Provides the service implementation
-- **Service Client**: Makes requests to the service
-- **Service Type**: Defines request and response message types
-- **Blocking Call**: Client waits for server response
+- ➤ **Service Server**: Provides the service implementation
+- ➤ **Service Client**: Makes requests to the service
+- ➤ **Service Type**: Defines request and response message types
+- ➤ **Blocking Call**: Client waits for server response
 
 ### Creating Custom Service Types
 

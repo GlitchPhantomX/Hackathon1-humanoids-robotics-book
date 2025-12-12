@@ -7,7 +7,7 @@ description: Getting started with Physical AI and Humanoid Robotics
 import ReadingTime from '@site/src/components/ReadingTime';
 import ViewToggle from '@site/src/components/ViewToggle';
 
-# <h1 className="main-heading">Introduction to Physical AI & Humanoid Robotics</h1>
+<h1 className="main-heading" id="introduction">Introduction to Physical AI & Humanoid Robotics</h1>
 <div className="underline-class"></div>
 
 <ReadingTime minutes={8} />
@@ -15,9 +15,10 @@ import ViewToggle from '@site/src/components/ViewToggle';
 Welcome to the introduction module of the Physical AI & Humanoid Robotics textbook. This module will provide you with an overview of the field, its importance, and the foundational concepts you'll need to understand as you progress through the course.
 
 <div className="border-line"></div>
+
 ---
 
-<h2 className="second-heading">
+<h2 className="second-heading" id="learning-objectives">
  Learning Objectives
 </h2>
 <div className="underline-class"></div>
@@ -32,7 +33,8 @@ By the end of this module, you will be able to:
 <div className="border-line"></div>
 
 ---
-<h2 className="second-heading">
+
+<h2 className="second-heading" id="prerequisites">
 Prerequisites
 </h2>
 <div className="underline-class"></div>
@@ -48,15 +50,16 @@ Before starting this module, you should have:
 <div className="border-line"></div>
 
 ---
-<h2 className="second-heading">
+
+<h2 className="second-heading" id="module-overview">
 Module Overview
 </h2>
 <div className="underline-class"></div>
 
 This module covers the following topics:
 
-<h3 className="third-heading">
-- 1. What is Physical AI?
+<h3 className="third-heading" id="what-is-physical-ai">
+What is Physical AI?
 </h3>
 <div className="underline-class"></div>
 
@@ -66,8 +69,9 @@ Physical AI represents the convergence of artificial intelligence with physical 
 Physical AI combines perception, decision-making, and actuation to create intelligent embodied systems.
 :::
 <div className="border-line"></div>
-<h3 className="third-heading">
-- 2. Introduction to Humanoid Robotics
+
+<h3 className="third-heading" id="humanoid-robotics-intro">
+Introduction to Humanoid Robotics
 </h3>
 <div className="underline-class"></div>
 
@@ -80,20 +84,20 @@ Humanoid robots are machines designed to replicate human form and function, comb
 - ◦ Adaptive behavior
 <div className="border-line"></div>
 
-<h3 className="third-heading">
-- 3. Key Technologies and Components
+<h3 className="third-heading" id="key-technologies">
+Key Technologies and Components
 </h3>
 
 <div className="underline-class"></div>
 
-<h4 className="fourth-heading">
+<h4 className="fourth-heading" id="hardware-components">
 Hardware Components
 </h4>
 
 <div className="underline-class"></div>
 
 - ➤ **Sensors**
-    - ▸ Vision systems (RGB, depth cameras)
+  - ▸ Vision systems (RGB, depth cameras)
   - ▸ LiDAR for spatial mapping
   - ▸ IMUs for balance and orientation
   - ▸ Force/torque sensors
@@ -106,7 +110,7 @@ Hardware Components
 
 <div className="border-line"></div>
 
-<h4 className="fourth-heading">
+<h4 className="fourth-heading" id="software-components">
 Software Components
 </h4>
 <div className="underline-class"></div>
@@ -127,9 +131,10 @@ Software Components
   - ▸ Natural language processing
 <div className="border-line"></div>
 
-<h3 className="third-heading">
-- 4. Applications and Use Cases
+<h3 className="third-heading" id="applications">
+Applications and Use Cases
 </h3>
+<div className="underline-class"></div>
 
 ```mermaid
 graph TD
@@ -148,33 +153,54 @@ graph TD
 ```
 **Real-world applications:**
 
-- 1. **Healthcare & Elderly Care**
-   - • Patient assistance
-   - • Physical therapy support
-   - • Companionship for seniors
+<h4 className="fourth-heading" id="healthcare">
+1. Healthcare & Elderly Care
+</h4>
+<div className="underline-class"></div>
 
-- 2. **Manufacturing & Industrial Automation**
-   - • Flexible assembly tasks
-   - • Quality inspection
-   - • Dangerous environment operations
+- • Patient assistance
+- • Physical therapy support
+- • Companionship for seniors
 
-- 3. **Service & Hospitality**
-   - • Reception and guidance
-   - • Food service
-   - • Cleaning and maintenance
+<h4 className="fourth-heading" id="manufacturing">
+2. Manufacturing & Industrial Automation
+</h4>
+<div className="underline-class"></div>
 
-- 4. **Research & Education**
-   - • Human-robot interaction studies
-   - • Educational demonstrations
-   - • AI algorithm development
+- • Flexible assembly tasks
+- • Quality inspection
+- • Dangerous environment operations
 
-- 5. **Disaster Response & Rescue**
-   - • Search and rescue operations
-   - • Hazardous material handling
-   - • Infrastructure inspection
+<h4 className="fourth-heading" id="service">
+3. Service & Hospitality
+</h4>
+<div className="underline-class"></div>
+
+- • Reception and guidance
+- • Food service
+- • Cleaning and maintenance
+
+<h4 className="fourth-heading" id="research">
+4. Research & Education
+</h4>
+<div className="underline-class"></div>
+
+- • Human-robot interaction studies
+- • Educational demonstrations
+- • AI algorithm development
+
+<h4 className="fourth-heading" id="disaster-response">
+5. Disaster Response & Rescue
+</h4>
+<div className="underline-class"></div>
+
+- • Search and rescue operations
+- • Hazardous material handling
+- • Infrastructure inspection
 <div className="border-line"></div>
-<h3 className="third-heading">
-- 5. Development Environment Setup
+
+<h3 className="third-heading" id="dev-setup">
+Development Environment Setup
 </h3>
 <div className="underline-class"></div>
 
@@ -182,6 +208,7 @@ graph TD
 We'll guide you through setting up your robotics development environment step-by-step.
 :::
 <div className="border-line"></div>
+
 **Required tools:**
 
 ```bash
@@ -203,8 +230,10 @@ sudo apt install gazebo11
 - • PyCharm Professional
 - • Jupyter Notebook for experiments
 <div className="border-line"></div>
+
 ---
-<h2 className="second-heading">
+
+<h2 className="second-heading" id="what-youll-build">
 What You'll Build
 </h2>
 
@@ -218,8 +247,10 @@ Throughout this course, you will:
 ✅ Implement AI models for robot perception  
 ✅ Create a complete humanoid robot project  
 <div className="border-line"></div>
+
 ---
-<h2 className="second-heading">
+
+<h2 className="second-heading" id="learning-path">
 Learning Path
 </h2>
 <div className="underline-class"></div>
@@ -237,8 +268,10 @@ graph LR
     style G fill:#ffa879,stroke:#f77e3d,color:#fff
 ```
 <div className="border-line"></div>
+
 ---
-<h2 className="second-heading">
+
+<h2 className="second-heading" id="tips">
 Tips for Success
 </h2>
 <div className="underline-class"></div>
@@ -256,17 +289,21 @@ Tips for Success
 - • Version control your code from day one
 :::
 <div className="border-line"></div>
+
 ---
-<h2 className="second-heading">
+
+<h2 className="second-heading" id="resources">
 Additional Resources
 </h2>
 <div className="underline-class"></div>
+
 - • [ROS Documentation](https://docs.ros.org/)
 - • [OpenAI Robotics Research](https://openai.com/research/robotics)
 - • [IEEE Robotics & Automation Society](https://www.ieee-ras.org/)
 
 ---
-<h2 className="second-heading">
+
+<h2 className="second-heading" id="assessment">
 Assessment
 </h2>
 <div className="underline-class"></div>
@@ -277,14 +314,18 @@ Test your understanding with these questions:
 - 2. Name three key components of a humanoid robot system
 - 3. What are the main challenges in humanoid robotics today?
 <div className="border-line"></div>
+
 ---
-<h2 className="second-heading">
+
+<h2 className="second-heading" id="next-steps">
 Next Steps
 </h2>
 <div className="underline-class"></div>
+
 Ready to dive deeper? Continue to the next section:
 
 👉 [What is Physical AI?](./01-welcome.md)
+<div className="border-line"></div>
 
 ---
 

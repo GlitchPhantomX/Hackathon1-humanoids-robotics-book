@@ -664,6 +664,7 @@ In this chapter, you learned:
 - ✅ How to evaluate robot platforms from entry-level to advanced systems
 - ✅ How to plan sensor integration and communication systems
 - ✅ Safety and budget considerations for hardware selection
+<div className="border-line"></div>
 
 **Key Takeaways**:
 - • Hardware selection should align with your specific learning objectives and budget
@@ -705,7 +706,7 @@ In this chapter, you learned:
 </div>
 
 <div className="summary-content">
-
+<div className="border-line"></div>
 <div className="second-heading">Chapter Summary</div>
 <div className="border-line"></div>
 <div className="third-heading">Key Concepts</div>
@@ -744,11 +745,11 @@ In this chapter, you learned:
 <div className="third-heading"> Next Steps</div>
 
 Continue to [How to Use This Textbook](./04-how-to-use.md) to learn about the learning approach and navigation.
-
+<div className="border-line"></div>
 ---
-
-## Navigation
+<div className="second-heading">Navigation</div>
+<div className="border-line"></div>
 
 [← Previous Chapter](./02-prerequisites.md) | [Next Chapter →](./04-how-to-use.md)
-
+<div className="border-line"></div>
 </div>

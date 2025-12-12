@@ -617,6 +617,7 @@ In this chapter, you learned:
 - ✅ How to utilize interactive features to enhance learning outcomes
 - ✅ How to complete exercises and assessments effectively
 - ✅ How to troubleshoot learning challenges and seek help appropriately
+<div className="border-line"></div>
 
 **Key Takeaways**:
 - • The textbook follows a structured approach with progressive modules
@@ -709,6 +710,7 @@ What You Developed
 <h2 className="second-heading">
 Next Steps
 </h2>
+<div className="border-line"></div>
 
 Continue to [Syllabus and Learning Path](./05-syllabus.md) to understand the complete learning journey and timeline.
 <div className="border-line"></div>
@@ -716,6 +718,7 @@ Continue to [Syllabus and Learning Path](./05-syllabus.md) to understand the com
 <h2 className="second-heading">
 Navigation
 </h2>
+<div className="border-line"></div>
 
 [← Previous Chapter](./03-hardware-requirements.md) | [Next Chapter →](./05-syllabus.md)
 

@@ -1,0 +1,147 @@
+/* ============================================
+   RIGHT SIDEBAR (TOC) FIX
+   Add this to your custom.css
+   ============================================ */
+
+/* Ensure the main container uses proper Docusaurus layout */
+.theme-doc-markdown {
+  max-width: 100% !important;
+}
+
+/* Right sidebar (Table of Contents) styling */
+.theme-doc-toc-desktop {
+  display: block !important;
+  position: sticky !important;
+  top: calc(var(--ifm-navbar-height) + 1rem) !important;
+  max-height: calc(100vh - var(--ifm-navbar-height) - 2rem) !important;
+  overflow-y: auto !important;
+}
+
+/* Make sure TOC is visible */
+.table-of-contents {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure proper layout with your custom elements */
+.main-wrapper {
+  display: flex !important;
+  flex: 1 0 auto !important;
+}
+
+/* Preserve your custom styling classes */
+.main-heading,
+.second-heading,
+.third-heading,
+.fourth-heading {
+  /* Your custom heading styles stay here */
+}
+
+.underline-class {
+  /* Your custom underline styles stay here */
+}
+
+.border-line {
+  /* Your custom border styles stay here */
+}
+
+/* Fix for Docusaurus layout with custom styles */
+.docMainContainer_node_modules-\@docusaurus-theme-classic-lib-theme-DocPage-Layout-Main-styles-module {
+  max-width: none !important;
+}
+
+/* Ensure TOC container has proper width */
+.tocCollapsible_node_modules-\@docusaurus-theme-classic-lib-theme-TOC-styles-module {
+  width: 280px !important;
+  min-width: 280px !important;
+}
+
+/* Make TOC sticky work properly */
+.thin-scrollbar {
+  scrollbar-width: thin !important;
+}
+
+/* Alternative fix if above doesn't work */
+@media (min-width: 997px) {
+  .container {
+    max-width: none !important;
+  }
+  
+  .row {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+  }
+  
+  .col--9 {
+    flex: 0 0 75% !important;
+    max-width: 75% !important;
+  }
+  
+  .col--3 {
+    flex: 0 0 25% !important;
+    max-width: 25% !important;
+    display: block !important;
+  }
+}
+
+/* Responsive - hide TOC on smaller screens */
+@media (max-width: 996px) {
+  .theme-doc-toc-desktop {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   OPTIONAL: Enhanced TOC Styling
+   ============================================ */
+
+/* Make TOC look better with your theme */
+.table-of-contents li {
+  margin: 0.5rem 0;
+}
+
+.table-of-contents a {
+  color: var(--ifm-color-emphasis-700);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.table-of-contents a:hover {
+  color: var(--ifm-color-primary);
+  padding-left: 0.5rem;
+}
+
+.table-of-contents a.table-of-contents__link--active {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  border-left: 2px solid var(--ifm-color-primary);
+  padding-left: 0.5rem;
+}
+
+/* Smooth scrolling for TOC links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Add scroll padding for sticky header */
+html {
+  scroll-padding-top: calc(var(--ifm-navbar-height) + 1rem);
+}
+
+/* ============================================
+   DEBUG: Remove if TOC shows properly
+   ============================================ */
+
+/* Force display TOC - use this temporarily to debug */
+/*
+aside[class*="theme-doc-sidebar-container"] {
+  display: block !important;
+  visibility: visible !important;
+}
+
+div[class*="tocCollapsible"] {
+  display: block !important;
+  visibility: visible !important;
+}
+*/

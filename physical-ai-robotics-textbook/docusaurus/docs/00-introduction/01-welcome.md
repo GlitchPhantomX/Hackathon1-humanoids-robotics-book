@@ -346,6 +346,7 @@ In this chapter, you learned:
 - ✅ The current state and applications of humanoid robotics
 - ✅ The structured learning approach of this textbook
 - ✅ How to navigate and use this textbook effectively
+<div className="border-line"></div>
 
 **Key Takeaways**:
 - • Physical AI involves intelligent systems that perceive, reason, and act in the physical world
@@ -381,19 +382,30 @@ In this chapter, you learned:
 <div className="underline-class"></div>
 
 [Next Chapter →](./02-prerequisites.md)
-
+<div className="border-line"></div>
 </div>
 
 <div className="summary-content">
 
-## 📝 Chapter Summary
 
-### Key Concepts
-- **Physical AI**: AI systems that perceive, reason, and act in the physical world, contrasting with traditional digital AI that operates in virtual spaces
-- **Humanoid Robotics**: Robots with human-like characteristics designed for intuitive interaction with human environments and tasks
-- **Sensing-Reasoning-Acting Cycle**: The fundamental loop of Physical AI systems that perceive environment, make decisions, and execute physical actions
+<h2 className="second-heading">
+ Chapter Summary
+</h2>
+<div className="underline-class"></div>
+<div className="border-line"></div>
+<h2 className="third-heading">
+Key Concepts
+</h2>
 
-### Essential Code Pattern
+- ➣ **Physical AI**: AI systems that perceive, reason, and act in the physical world, contrasting with traditional digital AI that operates in virtual spaces
+- ➣ **Humanoid Robotics**: Robots with human-like characteristics designed for intuitive interaction with human environments and tasks
+- ➣ **Sensing-Reasoning-Acting Cycle**: The fundamental loop of Physical AI systems that perceive environment, make decisions, and execute physical actions
+<div className="border-line"></div>
+<h2 className="third-heading">
+Essential Code Pattern
+</h2>
+
+
 ```
 # Physical AI System Template
 while system_active:
@@ -406,20 +418,28 @@ while system_active:
     # Act in the physical world
     execute_action(decision)
 ```
-
-### Quick Reference
+<h2 className="third-heading">
+Quick Reference
+</h2>
+<div className="border-line"></div>
 | Component | Purpose |
 |-----------|---------|
 | Sensing | Collect data from physical environment using sensors |
 | Reasoning | Process data and make decisions based on goals |
 | Acting | Execute physical actions to interact with the environment |
+<div className="border-line"></div>
+<h2 className="third-heading">
+What You Learned
+</h2>
 
-### What You Learned
-- Definition and importance of Physical AI
-- Current state of humanoid robotics
-- Learning approach for this textbook
+- ▹ Definition and importance of Physical AI
+- ▹ Current state of humanoid robotics
+- ▹ Learning approach for this textbook
+<div className="border-line"></div>
+<h2 className="third-heading">
+Next Steps
+</h2>
 
-### Next Steps
 Continue to [Prerequisites](./02-prerequisites.md) to ensure you have the necessary background knowledge for the technical modules.
-
+<div className="border-line"></div>
 </div>
