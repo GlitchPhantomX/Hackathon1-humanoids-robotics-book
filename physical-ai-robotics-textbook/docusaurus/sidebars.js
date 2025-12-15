@@ -38,6 +38,8 @@ const sidebars = {
         'simulation/advanced-simulation',
       ],
     },
+    // ❌ TEMPORARILY DISABLED - Fix client-side code first
+    /*
     {
       type: 'category',
       label: '03 - NVIDIA Isaac Sim',
@@ -50,6 +52,7 @@ const sidebars = {
         'isaac/sim-to-real',
       ],
     },
+    */
     {
       type: 'category',
       label: '04 - Vision-Language-Action (VLA)',

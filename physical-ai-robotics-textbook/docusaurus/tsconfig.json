@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["DOM", "ESNext"],
+    "jsx": "react-jsx",
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "noEmit": true
+  },
+  "include": [
+    "src",
+    "docusaurus.config.mjs",
+    "sidebars.js",
+    "scripts/**/*.ts",
+    "scripts/**/*.js"
+  ],
+  "exclude": ["node_modules", "build"]
+}
