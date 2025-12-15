@@ -6,8 +6,9 @@ const config = {
   tagline: 'Learning Robotics with Physical AI',
   favicon: 'img/favicon.ico',
 
-  url: 'https://your-organization.github.io',
-  baseUrl: '/physical-ai-robotics-textbook/',
+  // ✅ VERCEL KE LIYE - root path use karo
+  url: 'https://your-vercel-domain.vercel.app',  // Vercel URL dalo
+  baseUrl: '/',  // ✅ Changed from /physical-ai-robotics-textbook/ to /
 
   organizationName: 'your-organization',
   projectName: 'physical-ai-robotics-textbook',
@@ -32,7 +33,7 @@ const config = {
       {
         docs: {
           sidebarPath: './sidebars.js',
-          editUrl: 'https://github.com/your-organization/physical-ai-robotics-textbook/edit/main/',
+          editUrl: 'https://github.com/GlitchPhantomX/Hackathon1-humanoids-robotics-book/edit/main/',
         },
         blog: false,
         theme: {
@@ -63,7 +64,6 @@ const config = {
       respectPrefersColorScheme: false,
     },
 
-    // Default prism config - no custom themes
     prism: {
       additionalLanguages: ['bash', 'python', 'javascript', 'typescript'],
     },
