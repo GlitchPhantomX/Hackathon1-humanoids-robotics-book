@@ -1,6 +1,6 @@
-# Physical AI & Robotics Textbook RAG Chatbot
+# Physical AI & Robotics Textbook RAG Chatbot & Multi-Language Translation System
 
-An intelligent chatbot that allows users to ask questions about the Physical AI & Robotics textbook using Retrieval-Augmented Generation (RAG).
+An intelligent chatbot that allows users to ask questions about the Physical AI & Robotics textbook using Retrieval-Augmented Generation (RAG), with multi-language translation support for Urdu and Arabic.
 
 ## Overview
 
@@ -11,6 +11,8 @@ This project implements a RAG-based chatbot that enables users to have conversat
 - Uses AI to generate contextual, accurate responses
 - Maintains conversation history
 - Provides source citations for all answers
+- Supports multi-language translation (English, Urdu, Arabic) with RTL layout support
+- Requires authentication for translation features
 
 ## Features
 
@@ -20,6 +22,10 @@ This project implements a RAG-based chatbot that enables users to have conversat
 - **Text Selection**: Users can select text on any page and ask questions about it
 - **Persistent Conversations**: Conversation history maintained across sessions
 - **Responsive Design**: Works on desktop and mobile devices
+- **Multi-Language Support**: Translate content to Urdu and Arabic with RTL layout
+- **Authentication Required**: Translation features require user authentication
+- **Font Support**: Proper font rendering for Urdu (Noto Nastaliq) and Arabic (Noto Naskh)
+- **Content Preservation**: Maintains all original styling, layout, and functionality during translation
 
 ## Architecture
 
@@ -31,22 +37,66 @@ The system consists of two main components:
 - Performs semantic search in Qdrant
 - Generates responses using Google Generative AI
 - Provides REST API endpoints
+- Manages authentication and user sessions
+- Handles translation API requests
 
 ### Frontend (Docusaurus + React)
 - Integrated chat widget on all documentation pages
 - Text selection popup for asking questions about selected text
 - Conversation history persistence via sessionStorage
 - Responsive design for desktop and mobile
+- Multi-language translation system with RTL support
+- Language toggle integrated in navbar
+- Content preservation during translation
+
+## Translation Feature
+
+The multi-language translation system provides seamless language switching for the textbook content:
+
+### Supported Languages
+- **English** (default, LTR)
+- **Urdu** (RTL, with Noto Nastaliq font)
+- **Arabic** (RTL, with Noto Naskh font)
+
+### Key Features
+- **Authentication Required**: Language toggle is disabled for non-authenticated users
+- **RTL Support**: Proper right-to-left text rendering for Urdu and Arabic
+- **Font Management**: Self-hosted Urdu font and Google Fonts for Arabic
+- **Content Preservation**: All HTML structure, CSS classes, and formatting maintained
+- **Code Block Preservation**: Code remains in English regardless of language setting
+- **Caching**: Translation content cached for performance
+- **Smooth Transitions**: Language switching with loading states and error handling
+
+### How to Use
+1. Log in to access translation features
+2. Click the language toggle in the top-right navbar
+3. Select your preferred language from the dropdown
+4. Content will automatically translate while preserving all styling
 
 ## Setup & Installation
 
 ### Backend
 1. Navigate to the `backend` directory
 2. Follow the setup instructions in [backend/README.md](backend/README.md)
+3. Ensure authentication endpoints are available at `/api/auth/session`
 
-### Frontend
-1. The chat widget is already integrated with the Docusaurus documentation site
-2. The widget will appear on all pages automatically
+### Frontend (Docusaurus)
+1. Navigate to the `physical-ai-robotics-textbook/docusaurus` directory
+2. Install dependencies: `npm install`
+3. Start development server: `npm run start`
+4. The translation system is already integrated with the Docusaurus documentation site
+5. Translation JSON files are located in `src/translations/` directory
+6. Urdu font files are located in `static/fonts/urdu/` directory
+
+### Dependencies
+- Node.js 18+
+- Docusaurus 3.x
+- React 18+
+- TypeScript
+- FastAPI (backend)
+- OpenAI API key (for translation generation)
+- Noto Nastaliq Urdu font (self-hosted)
+- Noto Naskh Arabic font (Google Fonts)
 
 ## Usage
 

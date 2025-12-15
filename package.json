@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "autoprefixer": "^10.4.22",
+    "i18next": "^25.7.2",
+    "react-i18next": "^16.5.0",
     "tailwindcss": "^4.1.17"
   }
 }

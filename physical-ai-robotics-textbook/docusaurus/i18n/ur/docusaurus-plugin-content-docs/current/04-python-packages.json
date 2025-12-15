@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "پائی تھون پیکجز",
+    "description": "The label for the sidebar item 04-python-packages"
+  },
+  "title": {
+    "message": "ROS 2 پائی تھون پیکجز",
+    "description": "The title for the document 04-python-packages"
+  },
+  "description": {
+    "message": "ROS 2 کے لیے پائی تھون پیکجز، انسٹالیشن، اور استعمال کا جائزہ",
+    "description": "The description for the document 04-python-packages"
+  }
+}

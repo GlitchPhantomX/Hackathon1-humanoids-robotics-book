@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "العقد والموضوعات",
+    "description": "The label for the sidebar item 02-nodes-topics"
+  },
+  "title": {
+    "message": "العقد والموضوعات في ROS 2",
+    "description": "The title for the document 02-nodes-topics"
+  },
+  "description": {
+    "message": "لمحة عن العقد، الموضوعات، والناشرين/المشتركين في ROS 2",
+    "description": "The description for the document 02-nodes-topics"
+  }
+}

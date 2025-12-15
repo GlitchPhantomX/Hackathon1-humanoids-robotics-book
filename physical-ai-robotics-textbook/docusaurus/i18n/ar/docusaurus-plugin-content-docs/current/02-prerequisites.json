@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "المتطلبات",
+    "description": "The label for the sidebar item 02-prerequisites"
+  },
+  "title": {
+    "message": "المتطلبات",
+    "description": "The title for the document 02-prerequisites"
+  },
+  "description": {
+    "message": "تعلم المتطلبات للذكاء الاصطناعي المادي وروبوتيات الهوميود، مراجعة المتطلبات التقنية والعملية",
+    "description": "The description for the document 02-prerequisites"
+  }
+}

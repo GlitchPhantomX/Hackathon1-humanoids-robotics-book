@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "الهندسة",
+    "description": "The label for the sidebar item 01-architecture"
+  },
+  "title": {
+    "message": "هندسة ROS 2",
+    "description": "The title for the document 01-architecture"
+  },
+  "description": {
+    "message": "لمحة عن هندسة ROS 2 الأساسية، DDS، وبنية الاتصال",
+    "description": "The description for the document 01-architecture"
+  }
+}

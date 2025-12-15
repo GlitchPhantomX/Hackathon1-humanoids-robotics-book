@@ -6,6 +6,9 @@ description: 'Bringing it all together - Complete humanoid robot integration'
 
 import ReadingTime from '@site/src/components/ReadingTime';
 import ViewToggle from '@site/src/components/ViewToggle';
+import TranslatedContent from '@site/src/components/TranslatedContent';
+
+<TranslatedContent chapterId="05-capstone">
 
 <ReadingTime minutes={3} />
 <!-- <ViewToggle /> -->
@@ -59,3 +62,5 @@ This module covers:
 4. • Comprehensive Testing and Validation
 5. • Deployment and Real-World Testing
 6. • Future Directions and Advanced Topics
+
+</TranslatedContent>

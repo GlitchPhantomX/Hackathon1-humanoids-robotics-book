@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "بناء العالم",
+    "description": "The label for the sidebar item 04-world-building"
+  },
+  "title": {
+    "message": "بناء العالم والبيئات",
+    "description": "The title for the document 04-world-building"
+  },
+  "description": {
+    "message": "إنشاء عوالم، البيئات، ومساحات المحاكاة المخصصة في Gazebo",
+    "description": "The description for the document 04-world-building"
+  }
+}

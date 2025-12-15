@@ -2,6 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Urdu Font */
+@font-face {
+  font-family: 'Noto Nastaliq Urdu';
+  src: url('/fonts/urdu/NotoNastaliqUrdu-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Arabic Font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap');
+
+/* Language-specific styling */
+[data-language="ur"] {
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  line-height: 2.2;
+  letter-spacing: 0.02em;
+}
+
+[data-language="ar"] {
+  font-family: 'Noto Naskh Arabic', serif !important;
+  line-height: 1.8;
+}
+
+/* RTL base support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .navbar__item {
+  margin-left: 0;
+  margin-right: var(--ifm-navbar-item-padding-horizontal);
+}
+
+/* Preserve code blocks LTR */
+[dir="rtl"] pre,
+[dir="rtl"] code {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/* Preserve Mermaid diagrams LTR */
+[dir="rtl"] .mermaid {
+  direction: ltr !important;
+}
+
+/* Smooth transitions for language toggle elements */
+.languageToggle,
+.dropdown,
+.content {
+  transition: all 0.2s ease;
+}
+
 
 /**
  * Custom CSS for Docusaurus

@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "سیمولیشن",
+    "description": "The label for the sidebar item 02-simulation-index"
+  },
+  "title": {
+    "message": "02 - سیمولیشن",
+    "description": "The title for the document 02-simulation-index"
+  },
+  "description": {
+    "message": "گزیبو سیمولیشن، ورلڈ بلڈنگ، اور ROS 2 انٹیگریشن کے بارے میں تفصیلی ماڈیول",
+    "description": "The description for the document 02-simulation-index"
+  }
+}

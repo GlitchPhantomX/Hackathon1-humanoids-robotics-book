@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "نموذج URDF للروبوتات البشرية",
+    "description": "The label for the sidebar item 05-urdf-humanoids"
+  },
+  "title": {
+    "message": "URDF والروبوتات البشرية",
+    "description": "The title for the document 05-urdf-humanoids"
+  },
+  "description": {
+    "message": "تعريف ونمذجة الروبوتات البشرية باستخدام URDF",
+    "description": "The description for the document 05-urdf-humanoids"
+  }
+}

@@ -9,7 +9,7 @@ import ViewToggle from '@site/src/components/ViewToggle';
 
 <ReadingTime minutes={137} />
 
-<ViewToggle />
+<!-- <ViewToggle /> -->
 
 <h1 className="main-heading">System Architecture Design</h1>
 <div className="underline-class"></div>
@@ -45,9 +45,15 @@ The architecture must balance modularity for development and maintenance with ti
 
 This chapter explores the architectural principles, patterns, and best practices necessary to design a robust, scalable, and maintainable system for the humanoid robotics capstone project, focusing on the Vision-Language-Action paradigm that connects perception, cognition, and action execution.
 
-## Architectural Principles
+<h2 className="second-heading">
+Architectural Principles
+</h2>
+<div className="underline-class"></div>
 
-### Modularity and Component-Based Design
+<h3 className="third-heading">
+- Modularity and Component-Based Design
+</h3>
+<div className="underline-class"></div>
 
 Effective robotic architectures are built around well-defined, modular components that encapsulate specific functionality while providing clear interfaces for interaction:
 
@@ -302,7 +308,10 @@ class ControlComponent(RobotComponent):
         return True
 ```
 
-### Layered Architecture Pattern
+<h3 className="third-heading">
+- Layered Architecture Pattern
+</h3>
+<div className="underline-class"></div>
 
 A layered architecture provides clear separation of concerns while maintaining the necessary integration between different functional areas:
 
@@ -522,9 +531,15 @@ class HardwareLayer:
                 self.safety_interface.shutdown())
 ```
 
-## Communication Architecture
+<h2 className="second-heading">
+Communication Architecture
+</h2>
+<div className="underline-class"></div>
 
-### Message-Based Communication
+<h3 className="third-heading">
+- Message-Based Communication
+</h3>
+<div className="underline-class"></div>
 
 Robotic systems require robust communication mechanisms to coordinate between components operating at different frequencies and with different timing constraints:
 
@@ -731,7 +746,10 @@ class PerceptionComponentWithComm(ComponentCommunicator):
         return {'x': 1.0, 'y': 2.0, 'z': 0.8}
 ```
 
-### Service-Based Communication
+<h3 className="third-heading">
+- Service-Based Communication
+</h3>
+<div className="underline-class"></div>
 
 For synchronous operations and configuration management, service-based communication provides reliable request-response patterns:
 
@@ -898,9 +916,15 @@ class NavigationService(ServiceComponent):
         }
 ```
 
-## Isaac Integration Architecture
+<h2 className="second-heading">
+Isaac Integration Architecture
+</h2>
+<div className="underline-class"></div>
 
-### Isaac-Based Component Architecture
+<h3 className="third-heading">
+- Isaac-Based Component Architecture
+</h3>
+<div className="underline-class"></div>
 
 The Isaac ecosystem provides specialized components that can be integrated into the overall architecture:
 
@@ -1389,9 +1413,15 @@ class IsaacManipulationNode(Node):
         pass
 ```
 
-## Safety and Reliability Architecture
+<h2 className="second-heading">
+Safety and Reliability Architecture
+</h2>
+<div className="underline-class"></div>
 
-### Safety-First Design
+<h3 className="third-heading">
+- Safety-First Design
+</h3>
+<div className="underline-class"></div>
 
 Safety must be integrated throughout the architecture, not added as an afterthought:
 
@@ -1664,9 +1694,15 @@ class HumanAwarenessSafetySystem:
         }
 ```
 
-## Performance and Scalability Architecture
+<h2 className="second-heading">
+Performance and Scalability Architecture
+</h2>
+<div className="underline-class"></div>
 
-### Real-Time Performance Considerations
+<h3 className="third-heading">
+- Real-Time Performance Considerations
+</h3>
+<div className="underline-class"></div>
 
 The architecture must ensure real-time performance across all components:
 
@@ -1853,39 +1889,54 @@ class RealTimeScheduler:
             self.scheduler_thread.join()
 ```
 
-## Summary
+<div className="border-line"></div>
+---
+<h2 className="second-heading">
+ Summary
+</h2>
+<div className="underline-class"></div>
 
 The system architecture for the humanoid robotics capstone project represents a sophisticated integration of multiple subsystems that must work together seamlessly to achieve the robot's objectives. The architecture follows established principles of modularity, clear communication patterns, and safety-first design while leveraging the Isaac ecosystem for specialized robotic capabilities.
 
 Key architectural elements include:
 
-1. **Modular Component Design**: Each system component encapsulates specific functionality while providing clear interfaces for integration.
+1. • **Modular Component Design**: Each system component encapsulates specific functionality while providing clear interfaces for integration.
 
-2. **Layered Architecture**: A clear separation of concerns between application, planning, control, and hardware layers ensures proper abstraction and maintainability.
+2. • **Layered Architecture**: A clear separation of concerns between application, planning, control, and hardware layers ensures proper abstraction and maintainability.
 
-3. **Communication Systems**: Robust message-based and service-based communication enables coordination between components operating at different frequencies and with different timing constraints.
+3. • **Communication Systems**: Robust message-based and service-based communication enables coordination between components operating at different frequencies and with different timing constraints.
 
-4. **Isaac Integration**: Specialized Isaac components provide advanced perception, navigation, and manipulation capabilities that leverage NVIDIA's hardware acceleration.
+4. • **Isaac Integration**: Specialized Isaac components provide advanced perception, navigation, and manipulation capabilities that leverage NVIDIA's hardware acceleration.
 
-5. **Safety Systems**: Comprehensive safety architecture ensures safe operation across all system levels, from collision avoidance to human awareness.
+5. • **Safety Systems**: Comprehensive safety architecture ensures safe operation across all system levels, from collision avoidance to human awareness.
 
-6. **Performance Monitoring**: Real-time performance monitoring and scheduling ensure that timing constraints are met for safety-critical operations.
+6. • **Performance Monitoring**: Real-time performance monitoring and scheduling ensure that timing constraints are met for safety-critical operations.
 
 The success of the capstone project depends on the proper implementation and integration of this architecture, with careful attention to the interfaces between components and the flow of information throughout the system.
 
-## Exercises
+<div className="border-line"></div>
+---
+<h2 className="second-heading">
+ Exercises
+</h2>
+<div className="underline-class"></div>
 
-1. Design the component architecture for your specific humanoid robot implementation
-2. Create detailed interface specifications for communication between components
-3. Plan the safety systems integration for your robot platform
-4. Design performance monitoring and optimization strategies
-5. Implement a basic version of the communication architecture
+1. • Design the component architecture for your specific humanoid robot implementation
+2. • Create detailed interface specifications for communication between components
+3. • Plan the safety systems integration for your robot platform
+4. • Design performance monitoring and optimization strategies
+5. • Implement a basic version of the communication architecture
 
-## Further Reading
+<div className="border-line"></div>
+---
+<h2 className="second-heading">
+ Further Reading
+</h2>
+<div className="underline-class"></div>
 
-- "Designing Data-Intensive Applications" by Kleppmann
-- "Software Architecture in Practice" by Bass et al.
-- "Real-Time Systems: Design Principles for Distributed Embedded Applications" by Kopetz
-- "Robotics Middleware: A Comprehensive Literature Survey and Attribute-Based Bibliometric Analysis" by Kheirkhahan et al.
+- • "Designing Data-Intensive Applications" by Kleppmann
+- • "Software Architecture in Practice" by Bass et al.
+- • "Real-Time Systems: Design Principles for Distributed Embedded Applications" by Kopetz
+- • "Robotics Middleware: A Comprehensive Literature Survey and Attribute-Based Bibliometric Analysis" by Kheirkhahan et al.
 
 </div>

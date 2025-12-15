@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { Highlight } from "./HeroHighlightDemo";
 import { TextGenerateEffectDemo } from "./TextGenerateEffectDemo";
-import { MovingBorderDemo } from "./MovingBorderDemo3";
 
 const HeroSection = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -10,7 +8,8 @@ const HeroSection = () => {
   const closeMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen">
+      {/* Font */}
       <style>
         {`
           @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
@@ -19,8 +18,51 @@ const HeroSection = () => {
           }
         `}
       </style>
+
+      {/* Mobile Menu Button */}
+      <button
+        onClick={openMenu}
+        className="md:hidden fixed top-6 right-6 z-40 text-2xl text-[var(--color-text)]"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-50 bg-black/60 md:hidden">
+          <div className="absolute right-0 top-0 h-full w-64 bg-white dark:bg-black p-6 shadow-xl">
+            <button
+              onClick={closeMenu}
+              className="mb-6 text-lg font-semibold"
+              aria-label="Close menu"
+            >
+              ✕ Close
+            </button>
+
+            <nav className="flex flex-col gap-4">
+              <a
+                href="/docs/Introduction/introduction"
+                onClick={closeMenu}
+                className="hover:text-orange-500"
+              >
+                Docs
+              </a>
+              <a
+                href="/blog"
+                onClick={closeMenu}
+                className="hover:text-orange-500"
+              >
+                Blog
+              </a>
+            </nav>
+          </div>
+        </div>
+      )}
+
+      {/* Hero Content */}
       <div className="relative flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-32 light:bg-white dark:bg-black text-black">
-        <div className="group flex items-center gap-2 rounded-full p-1 pr-3 mt-20 bg-[var(--color-badge-background)] ">
+        <div className="group flex items-center gap-2 rounded-full p-1 pr-3 mt-20 bg-[var(--color-badge-background)]">
           <span className="bg-orange-600 text-white text-xs px-3.5 py-1 rounded-full">
             NEW
           </span>
@@ -29,7 +71,6 @@ const HeroSection = () => {
             <span className="text-[var(--color-text)]">
               Start Building Intelligent Systems
             </span>
-
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -55,39 +96,33 @@ const HeroSection = () => {
         </h1>
 
         <p className="text-base text-center text-[var(--color-description-text)] dark:text-gray-300 max-w-3xl mt-6">
-          Learn how AI systems interact with the physical world. Build,
-          simulate, and control humanoid robots using ROS 2, Gazebo, and NVIDIA
-          Isaac—bringing embodied intelligence to life.
+          Learn how AI systems interact with the physical world. Build, simulate,
+          and control humanoid robots using ROS 2, Gazebo, and NVIDIA Isaac—
+          bringing embodied intelligence to life.
         </p>
 
-      <a href="/docs/Introduction/introduction" className="hover:border">
-          <div className="flex items-center gap-4 mt-8">
-
-  <button
-    className="flex items-center gap-2 bg-[var(--color-dark-button-background)] text-white 
-               font-medium px-5 py-3 rounded-lg hover:bg-[var(--color-hover-button-background)] transition-all duration-300 
-                hover:shadow-lg hover:-translate-y-0.5"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="white"
-      className="w-5 h-5"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M13.5 4.5L20 12m0 0l-6.5 7.5M20 12H4"
-      />
-    </svg>
-    Start Reading
-  </button>
-
-</div>
-      </a>
-
+        <a
+          href="/docs/Introduction/introduction"
+          className="hover:border mt-8"
+        >
+          <button className="flex items-center gap-2 bg-[var(--color-dark-button-background)] text-white font-medium px-5 py-3 rounded-lg hover:bg-[var(--color-hover-button-background)] transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="white"
+              className="w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L20 12m0 0l-6.5 7.5M20 12H4"
+              />
+            </svg>
+            Start Reading
+          </button>
+        </a>
 
         <div className="flex flex-wrap justify-center items-center gap-4 md:gap-14 mt-12">
           {[
@@ -116,8 +151,7 @@ const HeroSection = () => {
         </div>
 
         <div className="relative w-full max-w-6xl mt-20">
-          <div className="absolute inset-0 rounded-3xl border-[1px] border-orange-500"></div>
-
+          <div className="absolute inset-0 rounded-3xl border border-orange-500" />
           <div className="relative m-6 rounded-2xl overflow-hidden shadow-2xl">
             <div
               className="w-full h-64 p-8"

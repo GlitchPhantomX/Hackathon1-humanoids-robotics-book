@@ -1,0 +1,141 @@
+.translatedContent {
+  position: relative;
+  width: 100%;
+}
+
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 0.25rem solid var(--ifm-color-emphasis-200);
+  border-top: 0.25rem solid var(--ifm-color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.progressBarContainer {
+  width: 100%;
+  height: 4px;
+  background-color: var(--ifm-color-emphasis-200);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progressBar {
+  height: 100%;
+  background-color: var(--ifm-color-primary);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.errorState {
+  padding: 1rem;
+  background-color: var(--ifm-color-danger-background);
+  border: 1px solid var(--ifm-color-danger);
+  border-radius: var(--ifm-global-radius);
+  color: var(--ifm-color-danger-contrast-background);
+  margin-bottom: 1rem;
+}
+
+.successState {
+  padding: 0.5rem;
+  background-color: var(--ifm-color-success-background);
+  border: 1px solid var(--ifm-color-success);
+  border-radius: var(--ifm-global-radius);
+  color: var(--ifm-color-success-contrast-background);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.successIcon {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.translatedHtml {
+  width: 100%;
+}
+
+.translatedHtml h1,
+.translatedHtml h2,
+.translatedHtml h3,
+.translatedHtml h4,
+.translatedHtml h5,
+.translatedHtml h6 {
+  font-family: inherit !important;
+  line-height: 1.4 !important;
+}
+
+.translatedHtml p,
+.translatedHtml span,
+.translatedHtml div {
+  font-family: inherit !important;
+}
+
+/* RTL specific styles */
+.translatedContent[dir="rtl"] {
+  text-align: right;
+}
+
+.translatedContent[dir="rtl"] .translatedHtml h1,
+.translatedContent[dir="rtl"] .translatedHtml h2,
+.translatedContent[dir="rtl"] .translatedHtml h3,
+.translatedContent[dir="rtl"] .translatedHtml h4,
+.translatedContent[dir="rtl"] .translatedHtml h5,
+.translatedContent[dir="rtl"] .translatedHtml h6 {
+  text-align: right;
+}
+
+.translatedContent[dir="rtl"] .translatedHtml pre,
+.translatedContent[dir="rtl"] .translatedHtml code {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Urdu specific styling */
+.translatedContent[data-language="ur"] {
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  line-height: 2.2 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Arabic specific styling */
+.translatedContent[data-language="ar"] {
+  font-family: 'Noto Naskh Arabic', serif !important;
+  line-height: 1.8 !important;
+}
+
+/* Original content styling */
+.originalContent {
+  width: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .loadingState {
+    padding: 1rem;
+  }
+
+  .spinner {
+    width: 2rem;
+    height: 2rem;
+  }
+}

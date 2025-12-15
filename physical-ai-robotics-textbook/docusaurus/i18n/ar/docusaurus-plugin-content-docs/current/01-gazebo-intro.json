@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "مقدمة Gazebo",
+    "description": "The label for the sidebar item 01-gazebo-intro"
+  },
+  "title": {
+    "message": "مقدمة محاكاة Gazebo",
+    "description": "The title for the document 01-gazebo-intro"
+  },
+  "description": {
+    "message": "مقدمة إلى عالم محاكاة Gazebo، النمذجة، وهندسة الفيزياء",
+    "description": "The description for the document 01-gazebo-intro"
+  }
+}

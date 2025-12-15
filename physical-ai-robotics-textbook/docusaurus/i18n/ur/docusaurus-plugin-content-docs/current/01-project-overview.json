@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "پراجیکٹ جائزہ",
+    "description": "The label for the sidebar item 01-project-overview"
+  },
+  "title": {
+    "message": "کیپسٹون پراجیکٹ جائزہ",
+    "description": "The title for the document 01-project-overview"
+  },
+  "description": {
+    "message": "اینڈ ٹو اینڈ ہیومنوائڈ روبوٹ پراجیکٹ، اسکوپ، اور تکنیکی ضروریات",
+    "description": "The description for the document 01-project-overview"
+  }
+}

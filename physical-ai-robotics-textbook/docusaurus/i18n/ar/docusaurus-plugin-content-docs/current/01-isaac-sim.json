@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "Isaac Sim",
+    "description": "The label for the sidebar item 01-isaac-sim"
+  },
+  "title": {
+    "message": "مقدمة Isaac Sim",
+    "description": "The title for the document 01-isaac-sim"
+  },
+  "description": {
+    "message": "مقدمة إلى NVIDIA Isaac Sim، الفيزياء المتقدمة، والتكامل مع الذكاء الاصطناعي",
+    "description": "The description for the document 01-isaac-sim"
+  }
+}

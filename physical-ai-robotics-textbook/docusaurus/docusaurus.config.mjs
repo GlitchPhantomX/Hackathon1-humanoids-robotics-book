@@ -18,10 +18,31 @@ const config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-  // ❌ Removed languages
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'ur', 'ar'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+        direction: 'ltr',
+      },
+      ur: {
+        label: 'اردو',
+        direction: 'rtl',
+        htmlLang: 'ur-PK',
+      },
+      ar: {
+        label: 'العربية',
+        direction: 'rtl',
+        htmlLang: 'ar-SA',
+      },
+    },
+  },
+  
+
+  customFields: {
+    translationEnabled: true,
+    requiresAuth: true,
   },
 
   presets: [
@@ -60,9 +81,12 @@ const config = {
           position: 'left',
           label: 'Book',
         },
+        {
+          type: 'localeDropdown',
+          position: 'right',
+        },
 
         // ❌ Removed GitHub link
-        // ❌ Removed Language Dropdown
       ],
     },
 
@@ -94,6 +118,27 @@ const config = {
                   logLevel: 'debug',
                 },
               ],
+            },
+            optimization: {
+              splitChunks: {
+                chunks: 'all',
+                cacheGroups: {
+                  vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all',
+                  },
+                  translations: {
+                    test: /[\\/]src[\\/]translations[\\/]/,
+                    name: 'translations',
+                    chunks: 'all',
+                    enforce: true,
+                  },
+                },
+              },
+              providedExports: true,
+              usedExports: true,
+              sideEffects: true,
             },
           };
         },

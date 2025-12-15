@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "title": "مقدمة إلى Isaac Sim",
+    "description": "أساسيات NVIDIA Isaac Sim",
+    "language": "ar",
+    "chapter": "03-isaac",
+    "sourceFile": "03-isaac/index.md",
+    "lastUpdated": "2025-12-15T05:40:00.000Z"
+  },
+  "content": {
+    "headings": {},
+    "paragraphs": {},
+    "lists": {}
+  },
+  "html": "# مقدمة إلى Isaac Sim\n\nIsaac Sim هو منصة محاكاة متقدمة من NVIDIA لبحث وتطوير الروبوتات."
+}

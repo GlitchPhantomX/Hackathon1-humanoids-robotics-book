@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "المحاكاة",
+    "description": "The label for the sidebar item 02-simulation-index"
+  },
+  "title": {
+    "message": "02 - المحاكاة",
+    "description": "The title for the document 02-simulation-index"
+  },
+  "description": {
+    "message": "وحدة مفصلة عن محاكاة Gazebo، بناء العالم، وتكامل ROS 2",
+    "description": "The description for the document 02-simulation-index"
+  }
+}

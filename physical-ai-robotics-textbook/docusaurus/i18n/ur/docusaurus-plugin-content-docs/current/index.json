@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "تعارف",
+    "description": "The label for the sidebar item index"
+  },
+  "title": {
+    "message": "00 - تعارف",
+    "description": "The title for the document index"
+  },
+  "description": {
+    "message": "Physical AI اور Humanoid Robotics کے بارے میں تعارفی ماڈیول",
+    "description": "The description for the document index"
+  }
+}

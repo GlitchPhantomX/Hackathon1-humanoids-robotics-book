@@ -4,24 +4,40 @@ title: 'ROS 2 Python Packages: Building and Using Python Nodes'
 description: 'Understanding how to create, build, and use Python packages in ROS 2'
 ---
 
-# ROS 2 Python Packages: Building and Using Python Nodes
+<h1 className="main-heading">ROS 2 Python Packages: Building and Using Python Nodes</h1>
+<div className="underline-class"></div>
 
 Python is one of the most popular languages for robotics development due to its simplicity and rich ecosystem. This chapter covers how to create, structure, and use Python packages in ROS 2.
 
-## Learning Objectives
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 By the end of this chapter, you will be able to:
-- Create ROS 2 Python packages with proper structure
-- Implement nodes using the rclpy client library
-- Build and install Python packages in ROS 2
-- Use ROS 2 tools and utilities in Python
-- Debug and test Python-based ROS 2 nodes
+- • Create ROS 2 Python packages with proper structure
+- • Implement nodes using the rclpy client library
+- • Build and install Python packages in ROS 2
+- • Use ROS 2 tools and utilities in Python
+- • Debug and test Python-based ROS 2 nodes
 
-## Package Structure and Organization
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Package Structure and Organization
+</h2>
+<div className="underline-class"></div>
 
 A ROS 2 Python package follows a specific structure that enables proper building, installation, and execution.
 
-### Basic Package Structure
+<h3 className="third-heading">
+- Basic Package Structure
+</h3>
+<div className="underline-class"></div>
 
 ```
 my_robot_package/
@@ -38,7 +54,10 @@ my_robot_package/
     └── test_my_node.py
 ```
 
-### Package Metadata (package.xml)
+<h3 className="third-heading">
+- Package Metadata (package.xml)
+</h3>
+<div className="underline-class"></div>
 
 The `package.xml` file contains metadata about the package:
 
@@ -67,7 +86,10 @@ The `package.xml` file contains metadata about the package:
 </package>
 ```
 
-### Python Package Setup (setup.py)
+<h3 className="third-heading">
+- Python Package Setup (setup.py)
+</h3>
+<div className="underline-class"></div>
 
 The `setup.py` file defines how the Python package is installed:
 
@@ -105,9 +127,15 @@ setup(
 )
 ```
 
-## Creating Python Nodes
+<h2 className="second-heading">
+ Creating Python Nodes
+</h2>
+<div className="underline-class"></div>
 
-### Basic Node Structure
+<h3 className="third-heading">
+- Basic Node Structure
+</h3>
+<div className="underline-class"></div>
 
 ```python
 #!/usr/bin/env python3
@@ -138,7 +166,10 @@ if __name__ == '__main__':
     main()
 ```
 
-### Node with Publishers and Subscribers
+<h3 className="third-heading">
+- Node with Publishers and Subscribers
+</h3>
+<div className="underline-class"></div>
 
 ```python
 #!/usr/bin/env python3
@@ -204,9 +235,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## Common ROS 2 Python Patterns
-
-### Using Parameters
+<h2 className="second-heading">
+- Common ROS 2 Python Patterns
+</h2>
+<div className="underline-class"></div>
+<h3 className="third-heading">
+-  Using Parameters
+</h3>
+<div className="underline-class"></div>
+<div className="border-line"></div>
 
 ```python
 #!/usr/bin/env python3
@@ -262,7 +299,11 @@ if __name__ == '__main__':
     main()
 ```
 
-### Using Services
+<h3 className="third-heading">
+- Using Services
+</h3>
+<div className="underline-class"></div>
+
 
 ```python
 #!/usr/bin/env python3
@@ -324,11 +365,18 @@ if __name__ == '__main__':
     main()
 ```
 
-## Building and Installing Python Packages
-
-### Building the Package
+<h2 className="second-heading">
+- Building and Installing Python Packages
+</h2>
+<div className="underline-class"></div>
+<div className="border-line"></div>
+<h3 className="third-heading">
+- Building the Package
+</h3>
+<div className="underline-class"></div>
 
 To build a Python package in ROS 2:
+<div className="border-line"></div>
 
 ```bash
 # Source ROS 2 environment
@@ -343,17 +391,20 @@ colcon build --packages-select my_robot_package
 # Or build all packages
 colcon build
 ```
-
-### Sourcing the Package
-
+<h3 className="third-heading">
+- Sourcing the Package
+</h3>
+<div className="underline-class"></div>
 After building, source your workspace:
 
 ```bash
 source ~/ros2_ws/install/setup.bash
 ```
-
-### Running Python Nodes
-
+<h3 className="third-heading">
+- Running Python Nodes
+</h3>
+<div className="underline-class"></div>
+<div className="border-line"></div>
 Once built and sourced, you can run your nodes:
 
 ```bash
@@ -367,10 +418,15 @@ ros2 run my_robot_package my_node --ros-args -p robot_name:=turtlebot -p max_vel
 ros2 launch my_robot_package my_launch_file.launch.py
 ```
 
-## Advanced Python Topics
-
-### Using Launch Files
-
+<h2 className="second-heading">
+- Advanced Python Topics
+</h2>
+<div className="underline-class"></div>
+<h3 className="third-heading">
+- Using Launch Files
+</h3>
+<div className="underline-class"></div>
+<div className="border-line"></div>
 Create a launch file to run multiple nodes together:
 
 ```python
@@ -399,8 +455,10 @@ def generate_launch_description():
     ])
 ```
 
-### Testing Python Nodes
-
+<h3 className="third-heading">
+-  Testing Python Nodes
+</h3>
+<div className="underline-class"></div>
 Create unit tests for your nodes:
 
 ```python
@@ -426,7 +484,11 @@ if __name__ == '__main__':
     unittest.main()
 ```
 
-### Using Python Tools and Libraries
+<h3 className="third-heading">
+- Using Python Tools and Libraries
+</h3>
+<div className="underline-class"></div>
+<div className="border-line"></div>
 
 ROS 2 Python nodes can leverage the rich Python ecosystem:
 
@@ -480,54 +542,87 @@ if __name__ == '__main__':
     main()
 ```
 
-## Best Practices
+<h2 className="second-heading">
+- Best Practices
+</h2>
+<div className="underline-class"></div>
+<div className="border-line"></div>
+<h3 className="third-heading">
+- Code Organization
+</h3>
+<div className="underline-class"></div>
 
-### Code Organization
-- Keep nodes focused on single responsibilities
-- Use modules to organize related functionality
-- Follow Python naming conventions (PEP 8)
-- Document your code with docstrings
+- ⇨ Keep nodes focused on single responsibilities
+- ⇨ Use modules to organize related functionality
+- ⇨ Follow Python naming conventions (PEP 8)
+- ⇨ Document your code with docstrings
+<div className="border-line"></div>
+<h3 className="third-heading">
+- Error Handling
+</h3>
+<div className="underline-class"></div>
+- ⇨ Use try-except blocks for robust error handling
+- ⇨ Implement proper cleanup in finally blocks
+- ⇨ Log errors appropriately for debugging
+<div className="border-line"></div>
+<h3 className="third-heading">
+- Performance Considerations
+</h3>
+<div className="underline-class"></div>
 
-### Error Handling
-- Use try-except blocks for robust error handling
-- Implement proper cleanup in finally blocks
-- Log errors appropriately for debugging
+- ⇨ Avoid blocking operations in callbacks
+- ⇨ Use appropriate callback groups for concurrency
+- ⇨ Monitor memory usage in long-running nodes
+<div className="border-line"></div>
+<h3 className="third-heading">
+- Debugging Tips
+</h3>
+<div className="underline-class"></div>
+- ⇨ Use `self.get_logger().info()` for debugging output
+- ⇨ Check ROS 2 command line tools: `ros2 node list`, `ros2 topic list`
+- ⇨ Use `rqt_console` for viewing logs from multiple nodes
+<div className="border-line"></div>
+<h2 className="second-heading">
+- Troubleshooting Common Issues
+</h2>
+<div className="underline-class"></div>
+<div className="border-line"></div>
+<h3 className="third-heading">
+- Import Errors
+</h3>
+<div className="underline-class"></div>
 
-### Performance Considerations
-- Avoid blocking operations in callbacks
-- Use appropriate callback groups for concurrency
-- Monitor memory usage in long-running nodes
-
-### Debugging Tips
-- Use `self.get_logger().info()` for debugging output
-- Check ROS 2 command line tools: `ros2 node list`, `ros2 topic list`
-- Use `rqt_console` for viewing logs from multiple nodes
-
-## Troubleshooting Common Issues
-
-### Import Errors
 **Problem**: Module not found errors
 **Solutions**:
-- Verify package is properly built and sourced
-- Check that `__init__.py` files exist
-- Ensure PYTHONPATH includes your package
+- ▹ Verify package is properly built and sourced
+- ▹ Check that `__init__.py` files exist
+- ▹ Ensure PYTHONPATH includes your package
+<div className="border-line"></div>
+<h3 className="third-heading">
+-  Permission Issues
+</h3>
+<div className="underline-class"></div>
 
-### Permission Issues
 **Problem**: Permission denied when running nodes
 **Solutions**:
-- Don't run ROS 2 as root
-- Check file permissions on your workspace
-- Verify ROS 2 installation permissions
+- ▹ Don't run ROS 2 as root
+- ▹ Check file permissions on your workspace
+- ▹ Verify ROS 2 installation permissions
+<div className="border-line"></div>
+<h3 className="third-heading">
+-  Node Communication Issues
+</h3>
+<div className="underline-class"></div>
 
-### Node Communication Issues
 **Problem**: Nodes cannot communicate
 **Solutions**:
-- Check that nodes are in the same domain
-- Verify topic/service names match
-- Ensure proper QoS settings
+- ▹ Check that nodes are in the same domain
+- ▹ Verify topic/service names match
+- ▹ Ensure proper QoS settings
+<div className="border-line"></div>
 
 import ReadingTime from '@site/src/components/ReadingTime';
 import ViewToggle from '@site/src/components/ViewToggle';
 
 <ReadingTime minutes={16} />
-<ViewToggle />
+<!-- <ViewToggle /> -->

@@ -1,0 +1,14 @@
+{
+  "link.title.Docs": {
+    "message": "دستاویزات",
+    "description": "The title of the footer links column with title=Docs in the footer"
+  },
+  "link.title.More": {
+    "message": "مزید",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "copyright": {
+    "message": "کاپی رائٹ © 2025 آپ کی تنظیم. کل حقوق محفوظ ہیں.",
+    "description": "The footer copyright line"
+  }
+}

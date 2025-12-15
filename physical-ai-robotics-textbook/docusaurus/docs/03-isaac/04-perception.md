@@ -8,44 +8,62 @@ import ReadingTime from '@site/src/components/ReadingTime';
 import ViewToggle from '@site/src/components/ViewToggle';
 
 <ReadingTime minutes={20} />
-<ViewToggle />
+<!-- <ViewToggle /> -->
 
-## Learning Objectives
+<h2 className="second-heading">
+Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 By the end of this chapter, you will be able to:
-- Implement AI-powered perception pipelines for robotics
-- Utilize Isaac ROS for hardware-accelerated computer vision
-- Design perception systems that integrate multiple sensor modalities
-- Apply deep learning techniques for object detection and recognition
-- Optimize perception algorithms for real-time robotics applications
-- Evaluate perception system performance and accuracy
+- • Implement AI-powered perception pipelines for robotics
+- • Utilize Isaac ROS for hardware-accelerated computer vision
+- • Design perception systems that integrate multiple sensor modalities
+- • Apply deep learning techniques for object detection and recognition
+- • Optimize perception algorithms for real-time robotics applications
+- • Evaluate perception system performance and accuracy
 
-## Exercises
+<h2 className="second-heading">
+Exercises
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Exercise 3.4.1: Isaac ROS Perception Pipeline Setup (⭐, ~30 min)</summary>
 
-### Exercise 3.4.1: Isaac ROS Perception Pipeline Setup
+<h3 className="third-heading">
+- Exercise 3.4.1: Isaac ROS Perception Pipeline Setup
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐ (Beginner)
 **Time Estimate**: 30 minutes
 **Requirements**: Isaac ROS installation, GPU with CUDA support, basic ROS 2 knowledge
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Set up an Isaac ROS perception pipeline:
-- Install Isaac ROS perception packages
-- Configure GPU-accelerated detection nodes
-- Connect sensor inputs to perception pipeline
-- Validate hardware acceleration
-- Test basic object detection functionality
+- • Install Isaac ROS perception packages
+- • Configure GPU-accelerated detection nodes
+- • Connect sensor inputs to perception pipeline
+- • Validate hardware acceleration
+- • Test basic object detection functionality
 
-#### Success Criteria
-- [ ] Isaac ROS perception packages are installed and configured
-- [ ] GPU acceleration is properly enabled and detected
-- [ ] Perception pipeline connects to sensor inputs
-- [ ] Object detection runs with hardware acceleration
-- [ ] Basic detection functionality works correctly
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Isaac ROS perception packages are installed and configured
+- • [ ] GPU acceleration is properly enabled and detected
+- • [ ] Perception pipeline connects to sensor inputs
+- • [ ] Object detection runs with hardware acceleration
+- • [ ] Basic detection functionality works correctly
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Verify Isaac ROS perception packages are available
 apt list --installed | grep "isaac-ros"
@@ -72,48 +90,69 @@ ros2 topic pub /image_rect_color sensor_msgs/msg/Image "{}"
 ros2 node list | grep isaac
 ```
 
-#### Expected Output
-- Isaac ROS perception nodes should initialize successfully
-- GPU should be utilized for deep learning inference
-- Detection topics should publish object detection results
-- Performance should be suitable for real-time operation
-- Sensor data should flow through the perception pipeline
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Isaac ROS perception nodes should initialize successfully
+- • GPU should be utilized for deep learning inference
+- • Detection topics should publish object detection results
+- • Performance should be suitable for real-time operation
+- • Sensor data should flow through the perception pipeline
 
-#### Challenges
-- Optimize detection parameters for different object types
-- Integrate multiple sensor inputs into perception pipeline
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Optimize detection parameters for different object types
+- • Integrate multiple sensor inputs into perception pipeline
 
-#### Hints
-- Ensure Isaac ROS packages match your ROS 2 distribution
-- Verify GPU compute capability is supported
-- Check sensor data format compatibility with perception nodes
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Ensure Isaac ROS packages match your ROS 2 distribution
+- • Verify GPU compute capability is supported
+- • Check sensor data format compatibility with perception nodes
 
 </details>
 
 <details>
 <summary>Exercise 3.4.2: Multi-Sensor Fusion for Enhanced Perception (⭐⭐, ~45 min)</summary>
 
-### Exercise 3.4.2: Multi-Sensor Fusion for Enhanced Perception
+<h3 className="third-heading">
+- Exercise 3.4.2: Multi-Sensor Fusion for Enhanced Perception
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐ (Intermediate)
 **Time Estimate**: 45 minutes
 **Requirements**: Understanding of sensor fusion, Isaac ROS perception, multiple sensor types
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Create a multi-sensor fusion system:
-- Integrate camera and LIDAR data for object detection
-- Implement sensor data synchronization
-- Create fused object detection system
-- Visualize fused perception results
-- Validate fusion accuracy improvements
+- • Integrate camera and LIDAR data for object detection
+- • Implement sensor data synchronization
+- • Create fused object detection system
+- • Visualize fused perception results
+- • Validate fusion accuracy improvements
 
-#### Success Criteria
-- [ ] Camera and LIDAR data are properly synchronized
-- [ ] Multi-sensor fusion algorithm processes data correctly
-- [ ] Fused detection results are more accurate than individual sensors
-- [ ] Visualization shows fused perception results
-- [ ] Performance remains acceptable with fusion processing
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Camera and LIDAR data are properly synchronized
+- • [ ] Multi-sensor fusion algorithm processes data correctly
+- • [ ] Fused detection results are more accurate than individual sensors
+- • [ ] Visualization shows fused perception results
+- • [ ] Performance remains acceptable with fusion processing
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Launch multi-sensor fusion pipeline
 ros2 launch isaac_ros_fusion multi_sensor_fusion.launch.py
@@ -139,48 +178,69 @@ ros2 run isaac_ros_utilities performance_monitor --ros-args -p pipeline:=fusion
 rviz2 -d $(ros2 pkg prefix isaac_ros_fusion)/share/isaac_ros_fusion/rviz/fusion_demo.rviz
 ```
 
-#### Expected Output
-- Sensor data should be properly synchronized across modalities
-- Fused detections should combine information from multiple sensors
-- Accuracy should improve compared to individual sensor detections
-- Visualization should show complementary sensor information
-- Performance should remain stable with fusion processing
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Sensor data should be properly synchronized across modalities
+- • Fused detections should combine information from multiple sensors
+- • Accuracy should improve compared to individual sensor detections
+- • Visualization should show complementary sensor information
+- • Performance should remain stable with fusion processing
 
-#### Challenges
-- Implement dynamic sensor weighting based on reliability
-- Handle sensor failures gracefully in fusion system
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement dynamic sensor weighting based on reliability
+- • Handle sensor failures gracefully in fusion system
 
-#### Hints
-- Use appropriate time synchronization mechanisms for different sensors
-- Consider sensor field-of-view differences in fusion logic
-- Validate fusion results against ground truth when available
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Use appropriate time synchronization mechanisms for different sensors
+- • Consider sensor field-of-view differences in fusion logic
+- • Validate fusion results against ground truth when available
 
 </details>
 
 <details>
 <summary>Exercise 3.4.3: Synthetic Data Generation for Perception Training (⭐⭐⭐, ~60 min)</summary>
 
-### Exercise 3.4.3: Synthetic Data Generation for Perception Training
+<h3 className="third-heading">
+- Exercise 3.4.3: Synthetic Data Generation for Perception Training
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐⭐ (Advanced)
 **Time Estimate**: 60 minutes
 **Requirements**: Isaac Sim, Isaac ROS, synthetic data generation knowledge, deep learning basics
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Develop a synthetic data generation pipeline:
-- Create Isaac Sim scenes with varied object placements
-- Generate diverse lighting and environmental conditions
-- Capture synchronized multi-modal sensor data
-- Create labeled training datasets
-- Validate synthetic-to-real transfer capability
+- • Create Isaac Sim scenes with varied object placements
+- • Generate diverse lighting and environmental conditions
+- • Capture synchronized multi-modal sensor data
+- • Create labeled training datasets
+- • Validate synthetic-to-real transfer capability
 
-#### Success Criteria
-- [ ] Isaac Sim scenes generate diverse training data
-- [ ] Multi-modal sensor data is captured synchronously
-- [ ] Labels are correctly generated for training data
-- [ ] Synthetic data quality is suitable for training
-- [ ] Domain randomization improves real-world performance
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Isaac Sim scenes generate diverse training data
+- • [ ] Multi-modal sensor data is captured synchronously
+- • [ ] Labels are correctly generated for training data
+- • [ ] Synthetic data quality is suitable for training
+- • [ ] Domain randomization improves real-world performance
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Launch Isaac Sim data generation environment
 isaac-sim --exec "from examples.synthetic_data_gen import run_data_generation" -- --scene_config=perception_training.json
@@ -226,52 +286,73 @@ print(f'Domain randomization effectiveness: {effectiveness}')
 "
 ```
 
-#### Expected Output
-- Diverse synthetic scenes should be generated automatically
-- Multi-modal sensor data should be captured with correct labels
-- Generated dataset should have appropriate structure and quality
-- Domain randomization should improve model robustness
-- Synthetic-trained models should transfer to real-world scenarios
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Diverse synthetic scenes should be generated automatically
+- • Multi-modal sensor data should be captured with correct labels
+- • Generated dataset should have appropriate structure and quality
+- • Domain randomization should improve model robustness
+- • Synthetic-trained models should transfer to real-world scenarios
 
-#### Challenges
-- Implement physics-based material variations for realistic rendering
-- Create procedural scene generation for unlimited training data
-- Optimize rendering performance for large-scale data generation
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement physics-based material variations for realistic rendering
+- • Create procedural scene generation for unlimited training data
+- • Optimize rendering performance for large-scale data generation
 
-#### Hints
-- Use domain randomization to improve real-world transfer
-- Implement proper lighting variations to handle different conditions
-- Validate synthetic data quality against real sensor characteristics
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Use domain randomization to improve real-world transfer
+- • Implement proper lighting variations to handle different conditions
+- • Validate synthetic data quality against real sensor characteristics
 
 </details>
 
 <details>
 <summary>Exercise Summary</summary>
 
-### Exercise Summary
+<h3 className="third-heading">
+- Exercise Summary
+</h3>
+<div className="underline-class"></div>
 This chapter covered advanced perception systems using AI and deep learning for robotics applications. You learned about Isaac ROS perception pipelines, multi-sensor fusion techniques, and synthetic data generation for perception training. The exercises provided hands-on experience with setting up perception pipelines, implementing sensor fusion, and generating synthetic training data for AI models.
 
 </details>
 
-## Troubleshooting
+<h2 className="second-heading">
+Troubleshooting
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Troubleshooting: Isaac ROS Perception Issues</summary>
 
-### Troubleshooting: Isaac ROS Perception Issues
+<h3 className="third-heading">
+- Troubleshooting: Isaac ROS Perception Issues
+</h3>
+<div className="underline-class"></div>
 
-#### Problem: Isaac ROS perception nodes fail to initialize
+<h4 className="fourth-heading">
+Problem: Isaac ROS perception nodes fail to initialize
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Perception nodes crash on startup
-- GPU acceleration not detected
-- CUDA runtime errors
-- TensorRT models fail to load
+- • Perception nodes crash on startup
+- • GPU acceleration not detected
+- • CUDA runtime errors
+- • TensorRT models fail to load
 
 **Causes**:
-- Incompatible GPU or CUDA version
-- Missing Isaac ROS dependencies
-- Incorrect model file formats
-- Insufficient GPU memory
+- • Incompatible GPU or CUDA version
+- • Missing Isaac ROS dependencies
+- • Incorrect model file formats
+- • Insufficient GPU memory
 
 **Solutions**:
 1. Verify Isaac ROS installation and dependencies:
@@ -335,23 +416,26 @@ This chapter covered advanced perception systems using AI and deep learning for 
    ```
 
 **Verification Steps**:
-- [ ] Isaac ROS perception nodes initialize without errors
-- [ ] GPU acceleration is properly detected
-- [ ] Model files load successfully
-- [ ] Perception pipeline processes data correctly
+- • [ ] Isaac ROS perception nodes initialize without errors
+- • [ ] GPU acceleration is properly detected
+- • [ ] Model files load successfully
+- • [ ] Perception pipeline processes data correctly
 
-#### Problem: Poor detection accuracy or performance
+<h4 className="fourth-heading">
+Problem: Poor detection accuracy or performance
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Low detection accuracy or high false positive rate
-- Slow processing speeds below real-time requirements
-- High GPU/CPU usage
-- Detection results inconsistent with expected objects
+- • Low detection accuracy or high false positive rate
+- • Slow processing speeds below real-time requirements
+- • High GPU/CPU usage
+- • Detection results inconsistent with expected objects
 
 **Causes**:
-- Suboptimal model parameters or configuration
-- Hardware limitations or bottlenecks
-- Inadequate sensor calibration
-- Mismatched input resolution or format
+- • Suboptimal model parameters or configuration
+- • Hardware limitations or bottlenecks
+- • Inadequate sensor calibration
+- • Mismatched input resolution or format
 
 **Solutions**:
 1. Optimize detection parameters:
@@ -470,23 +554,26 @@ This chapter covered advanced perception systems using AI and deep learning for 
    ```
 
 **Verification Steps**:
-- [ ] Detection accuracy meets requirements (> 80% for most applications)
-- [ ] Processing runs at real-time frame rates (> 15 FPS)
-- [ ] GPU/CPU usage is within acceptable limits
-- [ ] Detection results are consistent and reliable
+- • [ ] Detection accuracy meets requirements (> 80% for most applications)
+- • [ ] Processing runs at real-time frame rates (> 15 FPS)
+- • [ ] GPU/CPU usage is within acceptable limits
+- • [ ] Detection results are consistent and reliable
 
-#### Problem: Sensor synchronization issues in fusion
+<h4 className="fourth-heading">
+Problem: Sensor synchronization issues in fusion
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Camera and LIDAR data arrive at different times
-- Fused detections are inconsistent or missing
-- Time stamp errors in sensor data
-- Synchronization nodes fail to match messages
+- • Camera and LIDAR data arrive at different times
+- • Fused detections are inconsistent or missing
+- • Time stamp errors in sensor data
+- • Synchronization nodes fail to match messages
 
 **Causes**:
-- Different sensor update rates
-- Network latency affecting message timing
-- Improper synchronization configuration
-- Clock differences between sensors
+- • Different sensor update rates
+- • Network latency affecting message timing
+- • Improper synchronization configuration
+- • Clock differences between sensors
 
 **Solutions**:
 1. Configure proper synchronization:
@@ -598,23 +685,26 @@ This chapter covered advanced perception systems using AI and deep learning for 
    ```
 
 **Verification Steps**:
-- [ ] Sensor data arrives with acceptable time synchronization
-- [ ] Fused detections are consistent and complete
-- [ ] No timestamp errors in fusion pipeline
-- [ ] Synchronization performance meets requirements
+- • [ ] Sensor data arrives with acceptable time synchronization
+- • [ ] Fused detections are consistent and complete
+- • [ ] No timestamp errors in fusion pipeline
+- • [ ] Synchronization performance meets requirements
 
-#### Problem: Synthetic data generation pipeline fails
+<h4 className="fourth-heading">
+Problem: Synthetic data generation pipeline fails
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Isaac Sim scenes don't generate properly
-- Sensor data capture fails or is incomplete
-- Labels are missing or incorrect
-- Rendering performance is extremely slow
+- • Isaac Sim scenes don't generate properly
+- • Sensor data capture fails or is incomplete
+- • Labels are missing or incorrect
+- • Rendering performance is extremely slow
 
 **Causes**:
-- Scene configuration issues
-- Insufficient rendering resources
-- Incorrect sensor setup in simulation
-- Asset loading problems
+- • Scene configuration issues
+- • Insufficient rendering resources
+- • Incorrect sensor setup in simulation
+- • Asset loading problems
 
 **Solutions**:
 1. Verify Isaac Sim configuration:
@@ -743,30 +833,40 @@ This chapter covered advanced perception systems using AI and deep learning for 
    ```
 
 **Verification Steps**:
-- [ ] Isaac Sim generates scenes reliably without crashes
-- [ ] Sensor data is captured with proper synchronization
-- [ ] Labels are correctly generated and accurate
-- [ ] Data generation performance is acceptable for project timeline
+- • [ ] Isaac Sim generates scenes reliably without crashes
+- • [ ] Sensor data is captured with proper synchronization
+- • [ ] Labels are correctly generated and accurate
+- • [ ] Data generation performance is acceptable for project timeline
 
 </details>
 
-# Perception: AI-Powered Sensing and Understanding
+# <h1 className="main-heading">Perception: AI-Powered Sensing and Understanding</h1>
+<div className="underline-class"></div>
 
 Perception is the cornerstone of autonomous robotics, enabling robots to interpret and understand their environment through various sensors and AI algorithms. This chapter explores advanced perception techniques that leverage artificial intelligence and deep learning to extract meaningful information from sensor data, with a focus on Isaac ROS and Isaac Sim for hardware-accelerated performance.
 
-## Learning Objectives
+<h2 className="second-heading">
+Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 By the end of this chapter, you will be able to:
-- Implement AI-powered perception pipelines for robotics
-- Utilize Isaac ROS for hardware-accelerated computer vision
-- Design perception systems that integrate multiple sensor modalities
-- Apply deep learning techniques for object detection and recognition
-- Optimize perception algorithms for real-time robotics applications
-- Evaluate perception system performance and accuracy
+- • Implement AI-powered perception pipelines for robotics
+- • Utilize Isaac ROS for hardware-accelerated computer vision
+- • Design perception systems that integrate multiple sensor modalities
+- • Apply deep learning techniques for object detection and recognition
+- • Optimize perception algorithms for real-time robotics applications
+- • Evaluate perception system performance and accuracy
 
-## Perception Fundamentals
+<h2 className="second-heading">
+Perception Fundamentals
+</h2>
+<div className="underline-class"></div>
 
-### Overview of Robot Perception
+<h3 className="third-heading">
+- Overview of Robot Perception
+</h3>
+<div className="underline-class"></div>
 
 Robot perception encompasses the ability to interpret sensor data and extract meaningful information about the environment. Modern perception systems typically involve:
 
@@ -803,20 +903,29 @@ The perception pipeline can be visualized as:
 └─────────────────┘
 ```
 
-### Types of Perception Tasks
+<h3 className="third-heading">
+- Types of Perception Tasks
+</h3>
+<div className="underline-class"></div>
 
 Robot perception encompasses various specialized tasks:
 
-- **Object Detection**: Identifying and localizing objects in sensor data
-- **Semantic Segmentation**: Classifying each pixel in an image
-- **Instance Segmentation**: Distinguishing between individual object instances
-- **Pose Estimation**: Determining the 6D pose of objects
-- **Scene Understanding**: Interpreting the overall scene context
-- **Activity Recognition**: Understanding human actions and behaviors
+- • **Object Detection**: Identifying and localizing objects in sensor data
+- • **Semantic Segmentation**: Classifying each pixel in an image
+- • **Instance Segmentation**: Distinguishing between individual object instances
+- • **Pose Estimation**: Determining the 6D pose of objects
+- • **Scene Understanding**: Interpreting the overall scene context
+- • **Activity Recognition**: Understanding human actions and behaviors
 
-## Isaac ROS Perception Pipelines
+<h2 className="second-heading">
+Isaac ROS Perception Pipelines
+</h2>
+<div className="underline-class"></div>
 
-### Hardware-Accelerated Computer Vision
+<h3 className="third-heading">
+- Hardware-Accelerated Computer Vision
+</h3>
+<div className="underline-class"></div>
 
 Isaac ROS provides hardware-accelerated computer vision capabilities that leverage NVIDIA GPUs for real-time performance:
 
@@ -984,7 +1093,10 @@ if __name__ == '__main__':
     main()
 ```
 
-### Multi-Sensor Fusion
+<h3 className="third-heading">
+- Multi-Sensor Fusion
+</h3>
+<div className="underline-class"></div>
 
 Integrating multiple sensor modalities for enhanced perception:
 
@@ -1169,9 +1281,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## Deep Learning for Perception
+<h2 className="second-heading">
+Deep Learning for Perception
+</h2>
+<div className="underline-class"></div>
 
-### Object Detection with Deep Learning
+<h3 className="third-heading">
+- Object Detection with Deep Learning
+</h3>
+<div className="underline-class"></div>
 
 Implementing deep learning-based object detection using Isaac ROS:
 
@@ -1341,7 +1459,10 @@ if __name__ == '__main__':
     main()
 ```
 
-### Semantic Segmentation
+<h3 className="third-heading">
+- Semantic Segmentation
+</h3>
+<div className="underline-class"></div>
 
 Implementing semantic segmentation for scene understanding:
 
@@ -1506,9 +1627,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## Isaac Sim Perception Training
+<h2 className="second-heading">
+Isaac Sim Perception Training
+</h2>
+<div className="underline-class"></div>
 
-### Synthetic Data Generation for AI Training
+<h3 className="third-heading">
+- Synthetic Data Generation for AI Training
+</h3>
+<div className="underline-class"></div>
 
 Creating synthetic datasets for training perception models:
 
@@ -1698,9 +1825,15 @@ if __name__ == "__main__":
     main()
 ```
 
-## Performance Optimization
+<h2 className="second-heading">
+Performance Optimization
+</h2>
+<div className="underline-class"></div>
 
-### Optimizing Perception Pipelines
+<h3 className="third-heading">
+- Optimizing Perception Pipelines
+</h3>
+<div className="underline-class"></div>
 
 Optimizing perception systems for real-time performance:
 
@@ -1914,9 +2047,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## Real-World Perception Applications
+<h2 className="second-heading">
+Real-World Perception Applications
+</h2>
+<div className="underline-class"></div>
 
-### Human-Robot Interaction Perception
+<h3 className="third-heading">
+- Human-Robot Interaction Perception
+</h3>
+<div className="underline-class"></div>
 
 Perception systems for human-robot interaction:
 
@@ -2106,9 +2245,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## Best Practices for Perception Systems
+<h2 className="second-heading">
+Best Practices for Perception Systems
+</h2>
+<div className="underline-class"></div>
 
-### System Design Best Practices
+<h3 className="third-heading">
+- System Design Best Practices
+</h3>
+<div className="underline-class"></div>
 
 1. **Modular Architecture**: Design perception components to be modular and interchangeable
 2. **Real-time Processing**: Optimize algorithms for real-time performance requirements
@@ -2116,7 +2261,10 @@ if __name__ == '__main__':
 4. **Scalability**: Design systems that can scale with additional sensors or capabilities
 5. **Calibration**: Maintain proper sensor calibration for accurate perception
 
-### Performance Considerations
+<h3 className="third-heading">
+- Performance Considerations
+</h3>
+<div className="underline-class"></div>
 
 1. **GPU Utilization**: Maximize GPU utilization for deep learning inference
 2. **Memory Management**: Efficiently manage GPU and system memory
@@ -2124,40 +2272,52 @@ if __name__ == '__main__':
 4. **Adaptive Processing**: Adjust processing parameters based on scene complexity
 5. **Resource Monitoring**: Continuously monitor system resources and performance
 
-## Troubleshooting Common Issues
+<h2 className="second-heading">
+Troubleshooting Common Issues
+</h2>
+<div className="underline-class"></div>
 
-### Perception System Issues
+<h3 className="third-heading">
+- Perception System Issues
+</h3>
+<div className="underline-class"></div>
 
 **Problem**: Perception system produces inconsistent or unreliable results
 **Solutions**:
-- Verify sensor calibration and mounting
-- Check lighting conditions and adjust preprocessing
-- Implement sensor fusion for robustness
-- Add confidence thresholds and filtering
+- • Verify sensor calibration and mounting
+- • Check lighting conditions and adjust preprocessing
+- • Implement sensor fusion for robustness
+- • Add confidence thresholds and filtering
 
 **Problem**: High computational load and poor real-time performance
 **Solutions**:
-- Optimize deep learning models for edge deployment
-- Use model quantization and pruning
-- Implement adaptive resolution processing
-- Leverage hardware acceleration (GPU, DLA)
+- • Optimize deep learning models for edge deployment
+- • Use model quantization and pruning
+- • Implement adaptive resolution processing
+- • Leverage hardware acceleration (GPU, DLA)
 
-### Isaac ROS Specific Issues
+<h3 className="third-heading">
+- Isaac ROS Specific Issues
+</h3>
+<div className="underline-class"></div>
 
 **Problem**: Isaac ROS nodes fail to initialize or crash
 **Solutions**:
-- Verify GPU and CUDA compatibility
-- Check Isaac ROS installation and dependencies
-- Ensure sufficient GPU memory
-- Validate sensor message formats
+- • Verify GPU and CUDA compatibility
+- • Check Isaac ROS installation and dependencies
+- • Ensure sufficient GPU memory
+- • Validate sensor message formats
 
 **Problem**: Poor detection accuracy compared to expected performance
 **Solutions**:
-- Verify model inputs match training data preprocessing
-- Check sensor data quality and calibration
-- Adjust confidence thresholds
-- Fine-tune models on domain-specific data
+- • Verify model inputs match training data preprocessing
+- • Check sensor data quality and calibration
+- • Adjust confidence thresholds
+- • Fine-tune models on domain-specific data
 
-## Summary
+<h2 className="second-heading">
+Summary
+</h2>
+<div className="underline-class"></div>
 
 Perception systems form the foundation of intelligent robotics, enabling robots to understand and interact with their environment. By leveraging Isaac ROS for hardware-accelerated processing and Isaac Sim for synthetic data generation, developers can create robust, real-time perception systems for complex robotics applications. The key to successful perception systems lies in proper sensor fusion, optimized deep learning models, and adaptive processing that can handle real-world variability.

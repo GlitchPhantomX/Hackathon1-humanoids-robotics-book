@@ -1,5 +1,10 @@
-import React from "react";
+import React from 'react';
+import { LanguageProvider } from '../context/LanguageContext';
 
-export default function Root({ children }: any) {
-  return <>{children}</>;
+export default function Root({ children }: { children: React.ReactNode }) {
+  return (
+    <LanguageProvider>
+      {children}
+    </LanguageProvider>
+  );
 }

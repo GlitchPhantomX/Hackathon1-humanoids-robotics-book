@@ -3,47 +3,65 @@ sidebar_position: 1
 title: "Isaac Sim: NVIDIA's Advanced Robotics Simulation Platform"
 description: "Introduction to Isaac Sim for advanced robotics simulation and AI development"
 ---
-
-# Isaac Sim: NVIDIA's Advanced Robotics Simulation Platform
+# <h1 className="main-heading">Isaac Sim: NVIDIA's Advanced Robotics Simulation Platform</h1>
+<div className="underline-class"></div>
 
 Isaac Sim is NVIDIA's comprehensive robotics simulation platform built on the Omniverse framework. It provides high-fidelity physics simulation, photorealistic rendering, and seamless integration with AI development tools. This chapter introduces Isaac Sim's capabilities for developing and testing humanoid robots in complex, realistic environments.
 
-## Learning Objectives
+<h2 className="second-heading">
+Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 By the end of this chapter, you will be able to:
-- Understand the architecture and capabilities of Isaac Sim
-- Set up Isaac Sim for robotics development
-- Create and configure simulation environments
-- Implement physics-based robot simulation
-- Integrate Isaac Sim with ROS 2 and other robotics frameworks
-- Leverage Isaac Sim's AI training capabilities
+- • Understand the architecture and capabilities of Isaac Sim
+- • Set up Isaac Sim for robotics development
+- • Create and configure simulation environments
+- • Implement physics-based robot simulation
+- • Integrate Isaac Sim with ROS 2 and other robotics frameworks
+- • Leverage Isaac Sim's AI training capabilities
 
-## Exercises
+<h2 className="second-heading">
+Exercises
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Exercise 3.1.1: Isaac Sim Environment Setup and Basic Configuration (⭐, ~30 min)</summary>
 
-### Exercise 3.1.1: Isaac Sim Environment Setup and Basic Configuration
+<h3 className="third-heading">
+- Exercise 3.1.1: Isaac Sim Environment Setup and Basic Configuration
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐ (Beginner)
 **Time Estimate**: 30 minutes
 **Requirements**: NVIDIA GPU with RTX support, Isaac Sim installation, Python environment
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Set up Isaac Sim with basic configuration:
-- Install and configure Isaac Sim
-- Create a basic simulation environment
-- Configure physics parameters
-- Set up rendering settings
-- Validate the basic setup
+- • Install and configure Isaac Sim
+- • Create a basic simulation environment
+- • Configure physics parameters
+- • Set up rendering settings
+- • Validate the basic setup
 
-#### Success Criteria
-- [ ] Isaac Sim successfully launches without errors
-- [ ] Basic environment loads correctly
-- [ ] Physics simulation runs smoothly
-- [ ] Rendering quality is acceptable
-- [ ] Basic configuration parameters are properly set
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Isaac Sim successfully launches without errors
+- • [ ] Basic environment loads correctly
+- • [ ] Physics simulation runs smoothly
+- • [ ] Rendering quality is acceptable
+- • [ ] Basic configuration parameters are properly set
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Check Isaac Sim installation
 python -c "import omni.isaac.core; print('Isaac Sim imported successfully')"
@@ -69,47 +87,68 @@ print(f'Assets path: {assets_path}')
 "
 ```
 
-#### Expected Output
-- Isaac Sim should launch without errors
-- Basic environment should render properly
-- Physics simulation should run at reasonable speed
-- Configuration parameters should be accessible
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Isaac Sim should launch without errors
+- • Basic environment should render properly
+- • Physics simulation should run at reasonable speed
+- • Configuration parameters should be accessible
 
-#### Challenges
-- Optimize physics parameters for different simulation scenarios
-- Configure advanced rendering settings for specific applications
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Optimize physics parameters for different simulation scenarios
+- • Configure advanced rendering settings for specific applications
 
-#### Hints
-- Ensure GPU drivers are up to date
-- Verify CUDA compatibility before installation
-- Check system requirements thoroughly before setup
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Ensure GPU drivers are up to date
+- • Verify CUDA compatibility before installation
+- • Check system requirements thoroughly before setup
 
 </details>
 
 <details>
 <summary>Exercise 3.1.2: Advanced Environment Creation with Custom Assets (⭐⭐, ~45 min)</summary>
 
-### Exercise 3.1.2: Advanced Environment Creation with Custom Assets
+<h3 className="third-heading">
+- Exercise 3.1.2: Advanced Environment Creation with Custom Assets
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐ (Intermediate)
 **Time Estimate**: 45 minutes
 **Requirements**: Isaac Sim knowledge, USD format understanding, custom assets
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Create an advanced simulation environment with custom assets:
-- Load custom 3D models into Isaac Sim
-- Configure realistic lighting and materials
-- Add semantic annotations for perception tasks
-- Implement environment dynamics (movable objects)
-- Set up multiple camera views
+- • Load custom 3D models into Isaac Sim
+- • Configure realistic lighting and materials
+- • Add semantic annotations for perception tasks
+- • Implement environment dynamics (movable objects)
+- • Set up multiple camera views
 
-#### Success Criteria
-- [ ] Custom assets load successfully into Isaac Sim
-- [ ] Lighting and materials appear realistic
-- [ ] Semantic annotations are properly configured
-- [ ] Environment dynamics function correctly
-- [ ] Multiple camera views are operational
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Custom assets load successfully into Isaac Sim
+- • [ ] Lighting and materials appear realistic
+- • [ ] Semantic annotations are properly configured
+- • [ ] Environment dynamics function correctly
+- • [ ] Multiple camera views are operational
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Test custom asset loading
 python -c "
@@ -148,49 +187,70 @@ print(f'Path tracing: {settings.get(\"/rtx/pathtracing/enabled\")}')
 "
 ```
 
-#### Expected Output
-- Custom assets should load without errors
-- Lighting should create realistic visual effects
-- Semantic annotations should be properly applied
-- Environment dynamics should respond to interactions
-- Camera views should render properly
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Custom assets should load without errors
+- • Lighting should create realistic visual effects
+- • Semantic annotations should be properly applied
+- • Environment dynamics should respond to interactions
+- • Camera views should render properly
 
-#### Challenges
-- Implement realistic material properties using Physically-Based Rendering (PBR)
-- Create dynamic environments that respond to robot actions
-- Add complex lighting scenarios with shadows and reflections
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement realistic material properties using Physically-Based Rendering (PBR)
+- • Create dynamic environments that respond to robot actions
+- • Add complex lighting scenarios with shadows and reflections
 
-#### Hints
-- Use USD format for custom assets to ensure compatibility
-- Apply realistic material properties based on real-world materials
-- Use semantic labels consistently for perception training
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Use USD format for custom assets to ensure compatibility
+- • Apply realistic material properties based on real-world materials
+- • Use semantic labels consistently for perception training
 
 </details>
 
 <details>
 <summary>Exercise 3.1.3: Humanoid Robot Integration with Advanced Sensors (⭐⭐⭐, ~60 min)</summary>
 
-### Exercise 3.1.3: Humanoid Robot Integration with Advanced Sensors
+<h3 className="third-heading">
+- Exercise 3.1.3: Humanoid Robot Integration with Advanced Sensors
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐⭐ (Advanced)
 **Time Estimate**: 60 minutes
 **Requirements**: Advanced Isaac Sim knowledge, humanoid robot model, sensor integration
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Integrate a humanoid robot with advanced sensors in Isaac Sim:
-- Load and configure a humanoid robot model
-- Implement multiple sensor types (cameras, LIDAR, IMU)
-- Configure joint controllers for realistic movement
-- Implement sensor fusion for perception tasks
-- Validate robot dynamics and stability
+- • Load and configure a humanoid robot model
+- • Implement multiple sensor types (cameras, LIDAR, IMU)
+- • Configure joint controllers for realistic movement
+- • Implement sensor fusion for perception tasks
+- • Validate robot dynamics and stability
 
-#### Success Criteria
-- [ ] Humanoid robot loads and initializes correctly
-- [ ] All sensors function properly and publish data
-- [ ] Joint controllers enable realistic movement
-- [ ] Sensor fusion provides consistent perception
-- [ ] Robot maintains stability during simulation
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Humanoid robot loads and initializes correctly
+- • [ ] All sensors function properly and publish data
+- • [ ] Joint controllers enable realistic movement
+- • [ ] Sensor fusion provides consistent perception
+- • [ ] Robot maintains stability during simulation
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Test humanoid robot loading
 python -c "
@@ -246,52 +306,73 @@ print('Sensor validation requires running simulation')
 "
 ```
 
-#### Expected Output
-- Humanoid robot should load with all joints functional
-- All sensors should initialize and publish data
-- Joint controllers should respond to commands
-- Sensor fusion should provide consistent perception data
-- Robot should maintain balance and stability
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Humanoid robot should load with all joints functional
+- • All sensors should initialize and publish data
+- • Joint controllers should respond to commands
+- • Sensor fusion should provide consistent perception data
+- • Robot should maintain balance and stability
 
-#### Challenges
-- Implement realistic humanoid walking gaits
-- Create complex manipulation tasks with multiple sensors
-- Optimize sensor configurations for specific tasks
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement realistic humanoid walking gaits
+- • Create complex manipulation tasks with multiple sensors
+- • Optimize sensor configurations for specific tasks
 
-#### Hints
-- Use realistic joint limits and dynamics for humanoid models
-- Configure sensors with appropriate noise models
-- Implement proper coordinate transformations between sensors
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Use realistic joint limits and dynamics for humanoid models
+- • Configure sensors with appropriate noise models
+- • Implement proper coordinate transformations between sensors
 
 </details>
 
 <details>
 <summary>Exercise Summary</summary>
 
-### Exercise Summary
+<h3 className="third-heading">
+- Exercise Summary
+</h3>
+<div className="underline-class"></div>
 This chapter covered Isaac Sim, NVIDIA's advanced robotics simulation platform. You learned about the architecture and capabilities of Isaac Sim, how to set up and configure simulation environments, implement physics-based robot simulation, integrate with ROS 2, and leverage AI training capabilities. The exercises provided hands-on experience with basic setup, advanced environment creation, and humanoid robot integration with sensors.
 
 </details>
 
-## Troubleshooting
+<h2 className="second-heading">
+Troubleshooting
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Troubleshooting: Isaac Sim Issues</summary>
 
-### Troubleshooting: Isaac Sim Issues
+<h3 className="third-heading">
+- Troubleshooting: Isaac Sim Issues
+</h3>
+<div className="underline-class"></div>
 
-#### Problem: Isaac Sim fails to start or crashes immediately
+<h4 className="fourth-heading">
+Problem: Isaac Sim fails to start or crashes immediately
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Application crashes on startup
-- GPU errors in console output
-- Driver compatibility issues
-- CUDA runtime errors
+- • Application crashes on startup
+- • GPU errors in console output
+- • Driver compatibility issues
+- • CUDA runtime errors
 
 **Causes**:
-- Incompatible GPU hardware
-- Outdated graphics drivers
-- CUDA version mismatch
-- Insufficient system resources
+- • Incompatible GPU hardware
+- • Outdated graphics drivers
+- • CUDA version mismatch
+- • Insufficient system resources
 
 **Solutions**:
 1. Verify GPU compatibility and update drivers:
@@ -361,23 +442,26 @@ This chapter covered Isaac Sim, NVIDIA's advanced robotics simulation platform. 
    ```
 
 **Verification Steps**:
-- [ ] Isaac Sim launches without errors
-- [ ] GPU drivers are up to date
-- [ ] Sufficient system resources are available
-- [ ] Isaac Sim modules import correctly
+- • [ ] Isaac Sim launches without errors
+- • [ ] GPU drivers are up to date
+- • [ ] Sufficient system resources are available
+- • [ ] Isaac Sim modules import correctly
 
-#### Problem: Physics simulation is unstable or unrealistic
+<h4 className="fourth-heading">
+Problem: Physics simulation is unstable or unrealistic
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Objects fall through surfaces
-- Robot joints behave erratically
-- Simulation explodes or becomes chaotic
-- Joint limits are not respected
+- • Objects fall through surfaces
+- • Robot joints behave erratically
+- • Simulation explodes or becomes chaotic
+- • Joint limits are not respected
 
 **Causes**:
-- Incorrect physics parameters
-- Poor mass/inertia properties
-- Inadequate solver iterations
-- Unsuitable time step size
+- • Incorrect physics parameters
+- • Poor mass/inertia properties
+- • Inadequate solver iterations
+- • Unsuitable time step size
 
 **Solutions**:
 1. Tune physics solver parameters:
@@ -444,23 +528,26 @@ This chapter covered Isaac Sim, NVIDIA's advanced robotics simulation platform. 
    ```
 
 **Verification Steps**:
-- [ ] Objects maintain stable positions without falling through surfaces
-- [ ] Robot joints respect limits and behave predictably
-- [ ] Physics simulation remains stable over extended periods
-- [ ] Joint controllers respond appropriately to commands
+- • [ ] Objects maintain stable positions without falling through surfaces
+- • [ ] Robot joints respect limits and behave predictably
+- • [ ] Physics simulation remains stable over extended periods
+- • [ ] Joint controllers respond appropriately to commands
 
-#### Problem: Sensor data is inaccurate or not publishing
+<h4 className="fourth-heading">
+Problem: Sensor data is inaccurate or not publishing
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Sensor topics show no data
-- Data values are outside expected ranges
-- Sensor noise is unrealistic
-- Perception tasks fail due to poor sensor quality
+- • Sensor topics show no data
+- • Data values are outside expected ranges
+- • Sensor noise is unrealistic
+- • Perception tasks fail due to poor sensor quality
 
 **Causes**:
-- Incorrect sensor configuration
-- Improper mounting positions
-- Unrealistic sensor parameters
-- Integration issues with ROS 2 bridge
+- • Incorrect sensor configuration
+- • Improper mounting positions
+- • Unrealistic sensor parameters
+- • Integration issues with ROS 2 bridge
 
 **Solutions**:
 1. Configure camera sensors properly:
@@ -550,23 +637,26 @@ This chapter covered Isaac Sim, NVIDIA's advanced robotics simulation platform. 
    ```
 
 **Verification Steps**:
-- [ ] Sensor topics are publishing data at expected rates
-- [ ] Sensor data values are within realistic ranges
-- [ ] Sensor mounting positions are appropriate
-- [ ] ROS 2 integration is functioning correctly
+- • [ ] Sensor topics are publishing data at expected rates
+- • [ ] Sensor data values are within realistic ranges
+- • [ ] Sensor mounting positions are appropriate
+- • [ ] ROS 2 integration is functioning correctly
 
-#### Problem: ROS 2 integration issues
+<h4 className="fourth-heading">
+Problem: ROS 2 integration issues
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- ROS 2 nodes cannot connect to Isaac Sim
-- Sensor data not being published to ROS topics
-- Control commands not reaching the robot
-- TF tree issues or missing transforms
+- • ROS 2 nodes cannot connect to Isaac Sim
+- • Sensor data not being published to ROS topics
+- • Control commands not reaching the robot
+- • TF tree issues or missing transforms
 
 **Causes**:
-- Incorrect ROS 2 bridge configuration
-- Network/Docker configuration issues
-- Topic name mismatches
-- Message type incompatibilities
+- • Incorrect ROS 2 bridge configuration
+- • Network/Docker configuration issues
+- • Topic name mismatches
+- • Message type incompatibilities
 
 **Solutions**:
 1. Verify ROS 2 bridge setup:
@@ -692,23 +782,26 @@ This chapter covered Isaac Sim, NVIDIA's advanced robotics simulation platform. 
    ```
 
 **Verification Steps**:
-- [ ] ROS 2 nodes can connect to Isaac Sim
-- [ ] Sensor data is published to correct topics
-- [ ] Control commands are received and processed
-- [ ] TF tree is properly maintained with correct transforms
+- • [ ] ROS 2 nodes can connect to Isaac Sim
+- • [ ] Sensor data is published to correct topics
+- • [ ] Control commands are received and processed
+- • [ ] TF tree is properly maintained with correct transforms
 
-#### Problem: Performance issues with Isaac Sim
+<h4 className="fourth-heading">
+Problem: Performance issues with Isaac Sim
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Low simulation real-time factor (< 0.5)
-- High CPU/GPU usage
-- Rendering stuttering or lag
-- Slow response to user input
+- • Low simulation real-time factor (< 0.5)
+- • High CPU/GPU usage
+- • Rendering stuttering or lag
+- • Slow response to user input
 
 **Causes**:
-- Complex scenes with many objects
-- High-resolution rendering settings
-- Inefficient physics configurations
-- Resource contention between processes
+- • Complex scenes with many objects
+- • High-resolution rendering settings
+- • Inefficient physics configurations
+- • Resource contention between processes
 
 **Solutions**:
 1. Optimize rendering settings:
@@ -787,24 +880,30 @@ This chapter covered Isaac Sim, NVIDIA's advanced robotics simulation platform. 
    ```
 
 **Verification Steps**:
-- [ ] Simulation real-time factor is above 0.8
-- [ ] CPU/GPU usage is within acceptable limits
-- [ ] Rendering is smooth without stuttering
-- [ ] Response to user input is immediate
+- • [ ] Simulation real-time factor is above 0.8
+- • [ ] CPU/GPU usage is within acceptable limits
+- • [ ] Rendering is smooth without stuttering
+- • [ ] Response to user input is immediate
 
 </details>
 
-## Introduction to Isaac Sim
+<h2 className="second-heading">
+Introduction to Isaac Sim
+</h2>
+<div className="underline-class"></div>
 
-### Overview and Architecture
+<h3 className="third-heading">
+- Overview and Architecture
+</h3>
+<div className="underline-class"></div>
 
 Isaac Sim is built on NVIDIA's Omniverse platform, providing a unified environment for robotics simulation, visualization, and AI development. The platform combines:
 
-- **High-fidelity physics simulation**: Based on PhysX and FleX physics engines
-- **Photorealistic rendering**: Using NVIDIA RTX technology
-- **Real-time collaboration**: Multi-user editing and simulation
-- **Extensible framework**: Python and C++ APIs for customization
-- **AI training platform**: Built-in tools for synthetic data generation
+- • **High-fidelity physics simulation**: Based on PhysX and FleX physics engines
+- • **Photorealistic rendering**: Using NVIDIA RTX technology
+- • **Real-time collaboration**: Multi-user editing and simulation
+- • **Extensible framework**: Python and C++ APIs for customization
+- • **AI training platform**: Built-in tools for synthetic data generation
 
 The architecture consists of multiple interconnected layers:
 
@@ -824,7 +923,10 @@ The architecture consists of multiple interconnected layers:
 └─────────────────────────────────────────┘
 ```
 
-### Key Features for Robotics
+<h3 className="third-heading">
+- Key Features for Robotics
+</h3>
+<div className="underline-class"></div>
 
 Isaac Sim offers several key features specifically designed for robotics development:
 
@@ -835,20 +937,29 @@ Isaac Sim offers several key features specifically designed for robotics develop
 5. **Synthetic data generation**: Tools for creating training datasets for AI
 6. **ROS 2 integration**: Seamless connectivity with ROS 2 frameworks
 
-## Installation and Setup
+<h2 className="second-heading">
+Installation and Setup
+</h2>
+<div className="underline-class"></div>
 
-### System Requirements
+<h3 className="third-heading">
+- System Requirements
+</h3>
+<div className="underline-class"></div>
 
 Isaac Sim requires a powerful system configuration:
 
-- **GPU**: NVIDIA RTX GPU with 8GB+ VRAM (RTX 3080 or better recommended)
-- **CPU**: Multi-core processor (8+ cores recommended)
-- **RAM**: 32GB+ system memory
-- **OS**: Ubuntu 20.04 LTS or Windows 10/11
-- **CUDA**: CUDA 11.0 or later
-- **Storage**: 50GB+ available space
+- • **GPU**: NVIDIA RTX GPU with 8GB+ VRAM (RTX 3080 or better recommended)
+- • **CPU**: Multi-core processor (8+ cores recommended)
+- • **RAM**: 32GB+ system memory
+- • **OS**: Ubuntu 20.04 LTS or Windows 10/11
+- • **CUDA**: CUDA 11.0 or later
+- • **Storage**: 50GB+ available space
 
-### Installation Process
+<h3 className="third-heading">
+- Installation Process
+</h3>
+<div className="underline-class"></div>
 
 Isaac Sim can be installed in several ways:
 
@@ -863,7 +974,10 @@ docker pull nvcr.io/nvidia/isaac-sim:2023.1.0-hotfix.1
 # Follow Isaac Sim installation guide
 ```
 
-### Basic Setup
+<h3 className="third-heading">
+- Basic Setup
+</h3>
+<div className="underline-class"></div>
 
 After installation, configure Isaac Sim for robotics development:
 
@@ -894,9 +1008,15 @@ def setup_isaac_sim():
 world = setup_isaac_sim()
 ```
 
-## Creating Simulation Environments
+<h2 className="second-heading">
+Creating Simulation Environments
+</h2>
+<div className="underline-class"></div>
 
-### Basic Environment Setup
+<h3 className="third-heading">
+- Basic Environment Setup
+</h3>
+<div className="underline-class"></div>
 
 Creating a basic simulation environment in Isaac Sim:
 
@@ -955,7 +1075,10 @@ class BasicEnvironment:
 env = BasicEnvironment()
 ```
 
-### Advanced Environment Creation
+<h3 className="third-heading">
+- Advanced Environment Creation
+</h3>
+<div className="underline-class"></div>
 
 Creating more complex environments with custom assets:
 
@@ -1027,9 +1150,15 @@ class AdvancedEnvironment:
         )
 ```
 
-## Robot Simulation in Isaac Sim
+<h2 className="second-heading">
+Robot Simulation in Isaac Sim
+</h2>
+<div className="underline-class"></div>
 
-### Loading and Configuring Robots
+<h3 className="third-heading">
+- Loading and Configuring Robots
+</h3>
+<div className="underline-class"></div>
 
 Loading robots into Isaac Sim and configuring them for simulation:
 
@@ -1117,7 +1246,10 @@ class RobotEnvironment:
         self.world.step(render=True)
 ```
 
-### Humanoid Robot Example
+<h3 className="third-heading">
+- Humanoid Robot Example
+</h3>
+<div className="underline-class"></div>
 
 Creating and simulating a humanoid robot in Isaac Sim:
 
@@ -1241,9 +1373,15 @@ class HumanoidEnvironment:
         self.world.step(render=True)
 ```
 
-## Sensor Integration
+<h2 className="second-heading">
+Sensor Integration
+</h2>
+<div className="underline-class"></div>
 
-### Camera Sensors
+<h3 className="third-heading">
+- Camera Sensors
+</h3>
+<div className="underline-class"></div>
 
 Integrating camera sensors for perception tasks:
 
@@ -1360,7 +1498,10 @@ class PerceptionEnvironment:
         self.world.step(render=True)
 ```
 
-### LIDAR and Other Sensors
+<h3 className="third-heading">
+- LIDAR and Other Sensors
+</h3>
+<div className="underline-class"></div>
 
 Adding LIDAR and other sensors for navigation:
 
@@ -1501,9 +1642,15 @@ class NavigationEnvironment:
         self.world.step(render=True)
 ```
 
-## ROS 2 Integration
+<h2 className="second-heading">
+ROS 2 Integration
+</h2>
+<div className="underline-class"></div>
 
-### Connecting Isaac Sim to ROS 2
+<h3 className="third-heading">
+- Connecting Isaac Sim to ROS 2
+</h3>
+<div className="underline-class"></div>
 
 Integrating Isaac Sim with ROS 2 for comprehensive robotics development:
 
@@ -1686,9 +1833,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## AI Training with Isaac Sim
+<h2 className="second-heading">
+AI Training with Isaac Sim
+</h2>
+<div className="underline-class"></div>
 
-### Synthetic Data Generation
+<h3 className="third-heading">
+- Synthetic Data Generation
+</h3>
+<div className="underline-class"></div>
 
 Using Isaac Sim for generating synthetic training data:
 
@@ -1879,9 +2032,15 @@ if __name__ == "__main__":
     main()
 ```
 
-## Best Practices and Optimization
+<h2 className="second-heading">
+Best Practices and Optimization
+</h2>
+<div className="underline-class"></div>
 
-### Performance Optimization
+<h3 className="third-heading">
+- Performance Optimization
+</h3>
+<div className="underline-class"></div>
 
 Optimizing Isaac Sim for better performance:
 
@@ -1890,7 +2049,10 @@ Optimizing Isaac Sim for better performance:
 3. **Scene complexity**: Balance detail with performance requirements
 4. **Simulation frequency**: Match simulation rate to control system needs
 
-### Workflow Optimization
+<h3 className="third-heading">
+- Workflow Optimization
+</h3>
+<div className="underline-class"></div>
 
 Creating efficient workflows:
 
@@ -1899,46 +2061,56 @@ Creating efficient workflows:
 3. **Version control**: Track scene and robot configurations
 4. **Automated testing**: Create scripts for scenario validation
 
-## Troubleshooting Common Issues
+<h2 className="second-heading">
+Troubleshooting Common Issues
+</h2>
+<div className="underline-class"></div>
 
-### Installation and Setup Issues
+<h3 className="third-heading">
+- Installation and Setup Issues
+</h3>
+<div className="underline-class"></div>
 
 **Problem**: Isaac Sim fails to start or crashes immediately
 **Solutions**:
-- Verify GPU compatibility and driver version
-- Check CUDA installation and version compatibility
-- Ensure sufficient system resources (RAM, storage)
-- Review system requirements and compatibility
+- • Verify GPU compatibility and driver version
+- • Check CUDA installation and version compatibility
+- • Ensure sufficient system resources (RAM, storage)
+- • Review system requirements and compatibility
 
 **Problem**: Rendering artifacts or poor visual quality
 **Solutions**:
-- Update graphics drivers to latest version
-- Adjust rendering settings in Isaac Sim
-- Check for sufficient VRAM availability
-- Verify display and graphics configuration
+- • Update graphics drivers to latest version
+- • Adjust rendering settings in Isaac Sim
+- • Check for sufficient VRAM availability
+- • Verify display and graphics configuration
 
-### Simulation Issues
+<h3 className="third-heading">
+- Simulation Issues
+</h3>
+<div className="underline-class"></div>
 
 **Problem**: Physics simulation is unstable or unrealistic
 **Solutions**:
-- Adjust physics solver parameters (iteration counts, time steps)
-- Verify mass and inertia properties of objects
-- Check collision mesh quality
-- Review joint limits and properties
+- • Adjust physics solver parameters (iteration counts, time steps)
+- • Verify mass and inertia properties of objects
+- • Check collision mesh quality
+- • Review joint limits and properties
 
 **Problem**: Robot controllers are not responding properly
 **Solutions**:
-- Verify controller configurations and parameters
-- Check joint limits and ranges
-- Validate control command formats
-- Review robot URDF/USD for correctness
+- • Verify controller configurations and parameters
+- • Check joint limits and ranges
+- • Validate control command formats
+- • Review robot URDF/USD for correctness
 
-## Summary
+<h2 className="second-heading">
+Summary
+</h2>
+<div className="underline-class"></div>
 
 Isaac Sim provides a powerful platform for advanced robotics simulation with high-fidelity physics, photorealistic rendering, and seamless AI integration. By understanding its architecture, setup process, and integration capabilities, developers can create sophisticated simulation environments for testing and training humanoid robots. The platform's strength lies in its ability to bridge the reality gap through accurate physics simulation, realistic sensor modeling, and synthetic data generation capabilities.
 
 import ReadingTime from '@site/src/components/ReadingTime';
-import ViewToggle from '@site/src/components/ViewToggle';
 
 <ReadingTime minutes={22} />
-<ViewToggle />

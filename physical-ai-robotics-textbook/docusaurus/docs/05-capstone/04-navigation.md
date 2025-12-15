@@ -9,7 +9,7 @@ import ViewToggle from '@site/src/components/ViewToggle';
 
 <ReadingTime minutes={156} />
 
-<ViewToggle />
+<!-- <ViewToggle /> -->
 
 <h1 className="main-heading">Autonomous Navigation System</h1>
 <div className="underline-class"></div>
@@ -45,9 +45,15 @@ The navigation system for a humanoid robot must address multiple challenges simu
 
 This chapter explores the implementation of a comprehensive autonomous navigation system for humanoid robots, focusing on the Vision-Language-Action paradigm that connects environmental perception to goal-directed navigation. The system must be robust enough to handle real-world conditions while maintaining the safety and efficiency required for human-robot interaction.
 
-## Mapping and Localization
+<h2 className="second-heading">
+Mapping and Localization
+</h2>
+<div className="underline-class"></div>
 
-### Simultaneous Localization and Mapping (SLAM)
+<h3 className="third-heading">
+- Simultaneous Localization and Mapping (SLAM)
+</h3>
+<div className="underline-class"></div>
 
 SLAM is fundamental to navigation in unknown environments, allowing the robot to build maps while simultaneously determining its position within those maps:
 
@@ -426,7 +432,10 @@ class OccupancyGridMap:
         return np.array(world_coords)
 ```
 
-### Localization System
+<h3 className="third-heading">
+- Localization System
+</h3>
+<div className="underline-class"></div>
 
 Accurate localization is crucial for safe navigation, especially in dynamic environments:
 
@@ -688,9 +697,15 @@ class LocalizationSystem:
         return np.sqrt(variance_sum)
 ```
 
-## Path Planning and Navigation
+<h2 className="second-heading">
+Path Planning and Navigation
+</h2>
+<div className="underline-class"></div>
 
-### Global Path Planning
+<h3 className="third-heading">
+- Global Path Planning
+</h3>
+<div className="underline-class"></div>
 
 The global planner creates high-level paths from start to goal while considering the environment:
 
@@ -946,7 +961,10 @@ class HumanoidPathPlanner(GlobalPathPlanner):
         return adapted_path
 ```
 
-### Local Path Planning and Obstacle Avoidance
+<h3 className="third-heading">
+- Local Path Planning and Obstacle Avoidance
+</h3>
+<div className="underline-class"></div>
 
 The local planner handles dynamic obstacle avoidance and path following:
 
@@ -1211,9 +1229,15 @@ class LocalPathPlanner:
         return path_segment[-1] if path_segment else None
 ```
 
-## Isaac Integration for Navigation
+<h2 className="second-heading">
+Isaac Integration for Navigation
+</h2>
+<div className="underline-class"></div>
 
-### Isaac Navigation Components
+<h3 className="third-heading">
+- Isaac Navigation Components
+</h3>
+<div className="underline-class"></div>
 
 The Isaac ecosystem provides specialized components for navigation that leverage NVIDIA's hardware acceleration:
 
@@ -1492,7 +1516,10 @@ class IsaacSLAMNode(Node):
         pass
 ```
 
-### Navigation Safety and Validation
+<h3 className="third-heading">
+- Navigation Safety and Validation
+</h3>
+<div className="underline-class"></div>
 
 Safety is paramount in navigation systems, especially for humanoid robots operating near humans:
 
@@ -1731,9 +1758,15 @@ class NavigationValidator:
         }
 ```
 
-## Performance Optimization and Real-Time Considerations
+<h2 className="second-heading">
+Performance Optimization and Real-Time Considerations
+</h2>
+<div className="underline-class"></div>
 
-### Real-Time Navigation Performance
+<h3 className="third-heading">
+- Real-Time Navigation Performance
+</h3>
+<div className="underline-class"></div>
 
 Navigation systems must meet real-time constraints while maintaining accuracy and safety:
 
@@ -1943,40 +1976,55 @@ class PerformanceMonitor:
         return budgets.get(component, 0.1)
 ```
 
-## Summary
+<div className="border-line"></div>
+---
+<h2 className="second-heading">
+ Summary
+</h2>
+<div className="underline-class"></div>
 
 The autonomous navigation system for humanoid robots represents a sophisticated integration of perception, mapping, localization, and path planning technologies. The system must handle the unique challenges of humanoid locomotion, including balance constraints, step limitations, and the need to operate safely in human-populated environments.
 
 Key components of the navigation system include:
 
-1. **SLAM and Mapping**: Simultaneous localization and mapping systems that build and maintain environmental maps while tracking the robot's position.
+1. • **SLAM and Mapping**: Simultaneous localization and mapping systems that build and maintain environmental maps while tracking the robot's position.
 
-2. **Localization**: Advanced localization systems using particle filters and sensor fusion to accurately determine the robot's position.
+2. • **Localization**: Advanced localization systems using particle filters and sensor fusion to accurately determine the robot's position.
 
-3. **Path Planning**: Hierarchical planning systems that create global paths and adapt them for humanoid kinematics, with local planning for dynamic obstacle avoidance.
+3. • **Path Planning**: Hierarchical planning systems that create global paths and adapt them for humanoid kinematics, with local planning for dynamic obstacle avoidance.
 
-4. **Isaac Integration**: Specialized components that leverage the Isaac ecosystem for enhanced navigation capabilities.
+4. • **Isaac Integration**: Specialized components that leverage the Isaac ecosystem for enhanced navigation capabilities.
 
-5. **Safety Systems**: Comprehensive safety and validation systems that ensure safe operation around humans and obstacles.
+5. • **Safety Systems**: Comprehensive safety and validation systems that ensure safe operation around humans and obstacles.
 
-6. **Performance Optimization**: Real-time optimization techniques that ensure navigation systems meet timing constraints while maintaining accuracy.
+6. • **Performance Optimization**: Real-time optimization techniques that ensure navigation systems meet timing constraints while maintaining accuracy.
 
 The success of the navigation system depends on careful integration of these components, with particular attention to the unique requirements of humanoid robots, including their complex kinematics, balance requirements, and the need for safe human interaction.
 
-## Exercises
+<div className="border-line"></div>
+---
+<h2 className="second-heading">
+ Exercises
+</h2>
+<div className="underline-class"></div>
 
-1. Implement a SLAM system using point cloud data from RGB-D sensors
-2. Create a path planner that considers humanoid step constraints
-3. Design a local planner that handles dynamic obstacle avoidance
-4. Build a safety validation system for navigation performance
-5. Optimize navigation algorithms for real-time performance on your robot platform
+1. • Implement a SLAM system using point cloud data from RGB-D sensors
+2. • Create a path planner that considers humanoid step constraints
+3. • Design a local planner that handles dynamic obstacle avoidance
+4. • Build a safety validation system for navigation performance
+5. • Optimize navigation algorithms for real-time performance on your robot platform
 
-## Further Reading
+<div className="border-line"></div>
+---
+<h2 className="second-heading">
+ Further Reading
+</h2>
+<div className="underline-class"></div>
 
-- "Probabilistic Robotics" by Thrun, Burgard, and Fox
-- "Springer Handbook of Robotics" by Siciliano and Khatib
-- "Robotics, Vision and Control" by Corke
-- "Planning Algorithms" by LaValle
-- NVIDIA Isaac documentation on navigation
+- • "Probabilistic Robotics" by Thrun, Burgard, and Fox
+- • "Springer Handbook of Robotics" by Siciliano and Khatib
+- • "Robotics, Vision and Control" by Corke
+- • "Planning Algorithms" by LaValle
+- • NVIDIA Isaac documentation on navigation
 
 </div>

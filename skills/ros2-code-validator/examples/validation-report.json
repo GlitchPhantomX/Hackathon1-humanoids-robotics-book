@@ -1,0 +1,370 @@
+{
+  "validation_report": {
+    "report_id": "vr-20241213-234567",
+    "generated_at": "2024-12-13T23:15:30Z",
+    "validator_version": "1.2.4",
+    "target_file": "invalid-code-example.py",
+    "file_size_bytes": 3247,
+    "line_count": 156,
+    "ros2_distro": "humble",
+    "validation_level": "comprehensive"
+  },
+  "summary": {
+    "total_issues": 23,
+    "critical_issues": 5,
+    "high_severity": 8,
+    "medium_severity": 7,
+    "low_severity": 3,
+    "compliance_score": 28,
+    "risk_level": "high",
+    "confidence": 0.94
+  },
+  "issue_categories": {
+    "convention_violations": 8,
+    "security_issues": 3,
+    "performance_problems": 4,
+    "error_handling": 5,
+    "resource_management": 3
+  },
+  "detailed_issues": [
+    {
+      "id": "CV-001",
+      "type": "Convention Violation",
+      "severity": "high",
+      "line": 8,
+      "category": "imports",
+      "title": "Wildcard Import Violation",
+      "description": "Using 'from rclpy import *' violates Python import conventions and creates namespace pollution",
+      "recommendation": "Import only necessary modules: from rclpy import rclpy_init, etc.",
+      "code_snippet": "from rclpy import *",
+      "convention_reference": "PEP 8, ROS2 Python style guide"
+    },
+    {
+      "id": "CV-002",
+      "type": "Convention Violation",
+      "severity": "high",
+      "line": 15,
+      "category": "parameters",
+      "title": "Missing Parameter Declaration",
+      "description": "Parameter 'publish_frequency' used without prior declaration using declare_parameter()",
+      "recommendation": "Always declare parameters with declare_parameter() before accessing them",
+      "code_snippet": "self.publish_frequency = self.get_parameter('publish_frequency').value",
+      "convention_reference": "ROS2 parameter management best practices"
+    },
+    {
+      "id": "CV-003",
+      "type": "Convention Violation",
+      "severity": "medium",
+      "line": 18,
+      "category": "qos",
+      "title": "Missing QoS Profile",
+      "description": "Publisher created without explicit QoS profile, using default which may not be appropriate",
+      "recommendation": "Define and use appropriate QoS profiles for publishers and subscribers",
+      "code_snippet": "self.publisher = self.create_publisher(String, 'bad_topic_name', 10)",
+      "convention_reference": "ROS2 QoS configuration guidelines"
+    },
+    {
+      "id": "CV-004",
+      "type": "Convention Violation",
+      "severity": "medium",
+      "line": 21,
+      "category": "qos",
+      "title": "Missing QoS Profile for Subscriber",
+      "description": "Subscriber created without explicit QoS profile, using default which may not be appropriate",
+      "recommendation": "Define and use appropriate QoS profiles for subscribers",
+      "code_snippet": "self.create_subscription(LaserScan, 'scan', self.laser_callback, 10)",
+      "convention_reference": "ROS2 QoS configuration guidelines"
+    },
+    {
+      "id": "CV-005",
+      "type": "Convention Violation",
+      "severity": "high",
+      "line": 29,
+      "category": "naming",
+      "title": "Non-Compliant Topic Name",
+      "description": "Topic name 'bad_topic_name' doesn't follow ROS2 naming conventions (should be snake_case)",
+      "recommendation": "Use compliant topic names following ROS2 conventions",
+      "code_snippet": "self.publisher = self.create_publisher(String, 'bad_topic_name', 10)",
+      "convention_reference": "ROS2 naming conventions"
+    },
+    {
+      "id": "CV-006",
+      "type": "Convention Violation",
+      "severity": "medium",
+      "line": 12,
+      "category": "class_design",
+      "title": "Global Variable Usage",
+      "description": "Using global variable 'bad_global_counter' violates object-oriented design principles",
+      "recommendation": "Use class attributes instead of global variables",
+      "code_snippet": "global bad_global_counter",
+      "convention_reference": "Python best practices"
+    },
+    {
+      "id": "CV-007",
+      "type": "Convention Violation",
+      "severity": "low",
+      "line": 40,
+      "category": "logging",
+      "title": "Print Statement Instead of Logger",
+      "description": "Using print() instead of ROS2 node logger for messaging",
+      "recommendation": "Use self.get_logger().info() or other appropriate logging methods",
+      "code_snippet": "print(f'Obstacle at {min_range}m')",
+      "convention_reference": "ROS2 logging best practices"
+    },
+    {
+      "id": "CV-008",
+      "type": "Convention Violation",
+      "severity": "low",
+      "line": 1,
+      "category": "file_headers",
+      "title": "Missing or Inadequate File Header",
+      "description": "File header lacks proper module documentation and licensing information",
+      "recommendation": "Add comprehensive file header with docstring, author, and license",
+      "code_snippet": "#!/usr/bin/env python3",
+      "convention_reference": "Python module documentation standards"
+    },
+    {
+      "id": "EH-001",
+      "type": "Error Handling",
+      "severity": "high",
+      "line": 33,
+      "category": "validation",
+      "title": "Missing Input Validation",
+      "description": "No validation of LaserScan message content before processing",
+      "recommendation": "Validate message content before processing to prevent crashes",
+      "code_snippet": "self.last_laser_ranges = msg.ranges",
+      "convention_reference": "ROS2 error handling best practices"
+    },
+    {
+      "id": "EH-002",
+      "type": "Error Handling",
+      "severity": "critical",
+      "line": 36,
+      "category": "crash_risk",
+      "title": "Potential Runtime Error - Min Function",
+      "description": "min() function could crash if msg.ranges is empty or contains invalid values",
+      "recommendation": "Validate list contents and handle empty case before calling min()",
+      "code_snippet": "min_range = min(self.last_laser_ranges)",
+      "convention_reference": "Python error handling"
+    },
+    {
+      "id": "EH-003",
+      "type": "Error Handling",
+      "severity": "high",
+      "line": 49,
+      "category": "validation",
+      "title": "Missing Input Validation in Service",
+      "description": "No validation of request parameters before arithmetic operation",
+      "recommendation": "Validate request parameters before processing to prevent errors",
+      "code_snippet": "result = request.a + request.b",
+      "convention_reference": "ROS2 service best practices"
+    },
+    {
+      "id": "EH-004",
+      "type": "Error Handling",
+      "line": 59,
+      "category": "validation",
+      "severity": "medium",
+      "title": "Missing Resource Cleanup",
+      "description": "File opened without proper cleanup using context manager",
+      "recommendation": "Use context managers (with statement) for resource management",
+      "code_snippet": "file_handle = open(\"/tmp/bad_file.txt\", \"w\")",
+      "convention_reference": "Python resource management"
+    },
+    {
+      "id": "EH-005",
+      "type": "Error Handling",
+      "severity": "high",
+      "line": 80,
+      "category": "cleanup",
+      "title": "Missing Node Cleanup",
+      "description": "No node cleanup in main function, potentially causing resource leaks",
+      "recommendation": "Always call destroy_node() and rclpy.shutdown() in finally block",
+      "code_snippet": "rclpy.spin(bad_ros2_node)",
+      "convention_reference": "ROS2 lifecycle management"
+    },
+    {
+      "id": "SI-001",
+      "type": "Security Issue",
+      "severity": "critical",
+      "line": 58,
+      "category": "command_execution",
+      "title": "Dangerous System Command Execution",
+      "description": "Using os.system() with hardcoded dangerous command poses security risk",
+      "recommendation": "Never use os.system() with dangerous commands, especially hardcoded ones",
+      "code_snippet": "os.system(\"rm -rf /tmp\")",
+      "convention_reference": "Security best practices"
+    },
+    {
+      "id": "SI-002",
+      "type": "Security Issue",
+      "severity": "high",
+      "line": 60,
+      "category": "resource_access",
+      "title": "Insecure File Handling",
+      "description": "Opening file without proper access validation could expose security vulnerabilities",
+      "recommendation": "Validate file paths and use secure file handling practices",
+      "code_snippet": "file_handle = open(\"/tmp/bad_file.txt\", \"w\")",
+      "convention_reference": "Security best practices"
+    },
+    {
+      "id": "SI-003",
+      "type": "Security Issue",
+      "severity": "medium",
+      "line": 1,
+      "category": "shebang",
+      "title": "Potentially Insecure Shebang",
+      "description": "Using /usr/bin/env in shebang could be manipulated in certain environments",
+      "recommendation": "Consider using absolute path to Python interpreter for production code",
+      "code_snippet": "#!/usr/bin/env python3",
+      "convention_reference": "Security best practices"
+    },
+    {
+      "id": "PM-001",
+      "type": "Performance Problem",
+      "severity": "medium",
+      "line": 14,
+      "category": "parameter_usage",
+      "title": "Inefficient Parameter Access",
+      "description": "Getting parameter value without caching, causing repeated lookups",
+      "recommendation": "Cache parameter values after initial retrieval for better performance",
+      "code_snippet": "self.publish_frequency = self.get_parameter('publish_frequency').value",
+      "convention_reference": "ROS2 performance optimization"
+    },
+    {
+      "id": "PM-002",
+      "type": "Performance Problem",
+      "severity": "medium",
+      "line": 29,
+      "category": "publisher_configuration",
+      "title": "Inappropriate Queue Size",
+      "description": "Queue size of 10 may be inappropriate for the use case",
+      "recommendation": "Choose appropriate queue size based on message rate and importance",
+      "code_snippet": "self.publisher = self.create_publisher(String, 'bad_topic_name', 10)",
+      "convention_reference": "ROS2 performance optimization"
+    },
+    {
+      "id": "PM-003",
+      "type": "Performance Problem",
+      "severity": "high",
+      "line": 49,
+      "category": "main_loop",
+      "title": "Blocking Main Loop",
+      "description": "Using blocking rclpy.spin() without timeout prevents other operations",
+      "recommendation": "Use spin_once() with timeout or proper executor configuration",
+      "code_snippet": "rclpy.spin(bad_ros2_node)",
+      "convention_reference": "ROS2 performance optimization"
+    },
+    {
+      "id": "PM-004",
+      "type": "Performance Problem",
+      "severity": "low",
+      "line": 35,
+      "category": "memory_usage",
+      "title": "Unnecessary Data Copying",
+      "description": "Direct assignment without considering memory implications for large data",
+      "recommendation": "Consider memory-efficient processing for large message types",
+      "code_snippet": "self.last_laser_ranges = msg.ranges",
+      "convention_reference": "Python performance optimization"
+    },
+    {
+      "id": "RM-001",
+      "type": "Resource Management",
+      "severity": "high",
+      "line": 60,
+      "category": "file_handles",
+      "title": "File Handle Not Closed",
+      "description": "File opened without proper closure, causing resource leak",
+      "recommendation": "Always close files or use context managers to ensure proper closure",
+      "code_snippet": "file_handle = open(\"/tmp/bad_file.txt\", \"w\")",
+      "convention_reference": "Python resource management"
+    },
+    {
+      "id": "RM-002",
+      "type": "Resource Management",
+      "severity": "critical",
+      "line": 85,
+      "category": "node_lifecycle",
+      "title": "Node Not Destroyed",
+      "description": "Node not destroyed, causing resource leaks and improper cleanup",
+      "recommendation": "Always call node.destroy_node() to properly clean up resources",
+      "code_snippet": "# bad_ros2_node.destroy_node() # This line is commented out",
+      "convention_reference": "ROS2 resource management"
+    },
+    {
+      "id": "RM-003",
+      "type": "Resource Management",
+      "severity": "medium",
+      "line": 12,
+      "category": "global_state",
+      "title": "Global State Management",
+      "description": "Using global variables can cause resource conflicts in multi-node systems",
+      "recommendation": "Use class attributes and proper encapsulation instead of global state",
+      "code_snippet": "global bad_global_counter",
+      "convention_reference": "Python resource management"
+    }
+  ],
+  "compliance_breakdown": {
+    "ros2_conventions": 28,
+    "python_best_practices": 35,
+    "security_standards": 15,
+    "performance_guidelines": 25,
+    "maintainability": 40
+  },
+  "validation_metadata": {
+    "rules_applied": 156,
+    "checks_performed": [
+      "import_validation",
+      "naming_conventions",
+      "parameter_handling",
+      "qos_configuration",
+      "error_handling",
+      "security_scanning",
+      "performance_analysis",
+      "resource_management",
+      "logging_validation",
+      "code_structure"
+    ],
+    "scan_duration_ms": 2450,
+    "rules_version": "3.2.1"
+  },
+  "recommendations": [
+    {
+      "priority": "critical",
+      "title": "Remove dangerous system commands",
+      "description": "Remove os.system('rm -rf /tmp') immediately as it poses serious security risk",
+      "estimated_effort": "5 minutes"
+    },
+    {
+      "priority": "high",
+      "title": "Implement proper parameter handling",
+      "description": "Declare all parameters and implement proper validation before access",
+      "estimated_effort": "15 minutes"
+    },
+    {
+      "priority": "high",
+      "title": "Add error handling",
+      "description": "Implement comprehensive error handling throughout the code",
+      "estimated_effort": "30 minutes"
+    },
+    {
+      "priority": "medium",
+      "title": "Define QoS profiles",
+      "description": "Create and use appropriate QoS profiles for publishers and subscribers",
+      "estimated_effort": "20 minutes"
+    },
+    {
+      "priority": "medium",
+      "title": "Fix resource management",
+      "description": "Implement proper resource cleanup and use context managers",
+      "estimated_effort": "25 minutes"
+    }
+  ],
+  "risk_assessment": {
+    "security_risk": 9.2,
+    "reliability_risk": 8.7,
+    "performance_risk": 6.8,
+    "maintainability_risk": 7.9,
+    "overall_risk": 8.1
+  }
+}

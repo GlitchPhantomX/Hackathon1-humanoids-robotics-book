@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "VSLAM نیویگیشن",
+    "description": "The label for the sidebar item 03-vslam-navigation"
+  },
+  "title": {
+    "message": "VSLAM اور نیویگیشن",
+    "description": "The title for the document 03-vslam-navigation"
+  },
+  "description": {
+    "message": "VSLAM، میپنگ، اور ہیومنوائڈ روبوٹس کے لیے نیویگیشن الگورتھم",
+    "description": "The description for the document 03-vslam-navigation"
+  }
+}

@@ -239,8 +239,6 @@
   }
 }
 
-
-
 .navbarDropdownSection {
   padding: 12px 16px;
   border-top: 1px solid #e0e0e0;
@@ -294,7 +292,66 @@
 
 /* Make dropdown wider to accommodate details */
 .navbarDropdown {
-  /* Update existing navbarDropdown */
   min-width: 320px;
   max-width: 400px;
+}
+
+/* Navbar Language Toggle Spacing */
+.navbar__items--right {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Space between language toggle and login button */
+}
+
+/* Language dropdown positioning */
+.navbar__item.dropdown {
+  margin-right: 20px; /* Additional space on the right of language toggle */
+}
+
+/* Ensure proper spacing for all navbar right items */
+.navbar__item {
+  margin: 0 8px;
+}
+
+/* Login/User button spacing */
+.navbar__item:last-child {
+  margin-left: 12px;
+}
+
+/* Language dropdown button styling */
+.navbar__link--active,
+.navbar__link {
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.navbar__link:hover {
+  background-color: rgba(102, 126, 234, 0.1);
+}
+
+[data-theme='dark'] .navbar__link:hover {
+  background-color: rgba(168, 192, 255, 0.1);
+}
+
+/* Responsive navbar spacing */
+@media (max-width: 996px) {
+  .navbar__items--right {
+    gap: 12px;
+  }
+  
+  .navbar__item.dropdown {
+    margin-right: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar__items--right {
+    flex-direction: row;
+    gap: 8px;
+  }
+  
+  .navbar__item.dropdown {
+    margin-right: 8px;
+  }
 }

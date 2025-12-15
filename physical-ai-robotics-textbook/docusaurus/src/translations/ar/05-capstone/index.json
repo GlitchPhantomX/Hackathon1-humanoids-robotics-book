@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "title": "مشروع التخرج",
+    "description": "مشروع التخرج في نهاية الدورة",
+    "language": "ar",
+    "chapter": "05-capstone",
+    "sourceFile": "05-capstone/index.md",
+    "lastUpdated": "2025-12-15T05:40:00.000Z"
+  },
+  "content": {
+    "headings": {},
+    "paragraphs": {},
+    "lists": {}
+  },
+  "html": "# مشروع التخرج\n\nمشروع التخرج يطبق جميع المفاهيم من الدورة في مشروع روبوتات متكامل."
+}

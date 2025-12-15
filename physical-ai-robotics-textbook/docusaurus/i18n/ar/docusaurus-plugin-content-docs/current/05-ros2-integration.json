@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "تكامل ROS 2",
+    "description": "The label for the sidebar item 05-ros2-integration"
+  },
+  "title": {
+    "message": "تكامل ROS 2 و Gazebo",
+    "description": "The title for the document 05-ros2-integration"
+  },
+  "description": {
+    "message": "التكامل بين ROS 2 ومحاكاة Gazebo، تمرير الرسائل، وتدفق التحكم",
+    "description": "The description for the document 05-ros2-integration"
+  }
+}

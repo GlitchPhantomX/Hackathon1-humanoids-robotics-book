@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "من الصوت إلى الإجراء",
+    "description": "The label for the sidebar item 01-voice-to-action"
+  },
+  "title": {
+    "message": "من أوامر الصوت إلى الإجراء",
+    "description": "The title for the document 01-voice-to-action"
+  },
+  "description": {
+    "message": "أوامر الصوت، التعرف على الكلام، وترجمة الإجراءات لروبوتات الهوميود",
+    "description": "The description for the document 01-voice-to-action"
+  }
+}

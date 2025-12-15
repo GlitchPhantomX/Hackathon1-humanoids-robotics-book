@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "ROS 2 انٹیگریشن",
+    "description": "The label for the sidebar item 05-ros2-integration"
+  },
+  "title": {
+    "message": "ROS 2 اور گزیبو انٹیگریشن",
+    "description": "The title for the document 05-ros2-integration"
+  },
+  "description": {
+    "message": "ROS 2 اور گزیبو سیمولیشن کے مابین انٹیگریشن، میسج پاسنگ، اور کنٹرول فلو",
+    "description": "The description for the document 05-ros2-integration"
+  }
+}

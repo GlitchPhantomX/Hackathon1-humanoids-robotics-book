@@ -1,0 +1,14 @@
+{
+  "link.title.Docs": {
+    "message": "الوثائق",
+    "description": "The title of the footer links column with title=Docs in the footer"
+  },
+  "link.title.More": {
+    "message": "المزيد",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "copyright": {
+    "message": "حقوق الملكية © 2025 المؤسسة الخاصة بك. جميع الحقوق محفوظة.",
+    "description": "The footer copyright line"
+  }
+}

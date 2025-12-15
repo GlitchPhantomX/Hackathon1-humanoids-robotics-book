@@ -217,15 +217,6 @@ export default function PhysicalAIPillars() {
             </div>
           </div>
         </div>
-
-        {/* Bottom highlight */}
-        {/* <div className="mt-12 bg-white border border-gray-200 rounded-xl p-6 text-center animate-fadeIn delay-500 shadow-sm hover:shadow-lg transition-all duration-300">
-          <p className="text-gray-700 text-[15px] font-medium">
-            <span className="text-orange-600 font-bold">13 Weeks</span> of immersive learning • 
-            <span className="text-orange-600 font-bold"> Simulation-First</span> approach • 
-            <span className="text-orange-600 font-bold"> Real Hardware</span> deployment
-          </p>
-        </div> */}
         <div className="mt-12">
           <MovingBorderDemo />
         </div>

@@ -6,6 +6,9 @@ description: Getting started with Physical AI and Humanoid Robotics
 
 import ReadingTime from '@site/src/components/ReadingTime';
 import ViewToggle from '@site/src/components/ViewToggle';
+import TranslatedContent from '@site/src/components/TranslatedContent';
+
+<TranslatedContent chapterId="00-introduction">
 
 <h1 className="main-heading" id="introduction">Introduction to Physical AI & Humanoid Robotics</h1>
 <div className="underline-class"></div>
@@ -241,11 +244,11 @@ What You'll Build
 
 Throughout this course, you will:
 
-✅ Learn fundamental robotics concepts  
-✅ Work with simulation tools (Gazebo, MuJoCo)  
-✅ Develop control algorithms  
-✅ Implement AI models for robot perception  
-✅ Create a complete humanoid robot project  
+✅ Learn fundamental robotics concepts
+✅ Work with simulation tools (Gazebo, MuJoCo)
+✅ Develop control algorithms
+✅ Implement AI models for robot perception
+✅ Create a complete humanoid robot project
 <div className="border-line"></div>
 
 ---
@@ -263,7 +266,7 @@ graph LR
     D --> E[Perception]
     E --> F[Integration]
     F --> G[Final Project]
-    
+
     style A fill:#f77e3d,stroke:#e6641f,color:#fff
     style G fill:#ffa879,stroke:#f77e3d,color:#fff
 ```
@@ -333,3 +336,5 @@ Ready to dive deeper? Continue to the next section:
   <h3 style={{color: 'var(--color-accent)'}}>Questions or Feedback?</h3>
   <p>Feel free to reach out through the course forum or office hours!</p>
 </div>
+
+</TranslatedContent>

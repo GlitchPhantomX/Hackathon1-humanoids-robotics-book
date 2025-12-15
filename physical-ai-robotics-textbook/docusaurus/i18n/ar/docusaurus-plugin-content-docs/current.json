@@ -1,0 +1,6 @@
+{
+  "version.label": {
+    "message": "الأساسي",
+    "description": "The label for the version in the navbar version dropdown"
+  }
+}

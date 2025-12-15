@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "ملفات الإطلاق",
+    "description": "The label for the sidebar item 06-launch-files"
+  },
+  "title": {
+    "message": "ملفات إطلاق ROS 2",
+    "description": "The title for the document 06-launch-files"
+  },
+  "description": {
+    "message": "ملفات إطلاق ROS 2، التكوين، وطريقة بدء العقد",
+    "description": "The description for the document 06-launch-files"
+  }
+}

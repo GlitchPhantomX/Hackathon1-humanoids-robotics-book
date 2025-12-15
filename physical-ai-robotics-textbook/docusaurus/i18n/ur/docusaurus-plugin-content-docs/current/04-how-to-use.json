@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "کیسے استعمال کریں",
+    "description": "The label for the sidebar item 04-how-to-use"
+  },
+  "title": {
+    "message": "کتاب کو کیسے استعمال کریں",
+    "description": "The title for the document 04-how-to-use"
+  },
+  "description": {
+    "message": " textbook کا بطور کارکردہ گائیڈ، اس کے ڈھانچے، تکنیکی مراحل، اور سیکھنے کے اوزار کے بارے میں معلومات",
+    "description": "The description for the document 04-how-to-use"
+  }
+}

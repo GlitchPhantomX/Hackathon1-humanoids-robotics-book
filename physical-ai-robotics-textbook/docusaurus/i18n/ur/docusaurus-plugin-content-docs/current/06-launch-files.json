@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "لاؤنچ فائلیں",
+    "description": "The label for the sidebar item 06-launch-files"
+  },
+  "title": {
+    "message": "ROS 2 لاؤنچ فائلیں",
+    "description": "The title for the document 06-launch-files"
+  },
+  "description": {
+    "message": "ROS 2 لاؤنچ فائلیں، کنفیگریشن، اور نودز کو شروع کرنے کا طریقہ",
+    "description": "The description for the document 06-launch-files"
+  }
+}

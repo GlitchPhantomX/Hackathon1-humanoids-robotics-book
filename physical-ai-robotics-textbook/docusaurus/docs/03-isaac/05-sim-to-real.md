@@ -3,51 +3,69 @@ sidebar_position: 5
 title: "Simulation to Reality Transfer"
 description: "Transferring robot systems from simulation to real-world deployment using Isaac ecosystem"
 ---
-
-# Simulation to Reality Transfer
+# <h1 className="main-heading">Simulation to Reality Transfer</h1>
+<div className="underline-class"></div>
 
 import ReadingTime from '@site/src/components/ReadingTime';
 import ViewToggle from '@site/src/components/ViewToggle';
 
 <ReadingTime minutes={62} />
 
-<ViewToggle />
+<!-- <ViewToggle /> -->
 
-## Learning Objectives
+<h2 className="second-heading">
+Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 After completing this chapter, you will be able to:
-- Understand the challenges and solutions for sim-to-real transfer in robotics
-- Implement domain randomization techniques to improve transferability
-- Deploy simulation-trained models to real robot hardware
-- Calibrate and validate robot systems for real-world performance
-- Optimize perception and control systems for physical robot deployment
+- • Understand the challenges and solutions for sim-to-real transfer in robotics
+- • Implement domain randomization techniques to improve transferability
+- • Deploy simulation-trained models to real robot hardware
+- • Calibrate and validate robot systems for real-world performance
+- • Optimize perception and control systems for physical robot deployment
 
-## Exercises
+<h2 className="second-heading">
+Exercises
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Exercise 3.5.1: Domain Randomization Implementation (⭐, ~35 min)</summary>
 
-### Exercise 3.5.1: Domain Randomization Implementation
+<h3 className="third-heading">
+- Exercise 3.5.1: Domain Randomization Implementation
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐ (Beginner)
 **Time Estimate**: 35 minutes
 **Requirements**: Isaac Sim installation, basic Python knowledge, understanding of domain randomization concepts
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Implement domain randomization in Isaac Sim:
-- Create a simple scene with objects and lighting
-- Implement material randomization
-- Add lighting condition variations
-- Configure physics parameter randomization
-- Validate randomization effectiveness
+- • Create a simple scene with objects and lighting
+- • Implement material randomization
+- • Add lighting condition variations
+- • Configure physics parameter randomization
+- • Validate randomization effectiveness
 
-#### Success Criteria
-- [ ] Scene elements are properly randomized during simulation
-- [ ] Material properties vary across different simulation runs
-- [ ] Lighting conditions change appropriately
-- [ ] Physics parameters are randomized within specified ranges
-- [ ] Randomization does not cause simulation instability
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Scene elements are properly randomized during simulation
+- • [ ] Material properties vary across different simulation runs
+- • [ ] Lighting conditions change appropriately
+- • [ ] Physics parameters are randomized within specified ranges
+- • [ ] Randomization does not cause simulation instability
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Launch Isaac Sim with domain randomization
 isaac-sim --exec "from examples.domain_randomization import run_randomization_example" -- --scene_config=simple_objects.json
@@ -88,48 +106,69 @@ nvidia-smi dmon -s u -d 1
 isaac-sim --exec "from examples.synthetic_data_gen import generate_randomized_data" -- --num_samples=100
 ```
 
-#### Expected Output
-- Materials should have different properties in each simulation run
-- Lighting should vary between runs
-- Physics parameters should be within randomized ranges
-- Scene should remain stable despite randomization
-- Performance should be maintained with randomization enabled
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Materials should have different properties in each simulation run
+- • Lighting should vary between runs
+- • Physics parameters should be within randomized ranges
+- • Scene should remain stable despite randomization
+- • Performance should be maintained with randomization enabled
 
-#### Challenges
-- Implement physics randomization that maintains simulation stability
-- Add temporal coherence to randomization (smooth transitions)
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement physics randomization that maintains simulation stability
+- • Add temporal coherence to randomization (smooth transitions)
 
-#### Hints
-- Use Isaac Sim's built-in domain randomization tools when available
-- Ensure randomization ranges are realistic for real-world scenarios
-- Monitor simulation stability during randomization
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Use Isaac Sim's built-in domain randomization tools when available
+- • Ensure randomization ranges are realistic for real-world scenarios
+- • Monitor simulation stability during randomization
 
 </details>
 
 <details>
 <summary>Exercise 3.5.2: Multi-Sensor Calibration for Sim-to-Real Transfer (⭐⭐, ~50 min)</summary>
 
-### Exercise 3.5.2: Multi-Sensor Calibration for Sim-to-Real Transfer
+<h3 className="third-heading">
+- Exercise 3.5.2: Multi-Sensor Calibration for Sim-to-Real Transfer
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐ (Intermediate)
 **Time Estimate**: 50 minutes
 **Requirements**: Understanding of sensor calibration, multiple sensor types, ROS 2, Isaac ROS
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Create a multi-sensor calibration system:
-- Implement camera-LIDAR calibration pipeline
-- Develop IMU-camera synchronization
-- Create calibration validation procedures
-- Integrate calibration into Isaac ROS pipeline
-- Validate calibration accuracy for sim-to-real transfer
+- • Implement camera-LIDAR calibration pipeline
+- • Develop IMU-camera synchronization
+- • Create calibration validation procedures
+- • Integrate calibration into Isaac ROS pipeline
+- • Validate calibration accuracy for sim-to-real transfer
 
-#### Success Criteria
-- [ ] Camera-LIDAR extrinsic calibration is computed accurately
-- [ ] IMU-camera temporal synchronization is achieved
-- [ ] Calibration validation shows acceptable accuracy
-- [ ] Calibration parameters are integrated into ROS 2 system
-- [ ] Calibrated sensors improve perception accuracy
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Camera-LIDAR extrinsic calibration is computed accurately
+- • [ ] IMU-camera temporal synchronization is achieved
+- • [ ] Calibration validation shows acceptable accuracy
+- • [ ] Calibration parameters are integrated into ROS 2 system
+- • [ ] Calibrated sensors improve perception accuracy
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Launch multi-sensor calibration
 ros2 launch isaac_ros_calibration multi_sensor_calibration.launch.py
@@ -157,49 +196,70 @@ ros2 topic echo /calibration/convergence_metrics --field rmse --field status
 ros2 run isaac_ros_calibration sim_real_validation --ros-args -p sim_calib_file:=/path/to/sim_calib.yaml -p real_calib_file:=/path/to/real_calib.yaml
 ```
 
-#### Expected Output
-- Calibration process should complete successfully
-- RMSE values should be below acceptable thresholds
-- Sensor data should be properly synchronized
-- Calibration parameters should be saved and accessible
-- Calibrated data should improve perception accuracy
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Calibration process should complete successfully
+- • RMSE values should be below acceptable thresholds
+- • Sensor data should be properly synchronized
+- • Calibration parameters should be saved and accessible
+- • Calibrated data should improve perception accuracy
 
-#### Challenges
-- Implement online calibration during robot operation
-- Handle calibration for dynamic environments
-- Account for thermal effects on sensor parameters
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement online calibration during robot operation
+- • Handle calibration for dynamic environments
+- • Account for thermal effects on sensor parameters
 
-#### Hints
-- Use high-quality calibration targets for accurate results
-- Implement robust outlier rejection in calibration algorithms
-- Validate calibration results with independent measurements
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Use high-quality calibration targets for accurate results
+- • Implement robust outlier rejection in calibration algorithms
+- • Validate calibration results with independent measurements
 
 </details>
 
 <details>
 <summary>Exercise 3.5.3: Hardware-in-the-Loop Testing Framework (⭐⭐⭐, ~70 min)</summary>
 
-### Exercise 3.5.3: Hardware-in-the-Loop Testing Framework
+<h3 className="third-heading">
+- Exercise 3.5.3: Hardware-in-the-Loop Testing Framework
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐⭐ (Advanced)
 **Time Estimate**: 70 minutes
 **Requirements**: Isaac Sim, real robot hardware, networking setup, Isaac ROS, HIL testing knowledge
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Develop a hardware-in-the-loop testing framework:
-- Create real-time simulation interface
-- Implement sensor data bridging between sim and real
-- Develop control command relay system
-- Create performance monitoring tools
-- Implement safety mechanisms and fallback procedures
+- • Create real-time simulation interface
+- • Implement sensor data bridging between sim and real
+- • Develop control command relay system
+- • Create performance monitoring tools
+- • Implement safety mechanisms and fallback procedures
 
-#### Success Criteria
-- [ ] Real-time simulation runs in sync with hardware
-- [ ] Sensor data flows correctly between sim and real systems
-- [ ] Control commands are properly relayed to hardware
-- [ ] Performance monitoring shows acceptable latencies
-- [ ] Safety mechanisms prevent hardware damage
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Real-time simulation runs in sync with hardware
+- • [ ] Sensor data flows correctly between sim and real systems
+- • [ ] Control commands are properly relayed to hardware
+- • [ ] Performance monitoring shows acceptable latencies
+- • [ ] Safety mechanisms prevent hardware damage
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Launch HIL testing framework
 ros2 launch isaac_ros_hil hil_framework.launch.py
@@ -227,52 +287,73 @@ ros2 lifecycle list /hil_manager
 ros2 run isaac_ros_hil validation_suite --ros-args -p scenario:=navigation -p duration:=120
 ```
 
-#### Expected Output
-- Simulation should maintain real-time synchronization with hardware
-- Sensor data should bridge with minimal latency
-- Control commands should execute within acceptable time bounds
-- Performance should remain stable under various loads
-- Safety systems should respond appropriately to emergencies
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Simulation should maintain real-time synchronization with hardware
+- • Sensor data should bridge with minimal latency
+- • Control commands should execute within acceptable time bounds
+- • Performance should remain stable under various loads
+- • Safety systems should respond appropriately to emergencies
 
-#### Challenges
-- Implement predictive control to compensate for communication delays
-- Optimize network protocols for real-time performance
-- Create adaptive safety thresholds based on robot state
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement predictive control to compensate for communication delays
+- • Optimize network protocols for real-time performance
+- • Create adaptive safety thresholds based on robot state
 
-#### Hints
-- Use dedicated network for HIL communication to minimize latency
-- Implement proper buffering to handle variable communication delays
-- Design comprehensive safety checks before allowing hardware interaction
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Use dedicated network for HIL communication to minimize latency
+- • Implement proper buffering to handle variable communication delays
+- • Design comprehensive safety checks before allowing hardware interaction
 
 </details>
 
 <details>
 <summary>Exercise Summary</summary>
 
-### Exercise Summary
+<h3 className="third-heading">
+- Exercise Summary
+</h3>
+<div className="underline-class"></div>
 This chapter covered simulation-to-reality transfer techniques, including domain randomization, sensor calibration, and hardware-in-the-loop testing. You learned how to implement domain randomization to improve sim-to-real transfer, perform multi-sensor calibration for accurate perception, and develop hardware-in-the-loop testing frameworks for safe real-world deployment. The exercises provided hands-on experience with these critical sim-to-real transfer techniques.
 
 </details>
 
-## Troubleshooting
+<h2 className="second-heading">
+Troubleshooting
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Troubleshooting: Sim-to-Real Transfer Issues</summary>
 
-### Troubleshooting: Sim-to-Real Transfer Issues
+<h3 className="third-heading">
+- Troubleshooting: Sim-to-Real Transfer Issues
+</h3>
+<div className="underline-class"></div>
 
-#### Problem: Domain randomization causes simulation instability
+<h4 className="fourth-heading">
+Problem: Domain randomization causes simulation instability
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Simulation crashes or becomes unstable with domain randomization
-- Physics parameters cause unrealistic behavior
-- Randomization changes happen too abruptly
-- Performance degrades significantly with randomization enabled
+- • Simulation crashes or becomes unstable with domain randomization
+- • Physics parameters cause unrealistic behavior
+- • Randomization changes happen too abruptly
+- • Performance degrades significantly with randomization enabled
 
 **Causes**:
-- Extreme parameter values in randomization ranges
-- Incompatible material properties with physics engine
-- Abrupt changes in environmental conditions
-- Insufficient validation of randomized parameters
+- • Extreme parameter values in randomization ranges
+- • Incompatible material properties with physics engine
+- • Abrupt changes in environmental conditions
+- • Insufficient validation of randomized parameters
 
 **Solutions**:
 1. Validate and constrain randomization parameters:
@@ -394,23 +475,26 @@ This chapter covered simulation-to-reality transfer techniques, including domain
    ```
 
 **Verification Steps**:
-- [ ] Simulation remains stable with domain randomization enabled
-- [ ] Physics parameters stay within realistic ranges
-- [ ] Randomization changes are gradual and smooth
-- [ ] Performance is maintained during randomization
+- • [ ] Simulation remains stable with domain randomization enabled
+- • [ ] Physics parameters stay within realistic ranges
+- • [ ] Randomization changes are gradual and smooth
+- • [ ] Performance is maintained during randomization
 
-#### Problem: Calibration fails or produces inaccurate results
+<h4 className="fourth-heading">
+Problem: Calibration fails or produces inaccurate results
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Calibration process does not converge
-- High reprojection errors
-- Inconsistent calibration results across runs
-- Sensor data misalignment persists after calibration
+- • Calibration process does not converge
+- • High reprojection errors
+- • Inconsistent calibration results across runs
+- • Sensor data misalignment persists after calibration
 
 **Causes**:
-- Poor calibration target quality or placement
-- Inadequate excitation during calibration
-- Sensor synchronization issues
-- Environmental factors affecting calibration
+- • Poor calibration target quality or placement
+- • Inadequate excitation during calibration
+- • Sensor synchronization issues
+- • Environmental factors affecting calibration
 
 **Solutions**:
 1. Optimize calibration procedure:
@@ -547,23 +631,26 @@ This chapter covered simulation-to-reality transfer techniques, including domain
    ```
 
 **Verification Steps**:
-- [ ] Calibration converges with acceptable reprojection error (< 1 pixel)
-- [ ] Sensor alignment is accurate (< 5cm translation, < 2deg rotation)
-- [ ] Calibration is repeatable across multiple runs
-- [ ] Calibrated system performs well in real-world testing
+- • [ ] Calibration converges with acceptable reprojection error (< 1 pixel)
+- • [ ] Sensor alignment is accurate (< 5cm translation, < 2deg rotation)
+- • [ ] Calibration is repeatable across multiple runs
+- • [ ] Calibrated system performs well in real-world testing
 
-#### Problem: Hardware-in-the-loop system experiences high latency
+<h4 className="fourth-heading">
+Problem: Hardware-in-the-loop system experiences high latency
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Significant delay between simulation command and hardware response
-- Desynchronization between simulation and reality
-- Unstable or jerky robot behavior in HIL mode
-- Missed real-time deadlines
+- • Significant delay between simulation command and hardware response
+- • Desynchronization between simulation and reality
+- • Unstable or jerky robot behavior in HIL mode
+- • Missed real-time deadlines
 
 **Causes**:
-- Network latency between simulation and hardware
-- Computational delays in processing pipeline
-- Inadequate real-time scheduling
-- Buffer management issues
+- • Network latency between simulation and hardware
+- • Computational delays in processing pipeline
+- • Inadequate real-time scheduling
+- • Buffer management issues
 
 **Solutions**:
 1. Optimize network communication:
@@ -752,23 +839,26 @@ This chapter covered simulation-to-reality transfer techniques, including domain
    ```
 
 **Verification Steps**:
-- [ ] End-to-end latency is below 50ms for acceptable HIL performance
-- [ ] Control loop maintains consistent timing with minimal jitter
-- [ ] Deadline miss rate is below 1%
-- [ ] Robot behavior is stable and responsive in HIL mode
+- • [ ] End-to-end latency is below 50ms for acceptable HIL performance
+- • [ ] Control loop maintains consistent timing with minimal jitter
+- • [ ] Deadline miss rate is below 1%
+- • [ ] Robot behavior is stable and responsive in HIL mode
 
-#### Problem: Sim-to-real performance gap is too large
+<h4 className="fourth-heading">
+Problem: Sim-to-real performance gap is too large
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Robot performs well in simulation but poorly in reality
-- Control parameters need extensive retuning for real deployment
-- Perception accuracy drops significantly in real world
-- Simulation metrics don't correlate with real-world performance
+- • Robot performs well in simulation but poorly in reality
+- • Control parameters need extensive retuning for real deployment
+- • Perception accuracy drops significantly in real world
+- • Simulation metrics don't correlate with real-world performance
 
 **Causes**:
-- Inadequate domain randomization coverage
-- Missing real-world physics effects in simulation
-- Sensor model inaccuracies
-- Unmodeled dynamics or disturbances
+- • Inadequate domain randomization coverage
+- • Missing real-world physics effects in simulation
+- • Sensor model inaccuracies
+- • Unmodeled dynamics or disturbances
 
 **Solutions**:
 1. Enhance domain randomization coverage:
@@ -943,23 +1033,26 @@ This chapter covered simulation-to-reality transfer techniques, including domain
    ```
 
 **Verification Steps**:
-- [ ] Performance gap is reduced to acceptable levels (< 10-15% difference)
-- [ ] Control parameters transfer with minimal retuning
-- [ ] Perception accuracy remains consistent between sim and reality
-- [ ] Simulation metrics correlate well with real-world performance
+- • [ ] Performance gap is reduced to acceptable levels (< 10-15% difference)
+- • [ ] Control parameters transfer with minimal retuning
+- • [ ] Perception accuracy remains consistent between sim and reality
+- • [ ] Simulation metrics correlate well with real-world performance
 
-#### Problem: Advanced simulation consumes excessive resources
+<h4 className="fourth-heading">
+Problem: Advanced simulation consumes excessive resources
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- High CPU usage (80%+ on multi-core systems)
-- Memory usage grows over time (memory leaks)
-- GPU usage is excessive even with basic rendering
-- Simulation performance degrades over time
+- • High CPU usage (80%+ on multi-core systems)
+- • Memory usage grows over time (memory leaks)
+- • GPU usage is excessive even with basic rendering
+- • Simulation performance degrades over time
 
 **Causes**:
-- Complex rendering with high-quality graphics
-- Memory leaks in simulation plugins
-- Inefficient data processing pipelines
-- Unoptimized physics calculations
+- • Complex rendering with high-quality graphics
+- • Memory leaks in simulation plugins
+- • Inefficient data processing pipelines
+- • Unoptimized physics calculations
 
 **Solutions**:
 1. Optimize rendering settings:
@@ -1045,29 +1138,38 @@ This chapter covered simulation-to-reality transfer techniques, including domain
    ```
 
 **Verification Steps**:
-- [ ] CPU usage remains below 80% during normal operation
-- [ ] Memory usage is stable over time (no leaks)
-- [ ] GPU usage is reasonable for the rendering quality
-- [ ] Performance remains consistent over extended simulation runs
+- • [ ] CPU usage remains below 80% during normal operation
+- • [ ] Memory usage is stable over time (no leaks)
+- • [ ] GPU usage is reasonable for the rendering quality
+- • [ ] Performance remains consistent over extended simulation runs
 
 </details>
 
-## Introduction to Sim-to-Real Transfer
+<h2 className="second-heading">
+Introduction to Sim-to-Real Transfer
+</h2>
+<div className="underline-class"></div>
 
 Simulation to reality transfer (sim-to-real) is a critical challenge in robotics that involves taking systems developed and tested in simulation environments and successfully deploying them on physical robots. This process is essential for robotics development as it allows for safe, cost-effective testing and validation before real-world deployment.
 
 The Isaac ecosystem provides powerful tools and techniques to bridge the gap between simulation and reality, enabling effective transfer of trained models, perception systems, and control algorithms. This chapter explores the methodologies, challenges, and best practices for achieving successful sim-to-real transfer using Isaac Sim and Isaac ROS.
 
-## Understanding the Reality Gap
+<h2 className="second-heading">
+Understanding the Reality Gap
+</h2>
+<div className="underline-class"></div>
 
-### Physics and Dynamics Differences
+<h3 className="third-heading">
+- Physics and Dynamics Differences
+</h3>
+<div className="underline-class"></div>
 
 The reality gap refers to the differences between simulated and real-world environments that can affect robot performance. These differences include:
 
-- **Physics Approximations**: Simulation engines use simplified physics models that may not perfectly match real-world physics
-- **Dynamics Modeling**: Inaccuracies in mass distribution, friction, and contact models
-- **Actuator Behavior**: Differences between simulated and real actuator responses, including delays and noise
-- **Sensor Characteristics**: Variations in sensor noise, latency, and accuracy between simulation and reality
+- • **Physics Approximations**: Simulation engines use simplified physics models that may not perfectly match real-world physics
+- • **Dynamics Modeling**: Inaccuracies in mass distribution, friction, and contact models
+- • **Actuator Behavior**: Differences between simulated and real actuator responses, including delays and noise
+- • **Sensor Characteristics**: Variations in sensor noise, latency, and accuracy between simulation and reality
 
 ```python
 # Example: Physics parameter calibration between simulation and reality
@@ -1104,18 +1206,27 @@ class PhysicsCalibrator:
         return adjusted
 ```
 
-### Sensor Noise and Perception Differences
+<h3 className="third-heading">
+- Sensor Noise and Perception Differences
+</h3>
+<div className="underline-class"></div>
 
 Real-world sensors exhibit noise, latency, and inaccuracies that may not be perfectly modeled in simulation:
 
-- **Camera Noise**: Real cameras have sensor noise, lens distortion, and lighting variations
-- **Depth Sensor Inaccuracies**: LiDAR and depth sensors have range limitations and measurement errors
-- **IMU Drift**: Inertial measurement units experience drift over time
-- **Environmental Factors**: Lighting conditions, weather, and surface properties affect sensor performance
+- • **Camera Noise**: Real cameras have sensor noise, lens distortion, and lighting variations
+- • **Depth Sensor Inaccuracies**: LiDAR and depth sensors have range limitations and measurement errors
+- • **IMU Drift**: Inertial measurement units experience drift over time
+- • **Environmental Factors**: Lighting conditions, weather, and surface properties affect sensor performance
 
-## Domain Randomization Techniques
+<h2 className="second-heading">
+Domain Randomization Techniques
+</h2>
+<div className="underline-class"></div>
 
-### Visual Domain Randomization
+<h3 className="third-heading">
+- Visual Domain Randomization
+</h3>
+<div className="underline-class"></div>
 
 Domain randomization is a technique that improves the robustness of simulation-trained models by introducing random variations during training:
 
@@ -1181,7 +1292,10 @@ class DomainRandomizer:
             self.randomize_materials(material)
 ```
 
-### Physics Domain Randomization
+<h3 className="third-heading">
+- Physics Domain Randomization
+</h3>
+<div className="underline-class"></div>
 
 Physics domain randomization involves varying physical parameters during simulation training:
 
@@ -1225,9 +1339,15 @@ class PhysicsDomainRandomizer:
         environment.set_surface_restitution(surface_restitution)
 ```
 
-## Isaac Sim Domain Randomization
+<h2 className="second-heading">
+Isaac Sim Domain Randomization
+</h2>
+<div className="underline-class"></div>
 
-### Using Isaac Sim's Domain Randomization Tools
+<h3 className="third-heading">
+- Using Isaac Sim's Domain Randomization Tools
+</h3>
+<div className="underline-class"></div>
 
 Isaac Sim provides built-in tools for domain randomization that can be integrated into simulation workflows:
 
@@ -1283,7 +1403,10 @@ class IsaacSimDomainRandomizer:
             )
 ```
 
-### Synthetic Data Generation
+<h3 className="third-heading">
+- Synthetic Data Generation
+</h3>
+<div className="underline-class"></div>
 
 Isaac Sim enables the generation of synthetic training data with domain randomization:
 
@@ -1346,9 +1469,15 @@ class SyntheticDataGenerator:
         )
 ```
 
-## Isaac ROS Integration for Real-World Deployment
+<h2 className="second-heading">
+Isaac ROS Integration for Real-World Deployment
+</h2>
+<div className="underline-class"></div>
 
-### Hardware-in-the-Loop Testing
+<h3 className="third-heading">
+- Hardware-in-the-Loop Testing
+</h3>
+<div className="underline-class"></div>
 
 Isaac ROS enables hardware-in-the-loop (HIL) testing that bridges simulation and reality:
 
@@ -1451,7 +1580,10 @@ class HardwareInLoopNode(Node):
             )
 ```
 
-### Perception Pipeline Deployment
+<h3 className="third-heading">
+- Perception Pipeline Deployment
+</h3>
+<div className="underline-class"></div>
 
 Deploying perception pipelines from simulation to real hardware requires careful consideration of computational constraints:
 
@@ -1550,9 +1682,15 @@ class RealWorldPerceptionPipeline:
         return world_detections
 ```
 
-## Calibration and Validation
+<h2 className="second-heading">
+Calibration and Validation
+</h2>
+<div className="underline-class"></div>
 
-### Sensor Calibration
+<h3 className="third-heading">
+- Sensor Calibration
+</h3>
+<div className="underline-class"></div>
 
 Proper calibration is essential for successful sim-to-real transfer:
 
@@ -1652,7 +1790,10 @@ class MultiSensorCalibrator:
         return mean_error
 ```
 
-### Performance Validation
+<h3 className="third-heading">
+- Performance Validation
+</h3>
+<div className="underline-class"></div>
 
 Validate system performance in real-world conditions:
 
@@ -1728,9 +1869,15 @@ class PerformanceValidator:
         return gap_analysis
 ```
 
-## Deployment Strategies
+<h2 className="second-heading">
+Deployment Strategies
+</h2>
+<div className="underline-class"></div>
 
-### Progressive Deployment
+<h3 className="third-heading">
+- Progressive Deployment
+</h3>
+<div className="underline-class"></div>
 
 Implement progressive deployment from simulation to reality:
 
@@ -1785,7 +1932,10 @@ class ProgressiveDeployer:
             return self.deploy_to_full_real(algorithm)
 ```
 
-### Safety and Fallback Mechanisms
+<h3 className="third-heading">
+- Safety and Fallback Mechanisms
+</h3>
+<div className="underline-class"></div>
 
 Implement safety mechanisms for real-world deployment:
 
@@ -1854,29 +2004,44 @@ class SafetyFallbackSystem:
         self.logger.info('Robot parameters set to safe levels')
 ```
 
-## Best Practices and Guidelines
+<h2 className="second-heading">
+Best Practices and Guidelines
+</h2>
+<div className="underline-class"></div>
 
-### Transfer Optimization Strategies
+<h3 className="third-heading">
+- Transfer Optimization Strategies
+</h3>
+<div className="underline-class"></div>
 
-- **Gradual Domain Randomization**: Start with minimal randomization and gradually increase complexity
-- **Curriculum Learning**: Progress from simple to complex scenarios during training
-- **Multi-Modal Training**: Train with diverse sensor modalities to improve robustness
-- **Cross-Validation**: Validate performance across multiple simulation conditions
+- • **Gradual Domain Randomization**: Start with minimal randomization and gradually increase complexity
+- • **Curriculum Learning**: Progress from simple to complex scenarios during training
+- • **Multi-Modal Training**: Train with diverse sensor modalities to improve robustness
+- • **Cross-Validation**: Validate performance across multiple simulation conditions
 
-### Performance Monitoring
+<h3 className="third-heading">
+- Performance Monitoring
+</h3>
+<div className="underline-class"></div>
 
-- **Real-time Metrics**: Monitor key performance indicators during real-world operation
-- **Drift Detection**: Detect and compensate for performance degradation over time
-- **Adaptive Calibration**: Automatically adjust parameters based on real-world feedback
-- **Continuous Learning**: Update models based on real-world experience
+- • **Real-time Metrics**: Monitor key performance indicators during real-world operation
+- • **Drift Detection**: Detect and compensate for performance degradation over time
+- • **Adaptive Calibration**: Automatically adjust parameters based on real-world feedback
+- • **Continuous Learning**: Update models based on real-world experience
 
-## Summary
+<h2 className="second-heading">
+Summary
+</h2>
+<div className="underline-class"></div>
 
 Simulation to reality transfer is a complex but essential process in robotics development. The Isaac ecosystem provides powerful tools and techniques to bridge the gap between simulation and reality, including domain randomization, synthetic data generation, and hardware-in-the-loop testing. Success in sim-to-real transfer requires careful attention to physics modeling, sensor calibration, and progressive deployment strategies with appropriate safety mechanisms.
 
 The key to successful sim-to-real transfer lies in understanding and minimizing the reality gap through domain randomization, proper calibration, and validation. By following systematic approaches and implementing robust safety mechanisms, roboticists can effectively transfer systems from simulation to real-world deployment while maintaining performance and safety.
 
-## Exercises
+<h2 className="second-heading">
+Exercises
+</h2>
+<div className="underline-class"></div>
 
 1. Implement domain randomization for a simple object detection task in Isaac Sim
 2. Calibrate a camera-LiDAR system using provided calibration data
@@ -1884,9 +2049,12 @@ The key to successful sim-to-real transfer lies in understanding and minimizing 
 4. Validate the performance of a perception system in both simulation and reality
 5. Create a safety fallback system for a robotic manipulation task
 
-## Further Reading
+<h2 className="second-heading">
+Further Reading
+</h2>
+<div className="underline-class"></div>
 
-- "Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World" by Tobin et al.
-- "Sim-to-Real: Learning Agile Locomotion For Quadruped Robots" by Heess et al.
-- NVIDIA Isaac documentation on domain randomization and synthetic data generation
-- "A Taxonomy and Evaluation of Dense Two-Frame Stereo Correspondence Algorithms" for perception validation
+- • "Domain Randomization for Transferring Deep Neural Networks from Simulation to the Real World" by Tobin et al.
+- • "Sim-to-Real: Learning Agile Locomotion For Quadruped Robots" by Heess et al.
+- • NVIDIA Isaac documentation on domain randomization and synthetic data generation
+- • "A Taxonomy and Evaluation of Dense Two-Frame Stereo Correspondence Algorithms" for perception validation

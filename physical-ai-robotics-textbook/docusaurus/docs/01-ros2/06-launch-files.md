@@ -4,43 +4,71 @@ title: 'Launch Files: Managing Complex Robot Systems'
 description: 'Understanding how to create and use launch files to manage complex ROS 2 robot systems'
 ---
 
-# Launch Files: Managing Complex Robot Systems
+
+import ReadingTime from '@site/src/components/ReadingTime';
+import ViewToggle from '@site/src/components/ViewToggle';
+
+<ReadingTime minutes={18} />
+
+<h1 className="main-heading">Launch Files: Managing Complex Robot Systems</h1>
+<div className="underline-class"></div>
 
 Launch files are essential for managing complex robotic systems by allowing you to start multiple nodes with specific configurations simultaneously. This chapter covers creating and using launch files for humanoid robotics applications.
 
-## Learning Objectives
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 By the end of this chapter, you will be able to:
-- Create launch files to start multiple nodes simultaneously
-- Use parameters, arguments, and conditions in launch files
-- Launch different robot configurations based on arguments
-- Integrate launch files with robot description packages
-- Debug and troubleshoot launch file issues
+- • Create launch files to start multiple nodes simultaneously
+- • Use parameters, arguments, and conditions in launch files
+- • Launch different robot configurations based on arguments
+- • Integrate launch files with robot description packages
+- • Debug and troubleshoot launch file issues
 
-## Exercises
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Exercises
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Exercise 1.6.1: Basic Launch File Creation (⭐, ~25 min)</summary>
 
-### Exercise 1.6.1: Basic Launch File Creation
+<h3 className="third-heading">
+ Exercise 1.6.1: Basic Launch File Creation
+</h3>
 **Difficulty**: ⭐ (Beginner)
 **Time Estimate**: 25 minutes
 **Requirements**: ROS 2 environment, basic Python knowledge
 
-#### Starter Code
+<h4 className="fourth-heading">
+ Starter Code
+</h4>
 Create a basic launch file named `simple_robot.launch.py` that launches:
-- A talker node from `demo_nodes_cpp`
-- A listener node from `demo_nodes_cpp`
-- Set the output to screen for both nodes
+- • A talker node from `demo_nodes_cpp`
+- • A listener node from `demo_nodes_cpp`
+- • Set the output to screen for both nodes
 
-#### Success Criteria
+<h4 className="fourth-heading">
+ Success Criteria
+</h4>
 - [ ] Launch file creates a proper LaunchDescription
 - [ ] Both nodes start successfully when launch file is executed
 - [ ] Nodes communicate properly (messages pass between talker and listener)
 - [ ] Output appears on screen as expected
 - [ ] Launch file follows ROS 2 launch file conventions
 
-#### Test Commands
+<h4 className="fourth-heading">
+ Test Commands
+</h4>
+
 ```bash
 # Create the launch file
 mkdir -p ~/ros2_ws/src/my_launch_package/launch
@@ -51,91 +79,123 @@ ros2 launch my_launch_package simple_robot.launch.py
 
 # Verify nodes are running
 ros2 node list
+
 ```
 
-#### Expected Output
-- Both talker and listener nodes should appear in the node list
-- Messages should flow from talker to listener
-- Console output should show both nodes communicating
+<h4 className="fourth-heading">
+ Expected Output
+</h4>
 
-#### Challenges
-- Add a third node that processes the messages
-- Modify the node names to be more descriptive
+- • Both talker and listener nodes should appear in the node list
+- • Messages should flow from talker to listener
+- • Console output should show both nodes communicating
 
-#### Hints
-- Use the launch and launch_ros modules for creating actions
-- Remember to return a LaunchDescription with your actions
-- Use proper package and executable names for the nodes
+<h4 className="fourth-heading">
+ Challenges
+</h4>
+- • Add a third node that processes the messages
+- • Modify the node names to be more descriptive
+
+<h4 className="fourth-heading">
+ Hints
+</h4>
+- • Use the launch and launch_ros modules for creating actions
+- • Remember to return a LaunchDescription with your actions
+- • Use proper package and executable names for the nodes
 
 </details>
 
 <details>
 <summary>Exercise 1.6.2: Launch File with Arguments (⭐⭐, ~40 min)</summary>
 
-### Exercise 1.6.2: Launch File with Arguments
+<h3 className="third-heading">
+ Exercise 1.6.2: Launch File with Arguments
+</h3>
 **Difficulty**: ⭐⭐ (Intermediate)
 **Time Estimate**: 40 minutes
 **Requirements**: Understanding of basic launch files, ROS 2 parameters
 
-#### Starter Code
+<h4 className="fourth-heading">
+ Starter Code
+</h4>
 Create a launch file named `configurable_robot.launch.py` that includes:
-- Launch arguments for `use_sim_time`, `robot_name`, and `launch_rviz`
-- Conditional launching of RViz based on the `launch_rviz` argument
-- Robot state publisher with parameters from launch arguments
-- Node remapping capabilities
+- • Launch arguments for `use_sim_time`, `robot_name`, and `launch_rviz`
+- • Conditional launching of RViz based on the `launch_rviz` argument
+- • Robot state publisher with parameters from launch arguments
+- • Node remapping capabilities
 
-#### Success Criteria
+<h4 className="fourth-heading">
+ Success Criteria
+</h4>
 - [ ] Launch arguments are properly declared with default values
 - [ ] RViz launches conditionally based on argument value
 - [ ] Robot state publisher uses arguments for configuration
 - [ ] Launch file works with different argument combinations
 - [ ] All nodes start correctly with proper configurations
 
-#### Test Commands
+<h4 className="fourth-heading">
+ Test Commands
+</h4>
 ```bash
 # Run with default arguments
 ros2 launch my_launch_package configurable_robot.launch.py
 
-# Run with custom arguments
+<h1 className="main-heading">Run with custom arguments</h1>
+
 ros2 launch my_launch_package configurable_robot.launch.py robot_name:=my_robot use_sim_time:=true launch_rviz:=false
 
-# Verify parameters are set correctly
+<h1 className="main-heading">Verify parameters are set correctly</h1>
+
 ros2 param list /robot_state_publisher
+
+
 ```
+<h4 className="fourth-heading">
+ Expected Output
+</h4>
 
-#### Expected Output
-- Launch file should work with default values
-- Different argument combinations should produce expected behavior
-- Parameter values should reflect the launch arguments
+- • Launch file should work with default values
+- • Different argument combinations should produce expected behavior
+- • Parameter values should reflect the launch arguments
 
-#### Challenges
-- Add more complex conditional logic based on multiple arguments
-- Include a parameter file that's loaded conditionally
+<h4 className="fourth-heading">
+ Challenges
+</h4>
+- • Add more complex conditional logic based on multiple arguments
+- • Include a parameter file that's loaded conditionally
 
-#### Hints
-- Use LaunchConfiguration to reference declared arguments
-- Use IfCondition and UnlessCondition for conditional actions
-- Remember to include all declared arguments in the LaunchDescription
+<h4 className="fourth-heading">
+ Hints
+</h4>
+- • Use LaunchConfiguration to reference declared arguments
+- • Use IfCondition and UnlessCondition for conditional actions
+- • Remember to include all declared arguments in the LaunchDescription
 
 </details>
 
 <details>
 <summary>Exercise 1.6.3: Advanced Launch System (⭐⭐⭐, ~60 min)</summary>
 
-### Exercise 1.6.3: Advanced Launch System
+<h3 className="third-heading">
+ Exercise 1.6.3: Advanced Launch System
+</h3>
 **Difficulty**: ⭐⭐⭐ (Advanced)
 **Time Estimate**: 60 minutes
 **Requirements**: Complete understanding of launch files, robot systems integration
 
-#### Starter Code
+<h4 className="fourth-heading">
+ Starter Code
+</h4>
 Create a comprehensive launch system for a humanoid robot that includes:
-- Main launch file that includes other launch files
-- Robot controller group with namespace
-- Simulation launch file that starts Gazebo
-- Parameter file integration
-- Error handling and validation
+- • Main launch file that includes other launch files
+- • Robot controller group with namespace
+- • Simulation launch file that starts Gazebo
+- • Parameter file integration
+- • Error handling and validation
 
-#### Success Criteria
+<h4 className="fourth-heading">
+ Success Criteria
+</h4>
 - [ ] Main launch file properly includes other components
 - [ ] Robot controllers launch in appropriate namespace
 - [ ] Simulation launch works with Gazebo
@@ -143,7 +203,9 @@ Create a comprehensive launch system for a humanoid robot that includes:
 - [ ] Launch system handles errors gracefully
 - [ ] All components work together seamlessly
 
-#### Test Commands
+<h4 className="fourth-heading">
+ Test Commands
+</h4>
 ```bash
 # Test main robot launch
 ros2 launch my_robot_bringup humanoid_robot.launch.py
@@ -157,48 +219,66 @@ ros2 param list
 ros2 topic list
 ```
 
-#### Expected Output
-- Complete robot system should launch successfully
-- All controllers should be in proper namespaces
-- Simulation should start with robot properly spawned
-- Parameters should be correctly configured
+<h4 className="fourth-heading">
+ Expected Output
+</h4>
+- • Complete robot system should launch successfully
+- • All controllers should be in proper namespaces
+- • Simulation should start with robot properly spawned
+- • Parameters should be correctly configured
 
-#### Challenges
-- Add automatic controller loading after robot spawn
-- Implement safety checks before launching critical nodes
+<h4 className="fourth-heading">
+ Challenges
+</h4>
+- • Add automatic controller loading after robot spawn
+- • Implement safety checks before launching critical nodes
 
-#### Hints
-- Break the system into smaller, composable launch files
-- Use proper error handling and validation
-- Test each component separately before integration
+<h4 className="fourth-heading">
+ Hints
+</h4>
+- • Break the system into smaller, composable launch files
+- • Use proper error handling and validation
+- • Test each component separately before integration
 
 </details>
 
 <details>
 <summary>Exercise Summary</summary>
 
-### Exercise Summary
+<h3 className="third-heading">
+ Exercise Summary
+</h3>
 This chapter covered creating and using launch files to manage complex ROS 2 robot systems. You learned to create basic launch files, use parameters and arguments, conditionally launch nodes, and build comprehensive launch systems for humanoid robots. The exercises provided hands-on experience with basic launch creation, argument handling, and advanced system integration.
 
 </details>
 
-## Troubleshooting
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Troubleshooting
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Troubleshooting: Launch File Issues</summary>
 
-### Troubleshooting: Launch File Issues
+<h3 className="third-heading">
+ Troubleshooting: Launch File Issues
+</h3>
 
-#### Problem: Nodes don't start or crash immediately
+<h4 className="fourth-heading">
+ Problem: Nodes don't start or crash immediately
+</h4>
 **Symptoms**:
-- Launch file runs but nodes don't appear in node list
-- Error messages about missing executables or packages
-- Launch process terminates with errors
+- • Launch file runs but nodes don't appear in node list
+- • Error messages about missing executables or packages
+- • Launch process terminates with errors
 
 **Causes**:
-- Incorrect package or executable names
-- Package not built or sourced properly
-- Missing dependencies
+- • Incorrect package or executable names
+- • Package not built or sourced properly
+- • Missing dependencies
 
 **Solutions**:
 1. Verify package and executable names are correct:
@@ -229,16 +309,18 @@ This chapter covered creating and using launch files to manage complex ROS 2 rob
 - [ ] Executable name matches what's defined in setup.py/CMakeLists.txt
 - [ ] Package is properly built and sourced
 
-#### Problem: Parameters not being set correctly
+<h4 className="fourth-heading">
+ Problem: Parameters not being set correctly
+</h4>
 **Symptoms**:
-- Nodes start but don't behave as expected
-- Parameter values are not applied
-- Nodes fail due to missing required parameters
+- • Nodes start but don't behave as expected
+- • Parameter values are not applied
+- • Nodes fail due to missing required parameters
 
 **Causes**:
-- Incorrect parameter file paths
-- Parameter names don't match node expectations
-- Parameter files have YAML syntax errors
+- • Incorrect parameter file paths
+- • Parameter names don't match node expectations
+- • Parameter files have YAML syntax errors
 
 **Solutions**:
 1. Verify parameter file paths are correct:
@@ -271,16 +353,18 @@ This chapter covered creating and using launch files to manage complex ROS 2 rob
 - [ ] YAML syntax is valid
 - [ ] Parameter names match node expectations
 
-#### Problem: Launch file takes too long to start or hangs
+<h4 className="fourth-heading">
+ Problem: Launch file takes too long to start or hangs
+</h4>
 **Symptoms**:
-- Launch process doesn't complete
-- Some nodes start but others wait indefinitely
-- High CPU or memory usage during launch
+- • Launch process doesn't complete
+- • Some nodes start but others wait indefinitely
+- • High CPU or memory usage during launch
 
 **Causes**:
-- Nodes waiting for services that never become available
-- Circular dependencies between nodes
-- Network or resource issues
+- • Nodes waiting for services that never become available
+- • Circular dependencies between nodes
+- • Network or resource issues
 
 **Solutions**:
 1. Add timeouts to service calls in your nodes
@@ -303,16 +387,18 @@ This chapter covered creating and using launch files to manage complex ROS 2 rob
 - [ ] No circular dependencies exist between nodes
 - [ ] Launch process completes within reasonable time
 
-#### Problem: Namespace and topic conflicts
+<h4 className="fourth-heading">
+ Problem: Namespace and topic conflicts
+</h4>
 **Symptoms**:
-- Nodes can't communicate properly
-- Topics appear with unexpected prefixes
-- Multiple robots interfere with each other
+- • Nodes can't communicate properly
+- • Topics appear with unexpected prefixes
+- • Multiple robots interfere with each other
 
 **Causes**:
-- Improper namespace handling
-- Topic remapping not configured correctly
-- Conflicting node names
+- • Improper namespace handling
+- • Topic remapping not configured correctly
+- • Conflicting node names
 
 **Solutions**:
 1. Use proper namespace handling in launch files:
@@ -353,16 +439,18 @@ This chapter covered creating and using launch files to manage complex ROS 2 rob
 - [ ] Nodes in different namespaces don't conflict
 - [ ] Communication occurs as expected between nodes
 
-#### Problem: Launch arguments not working as expected
+<h4 className="fourth-heading">
+ Problem: Launch arguments not working as expected
+</h4>
 **Symptoms**:
-- Default values are ignored
-- Arguments don't affect launch behavior
-- Conditional logic doesn't work properly
+- • Default values are ignored
+- • Arguments don't affect launch behavior
+- • Conditional logic doesn't work properly
 
 **Causes**:
-- Arguments not properly declared
-- LaunchConfiguration not used correctly
-- Conditions not set up properly
+- • Arguments not properly declared
+- • LaunchConfiguration not used correctly
+- • Conditions not set up properly
 
 **Solutions**:
 1. Ensure arguments are properly declared and used:
@@ -408,15 +496,26 @@ This chapter covered creating and using launch files to manage complex ROS 2 rob
 
 </details>
 
-## Introduction to Launch Files
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Introduction to Launch Files
+</h2>
+<div className="underline-class"></div>
 
 Launch files in ROS 2 use Python instead of XML (as in ROS 1), providing more flexibility and programmability. They allow you to:
-- Start multiple nodes with a single command
-- Set parameters for nodes
-- Configure node behavior through arguments
-- Conditionally launch nodes based on conditions
+- • Start multiple nodes with a single command
+- • Set parameters for nodes
+- • Configure node behavior through arguments
+- • Conditionally launch nodes based on conditions
 
-### Basic Launch File Structure
+<div className="border-line"></div>
+
+<h3 className="third-heading">
+ Basic Launch File Structure
+</h3>
+<div className="underline-class"></div>
 
 ```python
 # launch/basic_launch.py
@@ -439,17 +538,33 @@ def generate_launch_description():
 ```
 
 To run this launch file:
+
+<div className="border-line"></div>
+
 ```bash
 ros2 launch my_package basic_launch.py
 ```
 
-## Launch File Components
+<h2 className="second-heading">
+ Launch File Components
+</h2>
 
-### Actions
+<div className="underline-class"></div>
+
+<h3 className="third-heading">
+ Actions
+</h3>
+
+<div className="border-line"></div>
+<div className="underline-class"></div>
 
 Actions are the building blocks of launch files:
 
-#### Node Action
+<h4 className="fourth-heading">
+ Node Action
+</h4>
+
+<div className="border-line"></div>
 The most common action for starting ROS 2 nodes:
 
 ```python
@@ -473,7 +588,11 @@ Node(
 )
 ```
 
-#### ExecuteProcess Action
+<h4 className="fourth-heading">
+ ExecuteProcess Action
+</h4>
+
+<div className="border-line"></div>
 For launching non-ROS processes:
 
 ```python
@@ -485,7 +604,11 @@ ExecuteProcess(
 )
 ```
 
-#### SetEnvironmentVariable Action
+<h4 className="fourth-heading">
+ SetEnvironmentVariable Action
+</h4>
+
+<div className="border-line"></div>
 To set environment variables:
 
 ```python
@@ -497,7 +620,12 @@ SetEnvironmentVariable(
 )
 ```
 
-## Using Arguments in Launch Files
+<h2 className="second-heading">
+ Using Arguments in Launch Files
+</h2>
+<div className="underline-class"></div>
+
+<div className="border-line"></div>
 
 Arguments allow you to customize launch behavior:
 
@@ -547,9 +675,17 @@ Run with arguments:
 ros2 launch my_package robot_launch.py robot_name:=turtlebot use_sim_time:=true
 ```
 
-## Advanced Launch Concepts
+<h2 className="second-heading">
+ Advanced Launch Concepts
+</h2>
+<div className="underline-class"></div>
 
-### Conditions
+<h3 className="third-heading">
+ Conditions
+</h3>
+
+<div className="border-line"></div>
+<div className="underline-class"></div>
 
 Launch nodes conditionally based on arguments:
 
@@ -573,7 +709,11 @@ Node(
 )
 ```
 
-### Groups and Namespaces
+<div className="border-line"></div>
+<h3 className="third-heading">
+ Groups and Namespaces
+</h3>
+<div className="underline-class"></div>
 
 Organize nodes into groups or namespaces:
 
@@ -600,7 +740,11 @@ GroupAction(
 )
 ```
 
-### Including Other Launch Files
+<div className="border-line"></div>
+<h3 className="third-heading">
+ Including Other Launch Files
+</h3>
+<div className="underline-class"></div>
 
 Include other launch files in your launch file:
 
@@ -618,7 +762,11 @@ IncludeLaunchDescription(
 )
 ```
 
-## Practical Example: Humanoid Robot Launch System
+<div className="border-line"></div>
+<h2 className="second-heading">
+ Practical Example: Humanoid Robot Launch System
+</h2>
+<div className="underline-class"></div>
 
 Let's create a comprehensive launch system for a humanoid robot:
 
@@ -741,7 +889,11 @@ def generate_launch_description():
     ])
 ```
 
-## Launch File for Simulation
+<div className="border-line"></div>
+<h2 className="second-heading">
+ Launch File for Simulation
+</h2>
+<div className="underline-class"></div>
 
 A specialized launch file for simulation environments:
 
@@ -842,7 +994,11 @@ def generate_launch_description():
     return ld
 ```
 
-## Parameter Files with Launch Files
+<div className="border-line"></div>
+<h2 className="second-heading">
+ Parameter Files with Launch Files
+</h2>
+<div className="underline-class"></div>
 
 Launch files can load parameters from YAML files:
 
@@ -877,6 +1033,8 @@ arm_controller:
 
 Using parameters in launch:
 
+<div className="border-line"></div>
+
 ```python
 Node(
     package='controller_manager',
@@ -889,46 +1047,74 @@ Node(
 )
 ```
 
-## Best Practices
+<h2 className="second-heading">
+ Best Practices
+</h2>
 
-### Organization
-- Use descriptive names for launch files
-- Group related functionality in separate launch files
-- Use includes to compose complex systems from simpler components
+<div className="underline-class"></div>
+<div className="border-line"></div>
 
-### Error Handling
-- Validate launch arguments
-- Use appropriate conditions to avoid conflicts
-- Provide clear error messages when configurations are invalid
+<h3 className="third-heading">
+ Organization
+</h3>
+<div className="underline-class"></div>
 
-### Performance
-- Only launch nodes that are needed for the specific use case
-- Use namespaces appropriately to avoid topic conflicts
-- Consider using launch file caching for faster startup
+- • Use descriptive names for launch files
+- • Group related functionality in separate launch files
+- • Use includes to compose complex systems from simpler components
+<div className="border-line"></div>
 
-## Debugging Launch Files
 
-### Common Issues and Solutions
+<h3 className="third-heading">
+ Error Handling
+</h3>
+<div className="underline-class"></div>
+
+- • Validate launch arguments
+- • Use appropriate conditions to avoid conflicts
+- • Provide clear error messages when configurations are invalid
+
+<h3 className="third-heading">
+ Performance
+</h3>
+<div className="underline-class"></div>
+
+- • Only launch nodes that are needed for the specific use case
+- • Use namespaces appropriately to avoid topic conflicts
+- • Consider using launch file caching for faster startup
+
+<h2 className="second-heading">
+ Debugging Launch Files
+</h2>
+<div className="underline-class"></div>
+
+<h3 className="third-heading">
+ Common Issues and Solutions
+</h3>
+<div className="underline-class"></div>
 
 **Problem**: Nodes don't start or crash immediately
 **Solutions**:
-- Check that package names and executable names are correct
-- Verify all required dependencies are installed
-- Use `output='screen'` to see node output
+- • Check that package names and executable names are correct
+- • Verify all required dependencies are installed
+- • Use `output='screen'` to see node output
 
 **Problem**: Parameters not being set correctly
 **Solutions**:
-- Verify parameter file paths are correct
-- Check that parameter names match what the node expects
-- Use `ros2 param list` to verify parameters are set
+- • Verify parameter file paths are correct
+- • Check that parameter names match what the node expects
+- • Use `ros2 param list` to verify parameters are set
 
 **Problem**: Launch file takes too long to start
 **Solutions**:
-- Check for nodes that wait indefinitely for services
-- Use timeouts on service calls
-- Consider launching nodes in groups to identify bottlenecks
+- • Check for nodes that wait indefinitely for services
+- • Use timeouts on service calls
+- • Consider launching nodes in groups to identify bottlenecks
 
-### Debugging Commands
+<h3 className="third-heading">
+ Debugging Commands
+</h3>
+<div className="underline-class"></div>
 
 ```bash
 # List all running nodes
@@ -947,8 +1133,4 @@ ros2 service list
 ros2 launch --dry-run my_package my_launch.py  # Shows what would be launched
 ```
 
-import ReadingTime from '@site/src/components/ReadingTime';
-import ViewToggle from '@site/src/components/ViewToggle';
-
-<ReadingTime minutes={18} />
-<ViewToggle />
+<!-- <ViewToggle /> -->

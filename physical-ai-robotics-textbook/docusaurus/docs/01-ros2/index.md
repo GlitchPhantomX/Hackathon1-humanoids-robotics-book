@@ -6,6 +6,9 @@ description: 'Core ROS 2 concepts and architecture for humanoid robotics'
 
 import ReadingTime from '@site/src/components/ReadingTime';
 import ViewToggle from '@site/src/components/ViewToggle';
+import TranslatedContent from '@site/src/components/TranslatedContent';
+
+<TranslatedContent chapterId="01-ros2">
 
 <ReadingTime minutes={10} />
 <h1 className="main-heading">ROS 2: The Robotic Nervous System</h1>
@@ -25,7 +28,7 @@ By the end of this module, you will be able to:
 <div className="border-line"></div>
 <h2 className="second-heading">
 Prerequisites
-</h2> 
+</h2>
 
 Before starting this module, you should have:
 - • Completed the Introduction module
@@ -35,7 +38,7 @@ Before starting this module, you should have:
 <div className="border-line"></div>
 <h2 className="second-heading">
  Module Overview
-</h2> 
+</h2>
 
 This module covers:
 1. ROS 2 Architecture and Concepts
@@ -47,3 +50,5 @@ This module covers:
 
 
 <!-- <ViewToggle /> -->
+
+</TranslatedContent>

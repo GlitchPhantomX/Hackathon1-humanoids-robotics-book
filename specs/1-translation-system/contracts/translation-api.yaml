@@ -1,0 +1,289 @@
+# API Contracts: Multi-Language Translation System
+
+## Overview
+This document defines the API contracts for the translation system, including frontend-backend communication and authentication integration.
+
+## Authentication API Contracts
+
+### GET /api/auth/session
+**Purpose:** Check if user is authenticated
+
+**Request:**
+```
+GET /api/auth/session HTTP/1.1
+Host: localhost:8001
+Cookie: session=xxx
+```
+
+**Response (Authenticated):**
+```json
+{
+  "isAuthenticated": true,
+  "user": {
+    "id": "user_abc123",
+    "email": "user@example.com",
+    "name": "John Doe",
+    "createdAt": "2025-12-01T00:00:00Z"
+  }
+}
+```
+
+**Response (Not Authenticated):**
+```json
+{
+  "isAuthenticated": false
+}
+```
+
+**Status Codes:**
+- `200 OK` - Request successful
+- `401 Unauthorized` - Invalid/expired session
+- `500 Internal Server Error` - Server error
+
+## Translation API Contracts
+
+### POST /api/translation/translate
+**Purpose:** Translate content using OpenAI GPT-4
+
+**Request:**
+```
+POST /api/translation/translate HTTP/1.1
+Host: localhost:8001
+Content-Type: application/json
+Cookie: session=xxx
+
+{
+  "content": "<h1>Original content</h1><p>Text to translate</p>",
+  "source_lang": "en",
+  "target_lang": "ur",
+  "chapter_id": "00-introduction/index"
+}
+```
+
+**Request Model:**
+```typescript
+interface TranslationRequest {
+  content: string;        // Original content to translate (HTML)
+  source_lang: string;    // Source language code (default: "en")
+  target_lang: string;    // Target language code ("ur", "ar")
+  chapter_id: string;     // Chapter identifier for context
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "translated_content": "<h1>مترجم مواد</h1><p>ترجمہ شدہ متن</p>",
+  "target_lang": "ur",
+  "chapter_id": "00-introduction/index",
+  "processing_time": 1250
+}
+```
+
+**Response Model:**
+```typescript
+interface TranslationResponse {
+  success: boolean;
+  translated_content: string;  // Translated HTML content
+  target_lang: string;         // Target language code
+  chapter_id: string;          // Chapter identifier
+  processing_time: number;     // Time taken for translation (ms)
+}
+```
+
+**Status Codes:**
+- `200 OK` - Translation successful
+- `400 Bad Request` - Invalid request parameters
+- `401 Unauthorized` - User not authenticated
+- `429 Too Many Requests` - Rate limit exceeded
+- `500 Internal Server Error` - Translation service error
+
+### GET /api/translation/available-languages
+**Purpose:** Get list of available translation languages
+
+**Request:**
+```
+GET /api/translation/available-languages HTTP/1.1
+Host: localhost:8001
+Cookie: session=xxx
+```
+
+**Response:**
+```json
+{
+  "languages": [
+    {
+      "code": "en",
+      "name": "English",
+      "nativeName": "English",
+      "direction": "ltr"
+    },
+    {
+      "code": "ur",
+      "name": "Urdu",
+      "nativeName": "اردو",
+      "direction": "rtl"
+    },
+    {
+      "code": "ar",
+      "name": "Arabic",
+      "nativeName": "العربية",
+      "direction": "rtl"
+    }
+  ]
+}
+```
+
+**Response Model:**
+```typescript
+interface AvailableLanguagesResponse {
+  languages: Array<{
+    code: string;
+    name: string;
+    nativeName: string;
+    direction: 'ltr' | 'rtl';
+  }>;
+}
+```
+
+**Status Codes:**
+- `200 OK` - Request successful
+- `500 Internal Server Error` - Server error
+
+## User Preferences API Contracts
+
+### GET /api/user/preferences
+**Purpose:** Get user's saved language preference
+
+**Request:**
+```
+GET /api/user/preferences HTTP/1.1
+Host: localhost:8001
+Cookie: session=xxx
+```
+
+**Response:**
+```json
+{
+  "language": "ur",
+  "theme": "dark",
+  "notifications": true,
+  "lastUpdated": "2025-12-15T10:30:00Z"
+}
+```
+
+**Response Model:**
+```typescript
+interface UserPreferencesResponse {
+  language: 'en' | 'ur' | 'ar';
+  theme: 'light' | 'dark';
+  notifications: boolean;
+  lastUpdated: string;  // ISO date string
+}
+```
+
+**Status Codes:**
+- `200 OK` - Request successful
+- `401 Unauthorized` - User not authenticated
+- `500 Internal Server Error` - Server error
+
+### POST /api/user/preferences
+**Purpose:** Save user's language preference
+
+**Request:**
+```
+POST /api/user/preferences HTTP/1.1
+Host: localhost:8001
+Content-Type: application/json
+Cookie: session=xxx
+
+{
+  "language": "ur"
+}
+```
+
+**Request Model:**
+```typescript
+interface UserPreferencesRequest {
+  language: 'en' | 'ur' | 'ar';
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "preferences": {
+    "language": "ur",
+    "theme": "dark",
+    "notifications": true,
+    "lastUpdated": "2025-12-15T10:30:00Z"
+  }
+}
+```
+
+**Response Model:**
+```typescript
+interface UserPreferencesResponse {
+  success: boolean;
+  preferences: {
+    language: 'en' | 'ur' | 'ar';
+    theme: 'light' | 'dark';
+    notifications: boolean;
+    lastUpdated: string;  // ISO date string
+  };
+}
+```
+
+**Status Codes:**
+- `200 OK` - Success
+- `400 Bad Request` - Invalid language code
+- `401 Unauthorized` - Not authenticated
+- `500 Internal Server Error` - Server error
+
+## Frontend-Backend Communication Patterns
+
+### Translation Loading Flow
+1. Frontend detects language change to 'ur' or 'ar'
+2. Frontend checks authentication status via context
+3. If authenticated, frontend requests translation JSON from static files
+4. If static file not found, fallback to original English content
+5. Apply RTL direction and appropriate font styling
+
+### Error Handling Contracts
+- Network errors: Show fallback content in English
+- Authentication errors: Disable language toggle with user notification
+- Translation load errors: Display error message with fallback option
+- Font loading errors: Use system fallback fonts
+
+## Security Considerations
+
+### Authentication Requirements
+- All translation API endpoints require valid session cookie
+- Language preference saving requires authentication
+- Translation generation requires authentication
+
+### Input Validation
+- Language codes validated against allowed values ('en', 'ur', 'ar')
+- Chapter IDs validated against allowed patterns
+- Content length limited to prevent abuse
+
+### Rate Limiting
+- Translation API endpoints subject to rate limiting
+- Per-user and per-IP limits applied
+- Appropriate error responses for rate limit exceeded
+
+## Performance Contracts
+
+### Response Time Targets
+- Auth check: < 200ms (95th percentile)
+- Translation load: < 500ms (95th percentile)
+- Language switch: < 300ms (95th percentile)
+- Font load: < 1s (with swap strategy)
+
+### Caching Strategies
+- Translation files cached in browser
+- Auth status cached for 5 minutes
+- User preferences cached for 10 minutes
+- API responses with appropriate cache headers

@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "ہارڈ ویئر کی ضروریات",
+    "description": "The label for the sidebar item 03-hardware-requirements"
+  },
+  "title": {
+    "message": "ہارڈ ویئر کی ضروریات",
+    "description": "The title for the document 03-hardware-requirements"
+  },
+  "description": {
+    "message": "ہیومنوائڈ روبوٹکس کے لیے ہارڈ ویئر کی ضروریات، سینسرز، ایکٹو ایٹرز، اور کمپیوٹیشنل ضروریات",
+    "description": "The description for the document 03-hardware-requirements"
+  }
+}

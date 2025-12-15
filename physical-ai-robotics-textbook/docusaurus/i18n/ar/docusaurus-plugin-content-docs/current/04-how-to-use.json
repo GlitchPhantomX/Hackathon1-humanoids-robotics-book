@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "كيفية الاستخدام",
+    "description": "The label for the sidebar item 04-how-to-use"
+  },
+  "title": {
+    "message": "كيفية استخدام الكتاب",
+    "description": "The title for the document 04-how-to-use"
+  },
+  "description": {
+    "message": "دليل عملي للكتاب، هيكله، مراحله التقنية، وأدوات التعلم",
+    "description": "The description for the document 04-how-to-use"
+  }
+}

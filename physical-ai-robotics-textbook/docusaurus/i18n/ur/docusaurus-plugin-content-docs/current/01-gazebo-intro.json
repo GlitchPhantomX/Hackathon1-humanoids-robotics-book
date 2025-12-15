@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "گزیبو تعارف",
+    "description": "The label for the sidebar item 01-gazebo-intro"
+  },
+  "title": {
+    "message": "گزیبو سیمولیشن کا تعارف",
+    "description": "The title for the document 01-gazebo-intro"
+  },
+  "description": {
+    "message": "گزیبو سیمولیشن کی دنیا میں تعارف، ماڈلنگ، اور فزکس انجن کا جائزہ",
+    "description": "The description for the document 01-gazebo-intro"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "title": {
+    "message": "روبوتيات الهوميود",
+    "description": "The title in the navbar"
+  },
+  "item.label.Book": {
+    "message": "كتاب",
+    "description": "Navbar item with label Book"
+  },
+  "item.label.GitHub": {
+    "message": "غيتوب",
+    "description": "Navbar item with label GitHub"
+  }
+}

@@ -3,46 +3,64 @@ sidebar_position: 7
 title: 'Advanced Simulation: Complex Scenarios and Optimization'
 description: 'Advanced simulation techniques for complex robotics scenarios and performance optimization'
 ---
-
-# Advanced Simulation: Complex Scenarios and Optimization
+# <h1 className="main-heading">Advanced Simulation: Complex Scenarios and Optimization</h1>
+<div className="underline-class"></div>
 
 As humanoid robotics applications become more sophisticated, simulation environments must evolve to handle complex scenarios, multi-robot systems, and high-fidelity physics. This chapter explores advanced simulation techniques that enable realistic testing of humanoid robots in challenging environments while maintaining optimal performance.
 
-## Learning Objectives
+<h2 className="second-heading">
+Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 By the end of this chapter, you will be able to:
-- Design and implement complex multi-robot simulation scenarios
-- Optimize simulation performance for large-scale environments
-- Implement advanced physics models for realistic interactions
-- Create dynamic environments that respond to robot actions
-- Apply advanced techniques for simulation-to-reality transfer
+- • Design and implement complex multi-robot simulation scenarios
+- • Optimize simulation performance for large-scale environments
+- • Implement advanced physics models for realistic interactions
+- • Create dynamic environments that respond to robot actions
+- • Apply advanced techniques for simulation-to-reality transfer
 
-## Exercises
+<h2 className="second-heading">
+Exercises
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Exercise 2.6.1: Multi-Robot Coordination in Complex Environments (⭐⭐, ~40 min)</summary>
 
-### Exercise 2.6.1: Multi-Robot Coordination in Complex Environments
+<h3 className="third-heading">
+- Exercise 2.6.1: Multi-Robot Coordination in Complex Environments
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐ (Intermediate)
 **Time Estimate**: 40 minutes
 **Requirements**: Gazebo installation, ROS 2, multi-robot coordination concepts
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Create a multi-robot simulation with coordination:
-- Two humanoid robots in the same environment
-- Coordination algorithm to avoid collisions
-- Task assignment system
-- Communication between robots
-- Basic path planning for collaboration
+- • Two humanoid robots in the same environment
+- • Coordination algorithm to avoid collisions
+- • Task assignment system
+- • Communication between robots
+- • Basic path planning for collaboration
 
-#### Success Criteria
-- [ ] Both robots operate simultaneously in the same simulation
-- [ ] Coordination algorithm prevents collisions between robots
-- [ ] Robots successfully complete assigned tasks
-- [ ] Communication system functions properly
-- [ ] Performance remains stable with multiple robots
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Both robots operate simultaneously in the same simulation
+- • [ ] Coordination algorithm prevents collisions between robots
+- • [ ] Robots successfully complete assigned tasks
+- • [ ] Communication system functions properly
+- • [ ] Performance remains stable with multiple robots
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Launch multi-robot simulation
 gz sim -r multi_robot_lab.sdf
@@ -65,49 +83,70 @@ ros2 run tf2_tools view_frames
 ros2 topic hz /humanoid_1/camera/image_raw
 ```
 
-#### Expected Output
-- Both robots should be visible in simulation
-- Robots should avoid colliding with each other
-- Tasks should be properly assigned and executed
-- Communication should be maintained between robots
-- System performance should remain stable
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Both robots should be visible in simulation
+- • Robots should avoid colliding with each other
+- • Tasks should be properly assigned and executed
+- • Communication should be maintained between robots
+- • System performance should remain stable
 
-#### Challenges
-- Implement formation control algorithms
-- Add dynamic task reassignment based on robot capabilities
-- Implement resource sharing between robots
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement formation control algorithms
+- • Add dynamic task reassignment based on robot capabilities
+- • Implement resource sharing between robots
 
-#### Hints
-- Use namespaces to separate robot topics and parameters
-- Implement proper collision avoidance algorithms
-- Design efficient communication protocols to minimize network overhead
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Use namespaces to separate robot topics and parameters
+- • Implement proper collision avoidance algorithms
+- • Design efficient communication protocols to minimize network overhead
 
 </details>
 
 <details>
 <summary>Exercise 2.6.2: Advanced Physics Simulation with Realistic Contact Dynamics (⭐⭐, ~50 min)</summary>
 
-### Exercise 2.6.2: Advanced Physics Simulation with Realistic Contact Dynamics
+<h3 className="third-heading">
+- Exercise 2.6.2: Advanced Physics Simulation with Realistic Contact Dynamics
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐ (Intermediate)
 **Time Estimate**: 50 minutes
 **Requirements**: Understanding of physics engines, contact dynamics, humanoid robot models
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Create a humanoid robot with advanced physics properties:
-- Realistic contact models for feet and hands
-- Flexible body dynamics using multiple segments
-- Proper friction and restitution coefficients
-- Advanced surface properties for interactions
-- Balance control with realistic physics
+- • Realistic contact models for feet and hands
+- • Flexible body dynamics using multiple segments
+- • Proper friction and restitution coefficients
+- • Advanced surface properties for interactions
+- • Balance control with realistic physics
 
-#### Success Criteria
-- [ ] Robot maintains stable balance with advanced physics
-- [ ] Contact dynamics behave realistically
-- [ ] Flexible body segments respond appropriately
-- [ ] Physics parameters match real-world expectations
-- [ ] Robot can perform basic movements without instability
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Robot maintains stable balance with advanced physics
+- • [ ] Contact dynamics behave realistically
+- • [ ] Flexible body segments respond appropriately
+- • [ ] Physics parameters match real-world expectations
+- • [ ] Robot can perform basic movements without instability
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Validate physics configuration
 gz sdf -k advanced_physics_robot.sdf
@@ -129,49 +168,70 @@ ros2 topic echo /robot/joint_states
 ros2 service call /get_physics_properties gazebo_msgs/srv/GetPhysicsProperties
 ```
 
-#### Expected Output
-- Robot should maintain stable balance with realistic physics
-- Contact forces should be properly simulated
-- Joint movements should reflect physics constraints
-- Robot should respond appropriately to external forces
-- Physics parameters should be within realistic ranges
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Robot should maintain stable balance with realistic physics
+- • Contact forces should be properly simulated
+- • Joint movements should reflect physics constraints
+- • Robot should respond appropriately to external forces
+- • Physics parameters should be within realistic ranges
 
-#### Challenges
-- Implement dynamic balance control with physics constraints
-- Add realistic muscle/servo dynamics simulation
-- Model soft tissue effects in humanoid body
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement dynamic balance control with physics constraints
+- • Add realistic muscle/servo dynamics simulation
+- • Model soft tissue effects in humanoid body
 
-#### Hints
-- Start with basic physics parameters and gradually add complexity
-- Use appropriate friction coefficients for different surfaces
-- Validate contact models with real-world measurements
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Start with basic physics parameters and gradually add complexity
+- • Use appropriate friction coefficients for different surfaces
+- • Validate contact models with real-world measurements
 
 </details>
 
 <details>
 <summary>Exercise 2.6.3: Dynamic Environment with Interactive Elements (⭐⭐⭐, ~65 min)</summary>
 
-### Exercise 2.6.3: Dynamic Environment with Interactive Elements
+<h3 className="third-heading">
+- Exercise 2.6.3: Dynamic Environment with Interactive Elements
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐⭐ (Advanced)
 **Time Estimate**: 65 minutes
 **Requirements**: Advanced Gazebo knowledge, dynamic simulation, environment modeling
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Create a dynamic environment that responds to robot actions:
-- Interactive objects that can be moved by robots
-- Environmental effects (wind, lighting changes)
-- Adaptive terrain that changes based on robot actions
-- Sensor noise modeling for realistic perception
-- Performance optimization for complex interactions
+- • Interactive objects that can be moved by robots
+- • Environmental effects (wind, lighting changes)
+- • Adaptive terrain that changes based on robot actions
+- • Sensor noise modeling for realistic perception
+- • Performance optimization for complex interactions
 
-#### Success Criteria
-- [ ] Environment objects respond realistically to robot interactions
-- [ ] Environmental effects influence robot behavior
-- [ ] Sensor data includes realistic noise models
-- [ ] Performance remains optimized with dynamic elements
-- [ ] Robot can successfully interact with environment
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Environment objects respond realistically to robot interactions
+- • [ ] Environmental effects influence robot behavior
+- • [ ] Sensor data includes realistic noise models
+- • [ ] Performance remains optimized with dynamic elements
+- • [ ] Robot can successfully interact with environment
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Launch dynamic environment
 gz sim -r interactive_environment.sdf
@@ -195,52 +255,73 @@ ros2 topic echo /noisy_imu --field orientation
 gz topic -e /world/interactive_environment/model/pose
 ```
 
-#### Expected Output
-- Objects should move when manipulated by robots
-- Environmental effects should influence robot sensors
-- Sensor data should include realistic noise patterns
-- Performance should remain stable despite dynamic elements
-- Robot should be able to successfully interact with environment
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Objects should move when manipulated by robots
+- • Environmental effects should influence robot sensors
+- • Sensor data should include realistic noise patterns
+- • Performance should remain stable despite dynamic elements
+- • Robot should be able to successfully interact with environment
 
-#### Challenges
-- Implement realistic fluid dynamics for liquid simulation
-- Add haptic feedback simulation for robot interactions
-- Create adaptive environments that learn from robot behavior
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement realistic fluid dynamics for liquid simulation
+- • Add haptic feedback simulation for robot interactions
+- • Create adaptive environments that learn from robot behavior
 
-#### Hints
-- Use appropriate physics parameters for different object types
-- Implement efficient collision detection for dynamic objects
-- Use domain randomization to improve reality transfer
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Use appropriate physics parameters for different object types
+- • Implement efficient collision detection for dynamic objects
+- • Use domain randomization to improve reality transfer
 
 </details>
 
 <details>
 <summary>Exercise Summary</summary>
 
-### Exercise Summary
+<h3 className="third-heading">
+- Exercise Summary
+</h3>
+<div className="underline-class"></div>
 This chapter covered advanced simulation techniques for complex robotics scenarios and performance optimization. You learned to design multi-robot systems, implement advanced physics models, create dynamic environments, and apply techniques for simulation-to-reality transfer. The exercises provided hands-on experience with multi-robot coordination, advanced physics simulation, and dynamic environment creation.
 
 </details>
 
-## Troubleshooting
+<h2 className="second-heading">
+Troubleshooting
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Troubleshooting: Advanced Simulation Issues</summary>
 
-### Troubleshooting: Advanced Simulation Issues
+<h3 className="third-heading">
+- Troubleshooting: Advanced Simulation Issues
+</h3>
+<div className="underline-class"></div>
 
-#### Problem: Multi-robot simulation performance degrades significantly
+<h4 className="fourth-heading">
+Problem: Multi-robot simulation performance degrades significantly
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Low real-time factor (< 0.5) with multiple robots
-- High CPU/GPU usage
-- Robot movements become jerky or delayed
-- Message queue overflows in ROS 2
+- • Low real-time factor (< 0.5) with multiple robots
+- • High CPU/GPU usage
+- • Robot movements become jerky or delayed
+- • Message queue overflows in ROS 2
 
 **Causes**:
-- High computational load from multiple physics calculations
-- Excessive sensor data from multiple robots
-- Network congestion from multiple ROS 2 nodes
-- Inefficient collision detection with many objects
+- • High computational load from multiple physics calculations
+- • Excessive sensor data from multiple robots
+- • Network congestion from multiple ROS 2 nodes
+- • Inefficient collision detection with many objects
 
 **Solutions**:
 1. Optimize sensor update rates for each robot:
@@ -305,23 +386,26 @@ This chapter covered advanced simulation techniques for complex robotics scenari
    ```
 
 **Verification Steps**:
-- [ ] Real-time factor is above 0.8 with multiple robots
-- [ ] CPU usage is within acceptable limits
-- [ ] Robot movements are smooth and responsive
-- [ ] No message queue overflow errors
+- • [ ] Real-time factor is above 0.8 with multiple robots
+- • [ ] CPU usage is within acceptable limits
+- • [ ] Robot movements are smooth and responsive
+- • [ ] No message queue overflow errors
 
-#### Problem: Physics simulation is unstable or unrealistic
+<h4 className="fourth-heading">
+Problem: Physics simulation is unstable or unrealistic
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Robots fall through floors or walls
-- Objects exhibit jittery or explosive behavior
-- Joint limits are not respected
-- Balance control is impossible to achieve
+- • Robots fall through floors or walls
+- • Objects exhibit jittery or explosive behavior
+- • Joint limits are not respected
+- • Balance control is impossible to achieve
 
 **Causes**:
-- Incorrect physics parameters
-- Inappropriate time step size
-- Poor mass/inertia properties
-- Insufficient constraint iterations
+- • Incorrect physics parameters
+- • Inappropriate time step size
+- • Poor mass/inertia properties
+- • Insufficient constraint iterations
 
 **Solutions**:
 1. Tune physics engine parameters for stability:
@@ -420,23 +504,26 @@ This chapter covered advanced simulation techniques for complex robotics scenari
    ```
 
 **Verification Steps**:
-- [ ] Robots maintain stable positions without falling through surfaces
-- [ ] Objects behave predictably without explosive movements
-- [ ] Joint limits are properly enforced
-- [ ] Balance control is achievable
+- • [ ] Robots maintain stable positions without falling through surfaces
+- • [ ] Objects behave predictably without explosive movements
+- • [ ] Joint limits are properly enforced
+- • [ ] Balance control is achievable
 
-#### Problem: Dynamic environments cause simulation instability
+<h4 className="fourth-heading">
+Problem: Dynamic environments cause simulation instability
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Simulation becomes unstable when objects are moved
-- Physics calculations fail with dynamic elements
-- Performance drops significantly with interactive objects
-- Robot control becomes erratic in dynamic environments
+- • Simulation becomes unstable when objects are moved
+- • Physics calculations fail with dynamic elements
+- • Performance drops significantly with interactive objects
+- • Robot control becomes erratic in dynamic environments
 
 **Causes**:
-- Complex collision geometries with dynamic objects
-- Inadequate constraint solving for moving objects
-- Resource conflicts with dynamic elements
-- Poor update rates for dynamic systems
+- • Complex collision geometries with dynamic objects
+- • Inadequate constraint solving for moving objects
+- • Resource conflicts with dynamic elements
+- • Poor update rates for dynamic systems
 
 **Solutions**:
 1. Simplify collision geometries for dynamic objects:
@@ -546,23 +633,26 @@ This chapter covered advanced simulation techniques for complex robotics scenari
    ```
 
 **Verification Steps**:
-- [ ] Dynamic objects behave stably without causing simulation issues
-- [ ] Performance remains acceptable with interactive elements
-- [ ] Robot control remains responsive in dynamic environments
-- [ ] No physics errors or instabilities with moving objects
+- • [ ] Dynamic objects behave stably without causing simulation issues
+- • [ ] Performance remains acceptable with interactive elements
+- • [ ] Robot control remains responsive in dynamic environments
+- • [ ] No physics errors or instabilities with moving objects
 
-#### Problem: Simulation-to-reality transfer fails
+<h4 className="fourth-heading">
+Problem: Simulation-to-reality transfer fails
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Behaviors that work in simulation fail on real robots
-- Control parameters need extensive retuning for real hardware
-- Sensor data distributions differ significantly between sim and reality
-- Robot dynamics behave differently in simulation vs. reality
+- • Behaviors that work in simulation fail on real robots
+- • Control parameters need extensive retuning for real hardware
+- • Sensor data distributions differ significantly between sim and reality
+- • Robot dynamics behave differently in simulation vs. reality
 
 **Causes**:
-- Inaccurate sensor models
-- Unrealistic physics parameters
-- Missing real-world effects in simulation
-- Domain gap between simulation and reality
+- • Inaccurate sensor models
+- • Unrealistic physics parameters
+- • Missing real-world effects in simulation
+- • Domain gap between simulation and reality
 
 **Solutions**:
 1. Implement realistic sensor noise models:
@@ -659,23 +749,26 @@ This chapter covered advanced simulation techniques for complex robotics scenari
    ```
 
 **Verification Steps**:
-- [ ] Control behaviors transfer successfully to real hardware
-- [ ] Sensor data distributions match between sim and reality
-- [ ] Robot dynamics behave similarly in both environments
-- [ ] Minimal parameter retuning required for real deployment
+- • [ ] Control behaviors transfer successfully to real hardware
+- • [ ] Sensor data distributions match between sim and reality
+- • [ ] Robot dynamics behave similarly in both environments
+- • [ ] Minimal parameter retuning required for real deployment
 
-#### Problem: Advanced simulation consumes excessive resources
+<h4 className="fourth-heading">
+Problem: Advanced simulation consumes excessive resources
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- High CPU usage (80%+ on multi-core systems)
-- Memory usage grows over time (memory leaks)
-- GPU usage is excessive even with basic rendering
-- Simulation performance degrades over time
+- • High CPU usage (80%+ on multi-core systems)
+- • Memory usage grows over time (memory leaks)
+- • GPU usage is excessive even with basic rendering
+- • Simulation performance degrades over time
 
 **Causes**:
-- Complex rendering with high-quality graphics
-- Memory leaks in simulation plugins
-- Inefficient data processing pipelines
-- Unoptimized physics calculations
+- • Complex rendering with high-quality graphics
+- • Memory leaks in simulation plugins
+- • Inefficient data processing pipelines
+- • Unoptimized physics calculations
 
 **Solutions**:
 1. Optimize rendering settings:
@@ -759,16 +852,22 @@ This chapter covered advanced simulation techniques for complex robotics scenari
    ```
 
 **Verification Steps**:
-- [ ] CPU usage remains below 80% during normal operation
-- [ ] Memory usage is stable over time (no leaks)
-- [ ] GPU usage is reasonable for the rendering quality
-- [ ] Performance remains consistent over extended simulation runs
+- • [ ] CPU usage remains below 80% during normal operation
+- • [ ] Memory usage is stable over time (no leaks)
+- • [ ] GPU usage is reasonable for the rendering quality
+- • [ ] Performance remains consistent over extended simulation runs
 
 </details>
 
-## Multi-Robot Simulation Systems
+<h2 className="second-heading">
+Multi-Robot Simulation Systems
+</h2>
+<div className="underline-class"></div>
 
-### Coordinated Multi-Robot Environments
+<h3 className="third-heading">
+- Coordinated Multi-Robot Environments
+</h3>
+<div className="underline-class"></div>
 
 Creating simulation environments with multiple interacting robots requires careful coordination of physics, communication, and control systems:
 
@@ -1013,7 +1112,10 @@ Creating simulation environments with multiple interacting robots requires caref
 </sdf>
 ```
 
-### Coordination Algorithms
+<h3 className="third-heading">
+- Coordination Algorithms
+</h3>
+<div className="underline-class"></div>
 
 Implementing coordination algorithms for multi-robot systems:
 
@@ -1141,9 +1243,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## Advanced Physics Models
+<h2 className="second-heading">
+Advanced Physics Models
+</h2>
+<div className="underline-class"></div>
 
-### Realistic Contact Dynamics
+<h3 className="third-heading">
+- Realistic Contact Dynamics
+</h3>
+<div className="underline-class"></div>
 
 Implementing advanced contact models for humanoid robots:
 
@@ -1216,7 +1324,10 @@ Implementing advanced contact models for humanoid robots:
 </world>
 ```
 
-### Flexible Body Dynamics
+<h3 className="third-heading">
+- Flexible Body Dynamics
+</h3>
+<div className="underline-class"></div>
 
 Modeling flexible components for more realistic simulation:
 
@@ -1360,9 +1471,15 @@ Modeling flexible components for more realistic simulation:
 </model>
 ```
 
-## Dynamic Environment Simulation
+<h2 className="second-heading">
+Dynamic Environment Simulation
+</h2>
+<div className="underline-class"></div>
 
-### Interactive Environments
+<h3 className="third-heading">
+- Interactive Environments
+</h3>
+<div className="underline-class"></div>
 
 Creating environments that respond to robot actions:
 
@@ -1521,7 +1638,10 @@ Creating environments that respond to robot actions:
 </world>
 ```
 
-### Environmental Effects
+<h3 className="third-heading">
+- Environmental Effects
+</h3>
+<div className="underline-class"></div>
 
 Simulating environmental conditions that affect robot performance:
 
@@ -1608,9 +1728,15 @@ Simulating environmental conditions that affect robot performance:
 </world>
 ```
 
-## Performance Optimization Techniques
+<h2 className="second-heading">
+Performance Optimization Techniques
+</h2>
+<div className="underline-class"></div>
 
-### Level of Detail (LOD) Systems
+<h3 className="third-heading">
+- Level of Detail (LOD) Systems
+</h3>
+<div className="underline-class"></div>
 
 Implementing performance optimization through level of detail:
 
@@ -1701,7 +1827,10 @@ if __name__ == '__main__':
     main()
 ```
 
-### Parallel Simulation
+<h3 className="third-heading">
+- Parallel Simulation
+</h3>
+<div className="underline-class"></div>
 
 Running multiple simulation instances for scalability:
 
@@ -1821,9 +1950,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## Simulation-to-Reality Transfer
+<h2 className="second-heading">
+Simulation-to-Reality Transfer
+</h2>
+<div className="underline-class"></div>
 
-### Domain Randomization
+<h3 className="third-heading">
+- Domain Randomization
+</h3>
+<div className="underline-class"></div>
 
 Implementing domain randomization to improve reality transfer:
 
@@ -1909,7 +2044,10 @@ if __name__ == '__main__':
     main()
 ```
 
-### Sensor Noise Modeling
+<h3 className="third-heading">
+- Sensor Noise Modeling
+</h3>
+<div className="underline-class"></div>
 
 Implementing realistic sensor noise for better transfer:
 
@@ -2082,9 +2220,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## Best Practices for Advanced Simulation
+<h2 className="second-heading">
+Best Practices for Advanced Simulation
+</h2>
+<div className="underline-class"></div>
 
-### Architecture Design
+<h3 className="third-heading">
+- Architecture Design
+</h3>
+<div className="underline-class"></div>
 
 Designing scalable simulation architectures:
 
@@ -2093,7 +2237,10 @@ Designing scalable simulation architectures:
 3. **Data flow optimization**: Minimize unnecessary data transmission
 4. **Parallel processing**: Utilize multi-core systems effectively
 
-### Validation Strategies
+<h3 className="third-heading">
+- Validation Strategies
+</h3>
+<div className="underline-class"></div>
 
 Validating simulation accuracy:
 
@@ -2102,34 +2249,46 @@ Validating simulation accuracy:
 3. **Statistical validation**: Use statistical methods to validate distributions
 4. **Benchmarking**: Compare against known benchmarks and standards
 
-## Troubleshooting Advanced Simulation Issues
+<h2 className="second-heading">
+Troubleshooting Advanced Simulation Issues
+</h2>
+<div className="underline-class"></div>
 
-### Performance Problems
+<h3 className="third-heading">
+- Performance Problems
+</h3>
+<div className="underline-class"></div>
 
 **Problem**: Simulation performance degrades with complex environments
 **Solutions**:
-- Implement level-of-detail (LOD) systems
-- Use spatial partitioning for collision detection
-- Optimize physics parameters
-- Consider parallel simulation instances
+- • Implement level-of-detail (LOD) systems
+- • Use spatial partitioning for collision detection
+- • Optimize physics parameters
+- • Consider parallel simulation instances
 
 **Problem**: Multi-robot coordination fails at scale
 **Solutions**:
-- Implement hierarchical coordination
-- Use distributed computing approaches
-- Optimize communication protocols
-- Apply load balancing techniques
+- • Implement hierarchical coordination
+- • Use distributed computing approaches
+- • Optimize communication protocols
+- • Apply load balancing techniques
 
-### Realism Issues
+<h3 className="third-heading">
+- Realism Issues
+</h3>
+<div className="underline-class"></div>
 
 **Problem**: Simulation behavior doesn't match real-world behavior
 **Solutions**:
-- Validate sensor models against real hardware
-- Fine-tune physics parameters
-- Implement domain randomization
-- Add realistic noise models
+- • Validate sensor models against real hardware
+- • Fine-tune physics parameters
+- • Implement domain randomization
+- • Add realistic noise models
 
-## Summary
+<h2 className="second-heading">
+Summary
+</h2>
+<div className="underline-class"></div>
 
 Advanced simulation techniques enable the creation of complex, realistic environments for testing humanoid robots. By implementing multi-robot coordination, advanced physics models, dynamic environments, and performance optimization techniques, developers can create simulation systems that closely mirror real-world challenges. The key to successful advanced simulation lies in balancing computational efficiency with physical accuracy while maintaining the ability to transfer learned behaviors to real robots.
 

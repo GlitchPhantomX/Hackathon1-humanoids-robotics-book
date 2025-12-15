@@ -43,7 +43,8 @@ export interface FormData {
 export interface SignupModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSignupSuccess: () => void;
+  onSignupSuccess: () => Promise<void> | void;
+  onSwitchToLogin: () => void; // ✅ ADD THIS
 }
 
 export interface LoginModalProps {

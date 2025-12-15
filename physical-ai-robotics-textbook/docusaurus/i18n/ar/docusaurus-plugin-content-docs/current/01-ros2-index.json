@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "ROS 2",
+    "description": "The label for the sidebar item 01-ros2-index"
+  },
+  "title": {
+    "message": "01 - ROS 2",
+    "description": "The title for the document 01-ros2-index"
+  },
+  "description": {
+    "message": "وحدة مفصلة عن ROS 2، الشبكات، وبروتوكولات الاتصال",
+    "description": "The description for the document 01-ros2-index"
+  }
+}

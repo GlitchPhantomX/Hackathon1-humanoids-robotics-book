@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "سروسز اور ایکشنز",
+    "description": "The label for the sidebar item 03-services-actions"
+  },
+  "title": {
+    "message": "ROS 2 سروسز اور ایکشنز",
+    "description": "The title for the document 03-services-actions"
+  },
+  "description": {
+    "message": "ROS 2 میں سروسز، ایکشنز، اور سینکرونائزیشن کا جائزہ",
+    "description": "The description for the document 03-services-actions"
+  }
+}

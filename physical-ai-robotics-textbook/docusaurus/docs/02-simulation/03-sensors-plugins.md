@@ -4,44 +4,76 @@ title: 'Sensors and Plugins: Enhancing Simulation with Realistic Perception'
 description: 'Implementing sensors and plugins for realistic perception in robotics simulation'
 ---
 
-# Sensors and Plugins: Enhancing Simulation with Realistic Perception
+import ReadingTime from '@site/src/components/ReadingTime';
+import ViewToggle from '@site/src/components/ViewToggle';
+
+<ReadingTime minutes={16} />
+<!-- <ViewToggle /> -->
+
+<h1 className="main-heading">Sensors and Plugins: Enhancing Simulation with Realistic Perception</h1>
+<div className="underline-class"></div>
 
 Simulation is only as valuable as its ability to mimic real-world sensor data and robot behaviors. This chapter explores how to implement realistic sensors and plugins in simulation environments to create meaningful perception data for humanoid robots. We'll focus on creating accurate sensor models that bridge the gap between simulation and reality.
 
-## Learning Objectives
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 By the end of this chapter, you will be able to:
-- Implement various sensor types in simulation environments
-- Configure sensor parameters for realistic perception
-- Create custom plugins to enhance simulation capabilities
-- Integrate sensors with ROS 2 for perception pipelines
-- Validate sensor data accuracy and performance
+- • Implement various sensor types in simulation environments
+- • Configure sensor parameters for realistic perception
+- • Create custom plugins to enhance simulation capabilities
+- • Integrate sensors with ROS 2 for perception pipelines
+- • Validate sensor data accuracy and performance
 
-## Exercises
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Exercises
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Exercise 2.3.1: Basic Sensor Integration (⭐, ~30 min)</summary>
 
-### Exercise 2.3.1: Basic Sensor Integration
+<h3 className="third-heading">
+ Exercise 2.3.1: Basic Sensor Integration
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐ (Beginner)
 **Time Estimate**: 30 minutes
 **Requirements**: Gazebo installation, ROS 2 environment, basic XML knowledge
-
-#### Starter Code
+<div className="border-line"></div>
+<h4 className="fourth-heading">
+ Starter Code
+</h4>
+<div className="underline-class"></div>
 Add a camera sensor to a simple robot model with:
-- Basic camera configuration (resolution, FOV)
-- ROS 2 plugin for topic publishing
-- Proper mounting on the robot
-- Noise modeling parameters
+- • Basic camera configuration (resolution, FOV)
+- • ROS 2 plugin for topic publishing
+- • Proper mounting on the robot
+- • Noise modeling parameters
+<div className="border-line"></div>
 
-#### Success Criteria
+<h4 className="fourth-heading">
+ Success Criteria
+</h4>
+<div className="underline-class"></div>
 - [ ] Camera sensor is properly defined in URDF/SDF
 - [ ] Sensor publishes data to ROS 2 topics
 - [ ] Camera image data is accessible via ROS 2
 - [ ] Sensor appears correctly mounted on robot
 - [ ] Noise parameters are configured appropriately
-
-#### Test Commands
+<div className="border-line"></div>
+<h4 className="fourth-heading">
+ Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Launch robot with camera in simulation
 ros2 launch your_robot_gazebo your_robot.launch.py
@@ -54,47 +86,70 @@ ros2 run image_view image_view _image:=/your_robot/camera/image_raw
 
 # Echo camera info
 ros2 topic echo /your_robot/camera/camera_info
-```
 
-#### Expected Output
-- Camera should publish images at configured rate
-- Topics should be available and accessible
-- Images should show the simulated environment
+<div className="border-line"></div>
 
-#### Challenges
-- Add multiple cameras with different configurations
-- Implement a LIDAR sensor alongside the camera
+<h4 className="fourth-heading">
+ Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Camera should publish images at configured rate
+- • Topics should be available and accessible
+- • Images should show the simulated environment
+<div className="border-line"></div>
 
-#### Hints
-- Use proper frame names for TF tree
-- Check that camera link is properly connected to robot
-- Verify plugin namespace matches your robot name
+<h4 className="fourth-heading">
+ Challenges
+</h4>
+<div className="underline-class"></div>
+- • Add multiple cameras with different configurations
+- • Implement a LIDAR sensor alongside the camera
+
+<h4 className="fourth-heading">
+ Hints
+</h4>
+<div className="underline-class"></div>
+- • Use proper frame names for TF tree
+- • Check that camera link is properly connected to robot
+- • Verify plugin namespace matches your robot name
 
 </details>
 
 <details>
 <summary>Exercise 2.3.2: Advanced Sensor Configuration (⭐⭐, ~45 min)</summary>
 
-### Exercise 2.3.2: Advanced Sensor Configuration
+<h3 className="third-heading">
+ Exercise 2.3.2: Advanced Sensor Configuration
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐ (Intermediate)
 **Time Estimate**: 45 minutes
 **Requirements**: Understanding of sensor physics, Gazebo plugins, ROS 2
 
-#### Starter Code
+<h4 className="fourth-heading">
+ Starter Code
+</h4>
+<div className="underline-class"></div>
 Create a multi-sensor robot with:
-- Camera, LIDAR, and IMU sensors
-- Proper noise modeling for each sensor
-- Sensor fusion capabilities
-- Performance optimization parameters
+- • Camera, LIDAR, and IMU sensors
+- • Proper noise modeling for each sensor
+- • Sensor fusion capabilities
+- • Performance optimization parameters
 
-#### Success Criteria
+<h4 className="fourth-heading">
+ Success Criteria
+</h4>
+<div className="underline-class"></div>
 - [ ] All sensors publish data correctly
 - [ ] Noise parameters match realistic values
 - [ ] Sensor data rates are optimized
 - [ ] TF tree includes all sensor frames
 - [ ] Data is accessible through ROS 2 topics
 
-#### Test Commands
+<h4 className="fourth-heading">
+ Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Launch robot with all sensors
 ros2 launch your_robot_gazebo multi_sensor_robot.launch.py
@@ -111,45 +166,66 @@ ros2 topic hz /your_robot/imu/data
 ros2 run rviz2 rviz2
 ```
 
-#### Expected Output
-- All sensors should publish data simultaneously
-- Data rates should be stable and consistent
-- TF tree should show all sensor frames
+<h4 className="fourth-heading">
+ Expected Output
+</h4>
+<div className="underline-class"></div>
+- • All sensors should publish data simultaneously
+- • Data rates should be stable and consistent
+- • TF tree should show all sensor frames
 
-#### Challenges
-- Implement sensor calibration procedures
-- Add sensor validation nodes
+<h4 className="fourth-heading">
+ Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement sensor calibration procedures
+- • Add sensor validation nodes
 
-#### Hints
-- Balance sensor quality with performance
-- Use appropriate update rates for each sensor type
-- Validate sensor data against ground truth when possible
+<h4 className="fourth-heading">
+ Hints
+</h4>
+<div className="underline-class"></div>
+- • Balance sensor quality with performance
+- • Use appropriate update rates for each sensor type
+- • Validate sensor data against ground truth when possible
 
 </details>
 
 <details>
 <summary>Exercise 2.3.3: Custom Sensor Plugin Development (⭐⭐⭐, ~60 min)</summary>
 
-### Exercise 2.3.3: Custom Sensor Plugin Development
+<h3 className="third-heading">
+ Exercise 2.3.3: Custom Sensor Plugin Development
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐⭐ (Advanced)
 **Time Estimate**: 60 minutes
 **Requirements**: C++ programming, Gazebo API knowledge, ROS 2 integration
 
-#### Starter Code
+<h4 className="fourth-heading">
+ Starter Code
+</h4>
+<div className="underline-class"></div>
 Develop a custom sensor plugin that:
-- Extends Gazebo's sensor capabilities
-- Integrates with ROS 2 messaging
-- Processes sensor data in custom ways
-- Publishes specialized message types
+- • Extends Gazebo's sensor capabilities
+- • Integrates with ROS 2 messaging
+- • Processes sensor data in custom ways
+- • Publishes specialized message types
 
-#### Success Criteria
+<h4 className="fourth-heading">
+ Success Criteria
+</h4>
+<div className="underline-class"></div>
 - [ ] Plugin compiles without errors
 - [ ] Plugin loads correctly in Gazebo
 - [ ] Custom sensor functions as expected
 - [ ] Data is published to ROS 2 topics
 - [ ] Plugin integrates with existing sensor framework
 
-#### Test Commands
+<h4 className="fourth-heading">
+ Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Build the plugin
 cd ~/ros2_ws
@@ -168,47 +244,71 @@ gz topic -l | grep custom
 ros2 topic echo /your_robot/custom_sensor/data
 ```
 
-#### Expected Output
-- Custom sensor should appear in simulation
-- Plugin should load without errors
-- Custom data should be published to ROS 2
+<h4 className="fourth-heading">
+ Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Custom sensor should appear in simulation
+- • Plugin should load without errors
+- • Custom data should be published to ROS 2
 
-#### Challenges
-- Add real-time processing capabilities
-- Implement sensor fusion with existing sensors
+<h4 className="fourth-heading">
+ Challenges
+</h4>
+<div className="underline-class"></div>
+- • Add real-time processing capabilities
+- • Implement sensor fusion with existing sensors
 
-#### Hints
-- Follow Gazebo plugin development guidelines
-- Use proper error handling and logging
-- Test plugin in isolation before integration
+<h4 className="fourth-heading">
+ Hints
+</h4>
+<div className="underline-class"></div>
+- • Follow Gazebo plugin development guidelines
+- • Use proper error handling and logging
+- • Test plugin in isolation before integration
 
 </details>
 
 <details>
 <summary>Exercise Summary</summary>
 
-### Exercise Summary
+<h3 className="third-heading">
+ Exercise Summary
+</h3>
+<div className="underline-class"></div>
 This chapter covered implementing sensors and plugins for realistic perception in robotics simulation. You learned to implement various sensor types, configure parameters for realistic perception, create custom plugins, and integrate sensors with ROS 2. The exercises provided hands-on experience with basic sensor integration, advanced configuration, and custom plugin development.
 
 </details>
 
-## Troubleshooting
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Troubleshooting
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Troubleshooting: Sensor and Plugin Issues</summary>
 
-### Troubleshooting: Sensor and Plugin Issues
+<h3 className="third-heading">
+ Troubleshooting: Sensor and Plugin Issues
+</h3>
+<div className="underline-class"></div>
 
-#### Problem: Sensor data appears noisy or unrealistic
+<h4 className="fourth-heading">
+ Problem: Sensor data appears noisy or unrealistic
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Images contain excessive noise or artifacts
-- LIDAR returns show unexpected patterns
-- IMU data has unrealistic values or drift
+- • Images contain excessive noise or artifacts
+- • LIDAR returns show unexpected patterns
+- • IMU data has unrealistic values or drift
 
 **Causes**:
-- Incorrect noise parameters in sensor configuration
-- Physics engine parameters not optimized
-- Simulation step size too large
+- • Incorrect noise parameters in sensor configuration
+- • Physics engine parameters not optimized
+- • Simulation step size too large
 
 **Solutions**:
 1. Verify noise parameters in sensor configuration:
@@ -237,16 +337,19 @@ This chapter covered implementing sensors and plugins for realistic perception i
 - [ ] Sensor data appears realistic and consistent
 - [ ] Simulation runs with acceptable real-time factor
 
-#### Problem: Sensor topics are not published or missing
+<h4 className="fourth-heading">
+ Problem: Sensor topics are not published or missing
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- No data on expected sensor topics
-- Sensor plugins fail to initialize
-- Missing entries in topic list
+- • No data on expected sensor topics
+- • Sensor plugins fail to initialize
+- • Missing entries in topic list
 
 **Causes**:
-- Incorrect plugin names or filenames
-- Namespace configuration issues
-- Missing dependencies or libraries
+- • Incorrect plugin names or filenames
+- • Namespace configuration issues
+- • Missing dependencies or libraries
 
 **Solutions**:
 1. Verify plugin configuration in URDF/SDF:
@@ -320,16 +423,19 @@ This chapter covered implementing sensors and plugins for realistic perception i
 - [ ] Plugin loads without errors during simulation
 - [ ] Plugin functionality works as expected
 
-#### Problem: Sensor performance is poor or simulation runs slowly
+<h4 className="fourth-heading">
+ Problem: Sensor performance is poor or simulation runs slowly
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Low real-time factor (< 0.5)
-- High CPU/GPU usage
-- Sensor data drops or inconsistent timing
+- • Low real-time factor (< 0.5)
+- • High CPU/GPU usage
+- • Sensor data drops or inconsistent timing
 
 **Causes**:
-- High sensor update rates
-- Complex sensor processing
-- Inadequate hardware resources
+- • High sensor update rates
+- • Complex sensor processing
+- • Inadequate hardware resources
 
 **Solutions**:
 1. Reduce sensor update rates:
@@ -366,16 +472,19 @@ This chapter covered implementing sensors and plugins for realistic perception i
 - [ ] Sensor data is published consistently
 - [ ] Acceptable CPU/GPU usage
 
-#### Problem: Sensor data is delayed or out of sync
+<h4 className="fourth-heading">
+ Problem: Sensor data is delayed or out of sync
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- High latency in sensor data
-- Timestamps are inconsistent
-- Sensor fusion fails due to timing issues
+- • High latency in sensor data
+- • Timestamps are inconsistent
+- • Sensor fusion fails due to timing issues
 
 **Causes**:
-- High simulation load affecting real-time performance
-- Buffer size issues
-- Network or IPC delays
+- • High simulation load affecting real-time performance
+- • Buffer size issues
+- • Network or IPC delays
 
 **Solutions**:
 1. Check simulation real-time factor:
@@ -407,13 +516,25 @@ This chapter covered implementing sensors and plugins for realistic perception i
 
 </details>
 
-## Sensor Types in Robotics Simulation
+<div className="border-line"></div>
+---
 
-### Overview of Common Sensor Types
+<h2 className="second-heading">
+ Sensor Types in Robotics Simulation
+</h2>
+<div className="underline-class"></div>
+
+<h3 className="third-heading">
+ Overview of Common Sensor Types
+</h3>
+<div className="underline-class"></div>
 
 Sensors form the foundation of robot perception, providing the data necessary for navigation, manipulation, and interaction. In simulation, we can model various sensor types with realistic physics and noise characteristics:
 
-#### Camera Sensors
+<h4 className="fourth-heading">
+ Camera Sensors
+</h4>
+<div className="underline-class"></div>
 
 Camera sensors simulate visual perception in robots. They provide RGB images that can be processed using computer vision algorithms:
 
@@ -450,7 +571,10 @@ Camera sensors simulate visual perception in robots. They provide RGB images tha
 </sensor>
 ```
 
-#### LIDAR Sensors
+<h4 className="fourth-heading">
+ LIDAR Sensors
+</h4>
+<div className="underline-class"></div>
 
 LIDAR (Light Detection and Ranging) sensors provide 2D or 3D distance measurements by emitting laser pulses and measuring their return time:
 
@@ -484,7 +608,10 @@ LIDAR (Light Detection and Ranging) sensors provide 2D or 3D distance measuremen
 </sensor>
 ```
 
-#### IMU Sensors
+<h4 className="fourth-heading">
+ IMU Sensors
+</h4>
+<div className="underline-class"></div>
 
 Inertial Measurement Unit (IMU) sensors provide orientation, velocity, and gravitational data:
 
@@ -548,7 +675,10 @@ Inertial Measurement Unit (IMU) sensors provide orientation, velocity, and gravi
 </sensor>
 ```
 
-### Sensor Integration with ROS 2
+<h3 className="third-heading">
+ Sensor Integration with ROS 2
+</h3>
+<div className="underline-class"></div>
 
 To make sensors useful in a ROS 2 system, they must publish data to appropriate topics that can be consumed by perception algorithms:
 
@@ -635,9 +765,18 @@ if __name__ == '__main__':
     main()
 ```
 
-## Custom Plugins for Enhanced Simulation
+<div className="border-line"></div>
+---
 
-### Creating Custom Gazebo Plugins
+<h2 className="second-heading">
+ Custom Plugins for Enhanced Simulation
+</h2>
+<div className="underline-class"></div>
+
+<h3 className="third-heading">
+ Creating Custom Gazebo Plugins
+</h3>
+<div className="underline-class"></div>
 
 Gazebo plugins extend simulation capabilities beyond standard functionality. Here's how to create a custom plugin:
 
@@ -703,7 +842,10 @@ namespace gazebo
 }
 ```
 
-### Plugin Configuration in URDF/SDF
+<h3 className="third-heading">
+ Plugin Configuration in URDF/SDF
+</h3>
+<div className="underline-class"></div>
 
 To use custom plugins, they must be properly configured in robot descriptions:
 
@@ -737,9 +879,18 @@ To use custom plugins, they must be properly configured in robot descriptions:
 </gazebo>
 ```
 
-## Advanced Sensor Modeling
+<div className="border-line"></div>
+---
 
-### Noise Modeling and Realism
+<h2 className="second-heading">
+ Advanced Sensor Modeling
+</h2>
+<div className="underline-class"></div>
+
+<h3 className="third-heading">
+ Noise Modeling and Realism
+</h3>
+<div className="underline-class"></div>
 
 Real sensors have noise characteristics that must be modeled for realistic simulation:
 
@@ -767,7 +918,10 @@ Real sensors have noise characteristics that must be modeled for realistic simul
   </camera>
 </sensor>
 
-### Sensor Fusion in Simulation
+<h3 className="third-heading">
+ Sensor Fusion in Simulation
+</h3>
+<div className="underline-class"></div>
 
 For humanoid robots, sensor fusion combines data from multiple sensors to create a more accurate perception of the environment:
 
@@ -831,18 +985,30 @@ For humanoid robots, sensor fusion combines data from multiple sensors to create
 </gazebo>
 ```
 
-## Best Practices for Sensor Implementation
+<div className="border-line"></div>
+---
 
-### Performance Optimization
+<h2 className="second-heading">
+ Best Practices for Sensor Implementation
+</h2>
+<div className="underline-class"></div>
+
+<h3 className="third-heading">
+ Performance Optimization
+</h3>
+<div className="underline-class"></div>
 
 Sensors can significantly impact simulation performance. Here are best practices for optimization:
 
-- **Reduce update rates**: Use appropriate update rates for each sensor type
-- **Limit sensor resolution**: Balance quality with performance requirements
-- **Use efficient noise models**: Complex noise models can be computationally expensive
-- **Selective sensor activation**: Only activate sensors when needed for specific tasks
+- • **Reduce update rates**: Use appropriate update rates for each sensor type
+- • **Limit sensor resolution**: Balance quality with performance requirements
+- • **Use efficient noise models**: Complex noise models can be computationally expensive
+- • **Selective sensor activation**: Only activate sensors when needed for specific tasks
 
-### Realism vs. Performance Trade-offs
+<h3 className="third-heading">
+ Realism vs. Performance Trade-offs
+</h3>
+<div className="underline-class"></div>
 
 Finding the right balance between sensor realism and simulation performance is crucial:
 
@@ -918,7 +1084,10 @@ if __name__ == '__main__':
     main()
 ```
 
-### Sensor Validation and Calibration
+<h3 className="third-heading">
+ Sensor Validation and Calibration
+</h3>
+<div className="underline-class"></div>
 
 Validating sensor data accuracy is essential for meaningful simulation results:
 
@@ -927,12 +1096,13 @@ Validating sensor data accuracy is essential for meaningful simulation results:
 3. **Statistical validation**: Use statistical methods to validate noise models
 4. **Cross-validation**: Use multiple sensors to validate each other
 
-## Summary
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Summary
+</h2>
+<div className="underline-class"></div>
 
 Sensors and plugins form the foundation of realistic robotics simulation. By implementing proper sensor models with realistic noise characteristics and creating custom plugins for specialized functionality, you can create simulation environments that closely mirror real-world robotics challenges. The key is finding the right balance between sensor realism and simulation performance while maintaining accurate perception data for robot algorithms.
 
-import ReadingTime from '@site/src/components/ReadingTime';
-import ViewToggle from '@site/src/components/ViewToggle';
-
-<ReadingTime minutes={16} />
-<ViewToggle />

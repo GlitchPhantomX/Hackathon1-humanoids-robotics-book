@@ -62,9 +62,17 @@ class PostgresService:
     """
 
     def __init__(self):
+        # Configure SSL connection arguments for asyncpg
+        connect_args = {
+            "server_settings": {
+                "application_name": "rag-chatbot",
+            }
+        }
+
         self.engine = create_async_engine(
             settings.database_url,
             echo=False,  # Set to True for SQL query logging during development
+            connect_args=connect_args,
         )
         self.async_session = sessionmaker(
             self.engine, class_=AsyncSession, expire_on_commit=False

@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "title": "ROS2 کا تعارف",
+    "description": "ROS2 کی بنیادیں اور استعمال",
+    "language": "ur",
+    "chapter": "01-ros2",
+    "sourceFile": "01-ros2/index.md",
+    "lastUpdated": "2025-12-15T05:40:00.000Z"
+  },
+  "content": {
+    "headings": {},
+    "paragraphs": {},
+    "lists": {}
+  },
+  "html": "# ROS2 کا تعارف\n\nROS2 (Robot Operating System 2) روبوٹکس کے لیے ایک ڈیولپمنٹ فریم ورک ہے۔"
+}

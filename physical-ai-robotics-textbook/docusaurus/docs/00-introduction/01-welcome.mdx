@@ -1,0 +1,48 @@
+---
+sidebar_position: 1
+title: "Welcome"
+id: "welcome-translation-example"
+---
+
+# Welcome to Humanoid Robotics
+
+import { useTranslation } from '@site/src/hooks/useTranslation';
+import WelcomeComponent from '@site/src/components/TranslatedContent/WelcomeComponent';
+
+<WelcomeComponent />
+
+## Using Translations in MDX
+
+You can also use translations directly in MDX files by creating React components that use the translation hook:
+
+```mdx
+---
+sidebar_position: 1
+title: "Welcome"
+---
+
+# Welcome to Humanoid Robotics
+
+import { useTranslation } from '@site/src/hooks/useTranslation';
+
+const TranslatedContent = () => {
+  const t = useTranslation('00-introduction/welcome');
+
+  return (
+    <div>
+      <h1>{t.title}</h1>
+      <p>{t.description}</p>
+      {t.content && (
+        <div>
+          <h2>{t.content.heading}</h2>
+          <p>{t.content.paragraph}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+<TranslatedContent />
+```
+
+This demonstrates how to use translations in both React components and directly in MDX files.

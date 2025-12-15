@@ -1,0 +1,14 @@
+{
+  "sidebar.label": {
+    "message": "ورلڈ بلڈنگ",
+    "description": "The label for the sidebar item 04-world-building"
+  },
+  "title": {
+    "message": "ورلڈ بلڈنگ اور ایونرونمنٹس",
+    "description": "The title for the document 04-world-building"
+  },
+  "description": {
+    "message": "گزیبو میں ورلڈز، ایونرونمنٹس، اور کسٹم سیمولیشن اسپیس کی تخلیق",
+    "description": "The description for the document 04-world-building"
+  }
+}
