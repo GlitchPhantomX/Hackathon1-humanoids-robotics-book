@@ -1,27 +1,29 @@
 // @ts-check
 
-import lightCodeTheme from 'prism-react-renderer/themes/github';
-import darkCodeTheme from 'prism-react-renderer/themes/dracula';
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Humanoid Robotics',
   tagline: 'Learning Robotics with Physical AI',
   favicon: 'img/favicon.ico',
 
-  url: 'https://your-organization.github.io',  // Change to your actual domain
-  baseUrl: '/physical-ai-robotics-textbook/',  // Add trailing slash for production
+  url: 'https://hackathon1-humanoids-robotics-book-lygshd3nv.vercel.app',
+  baseUrl: '/',
 
-  organizationName: 'your-organization',  // Change to your GitHub organization
-  projectName: 'physical-ai-robotics-textbook',  // Change to your repository name
+  organizationName: 'GlitchPhantomX',
+  projectName: 'Hackathon1-humanoids-robotics-book',
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
 
-  // ❌ Removed languages
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+  customFields: {
+    translationEnabled: false,
+    requiresAuth: true,
+    apiUrl: process.env.API_URL || 'http://localhost:8000',
   },
 
   presets: [
@@ -29,24 +31,16 @@ const config = {
       'classic',
       {
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
-          editUrl:
-            'https://github.com/your-organization/physical-ai-robotics-textbook/edit/main/',
+          sidebarPath: './sidebars.js',
+          editUrl: 'https://github.com/GlitchPhantomX/Hackathon1-humanoids-robotics-book/edit/main/',
         },
         blog: false,
         theme: {
-          customCss: [
-            require.resolve('./src/css/custom.css'),
-            require.resolve('./static/css/custom.css'),
-          ],
+          customCss: ['./src/css/custom.css', './static/css/custom.css'],
         },
       },
     ],
   ],
-
-  customFields: {
-    apiUrl: process.env.API_URL || 'http://localhost:8000',
-  },
 
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
@@ -60,9 +54,6 @@ const config = {
           position: 'left',
           label: 'Book',
         },
-
-        // ❌ Removed GitHub link
-        // ❌ Removed Language Dropdown
       ],
     },
 
@@ -73,33 +64,9 @@ const config = {
     },
 
     prism: {
-      theme: lightCodeTheme,
-      darkTheme: darkCodeTheme,
+      additionalLanguages: ['bash', 'python', 'javascript', 'typescript'],
     },
   },
-
-  plugins: [
-    function () {
-      return {
-        name: 'custom-webpack-config',
-        configureWebpack() {
-          return {
-            devServer: {
-              proxy: [
-                {
-                  context: ['/api'],
-                  target: 'http://localhost:8000',
-                  changeOrigin: true,
-                  secure: false,
-                  logLevel: 'debug',
-                },
-              ],
-            },
-          };
-        },
-      };
-    },
-  ],
 };
 
 export default config;
