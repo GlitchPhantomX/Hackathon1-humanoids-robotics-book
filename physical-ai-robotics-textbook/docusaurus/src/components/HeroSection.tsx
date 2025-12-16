@@ -102,7 +102,7 @@ const HeroSection = () => {
         </p>
 
         <a
-          href="/docs/Introduction/introduction"
+          href="/docs/introduction"
           className="mt-8 inline-block no-underline hover:no-underline focus:no-underline"
         >
           <button
