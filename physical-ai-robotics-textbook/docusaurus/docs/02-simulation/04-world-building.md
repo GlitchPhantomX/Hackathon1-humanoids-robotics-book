@@ -4,44 +4,69 @@ title: 'World Building: Creating Complex Simulation Environments'
 description: 'Designing and implementing complex simulation environments for humanoid robotics'
 ---
 
-# World Building: Creating Complex Simulation Environments
+<h1 className="main-heading">World Building: Creating Complex Simulation Environments</h1>
+<div className="underline-class"></div>
 
 Creating realistic and challenging simulation environments is crucial for developing and testing humanoid robots. This chapter explores the principles and techniques for building complex simulation worlds that accurately represent real-world scenarios. From indoor environments to outdoor terrains, we'll cover how to create worlds that challenge humanoid robots while providing meaningful testing environments.
 
-## Learning Objectives
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 By the end of this chapter, you will be able to:
-- Design complex simulation environments with appropriate physics properties
-- Create indoor and outdoor environments for humanoid robot testing
-- Implement dynamic elements and interactive objects in simulation worlds
-- Configure lighting and visual effects for realistic environments
-- Optimize simulation performance for complex worlds
+- • Design complex simulation environments with appropriate physics properties
+- • Create indoor and outdoor environments for humanoid robot testing
+- • Implement dynamic elements and interactive objects in simulation worlds
+- • Configure lighting and visual effects for realistic environments
+- • Optimize simulation performance for complex worlds
 
-## Exercises
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Exercises
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Exercise 2.4.1: Basic Indoor Environment Creation (⭐, ~30 min)</summary>
 
-### Exercise 2.4.1: Basic Indoor Environment Creation
+<h3 className="third-heading">
+ Exercise 2.4.1: Basic Indoor Environment Creation
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐ (Beginner)
 **Time Estimate**: 30 minutes
 **Requirements**: Gazebo installation, text editor, basic XML knowledge
 
-#### Starter Code
+<h4 className="fourth-heading">
+ Starter Code
+</h4>
+<div className="underline-class"></div>
 Create a simple indoor environment with:
-- Basic room structure (walls, floor, ceiling)
-- Simple furniture (table, chair)
-- Proper lighting
-- Standard physics configuration
+- • Basic room structure (walls, floor, ceiling)
+- • Simple furniture (table, chair)
+- • Proper lighting
+- • Standard physics configuration
 
-#### Success Criteria
+<h4 className="fourth-heading">
+ Success Criteria
+</h4>
+<div className="underline-class"></div>
 - [ ] Room structure is properly defined with collision and visual elements
 - [ ] Environment loads successfully in Gazebo
 - [ ] Lighting appears realistic and functional
 - [ ] Physics simulation works correctly
 - [ ] Environment passes basic validation
 
-#### Test Commands
+<h4 className="fourth-heading">
+ Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Validate SDF file
 gz sdf -k your_indoor.world
@@ -53,46 +78,67 @@ gazebo your_indoor.world
 gz topic -e /stats
 ```
 
-#### Expected Output
-- Environment should load without errors
-- All elements should be visible and positioned correctly
-- Physics simulation should be stable
+<h4 className="fourth-heading">
+ Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Environment should load without errors
+- • All elements should be visible and positioned correctly
+- • Physics simulation should be stable
 
-#### Challenges
-- Add more complex furniture arrangements
-- Implement different lighting configurations
+<h4 className="fourth-heading">
+ Challenges
+</h4>
+<div className="underline-class"></div>
+- • Add more complex furniture arrangements
+- • Implement different lighting configurations
 
-#### Hints
-- Use proper static flags for immovable objects
-- Validate SDF syntax before testing
-- Start with simple shapes and add complexity gradually
+<h4 className="fourth-heading">
+ Hints
+</h4>
+<div className="underline-class"></div>
+- • Use proper static flags for immovable objects
+- • Validate SDF syntax before testing
+- • Start with simple shapes and add complexity gradually
 
 </details>
 
 <details>
 <summary>Exercise 2.4.2: Advanced Environment with Dynamic Elements (⭐⭐, ~45 min)</summary>
 
-### Exercise 2.4.2: Advanced Environment with Dynamic Elements
+<h3 className="third-heading">
+ Exercise 2.4.2: Advanced Environment with Dynamic Elements
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐ (Intermediate)
 **Time Estimate**: 45 minutes
 **Requirements**: Understanding of SDF, physics concepts, Gazebo plugins
 
-#### Starter Code
+<h4 className="fourth-heading">
+ Starter Code
+</h4>
+<div className="underline-class"></div>
 Create an advanced environment with:
-- Indoor and outdoor transitions
-- Dynamic elements (movable objects)
-- Interactive objects for manipulation
-- Multiple lighting scenarios
-- Physics properties for different surfaces
+- • Indoor and outdoor transitions
+- • Dynamic elements (movable objects)
+- • Interactive objects for manipulation
+- • Multiple lighting scenarios
+- • Physics properties for different surfaces
 
-#### Success Criteria
+<h4 className="fourth-heading">
+ Success Criteria
+</h4>
+<div className="underline-class"></div>
 - [ ] Environment includes both static and dynamic elements
 - [ ] Dynamic elements move and interact properly
 - [ ] Different surface materials work correctly
 - [ ] Lighting transitions smoothly between areas
 - [ ] Performance remains acceptable
 
-#### Test Commands
+<h4 className="fourth-heading">
+ Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Load the advanced environment
 gazebo your_advanced.world
@@ -107,45 +153,66 @@ gz topic -e /stats
 ros2 topic list | grep gazebo
 ```
 
-#### Expected Output
-- Dynamic elements should move as expected
-- Physics interactions should be realistic
-- Environment should maintain good performance
+<h4 className="fourth-heading">
+ Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Dynamic elements should move as expected
+- • Physics interactions should be realistic
+- • Environment should maintain good performance
 
-#### Challenges
-- Add weather effects or environmental changes
-- Implement sensor validation scenarios
+<h4 className="fourth-heading">
+ Challenges
+</h4>
+<div className="underline-class"></div>
+- • Add weather effects or environmental changes
+- • Implement sensor validation scenarios
 
-#### Hints
-- Use static flags for non-moving elements to improve performance
-- Implement proper surface contact properties
-- Test physics parameters to ensure stability
+<h4 className="fourth-heading">
+ Hints
+</h4>
+<div className="underline-class"></div>
+- • Use static flags for non-moving elements to improve performance
+- • Implement proper surface contact properties
+- • Test physics parameters to ensure stability
 
 </details>
 
 <details>
 <summary>Exercise 2.4.3: Modular World Design System (⭐⭐⭐, ~60 min)</summary>
 
-### Exercise 2.4.3: Modular World Design System
+<h3 className="third-heading">
+ Exercise 2.4.3: Modular World Design System
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐⭐ (Advanced)
 **Time Estimate**: 60 minutes
 **Requirements**: Complete understanding of SDF, modular design concepts
 
-#### Starter Code
+<h4 className="fourth-heading">
+ Starter Code
+</h4>
+<div className="underline-class"></div>
 Create a modular world building system that:
-- Uses included models to build complex environments
-- Implements reusable environment components
-- Includes performance optimization techniques
-- Supports different testing scenarios
+- • Uses included models to build complex environments
+- • Implements reusable environment components
+- • Includes performance optimization techniques
+- • Supports different testing scenarios
 
-#### Success Criteria
+<h4 className="fourth-heading">
+ Success Criteria
+</h4>
+<div className="underline-class"></div>
 - [ ] Modular components are properly designed and reusable
 - [ ] Environment can be assembled from different components
 - [ ] Performance is optimized for complex assemblies
 - [ ] System supports multiple testing scenarios
 - [ ] All components integrate seamlessly
 
-#### Test Commands
+<h4 className="fourth-heading">
+ Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Test modular components individually
 gz sdf -k model://room_module/model.sdf
@@ -160,48 +227,72 @@ gz stats
 gz model -l
 ```
 
-#### Expected Output
-- Components should load individually and in assembly
-- Performance should remain stable with multiple components
-- All elements should integrate properly
+<h4 className="fourth-heading">
+ Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Components should load individually and in assembly
+- • Performance should remain stable with multiple components
+- • All elements should integrate properly
 
-#### Challenges
-- Implement automatic world generation from configuration files
-- Add terrain blending between modules
+<h4 className="fourth-heading">
+ Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement automatic world generation from configuration files
+- • Add terrain blending between modules
 
-#### Hints
-- Design components with standard connection points
-- Use consistent coordinate systems
-- Implement proper resource management for performance
+<h4 className="fourth-heading">
+ Hints
+</h4>
+<div className="underline-class"></div>
+- • Design components with standard connection points
+- • Use consistent coordinate systems
+- • Implement proper resource management for performance
 
 </details>
 
 <details>
 <summary>Exercise Summary</summary>
 
-### Exercise Summary
+<h3 className="third-heading">
+ Exercise Summary
+</h3>
+<div className="underline-class"></div>
 This chapter covered creating complex simulation environments for humanoid robotics. You learned to design indoor and outdoor environments, implement dynamic elements, configure lighting, and optimize performance. The exercises provided hands-on experience with basic environment creation, advanced features with dynamic elements, and modular world design systems.
 
 </details>
 
-## Troubleshooting
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Troubleshooting
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Troubleshooting: World Building Issues</summary>
 
-### Troubleshooting: World Building Issues
+<h3 className="third-heading">
+ Troubleshooting: World Building Issues
+</h3>
+<div className="underline-class"></div>
 
-#### Problem: Simulation runs slowly with complex worlds
+<h4 className="fourth-heading">
+ Problem: Simulation runs slowly with complex worlds
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Low real-time factor (< 0.5)
-- High CPU/GPU usage
-- Choppiness or lag in simulation
+- • Low real-time factor (< 0.5)
+- • High CPU/GPU usage
+- • Choppiness or lag in simulation
 
 **Causes**:
-- High polygon count in visual meshes
-- Complex collision geometry
-- Too many dynamic objects
-- Resource-intensive physics calculations
+- • High polygon count in visual meshes
+- • Complex collision geometry
+- • Too many dynamic objects
+- • Resource-intensive physics calculations
 
 **Solutions**:
 1. Optimize visual meshes by reducing polygon count:
@@ -241,16 +332,19 @@ This chapter covered creating complex simulation environments for humanoid robot
 - [ ] Simulation runs smoothly
 - [ ] Acceptable CPU/GPU usage
 
-#### Problem: Objects fall through surfaces or behave erratically
+<h4 className="fourth-heading">
+ Problem: Objects fall through surfaces or behave erratically
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Objects fall through floors or walls
-- Unstable physics behavior
-- Objects explode or move randomly
+- • Objects fall through floors or walls
+- • Unstable physics behavior
+- • Objects explode or move randomly
 
 **Causes**:
-- Incorrect collision geometry
-- Poor physics parameters
-- Improper mass or inertia properties
+- • Incorrect collision geometry
+- • Poor physics parameters
+- • Improper mass or inertia properties
 
 **Solutions**:
 1. Verify collision geometry is properly defined:
@@ -304,16 +398,19 @@ This chapter covered creating complex simulation environments for humanoid robot
 - [ ] Proper collision detection occurs
 - [ ] Physics simulation is stable
 
-#### Problem: Lighting appears incorrect or unrealistic
+<h4 className="fourth-heading">
+ Problem: Lighting appears incorrect or unrealistic
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Dark or overly bright areas
-- Shadows appear incorrectly
-- Colors look unrealistic
+- • Dark or overly bright areas
+- • Shadows appear incorrectly
+- • Colors look unrealistic
 
 **Causes**:
-- Incorrect light positioning or intensity
-- Improper material properties
-- Missing or incorrect attenuation settings
+- • Incorrect light positioning or intensity
+- • Improper material properties
+- • Missing or incorrect attenuation settings
 
 **Solutions**:
 1. Adjust light properties for realism:
@@ -354,16 +451,19 @@ This chapter covered creating complex simulation environments for humanoid robot
 - [ ] Colors and shadows look appropriate
 - [ ] Visibility is adequate throughout the environment
 
-#### Problem: Objects appear to float or sink into surfaces
+<h4 className="fourth-heading">
+ Problem: Objects appear to float or sink into surfaces
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Objects hover above ground
-- Objects appear partially embedded in surfaces
-- Inconsistent contact behavior
+- • Objects hover above ground
+- • Objects appear partially embedded in surfaces
+- • Inconsistent contact behavior
 
 **Causes**:
-- Incorrect pose positioning
-- Misaligned collision geometry
-- Improper contact surface parameters
+- • Incorrect pose positioning
+- • Misaligned collision geometry
+- • Improper contact surface parameters
 
 **Solutions**:
 1. Verify pose coordinates are accurate:
@@ -456,22 +556,37 @@ This chapter covered creating complex simulation environments for humanoid robot
 
 </details>
 
-## Environment Design Principles
+<div className="border-line"></div>
+---
 
-### Realism vs. Performance Trade-offs
+<h2 className="second-heading">
+ Environment Design Principles
+</h2>
+<div className="underline-class"></div>
+
+<h3 className="third-heading">
+ Realism vs. Performance Trade-offs
+</h3>
+<div className="underline-class"></div>
 
 When designing simulation environments, it's important to balance realism with performance. Complex environments with detailed geometry and physics can significantly impact simulation speed:
 
-- **Polygon count**: Keep visual mesh complexity reasonable
-- **Collision geometry**: Use simplified collision meshes where possible
-- **Physics complexity**: Balance realistic physics with computational efficiency
-- **Texture detail**: Use appropriate texture resolution for the intended use
+- • **Polygon count**: Keep visual mesh complexity reasonable
+- • **Collision geometry**: Use simplified collision meshes where possible
+- • **Physics complexity**: Balance realistic physics with computational efficiency
+- • **Texture detail**: Use appropriate texture resolution for the intended use
 
-### Types of Environments
+<h3 className="third-heading">
+ Types of Environments
+</h3>
+<div className="underline-class"></div>
 
 Different robot applications require different types of environments:
 
-#### Indoor Environments
+<h4 className="fourth-heading">
+ Indoor Environments
+</h4>
+<div className="underline-class"></div>
 
 Indoor environments are common for humanoid robots designed for home or office assistance:
 
@@ -638,7 +753,10 @@ Indoor environments are common for humanoid robots designed for home or office a
 </sdf>
 ```
 
-#### Outdoor Environments
+<h4 className="fourth-heading">
+ Outdoor Environments
+</h4>
+<div className="underline-class"></div>
 
 Outdoor environments test robots in more complex terrain conditions:
 
@@ -796,9 +914,18 @@ Outdoor environments test robots in more complex terrain conditions:
 </sdf>
 ```
 
-## Physics Configuration
+<div className="border-line"></div>
+---
 
-### Material Properties
+<h2 className="second-heading">
+ Physics Configuration
+</h2>
+<div className="underline-class"></div>
+
+<h3 className="third-heading">
+ Material Properties
+</h3>
+<div className="underline-class"></div>
 
 Setting appropriate material properties is crucial for realistic simulation:
 

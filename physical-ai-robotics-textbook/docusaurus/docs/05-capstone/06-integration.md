@@ -9,23 +9,29 @@ import ViewToggle from '@site/src/components/ViewToggle';
 
 <ReadingTime minutes={220} />
 
-<ViewToggle />
+<!-- <ViewToggle /> -->
 
 <h1 className="main-heading">System Integration and Validation</h1>
 <div className="underline-class"></div>
 
 <div className="full-content">
 
-## Learning Objectives
+<h2 className="second-heading">
+Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 After completing this chapter, you will be able to:
-- Integrate all subsystems into a complete humanoid robotics system
-- Design and implement comprehensive system validation procedures
-- Evaluate overall system performance across all functional areas
-- Identify and resolve integration challenges and conflicts
-- Deploy and test the complete system in real-world scenarios
+- • Integrate all subsystems into a complete humanoid robotics system
+- • Design and implement comprehensive system validation procedures
+- • Evaluate overall system performance across all functional areas
+- • Identify and resolve integration challenges and conflicts
+- • Deploy and test the complete system in real-world scenarios
 
-## Introduction to System Integration
+<h2 className="second-heading">
+Introduction to System Integration
+</h2>
+<div className="underline-class"></div>
 
 System integration represents the culmination of the humanoid robotics development process, where all individual subsystems—voice processing, navigation, manipulation, perception, planning, and control—must work together seamlessly to achieve the robot's objectives. Unlike developing individual components in isolation, integration requires careful attention to interface compatibility, timing constraints, resource sharing, and the emergent behaviors that arise when multiple systems operate simultaneously.
 
@@ -33,9 +39,15 @@ The integration process involves not just connecting components, but ensuring th
 
 The Vision-Language-Action paradigm serves as the unifying framework for integration, connecting natural language commands to environmental perception and robotic action execution. The success of integration depends on careful architectural planning, robust communication mechanisms, and comprehensive testing procedures that validate both individual component functionality and system-wide behavior.
 
-## Integration Architecture and Communication
+<h2 className="second-heading">
+Integration Architecture and Communication
+</h2>
+<div className="underline-class"></div>
 
-### System-Wide Communication Architecture
+<h3 className="third-heading">
+- System-Wide Communication Architecture
+</h3>
+<div className="underline-class"></div>
 
 Establishing reliable communication between all subsystems is fundamental to successful integration:
 
@@ -487,7 +499,10 @@ class SystemIntegrationNode(Node):
         return self.system_state
 ```
 
-### Resource Management and Scheduling
+<h3 className="third-heading">
+- Resource Management and Scheduling
+</h3>
+<div className="underline-class"></div>
 
 Managing system resources effectively is crucial for integrated operation:
 
@@ -792,7 +807,10 @@ class ResourceManager:
         return logging.getLogger(__name__)
 ```
 
-### Safety Integration and Coordination
+<h3 className="third-heading">
+- Safety Integration and Coordination
+</h3>
+<div className="underline-class"></div>
 
 Comprehensive safety systems must be integrated across all subsystems:
 
@@ -1148,9 +1166,15 @@ class SubsystemSafetyMonitor:
             return self.current_status.copy()
 ```
 
-## Isaac Integration for Full System
+<h2 className="second-heading">
+Isaac Integration for Full System
+</h2>
+<div className="underline-class"></div>
 
-### Isaac System Integration Components
+<h3 className="third-heading">
+- Isaac System Integration Components
+</h3>
+<div className="underline-class"></div>
 
 The Isaac ecosystem provides specialized components for full system integration:
 
@@ -1734,9 +1758,15 @@ class IsaacCoordinationManager(Node):
         print("Isaac Coordination Manager stopped")
 ```
 
-## System Validation and Testing
+<h2 className="second-heading">
+System Validation and Testing
+</h2>
+<div className="underline-class"></div>
 
-### Comprehensive System Validation
+<h3 className="third-heading">
+- Comprehensive System Validation
+</h3>
+<div className="underline-class"></div>
 
 Validating the integrated system requires comprehensive testing across all functional areas:
 
@@ -2179,7 +2209,10 @@ class SystemValidationFramework:
         return stats
 ```
 
-### Performance Validation
+<h3 className="third-heading">
+- Performance Validation
+</h3>
+<div className="underline-class"></div>
 
 Validating system performance across all integrated components:
 
@@ -2441,9 +2474,15 @@ class PerformanceValidationSystem:
         return trends
 ```
 
-## Deployment and Real-World Testing
+<h2 className="second-heading">
+Deployment and Real-World Testing
+</h2>
+<div className="underline-class"></div>
 
-### Deployment Considerations
+<h3 className="third-heading">
+- Deployment Considerations
+</h3>
+<div className="underline-class"></div>
 
 Deploying the integrated system to real-world environments requires careful planning:
 
@@ -2739,43 +2778,58 @@ class DeploymentFramework:
         return "\n".join(report)
 ```
 
-## Summary
+<div className="border-line"></div>
+---
+<h2 className="second-heading">
+ Summary
+</h2>
+<div className="underline-class"></div>
 
 System integration and validation represent the critical phase where all individual components of the humanoid robotics system come together to form a cohesive, functional whole. This chapter has explored the complex challenges and solutions involved in integrating voice processing, navigation, manipulation, perception, and control systems into a unified platform.
 
 The key aspects of successful integration include:
 
-1. **Communication Architecture**: Establishing reliable communication channels between all subsystems with appropriate quality of service and real-time performance guarantees.
+1. • **Communication Architecture**: Establishing reliable communication channels between all subsystems with appropriate quality of service and real-time performance guarantees.
 
-2. **Resource Management**: Coordinating shared resources such as CPU, memory, GPU, and I/O to prevent conflicts and ensure optimal performance across all subsystems.
+2. • **Resource Management**: Coordinating shared resources such as CPU, memory, GPU, and I/O to prevent conflicts and ensure optimal performance across all subsystems.
 
-3. **Safety Integration**: Implementing comprehensive safety systems that monitor and coordinate safety across all subsystems, with unified emergency procedures and fail-safe mechanisms.
+3. • **Safety Integration**: Implementing comprehensive safety systems that monitor and coordinate safety across all subsystems, with unified emergency procedures and fail-safe mechanisms.
 
-4. **Isaac Integration**: Leveraging the Isaac ecosystem's specialized components for enhanced perception, navigation, and manipulation capabilities.
+4. • **Isaac Integration**: Leveraging the Isaac ecosystem's specialized components for enhanced perception, navigation, and manipulation capabilities.
 
-5. **Validation Framework**: Creating comprehensive testing and validation procedures that verify both individual component functionality and integrated system behavior.
+5. • **Validation Framework**: Creating comprehensive testing and validation procedures that verify both individual component functionality and integrated system behavior.
 
-6. **Performance Optimization**: Ensuring the integrated system meets real-time performance requirements while maintaining accuracy and reliability.
+6. • **Performance Optimization**: Ensuring the integrated system meets real-time performance requirements while maintaining accuracy and reliability.
 
-7. **Deployment Preparation**: Preparing the system for real-world deployment with appropriate safety protocols, monitoring systems, and fallback procedures.
+7. • **Deployment Preparation**: Preparing the system for real-world deployment with appropriate safety protocols, monitoring systems, and fallback procedures.
 
 The success of system integration depends on careful architectural planning, thorough testing, and continuous validation throughout the development process. The Vision-Language-Action paradigm provides the unifying framework that connects natural language commands to environmental perception and robotic action execution, enabling the humanoid robot to operate as an intelligent, capable system rather than a collection of individual components.
 
-## Exercises
+<div className="border-line"></div>
+---
+<h2 className="second-heading">
+ Exercises
+</h2>
+<div className="underline-class"></div>
 
-1. Design and implement a communication architecture for integrating all subsystems
-2. Create a resource management system that coordinates CPU, memory, and GPU usage
-3. Implement comprehensive safety validation tests for the integrated system
-4. Design fallback procedures for various system failure modes
-5. Execute end-to-end validation tests for voice-to-action scenarios
-6. Deploy the integrated system in a controlled environment and document performance
+1. • Design and implement a communication architecture for integrating all subsystems
+2. • Create a resource management system that coordinates CPU, memory, and GPU usage
+3. • Implement comprehensive safety validation tests for the integrated system
+4. • Design fallback procedures for various system failure modes
+5. • Execute end-to-end validation tests for voice-to-action scenarios
+6. • Deploy the integrated system in a controlled environment and document performance
 
-## Further Reading
+<div className="border-line"></div>
+---
+<h2 className="second-heading">
+ Further Reading
+</h2>
+<div className="underline-class"></div>
 
-- "System Integration in Robotics" by Nof et al.
-- "Handbook of Robotics" by Siciliano and Khatib
-- "Software Engineering for Robotics" by Kress-Gazit and Pappas
-- "Real-Time Systems in Robotics" by Sreenivas and Krogh
-- NVIDIA Isaac documentation on system integration
+- • "System Integration in Robotics" by Nof et al.
+- • "Handbook of Robotics" by Siciliano and Khatib
+- • "Software Engineering for Robotics" by Kress-Gazit and Pappas
+- • "Real-Time Systems in Robotics" by Sreenivas and Krogh
+- • NVIDIA Isaac documentation on system integration
 
 </div>

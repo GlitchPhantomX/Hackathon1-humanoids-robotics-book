@@ -1,0 +1,124 @@
+{
+  "validation": {
+    "target_file": "example_ros2_node.py",
+    "timestamp": "2025-12-12T10:30:00Z",
+    "validator_version": "1.0.0",
+    "parameters": {
+      "strict_mode": false,
+      "report_level": "all",
+      "output_format": "detailed",
+      "include_security_checks": true
+    }
+  },
+  "summary": {
+    "total_lines": 85,
+    "total_issues": 7,
+    "compliance_percentage": 89,
+    "severity_breakdown": {
+      "critical": 0,
+      "high": 2,
+      "medium": 3,
+      "low": 2
+    }
+  },
+  "issues": [
+    {
+      "id": "R201",
+      "line": 12,
+      "severity": "high",
+      "category": "error_handling",
+      "description": "Missing exception handling in subscriber callback",
+      "code_snippet": "def subscription_callback(self, msg):\n    # Process message without error handling\n    self.process_message(msg)",
+      "recommendation": "Wrap message processing in try-except block to handle potential exceptions gracefully",
+      "reference": "https://docs.ros.org/en/rolling/How-To-Guides/Subscriber-implementation.html#error-handling"
+    },
+    {
+      "id": "R202",
+      "line": 25,
+      "severity": "high",
+      "category": "resource_management",
+      "description": "Missing destroy_node() call in finally block",
+      "code_snippet": "finally:\n    rclpy.shutdown()",
+      "recommendation": "Add node destruction before shutting down rclpy to ensure proper cleanup",
+      "reference": "https://docs.ros.org/en/rolling/How-To-Guides/Node-lifecycle.html#cleanup"
+    },
+    {
+      "id": "R203",
+      "line": 8,
+      "severity": "medium",
+      "category": "naming_convention",
+      "description": "Publisher name does not follow ROS2 naming conventions",
+      "code_snippet": "self.publisher_ = self.create_publisher(String, 'MyTopic', 10)",
+      "recommendation": "Use snake_case for topic names: 'my_topic'",
+      "reference": "https://docs.ros.org/en/rolling/Contributing/Code-Style-Language-Versions.html#naming-conventions"
+    },
+    {
+      "id": "R204",
+      "line": 15,
+      "severity": "medium",
+      "category": "performance",
+      "description": "Potential blocking operation in callback",
+      "code_snippet": "result = self.expensive_computation(msg.data)",
+      "recommendation": "Move expensive computations to separate threads or use async patterns",
+      "reference": "https://docs.ros.org/en/rolling/How-To-Guides/Subscriber-implementation.html#performance"
+    },
+    {
+      "id": "R205",
+      "line": 5,
+      "severity": "medium",
+      "category": "documentation",
+      "description": "Missing docstring for node class",
+      "code_snippet": "class ExampleNode(Node):",
+      "recommendation": "Add comprehensive docstring explaining node purpose, parameters, and usage",
+      "reference": "https://docs.ros.org/en/rolling/How-To-Guides/Documenting-ROS2-packages.html"
+    },
+    {
+      "id": "R206",
+      "line": 30,
+      "severity": "low",
+      "category": "style",
+      "description": "Line exceeds maximum length (105 > 100)",
+      "code_snippet": "self.get_logger().info(f'Processing message with ID {msg.id} and payload {msg.payload} for destination {msg.destination}')",
+      "recommendation": "Break long lines to improve readability",
+      "reference": "https://peps.python.org/pep-0008/#maximum-line-length"
+    },
+    {
+      "id": "R207",
+      "line": 18,
+      "severity": "low",
+      "category": "style",
+      "description": "Missing blank line after function definition",
+      "code_snippet": "def process_message(self, msg):\nmsg.processed = True",
+      "recommendation": "Add blank line after function definition for better readability",
+      "reference": "https://peps.python.org/pep-0008/#blank-lines"
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": 1,
+      "description": "Add exception handling to all callback functions",
+      "estimated_effort": "low",
+      "impact": "high"
+    },
+    {
+      "priority": 2,
+      "description": "Implement proper resource cleanup in main function",
+      "estimated_effort": "low",
+      "impact": "high"
+    },
+    {
+      "priority": 3,
+      "description": "Update topic names to follow ROS2 conventions",
+      "estimated_effort": "low",
+      "impact": "medium"
+    }
+  ],
+  "compliance_breakdown": {
+    "syntax": 100,
+    "conventions": 85,
+    "error_handling": 75,
+    "performance": 90,
+    "security": 95,
+    "documentation": 70
+  }
+}

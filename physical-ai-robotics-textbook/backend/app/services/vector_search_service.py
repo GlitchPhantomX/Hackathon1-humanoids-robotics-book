@@ -1,205 +1,257 @@
 """
-Vector search service for implementing query embedding generation and similarity search.
+Vector search service for querying Qdrant vector database.
+Handles semantic search and retrieval of relevant document chunks.
 """
 
 from typing import List, Dict, Any, Optional
-from app.services.embedding_service import embedding_service
 from app.services.qdrant_service import qdrant_service
+from app.services.embedding_service import embedding_service
+from app.config import settings
 from app.utils.logger import get_logger
-import time
 
 
 class VectorSearchService:
     """
-    Service class for vector search functionality.
-    Handles query embedding generation and similarity search in Qdrant.
+    Service for performing vector similarity search in Qdrant.
     """
 
     def __init__(self):
-        self.embedding_service = embedding_service
-        self.qdrant_service = qdrant_service
         self.logger = get_logger("vector_search_service")
-
+        self.min_score = 0.25  # Lowered from default (was probably 0.7)
+        
     async def search(
         self,
         query: str,
         top_k: int = 5,
-        filters: Optional[Dict[str, Any]] = None,
-        selected_text: Optional[str] = None,
+        min_score: Optional[float] = None
     ) -> List[Dict[str, Any]]:
         """
-        Perform vector search with the given query.
+        Perform semantic search for relevant document chunks.
 
         Args:
-            query: The search query text
-            top_k: Number of top results to return (default 5, configurable)
-            filters: Optional filters for metadata (e.g., {"module": "kinematics"})
-            selected_text: Optional selected text to boost relevance
+            query: Search query text
+            top_k: Number of results to return
+            min_score: Minimum relevance score (0.0 to 1.0)
 
         Returns:
-            List of relevant chunks with content, metadata, and relevance scores
+            List of retrieved chunks with metadata
         """
-        start_time = time.time()
-
-        # Validate inputs
-        if not query or len(query.strip()) < 3:
-            raise ValueError("Query must be at least 3 characters long")
-
-        # Generate embedding for the query using the same model as documents
-        query_embedding = await embedding_service.generate_query_embedding(query)
-
-        # If selected text is provided, we might want to combine it with the query
-        if selected_text:
-            # For now, we'll just log that we received selected text
-            # In future, we might combine the query and selected text for enhanced search
-            self.logger.info(
-                f"Processing query with selected text: '{selected_text[:50]}...'"
+        try:
+            self.logger.info(f"Searching for: '{query}' (top_k={top_k})")
+            
+            # Use provided min_score or default
+            score_threshold = min_score if min_score is not None else self.min_score
+            
+            # Generate embedding for the query
+            query_embedding = await embedding_service.generate_query_embedding(query)
+            self.logger.debug(f"Generated query embedding (dim: {len(query_embedding)})")
+            
+            # Search in Qdrant
+            search_results = await qdrant_service.search(
+                query_vector=query_embedding,
+                top_k=top_k * 2,  # Get more results then filter
+                score_threshold=0.0  # Get all results, filter later
             )
-
-        # Perform similarity search in Qdrant
-        search_results = await qdrant_service.search_similar(
-            query_embedding=query_embedding, top_k=top_k, filters=filters
-        )
-
-        # Ensure we return only top_k results in case Qdrant returns more
-        if len(search_results) > top_k:
-            search_results = search_results[:top_k]
-
-        # Add relevance scores (already included from Qdrant as cosine similarity)
-        for result in search_results:
-            # Ensure relevance score is between 0 and 1
-            score = result.get("relevance_score", 0.0)
-            # Qdrant cosine similarity is already between -1 and 1, but should be 0-1 for our use case
-            # In practice, cosine similarity for text embeddings is usually 0-1
-            result["relevance_score"] = max(0.0, min(1.0, float(score)))
-
-        duration = time.time() - start_time
-        self.logger.info(
-            f"Vector search completed in {duration:.2f}s, returned {len(search_results)} results"
-        )
-
-        # Check performance target
-        if duration > 0.5:
-            self.logger.warning(f"Search took {duration:.2f}s, exceeding 500ms target")
-
-        return search_results
+            
+            self.logger.info(f"Qdrant returned {len(search_results)} initial results")
+            
+            # Process and format results
+            formatted_results = []
+            for result in search_results:
+                # Apply score threshold after retrieval
+                if result['relevance_score'] < score_threshold:
+                    continue
+                    
+                formatted_result = {
+                    'id': result.get('id'),
+                    'content': result.get('content', ''),
+                    'source_file': result.get('source_file', ''),
+                    'module': result.get('module', ''),
+                    'chapter': result.get('chapter', ''),
+                    'chunk_index': result.get('chunk_index', 0),
+                    'relevance_score': result.get('relevance_score', 0.0),
+                }
+                formatted_results.append(formatted_result)
+            
+            # Limit to top_k after filtering
+            formatted_results = formatted_results[:top_k]
+            
+            self.logger.info(f"Returning {len(formatted_results)} results after filtering (score >= {score_threshold})")
+            
+            # Log top results for debugging
+            if formatted_results:
+                for i, res in enumerate(formatted_results[:3], 1):
+                    self.logger.debug(
+                        f"Result {i}: score={res['relevance_score']:.3f}, "
+                        f"chapter={res['chapter']}, "
+                        f"content={res['content'][:50]}..."
+                    )
+            else:
+                self.logger.warning(f"No results found for query: '{query}'")
+            
+            return formatted_results
+            
+        except Exception as e:
+            self.logger.error(f"Error in vector search: {str(e)}", exc_info=True)
+            return []
 
     async def search_with_selected_text(
         self,
         query: str,
         selected_text: str,
         top_k: int = 5,
-        filters: Optional[Dict[str, Any]] = None,
+        min_score: Optional[float] = None
     ) -> List[Dict[str, Any]]:
         """
-        Perform vector search with special handling for selected text.
+        Perform enhanced search using both query and selected text context.
 
         Args:
-            query: The search query text
-            selected_text: The selected text to boost relevance
-            top_k: Number of top results to return (default 5, configurable)
-            filters: Optional filters for metadata
+            query: User's query
+            selected_text: Text selected by user for context
+            top_k: Number of results to return
+            min_score: Minimum relevance score
 
         Returns:
-            List of relevant chunks with content, metadata, and relevance scores
+            List of retrieved chunks with metadata
         """
-        # For now, implement a basic approach where we enhance the query with selected text context
-        # In the future, we might want to implement more sophisticated approaches like:
-        # 1. Dual encoding (separate embeddings for query and selected text)
-        # 2. Cross-attention mechanisms
-        # 3. Re-ranking based on selected text similarity
+        try:
+            self.logger.info(f"Enhanced search with selected text (length: {len(selected_text)})")
+            
+            # Combine query with selected text for better context
+            enhanced_query = f"{query}\n\nContext: {selected_text[:500]}"
+            
+            # Use regular search with enhanced query
+            results = await self.search(
+                query=enhanced_query,
+                top_k=top_k,
+                min_score=min_score
+            )
+            
+            return results
+            
+        except Exception as e:
+            self.logger.error(f"Error in enhanced search: {str(e)}", exc_info=True)
+            # Fallback to regular search
+            return await self.search(query=query, top_k=top_k, min_score=min_score)
 
-        enhanced_query = f"{query} [CONTEXT: {selected_text}]"
-
-        self.logger.info(
-            f"Searching with enhanced query combining user query and selected text"
-        )
-        return await self.search(
-            query=enhanced_query,
-            top_k=top_k,
-            filters=filters,
-            selected_text=selected_text,
-        )
-
-    async def validate_search_query(self, query: str) -> bool:
-        """
-        Validate if a search query is appropriate for processing.
-
-        Args:
-            query: The search query to validate
-
-        Returns:
-            True if query is valid, False otherwise
-        """
-        if not query:
-            return False
-
-        # Check minimum length
-        if len(query.strip()) < 3:
-            self.logger.warning(f"Query too short: '{query}'")
-            return False
-
-        # Check maximum length to prevent abuse
-        if len(query) > 500:
-            self.logger.warning(f"Query too long: {len(query)} characters")
-            return False
-
-        # Check for nonsensical input (too many special characters relative to text)
-        text_chars = sum(1 for c in query if c.isalnum() or c.isspace())
-        if len(query) > 0 and text_chars / len(query) < 0.3:
-            self.logger.warning(f"Query appears nonsensical: '{query[:50]}...'")
-            return False
-
-        return True
-
-    async def search_by_module_or_chapter(
+    async def search_by_filters(
         self,
         query: str,
         module: Optional[str] = None,
         chapter: Optional[str] = None,
         top_k: int = 5,
+        min_score: Optional[float] = None
     ) -> List[Dict[str, Any]]:
         """
-        Search with optional filtering by module or chapter.
+        Search with metadata filters (module, chapter).
 
         Args:
-            query: The search query text
-            module: Optional module to filter by
-            chapter: Optional chapter to filter by
-            top_k: Number of top results to return (default 5, configurable)
+            query: Search query
+            module: Filter by module name
+            chapter: Filter by chapter name
+            top_k: Number of results
+            min_score: Minimum relevance score
 
         Returns:
-            List of relevant chunks with content, metadata, and relevance scores
+            Filtered search results
         """
-        filters = {}
-        if module:
-            filters["module"] = module
-        if chapter:
-            filters["chapter"] = chapter
+        try:
+            self.logger.info(f"Filtered search: module={module}, chapter={chapter}")
+            
+            # Generate query embedding
+            query_embedding = await embedding_service.generate_query_embedding(query)
+            
+            # Build filter conditions
+            filter_conditions = []
+            if module:
+                filter_conditions.append({
+                    "key": "module",
+                    "match": {"value": module}
+                })
+            if chapter:
+                filter_conditions.append({
+                    "key": "chapter",
+                    "match": {"value": chapter}
+                })
+            
+            # Search with filters
+            search_results = await qdrant_service.search(
+                query_vector=query_embedding,
+                top_k=top_k,
+                score_threshold=min_score or self.min_score,
+                filters=filter_conditions if filter_conditions else None
+            )
+            
+            # Format results
+            formatted_results = []
+            for result in search_results:
+                formatted_result = {
+                    'id': result.get('id'),
+                    'content': result.get('content', ''),
+                    'source_file': result.get('source_file', ''),
+                    'module': result.get('module', ''),
+                    'chapter': result.get('chapter', ''),
+                    'chunk_index': result.get('chunk_index', 0),
+                    'relevance_score': result.get('relevance_score', 0.0),
+                }
+                formatted_results.append(formatted_result)
+            
+            self.logger.info(f"Filtered search returned {len(formatted_results)} results")
+            return formatted_results
+            
+        except Exception as e:
+            self.logger.error(f"Error in filtered search: {str(e)}", exc_info=True)
+            return []
 
-        return await self.search(
-            query=query, top_k=top_k, filters=filters if filters else None
-        )
-
-    async def get_search_statistics(self) -> Dict[str, Any]:
+    async def multi_query_search(
+        self,
+        queries: List[str],
+        top_k: int = 5,
+        min_score: Optional[float] = None
+    ) -> List[Dict[str, Any]]:
         """
-        Get statistics about the search system.
+        Perform search with multiple query variations for better coverage.
+
+        Args:
+            queries: List of query variations
+            top_k: Number of results per query
+            min_score: Minimum relevance score
 
         Returns:
-            Dictionary with search system statistics
+            Deduplicated and ranked results
         """
-        collection_info = await qdrant_service.get_collection_info()
-
-        return {
-            "total_documents": collection_info.get("point_count", 0),
-            "vector_size": collection_info.get("vector_size", 0),
-            "collection_name": collection_info.get("name", ""),
-            "status": (
-                "healthy"
-                if collection_info.get("point_count") is not None
-                else "unavailable"
-            ),
-        }
+        try:
+            self.logger.info(f"Multi-query search with {len(queries)} variations")
+            
+            all_results = []
+            seen_ids = set()
+            
+            for query in queries:
+                results = await self.search(
+                    query=query,
+                    top_k=top_k,
+                    min_score=min_score
+                )
+                
+                # Deduplicate by ID
+                for result in results:
+                    result_id = result.get('id')
+                    if result_id not in seen_ids:
+                        all_results.append(result)
+                        seen_ids.add(result_id)
+            
+            # Sort by relevance score
+            all_results.sort(key=lambda x: x['relevance_score'], reverse=True)
+            
+            # Return top_k overall
+            final_results = all_results[:top_k]
+            
+            self.logger.info(f"Multi-query search returned {len(final_results)} unique results")
+            return final_results
+            
+        except Exception as e:
+            self.logger.error(f"Error in multi-query search: {str(e)}", exc_info=True)
+            return []
 
 
 # Global service instance

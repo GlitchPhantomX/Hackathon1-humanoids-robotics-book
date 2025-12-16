@@ -4,97 +4,154 @@ title: 'URDF and SDF: Robot and Environment Modeling'
 description: 'Understanding URDF for robot description and SDF for simulation environment modeling'
 ---
 
-# URDF and SDF: Robot and Environment Modeling
+<h1 className="main-heading">URDF and SDF: Robot and Environment Modeling</h1>
+<div className="underline-class"></div>
 
 This chapter explores the relationship between URDF (Unified Robot Description Format) for robot modeling and SDF (Simulation Description Format) for environment modeling in Gazebo simulation. Understanding both formats is essential for creating realistic humanoid robot simulations.
 
-## Learning Objectives
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 By the end of this chapter, you will be able to:
-- Understand the differences and relationships between URDF and SDF
-- Create SDF models for simulation environments
-- Integrate URDF robots with SDF environments
-- Use Gazebo-specific extensions in URDF models
-- Create complex simulation scenarios with multiple models
+- • Understand the differences and relationships between URDF and SDF
+- • Create SDF models for simulation environments
+- • Integrate URDF robots with SDF environments
+- • Use Gazebo-specific extensions in URDF models
+- • Create complex simulation scenarios with multiple models
 
-## Exercises
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Exercises
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Exercise 2.2.1: Basic SDF Environment Creation (⭐, ~30 min)</summary>
 
-### Exercise 2.2.1: Basic SDF Environment Creation
+<h3 className="third-heading">
+ Exercise 2.2.1: Basic SDF Environment Creation
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐ (Beginner)
 **Time Estimate**: 30 minutes
 **Requirements**: Gazebo installation, text editor, basic XML knowledge
 
-#### Starter Code
+<h4 className="fourth-heading">
+ Starter Code
+</h4>
+<div className="underline-class"></div>
 Create a simple SDF world file that includes:
-- Basic physics configuration
-- Ground plane and lighting
-- A simple box model
-- Proper SDF version declaration
+- • Basic physics configuration
+- • Ground plane and lighting
+- • A simple box model
+- • Proper SDF version declaration
+<div className="border-line"></div>
 
-#### Success Criteria
+<h4 className="fourth-heading">
+ Success Criteria
+</h4>
+<div className="underline-class"></div>
 - [ ] SDF file is valid XML and SDF format
 - [ ] World loads successfully in Gazebo
 - [ ] Physics simulation works properly
 - [ ] All elements appear correctly in simulation
 - [ ] File validates with gz sdf tools
+<div className="border-line"></div>
 
-#### Test Commands
+<h4 className="fourth-heading">
+ Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Validate SDF file
 gz sdf -k your_world.sdf
 
-# Load in Gazebo
+<h1 className="main-heading">Load in Gazebo</h1>
+
 gazebo your_world.sdf
 
-# Or via ROS 2
+<h1 className="main-heading">Or via ROS 2</h1>
+ 
 ros2 launch gazebo_ros gazebo.launch.py world:=/path/to/your_world.sdf
-```
 
-#### Expected Output
-- World should load without errors
-- All elements should be visible
-- Physics simulation should be stable
+<h4 className="fourth-heading">
+ Expected Output
+</h4>
+<div className="underline-class"></div>
+- • World should load without errors
+- • All elements should be visible
+- • Physics simulation should be stable
 
-#### Challenges
-- Add multiple objects with different shapes
-- Include a simple robot model
+<h4 className="fourth-heading">
+ Challenges
+</h4>
+<div className="underline-class"></div>
+- • Add multiple objects with different shapes
+- • Include a simple robot model
 
-#### Hints
-- Start with the default world as a template
-- Use proper SDF version declaration
-- Validate syntax before testing
+<h4 className="fourth-heading">
+ Hints
+</h4>
+<div className="underline-class"></div>
+- • Start with the default world as a template
+- • Use proper SDF version declaration
+- • Validate syntax before testing
 
 </details>
 
 <details>
 <summary>Exercise 2.2.2: URDF-SDF Integration (⭐⭐, ~45 min)</summary>
 
-### Exercise 2.2.2: URDF-SDF Integration
+<h3 className="third-heading">
+ Exercise 2.2.2: URDF-SDF Integration
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐ (Intermediate)
 **Time Estimate**: 45 minutes
 **Requirements**: Understanding of both URDF and SDF, Gazebo installation
 
-#### Starter Code
+<h4 className="fourth-heading">
+ Starter Code
+</h4>
+<div className="underline-class"></div>
 Create a simulation system that integrates:
-- A URDF robot model
-- An SDF world file
-- Gazebo plugins for ROS 2 integration
-- Proper joint transmissions for control
+- • A URDF robot model
+- • An SDF world file
+- • Gazebo plugins for ROS 2 integration
+- • Proper joint transmissions for control
 
-#### Success Criteria
+<h4 className="fourth-heading">
+ Success Criteria
+</h4>
+<div className="underline-class"></div>
 - [ ] URDF robot loads correctly in SDF world
 - [ ] ROS 2 integration works properly
 - [ ] Joint states are published correctly
 - [ ] Robot responds to control commands
 - [ ] All components work together seamlessly
 
-#### Test Commands
+<h4 className="fourth-heading">
+ Test Commands
+</h4>
+<div className="underline-class"></div>
+
 ```bash
+
 # Convert URDF to SDF for validation
 gz sdf -p robot.urdf > robot.sdf
+
+<h4 className="fourth-heading">
+ Test Commands
+</h4>
+<div className="underline-class"></div>
+
 
 # Launch simulation
 ros2 launch your_robot_gazebo your_simulation.launch.py
@@ -104,46 +161,67 @@ ros2 topic list | grep joint
 ros2 topic list | grep robot
 ```
 
-#### Expected Output
-- Robot should appear in simulation environment
-- ROS 2 nodes should communicate properly
-- Robot should respond to commands
+<h4 className="fourth-heading">
+ Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Robot should appear in simulation environment
+- • ROS 2 nodes should communicate properly
+- • Robot should respond to commands
 
-#### Challenges
-- Add sensor integration (camera, IMU)
-- Implement multiple robots in the same world
+<h4 className="fourth-heading">
+ Challenges
+</h4>
+<div className="underline-class"></div>
+- • Add sensor integration (camera, IMU)
+- • Implement multiple robots in the same world
 
-#### Hints
-- Use proper Gazebo plugins for ROS 2 integration
-- Ensure joint names match between URDF and controllers
-- Test components individually before integration
+<h4 className="fourth-heading">
+ Hints
+</h4>
+<div className="underline-class"></div>
+- • Use proper Gazebo plugins for ROS 2 integration
+- • Ensure joint names match between URDF and controllers
+- • Test components individually before integration
 
 </details>
 
 <details>
 <summary>Exercise 2.2.3: Advanced Environment Modeling (⭐⭐⭐, ~60 min)</summary>
 
-### Exercise 2.2.3: Advanced Environment Modeling
+<h3 className="third-heading">
+ Exercise 2.2.3: Advanced Environment Modeling
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐⭐ (Advanced)
 **Time Estimate**: 60 minutes
 **Requirements**: Complete understanding of SDF, physics concepts, simulation
 
-#### Starter Code
+<h4 className="fourth-heading">
+ Starter Code
+</h4>
+<div className="underline-class"></div>
 Create a complex humanoid simulation environment with:
-- Multiple rooms/floors
-- Furniture and obstacles
-- Physics parameters optimized for humanoid robots
-- Gazebo-specific extensions for sensors and controllers
-- Proper collision and visual properties
+- • Multiple rooms/floors
+- • Furniture and obstacles
+- • Physics parameters optimized for humanoid robots
+- • Gazebo-specific extensions for sensors and controllers
+- • Proper collision and visual properties
 
-#### Success Criteria
+<h4 className="fourth-heading">
+ Success Criteria
+</h4>
+<div className="underline-class"></div>
 - [ ] Environment model is complete and detailed
 - [ ] Physics simulation is stable and realistic
 - [ ] All elements have proper collision and visual properties
 - [ ] Environment supports humanoid robot simulation
 - [ ] Performance is acceptable for real-time simulation
 
-#### Test Commands
+<h4 className="fourth-heading">
+ Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Validate complex SDF
 gz sdf -k complex_environment.sdf
@@ -152,51 +230,75 @@ gz sdf -k complex_environment.sdf
 gazebo --verbose complex_environment.sdf
 
 # Monitor real-time factor
+
 gz topic -e /stats
-```
 
-#### Expected Output
-- Complex environment should load successfully
-- Simulation should run with good real-time factor
-- All elements should behave correctly
+<h4 className="fourth-heading">
+ Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Complex environment should load successfully
+- • Simulation should run with good real-time factor
+- • All elements should behave correctly
 
-#### Challenges
-- Add dynamic elements (moving objects)
-- Include realistic lighting and shadows
+<h4 className="fourth-heading">
+ Challenges
+</h4>
+<div className="underline-class"></div>
+- • Add dynamic elements (moving objects)
+- • Include realistic lighting and shadows
 
-#### Hints
-- Use static models for unchanging environment elements
-- Optimize collision geometry for performance
-- Test physics parameters for stability
+<h4 className="fourth-heading">
+ Hints
+</h4>
+<div className="underline-class"></div>
+- • Use static models for unchanging environment elements
+- • Optimize collision geometry for performance
+- • Test physics parameters for stability
 
 </details>
 
 <details>
 <summary>Exercise Summary</summary>
 
-### Exercise Summary
+<h3 className="third-heading">
+ Exercise Summary
+</h3>
+<div className="underline-class"></div>
 This chapter covered understanding URDF for robot description and SDF for simulation environment modeling. You learned to create SDF models, integrate URDF robots with SDF environments, and use Gazebo-specific extensions. The exercises provided hands-on experience with basic SDF creation, URDF-SDF integration, and advanced environment modeling.
 
 </details>
 
-## Troubleshooting
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Troubleshooting
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Troubleshooting: URDF/SDF Integration Issues</summary>
 
-### Troubleshooting: URDF/SDF Integration Issues
+<h3 className="third-heading">
+ Troubleshooting: URDF/SDF Integration Issues
+</h3>
+<div className="underline-class"></div>
 
-#### Problem: URDF doesn't convert properly to SDF in Gazebo
+<h4 className="fourth-heading">
+ Problem: URDF doesn't convert properly to SDF in Gazebo
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Robot model fails to load in Gazebo
-- Missing links or joints in simulation
-- Error messages about invalid URDF
+- • Robot model fails to load in Gazebo
+- • Missing links or joints in simulation
+- • Error messages about invalid URDF
 
 **Causes**:
-- Missing or incorrect mesh files
-- Invalid joint limits or types
-- Incorrect inertial properties
-- Malformed XML syntax
+- • Missing or incorrect mesh files
+- • Invalid joint limits or types
+- • Incorrect inertial properties
+- • Malformed XML syntax
 
 **Solutions**:
 1. Verify all referenced files exist:
@@ -223,16 +325,19 @@ This chapter covered understanding URDF for robot description and SDF for simula
 - [ ] URDF validates without errors
 - [ ] Robot appears correctly in Gazebo
 
-#### Problem: Physics instability in humanoid robot simulation
+<h4 className="fourth-heading">
+ Problem: Physics instability in humanoid robot simulation
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Robot wobbles or vibrates unnaturally
-- Joints move erratically
-- Robot falls apart or explodes in simulation
+- • Robot wobbles or vibrates unnaturally
+- • Joints move erratically
+- • Robot falls apart or explodes in simulation
 
 **Causes**:
-- Incorrect inertial properties
-- Improper physics parameters
-- Joint limits or dynamics issues
+- • Incorrect inertial properties
+- • Improper physics parameters
+- • Joint limits or dynamics issues
 
 **Solutions**:
 1. Verify inertial properties for each link:
@@ -280,16 +385,19 @@ This chapter covered understanding URDF for robot description and SDF for simula
 - [ ] Joints move smoothly without excessive vibration
 - [ ] Physics simulation is stable
 
-#### Problem: ROS 2 integration fails or nodes don't communicate
+<h4 className="fourth-heading">
+ Problem: ROS 2 integration fails or nodes don't communicate
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Robot doesn't respond to ROS 2 commands
-- Missing topics or services
-- Plugin loading errors
+- • Robot doesn't respond to ROS 2 commands
+- • Missing topics or services
+- • Plugin loading errors
 
 **Causes**:
-- Incorrect plugin names or filenames
-- Namespace mismatches
-- Missing Gazebo-ROS packages
+- • Incorrect plugin names or filenames
+- • Namespace mismatches
+- • Missing Gazebo-ROS packages
 
 **Solutions**:
 1. Verify plugin names and filenames:
@@ -323,16 +431,19 @@ This chapter covered understanding URDF for robot description and SDF for simula
 - [ ] Robot responds to ROS 2 commands
 - [ ] TF tree is properly maintained
 
-#### Problem: Simulation runs slowly or performance issues
+<h4 className="fourth-heading">
+ Problem: Simulation runs slowly or performance issues
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Low real-time factor (< 0.5)
-- Choppiness or lag in simulation
-- High CPU or GPU usage
+- • Low real-time factor (< 0.5)
+- • Choppiness or lag in simulation
+- • High CPU or GPU usage
 
 **Causes**:
-- Complex collision geometry
-- High sensor update rates
-- Resource-intensive physics calculations
+- • Complex collision geometry
+- • High sensor update rates
+- • Resource-intensive physics calculations
 
 **Solutions**:
 1. Simplify collision geometry:
@@ -363,16 +474,19 @@ This chapter covered understanding URDF for robot description and SDF for simula
 - [ ] Simulation runs smoothly
 - [ ] Acceptable CPU/GPU usage
 
-#### Problem: Joint limits or transmission issues
+<h4 className="fourth-heading">
+ Problem: Joint limits or transmission issues
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Robot joints move beyond physical limits
-- Controllers don't work properly
-- Joint values are incorrect
+- • Robot joints move beyond physical limits
+- • Controllers don't work properly
+- • Joint values are incorrect
 
 **Causes**:
-- Missing or incorrect joint limits
-- Improper transmission definitions
-- Mismatched hardware interfaces
+- • Missing or incorrect joint limits
+- • Improper transmission definitions
+- • Mismatched hardware interfaces
 
 **Solutions**:
 1. Verify joint limits in URDF/SDF:
@@ -411,31 +525,52 @@ This chapter covered understanding URDF for robot description and SDF for simula
 
 </details>
 
-## Understanding URDF vs SDF
+<div className="border-line"></div>
+---
 
-### URDF (Unified Robot Description Format)
+<h2 className="second-heading">
+ Understanding URDF vs SDF
+</h2>
+<div className="underline-class"></div>
+
+<h3 className="third-heading">
+ URDF (Unified Robot Description Format)
+</h3>
+<div className="underline-class"></div>
 URDF is primarily used for describing robot kinematics, dynamics, and visual appearance. It's ROS-centric and focuses on robot-specific properties.
 
 **URDF Strengths:**
-- Robot kinematic chains
-- Joint limits and types
-- ROS integration
-- Parameterization with Xacro
+- • Robot kinematic chains
+- • Joint limits and types
+- • ROS integration
+- • Parameterization with Xacro
 
-### SDF (Simulation Description Format)
+<h3 className="third-heading">
+ SDF (Simulation Description Format)
+</h3>
+<div className="underline-class"></div>
 SDF is used by Gazebo for complete simulation environments, including robots, objects, and physics properties.
 
 **SDF Strengths:**
-- Complete simulation environments
-- Physics properties and materials
-- Gazebo plugins and sensors
-- Multiple model inclusion
+- • Complete simulation environments
+- • Physics properties and materials
+- • Gazebo plugins and sensors
+- • Multiple model inclusion
 
-## Converting URDF to SDF
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Converting URDF to SDF
+</h2>
+<div className="underline-class"></div>
 
 While URDF and SDF serve different purposes, they can be combined. Gazebo can read URDF files and convert them to SDF internally.
 
-### Direct URDF in Gazebo
+<h3 className="third-heading">
+ Direct URDF in Gazebo
+</h3>
+<div className="underline-class"></div>
 
 ```xml
 <!-- world_with_urdf.world -->
@@ -459,7 +594,10 @@ While URDF and SDF serve different purposes, they can be combined. Gazebo can re
 </sdf>
 ```
 
-### Wrapping URDF in SDF
+<h3 className="third-heading">
+ Wrapping URDF in SDF
+</h3>
+<div className="underline-class"></div>
 
 ```xml
 <!-- robot_in_sdf.sdf -->
@@ -482,9 +620,18 @@ While URDF and SDF serve different purposes, they can be combined. Gazebo can re
 </sdf>
 ```
 
-## SDF Environment Modeling
+<div className="border-line"></div>
+---
 
-### Basic World Structure
+<h2 className="second-heading">
+ SDF Environment Modeling
+</h2>
+<div className="underline-class"></div>
+
+<h3 className="third-heading">
+ Basic World Structure
+</h3>
+<div className="underline-class"></div>
 
 ```xml
 <?xml version="1.0" ?>
@@ -524,7 +671,10 @@ While URDF and SDF serve different purposes, they can be combined. Gazebo can re
 </sdf>
 ```
 
-### Creating Custom Models in SDF
+<h3 className="third-heading">
+ Creating Custom Models in SDF
+</h3>
+<div className="underline-class"></div>
 
 ```xml
 <?xml version="1.0" ?>
@@ -626,9 +776,18 @@ While URDF and SDF serve different purposes, they can be combined. Gazebo can re
 </sdf>
 ```
 
-## Advanced SDF Features for Humanoid Simulation
+<div className="border-line"></div>
+---
 
-### Joint Transmissions
+<h2 className="second-heading">
+ Advanced SDF Features for Humanoid Simulation
+</h2>
+<div className="underline-class"></div>
+
+<h3 className="third-heading">
+ Joint Transmissions
+</h3>
+<div className="underline-class"></div>
 
 In SDF, you can define how joints are controlled:
 
@@ -664,7 +823,10 @@ In SDF, you can define how joints are controlled:
 </model>
 ```
 
-### Gazebo-Specific Extensions
+<h3 className="third-heading">
+ Gazebo-Specific Extensions
+</h3>
+<div className="underline-class"></div>
 
 Add Gazebo-specific features to your robot model:
 
@@ -703,7 +865,13 @@ Add Gazebo-specific features to your robot model:
 </model>
 ```
 
-## Complete Simulation Example
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Complete Simulation Example
+</h2>
+<div className="underline-class"></div>
 
 Let's create a complete humanoid simulation environment:
 
@@ -863,9 +1031,18 @@ Let's create a complete humanoid simulation environment:
 </sdf>
 ```
 
-## Working with SDF and URDF Together
+<div className="border-line"></div>
+---
 
-### Converting URDF to SDF Programmatically
+<h2 className="second-heading">
+ Working with SDF and URDF Together
+</h2>
+<div className="underline-class"></div>
+
+<h3 className="third-heading">
+ Converting URDF to SDF Programmatically
+</h3>
+<div className="underline-class"></div>
 
 You can convert URDF to SDF using Gazebo tools:
 
@@ -877,7 +1054,10 @@ gz sdf -p robot.urdf > robot.sdf
 ign sdf -p robot.urdf > robot.sdf
 ```
 
-### Using Xacro with SDF
+<h3 className="third-heading">
+ Using Xacro with SDF
+</h3>
+<div className="underline-class"></div>
 
 While Xacro is primarily for URDF, you can use similar parameterization approaches:
 
@@ -915,9 +1095,18 @@ While Xacro is primarily for URDF, you can use similar parameterization approach
 </sdf>
 ```
 
-## Physics Considerations for Humanoid Robots
+<div className="border-line"></div>
+---
 
-### Appropriate Physics Parameters
+<h2 className="second-heading">
+ Physics Considerations for Humanoid Robots
+</h2>
+<div className="underline-class"></div>
+<div className="border-line"></div>
+<h3 className="third-heading">
+ Appropriate Physics Parameters
+</h3>
+<div className="underline-class"></div>
 
 For humanoid robots, careful physics tuning is crucial:
 
@@ -954,7 +1143,10 @@ For humanoid robots, careful physics tuning is crucial:
 </world>
 ```
 
-### Joint Damping and Friction
+<h3 className="third-heading">
+ Joint Damping and Friction
+</h3>
+<div className="underline-class"></div>
 
 For realistic humanoid movement:
 
@@ -979,26 +1171,47 @@ For realistic humanoid movement:
 </joint>
 ```
 
-## Best Practices
+<div className="border-line"></div>
+---
 
-### Model Organization
-- Use descriptive names for models, links, and joints
-- Group related elements logically
-- Use consistent naming conventions
-- Document complex models with comments
+<h2 className="second-heading">
+ Best Practices
+</h2>
+<div className="underline-class"></div>
 
-### Performance Optimization
-- Simplify collision geometry where possible
-- Use appropriate physics parameters
-- Limit sensor update rates
-- Use static models for unchanging environment elements
+<h3 className="third-heading">
+ Model Organization
+</h3>
+<div className="underline-class"></div>
+- • Use descriptive names for models, links, and joints
+- • Group related elements logically
+- • Use consistent naming conventions
+- • Document complex models with comments
 
-### Compatibility
-- Ensure URDF models can be converted to SDF properly
-- Use compatible joint limits between simulation and real robot
-- Test models in both simulation and reality when possible
+<h3 className="third-heading">
+ Performance Optimization
+</h3>
+<div className="underline-class"></div>
+- • Simplify collision geometry where possible
+- • Use appropriate physics parameters
+- • Limit sensor update rates
+- • Use static models for unchanging environment elements
 
-## Integration with ROS 2 Launch Files
+<h3 className="third-heading">
+ Compatibility
+</h3>
+<div className="underline-class"></div>
+- • Ensure URDF models can be converted to SDF properly
+- • Use compatible joint limits between simulation and real robot
+- • Test models in both simulation and reality when possible
+
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Integration with ROS 2 Launch Files
+</h2>
+<div className="underline-class"></div>
 
 You can integrate SDF environments with ROS 2 launch files:
 
@@ -1042,8 +1255,3 @@ def generate_launch_description():
     ])
 ```
 
-import ReadingTime from '@site/src/components/ReadingTime';
-import ViewToggle from '@site/src/components/ViewToggle';
-
-<ReadingTime minutes={16} />
-<ViewToggle />

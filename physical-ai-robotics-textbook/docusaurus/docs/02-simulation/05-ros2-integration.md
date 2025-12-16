@@ -3,46 +3,64 @@ sidebar_position: 6
 title: 'ROS 2 Integration: Connecting Simulation to Real Robotics'
 description: 'Integrating simulation environments with ROS 2 for comprehensive robotics development'
 ---
-
-# ROS 2 Integration: Connecting Simulation to Real Robotics
+# <h1 className="main-heading">ROS 2 Integration: Connecting Simulation to Real Robotics</h1>
+<div className="underline-class"></div>
 
 Simulation environments become truly valuable when they seamlessly integrate with ROS 2, creating a bridge between virtual testing and real-world robotics development. This chapter explores how to effectively connect simulation environments with ROS 2, enabling comprehensive testing, development, and validation of humanoid robot systems.
 
-## Learning Objectives
+<h2 className="second-heading">
+Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 By the end of this chapter, you will be able to:
-- Integrate simulation environments with ROS 2 for bidirectional communication
-- Implement sensor and actuator bridges between simulation and ROS 2
-- Use ROS 2 tools for simulation control and monitoring
-- Design simulation workflows that mirror real-world robot operations
-- Validate simulation-to-reality transfer for humanoid robots
+- • Integrate simulation environments with ROS 2 for bidirectional communication
+- • Implement sensor and actuator bridges between simulation and ROS 2
+- • Use ROS 2 tools for simulation control and monitoring
+- • Design simulation workflows that mirror real-world robot operations
+- • Validate simulation-to-reality transfer for humanoid robots
 
-## Exercises
+<h2 className="second-heading">
+Exercises
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Exercise 2.5.1: Basic ROS 2-Simulation Bridge Setup (⭐, ~25 min)</summary>
 
-### Exercise 2.5.1: Basic ROS 2-Simulation Bridge Setup
+<h3 className="third-heading">
+- Exercise 2.5.1: Basic ROS 2-Simulation Bridge Setup
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐ (Beginner)
 **Time Estimate**: 25 minutes
 **Requirements**: Gazebo installation, ROS 2 Humble, basic understanding of SDF/URDF
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Create a simple robot model with ROS 2 integration plugins:
-- Basic differential drive robot
-- Camera sensor with ROS 2 bridge
-- IMU sensor with ROS 2 bridge
-- Joint state publisher plugin
-- Basic control plugin
+- • Basic differential drive robot
+- • Camera sensor with ROS 2 bridge
+- • IMU sensor with ROS 2 bridge
+- • Joint state publisher plugin
+- • Basic control plugin
 
-#### Success Criteria
-- [ ] Robot model loads in Gazebo with ROS 2 plugins
-- [ ] Camera data is published to ROS 2 topics
-- [ ] IMU data is published to ROS 2 topics
-- [ ] Joint states are published to ROS 2 topics
-- [ ] Robot responds to velocity commands
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Robot model loads in Gazebo with ROS 2 plugins
+- • [ ] Camera data is published to ROS 2 topics
+- • [ ] IMU data is published to ROS 2 topics
+- • [ ] Joint states are published to ROS 2 topics
+- • [ ] Robot responds to velocity commands
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Build the robot model with ROS 2 plugins
 gz sdf -k your_robot.model.sdf
@@ -63,46 +81,67 @@ ros2 topic echo /my_robot/imu/data --field orientation
 ros2 topic pub /my_robot/cmd_vel geometry_msgs/msg/Twist '{linear: {x: 0.5}, angular: {z: 0.2}}'
 ```
 
-#### Expected Output
-- Robot should appear in Gazebo with all sensors functional
-- All sensor topics should be publishing data
-- Robot should respond to velocity commands and move
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Robot should appear in Gazebo with all sensors functional
+- • All sensor topics should be publishing data
+- • Robot should respond to velocity commands and move
 
-#### Challenges
-- Add additional sensors (LIDAR, force-torque)
-- Implement custom sensor processing
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Add additional sensors (LIDAR, force-torque)
+- • Implement custom sensor processing
 
-#### Hints
-- Ensure proper namespace configuration in plugins
-- Verify plugin filenames match your Gazebo-ROS version
-- Check that sensor topics match your processing nodes
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Ensure proper namespace configuration in plugins
+- • Verify plugin filenames match your Gazebo-ROS version
+- • Check that sensor topics match your processing nodes
 
 </details>
 
 <details>
 <summary>Exercise 2.5.2: Advanced Sensor Integration and Processing (⭐⭐, ~45 min)</summary>
 
-### Exercise 2.5.2: Advanced Sensor Integration and Processing
+<h3 className="third-heading">
+- Exercise 2.5.2: Advanced Sensor Integration and Processing
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐ (Intermediate)
 **Time Estimate**: 45 minutes
 **Requirements**: Understanding of ROS 2 nodes, sensor processing, computer vision
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Create a complete sensor processing pipeline:
-- Camera data processing node for object detection
-- LIDAR data processing for obstacle detection
-- IMU data processing for orientation estimation
-- Fusion of multiple sensor data streams
-- Visualization of processed sensor data
+- • Camera data processing node for object detection
+- • LIDAR data processing for obstacle detection
+- • IMU data processing for orientation estimation
+- • Fusion of multiple sensor data streams
+- • Visualization of processed sensor data
 
-#### Success Criteria
-- [ ] Camera processing node detects objects in simulation
-- [ ] LIDAR processing node identifies obstacles
-- [ ] IMU data is properly integrated for orientation
-- [ ] Sensor fusion provides consistent state estimate
-- [ ] Processed data is visualized in RViz2
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Camera processing node detects objects in simulation
+- • [ ] LIDAR processing node identifies obstacles
+- • [ ] IMU data is properly integrated for orientation
+- • [ ] Sensor fusion provides consistent state estimate
+- • [ ] Processed data is visualized in RViz2
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Launch the complete sensor processing pipeline
 ros2 launch my_robot_perception sensor_processing.launch.py
@@ -123,47 +162,68 @@ rqt_plot /my_robot/orientation:x /my_robot/orientation:y /my_robot/orientation:z
 ros2 run rviz2 rviz2 -d config/sensor_fusion.rviz
 ```
 
-#### Expected Output
-- Object detection should work in simulated camera feed
-- Obstacle detection should identify simulated objects
-- Orientation should be accurately calculated from IMU data
-- Sensor fusion should provide consistent state estimates
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Object detection should work in simulated camera feed
+- • Obstacle detection should identify simulated objects
+- • Orientation should be accurately calculated from IMU data
+- • Sensor fusion should provide consistent state estimates
 
-#### Challenges
-- Implement sensor fusion using Kalman filters
-- Add more sophisticated computer vision algorithms
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement sensor fusion using Kalman filters
+- • Add more sophisticated computer vision algorithms
 
-#### Hints
-- Use cv_bridge for camera data conversion
-- Implement proper coordinate transformations
-- Use tf2 for frame transformations between sensors
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Use cv_bridge for camera data conversion
+- • Implement proper coordinate transformations
+- • Use tf2 for frame transformations between sensors
 
 </details>
 
 <details>
 <summary>Exercise 2.5.3: Multi-Robot Coordination and Control (⭐⭐⭐, ~60 min)</summary>
 
-### Exercise 2.5.3: Multi-Robot Coordination and Control
+<h3 className="third-heading">
+- Exercise 2.5.3: Multi-Robot Coordination and Control
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐⭐ (Advanced)
 **Time Estimate**: 60 minutes
 **Requirements**: Advanced ROS 2 knowledge, multi-robot systems, coordination algorithms
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Implement a multi-robot simulation with coordination:
-- Multiple robots with individual namespaces
-- Centralized coordination node
-- Collision avoidance between robots
-- Task allocation and distribution
-- Communication between robots
+- • Multiple robots with individual namespaces
+- • Centralized coordination node
+- • Collision avoidance between robots
+- • Task allocation and distribution
+- • Communication between robots
 
-#### Success Criteria
-- [ ] Multiple robots operate in the same simulation
-- [ ] Coordination algorithm prevents collisions
-- [ ] Tasks are properly distributed among robots
-- [ ] Communication network functions correctly
-- [ ] System maintains performance with multiple robots
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Multiple robots operate in the same simulation
+- • [ ] Coordination algorithm prevents collisions
+- • [ ] Tasks are properly distributed among robots
+- • [ ] Communication network functions correctly
+- • [ ] System maintains performance with multiple robots
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Launch multi-robot simulation
 ros2 launch my_robot_multi simulation.launch.py
@@ -186,50 +246,71 @@ ros2 run rqt_tf_tree rqt_tf_tree
 ros2 topic echo /multi_robot/collision_avoidance/status
 ```
 
-#### Expected Output
-- Multiple robots should operate without collisions
-- Coordination algorithm should distribute tasks effectively
-- Communication should be maintained between robots
-- System performance should remain stable
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Multiple robots should operate without collisions
+- • Coordination algorithm should distribute tasks effectively
+- • Communication should be maintained between robots
+- • System performance should remain stable
 
-#### Challenges
-- Implement formation control algorithms
-- Add dynamic task reassignment based on robot capabilities
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement formation control algorithms
+- • Add dynamic task reassignment based on robot capabilities
 
-#### Hints
-- Use namespaces to separate robot topics
-- Implement proper resource locking for shared resources
-- Design efficient communication protocols to avoid network congestion
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Use namespaces to separate robot topics
+- • Implement proper resource locking for shared resources
+- • Design efficient communication protocols to avoid network congestion
 
 </details>
 
 <details>
 <summary>Exercise Summary</summary>
 
-### Exercise Summary
+<h3 className="third-heading">
+- Exercise Summary
+</h3>
+<div className="underline-class"></div>
 This chapter covered the integration of simulation environments with ROS 2 for comprehensive robotics development. You learned to create bridges between simulation and ROS 2, implement sensor and actuator integration, use ROS 2 tools for simulation control, and design workflows that mirror real-world operations. The exercises provided hands-on experience with basic bridge setup, advanced sensor processing, and multi-robot coordination.
 
 </details>
 
-## Troubleshooting
+<h2 className="second-heading">
+Troubleshooting
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Troubleshooting: ROS 2 Integration Issues</summary>
 
-### Troubleshooting: ROS 2 Integration Issues
+<h3 className="third-heading">
+- Troubleshooting: ROS 2 Integration Issues
+</h3>
+<div className="underline-class"></div>
 
-#### Problem: ROS 2 nodes cannot connect to simulation
+<h4 className="fourth-heading">
+Problem: ROS 2 nodes cannot connect to simulation
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- No sensor data being published from simulation
-- Robot not responding to ROS 2 commands
-- Topics not appearing when running `ros2 topic list`
-- Plugin loading errors in Gazebo console
+- • No sensor data being published from simulation
+- • Robot not responding to ROS 2 commands
+- • Topics not appearing when running `ros2 topic list`
+- • Plugin loading errors in Gazebo console
 
 **Causes**:
-- Incorrect Gazebo-ROS plugin configuration
-- Mismatched namespaces between plugins and ROS 2 nodes
-- Incompatible Gazebo and ROS 2 versions
-- Network/Docker configuration issues
+- • Incorrect Gazebo-ROS plugin configuration
+- • Mismatched namespaces between plugins and ROS 2 nodes
+- • Incompatible Gazebo and ROS 2 versions
+- • Network/Docker configuration issues
 
 **Solutions**:
 1. Verify plugin configuration in SDF/URDF files:
@@ -274,23 +355,26 @@ This chapter covered the integration of simulation environments with ROS 2 for c
    ```
 
 **Verification Steps**:
-- [ ] Sensor topics appear in `ros2 topic list`
-- [ ] Robot responds to command topics
-- [ ] Data is being published at expected rates
-- [ ] No error messages in Gazebo console
+- • [ ] Sensor topics appear in `ros2 topic list`
+- • [ ] Robot responds to command topics
+- • [ ] Data is being published at expected rates
+- • [ ] No error messages in Gazebo console
 
-#### Problem: Sensor data not being published or incorrect
+<h4 className="fourth-heading">
+Problem: Sensor data not being published or incorrect
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Sensor topics show no data when echoed
-- Data values are out of expected range
-- High latency in sensor data transmission
-- Inconsistent frame rates
+- • Sensor topics show no data when echoed
+- • Data values are out of expected range
+- • High latency in sensor data transmission
+- • Inconsistent frame rates
 
 **Causes**:
-- Incorrect sensor configuration in SDF/URDF
-- Missing or incorrect frame IDs
-- Improper update rates
-- Sensor parameters not properly set
+- • Incorrect sensor configuration in SDF/URDF
+- • Missing or incorrect frame IDs
+- • Improper update rates
+- • Sensor parameters not properly set
 
 **Solutions**:
 1. Verify sensor configuration in model files:
@@ -346,23 +430,26 @@ This chapter covered the integration of simulation environments with ROS 2 for c
    ```
 
 **Verification Steps**:
-- [ ] Sensor data is published at expected rate
-- [ ] Frame IDs are consistent and resolvable
-- [ ] Data values are within expected ranges
-- [ ] No dropped messages or high latency
+- • [ ] Sensor data is published at expected rate
+- • [ ] Frame IDs are consistent and resolvable
+- • [ ] Data values are within expected ranges
+- • [ ] No dropped messages or high latency
 
-#### Problem: Performance issues with ROS 2 integration
+<h4 className="fourth-heading">
+Problem: Performance issues with ROS 2 integration
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Low simulation real-time factor (< 0.5)
-- High CPU usage
-- Message queue overflow warnings
-- Delayed response to commands
+- • Low simulation real-time factor (< 0.5)
+- • High CPU usage
+- • Message queue overflow warnings
+- • Delayed response to commands
 
 **Causes**:
-- High sensor update rates
-- Excessive message publishing
-- Inefficient QoS settings
-- Resource contention between simulation and ROS 2
+- • High sensor update rates
+- • Excessive message publishing
+- • Inefficient QoS settings
+- • Resource contention between simulation and ROS 2
 
 **Solutions**:
 1. Optimize sensor update rates:
@@ -412,23 +499,26 @@ This chapter covered the integration of simulation environments with ROS 2 for c
    ```
 
 **Verification Steps**:
-- [ ] Simulation real-time factor is > 0.8
-- [ ] CPU usage is within acceptable limits
-- [ ] No message queue overflow warnings
-- [ ] Responsive control and feedback
+- • [ ] Simulation real-time factor is > 0.8
+- • [ ] CPU usage is within acceptable limits
+- • [ ] No message queue overflow warnings
+- • [ ] Responsive control and feedback
 
-#### Problem: Time synchronization issues
+<h4 className="fourth-heading">
+Problem: Time synchronization issues
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Timestamps in messages are inconsistent
-- TF transformations are delayed or incorrect
-- Control commands use outdated state information
-- Simulation time doesn't match ROS time
+- • Timestamps in messages are inconsistent
+- • TF transformations are delayed or incorrect
+- • Control commands use outdated state information
+- • Simulation time doesn't match ROS time
 
 **Causes**:
-- Incorrect use_sim_time parameter configuration
-- Mixed usage of simulation and system time
-- Timing issues in callbacks
-- Clock synchronization problems
+- • Incorrect use_sim_time parameter configuration
+- • Mixed usage of simulation and system time
+- • Timing issues in callbacks
+- • Clock synchronization problems
 
 **Solutions**:
 1. Ensure consistent use_sim_time configuration:
@@ -464,23 +554,26 @@ This chapter covered the integration of simulation environments with ROS 2 for c
    ```
 
 **Verification Steps**:
-- [ ] Timestamps are consistent across messages
-- [ ] TF transformations are current and accurate
-- [ ] Simulation and ROS time are synchronized
-- [ ] No timing-related errors in logs
+- • [ ] Timestamps are consistent across messages
+- • [ ] TF transformations are current and accurate
+- • [ ] Simulation and ROS time are synchronized
+- • [ ] No timing-related errors in logs
 
-#### Problem: Multi-robot namespace conflicts
+<h4 className="fourth-heading">
+Problem: Multi-robot namespace conflicts
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Robots interfere with each other's topics
-- Commands sent to wrong robot
-- TF tree conflicts
-- Parameter conflicts between robots
+- • Robots interfere with each other's topics
+- • Commands sent to wrong robot
+- • TF tree conflicts
+- • Parameter conflicts between robots
 
 **Causes**:
-- Improper namespace configuration
-- Hardcoded topic names instead of using namespaces
-- Shared parameter names
-- Inconsistent frame naming
+- • Improper namespace configuration
+- • Hardcoded topic names instead of using namespaces
+- • Shared parameter names
+- • Inconsistent frame naming
 
 **Solutions**:
 1. Use proper namespace configuration in SDF:
@@ -535,16 +628,22 @@ This chapter covered the integration of simulation environments with ROS 2 for c
    ```
 
 **Verification Steps**:
-- [ ] Each robot has isolated topic namespaces
-- [ ] Commands sent to one robot don't affect others
-- [ ] TF frames are properly separated
-- [ ] Parameters are properly isolated per robot
+- • [ ] Each robot has isolated topic namespaces
+- • [ ] Commands sent to one robot don't affect others
+- • [ ] TF frames are properly separated
+- • [ ] Parameters are properly isolated per robot
 
 </details>
 
-## Understanding ROS 2-Simulation Integration
+<h2 className="second-heading">
+Understanding ROS 2-Simulation Integration
+</h2>
+<div className="underline-class"></div>
 
-### The Simulation-Robotics Pipeline
+<h3 className="third-heading">
+- The Simulation-Robotics Pipeline
+</h3>
+<div className="underline-class"></div>
 
 ROS 2 simulation integration creates a pipeline where:
 1. Simulation environments provide realistic sensor data
@@ -553,12 +652,15 @@ ROS 2 simulation integration creates a pipeline where:
 4. The simulation responds to these commands, creating a closed loop
 
 This integration allows for:
-- Algorithm development without physical hardware
-- Testing of complex behaviors in safe environments
-- Validation of control systems before deployment
-- Parallel development of hardware and software
+- • Algorithm development without physical hardware
+- • Testing of complex behaviors in safe environments
+- • Validation of control systems before deployment
+- • Parallel development of hardware and software
 
-### Gazebo-ROS 2 Bridge Architecture
+<h3 className="third-heading">
+- Gazebo-ROS 2 Bridge Architecture
+</h3>
+<div className="underline-class"></div>
 
 The Gazebo-ROS 2 bridge operates through plugins that connect simulation to the ROS 2 middleware:
 
@@ -665,9 +767,15 @@ The Gazebo-ROS 2 bridge operates through plugins that connect simulation to the 
 </sdf>
 ```
 
-## Sensor Integration
+<h2 className="second-heading">
+Sensor Integration
+</h2>
+<div className="underline-class"></div>
 
-### Camera Integration
+<h3 className="third-heading">
+- Camera Integration
+</h3>
+<div className="underline-class"></div>
 
 Camera sensors in simulation need to publish data in formats compatible with ROS 2 computer vision pipelines:
 
@@ -741,7 +849,10 @@ if __name__ == '__main__':
     main()
 ```
 
-### LIDAR Integration
+<h3 className="third-heading">
+- LIDAR Integration
+</h3>
+<div className="underline-class"></div>
 
 LIDAR sensors provide crucial navigation data that needs to be processed by ROS 2 navigation stacks:
 
@@ -823,7 +934,10 @@ if __name__ == '__main__':
     main()
 ```
 
-### IMU Integration
+<h3 className="third-heading">
+- IMU Integration
+</h3>
+<div className="underline-class"></div>
 
 IMU sensors provide critical orientation and motion data for humanoid robots:
 
@@ -910,9 +1024,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## Actuator Integration
+<h2 className="second-heading">
+Actuator Integration
+</h2>
+<div className="underline-class"></div>
 
-### Joint Control
+<h3 className="third-heading">
+- Joint Control
+</h3>
+<div className="underline-class"></div>
 
 Controlling robot joints through ROS 2 interfaces:
 
@@ -1002,7 +1122,10 @@ if __name__ == '__main__':
     main()
 ```
 
-### Navigation Integration
+<h3 className="third-heading">
+- Navigation Integration
+</h3>
+<div className="underline-class"></div>
 
 Connecting simulation to ROS 2 navigation stack:
 
@@ -1131,9 +1254,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## Advanced Integration Patterns
+<h2 className="second-heading">
+Advanced Integration Patterns
+</h2>
+<div className="underline-class"></div>
 
-### Multi-Robot Simulation
+<h3 className="third-heading">
+- Multi-Robot Simulation
+</h3>
+<div className="underline-class"></div>
 
 Coordinating multiple robots in simulation:
 
@@ -1196,7 +1325,10 @@ if __name__ == '__main__':
     main()
 ```
 
-### Simulation Control Interface
+<h3 className="third-heading">
+- Simulation Control Interface
+</h3>
+<div className="underline-class"></div>
 
 Creating interfaces to control simulation parameters:
 
@@ -1293,7 +1425,10 @@ if __name__ == '__main__':
     main()
 ```
 
-## Launch Files for Integrated Simulation
+<h2 className="second-heading">
+Launch Files for Integrated Simulation
+</h2>
+<div className="underline-class"></div>
 
 Creating launch files that coordinate simulation and ROS 2 nodes:
 
@@ -1418,9 +1553,15 @@ def generate_launch_description():
     ])
 ```
 
-## Best Practices for Integration
+<h2 className="second-heading">
+Best Practices for Integration
+</h2>
+<div className="underline-class"></div>
 
-### Performance Optimization
+<h3 className="third-heading">
+- Performance Optimization
+</h3>
+<div className="underline-class"></div>
 
 When integrating simulation with ROS 2, performance considerations are crucial:
 
@@ -1429,7 +1570,10 @@ When integrating simulation with ROS 2, performance considerations are crucial:
 3. **QoS configuration**: Use appropriate Quality of Service settings for different data types
 4. **Resource allocation**: Monitor CPU and memory usage for optimal performance
 
-### Data Consistency
+<h3 className="third-heading">
+- Data Consistency
+</h3>
+<div className="underline-class"></div>
 
 Ensuring data consistency between simulation and ROS 2:
 
@@ -1438,7 +1582,10 @@ Ensuring data consistency between simulation and ROS 2:
 3. **Data validation**: Validate sensor data before processing
 4. **Error handling**: Implement robust error handling for disconnected components
 
-### Testing and Validation
+<h3 className="third-heading">
+- Testing and Validation
+</h3>
+<div className="underline-class"></div>
 
 Validating the integration:
 
@@ -1533,41 +1680,53 @@ if __name__ == '__main__':
     main()
 ```
 
-## Troubleshooting Common Issues
+<h2 className="second-heading">
+Troubleshooting Common Issues
+</h2>
+<div className="underline-class"></div>
 
-### Connection Problems
+<h3 className="third-heading">
+- Connection Problems
+</h3>
+<div className="underline-class"></div>
 
 **Problem**: ROS 2 nodes cannot connect to simulation
 **Solutions**:
-- Verify Gazebo-ROS plugins are properly loaded
-- Check namespace configurations match
-- Confirm DDS domain settings are consistent
-- Verify network connectivity if running distributed
+- • Verify Gazebo-ROS plugins are properly loaded
+- • Check namespace configurations match
+- • Confirm DDS domain settings are consistent
+- • Verify network connectivity if running distributed
 
 **Problem**: Sensor data not being published
 **Solutions**:
-- Check plugin configuration in SDF/URDF
-- Verify topic names and namespaces
-- Confirm sensor models are properly defined
-- Check simulation is running with correct time settings
+- • Check plugin configuration in SDF/URDF
+- • Verify topic names and namespaces
+- • Confirm sensor models are properly defined
+- • Check simulation is running with correct time settings
 
-### Performance Issues
+<h3 className="third-heading">
+- Performance Issues
+</h3>
+<div className="underline-class"></div>
 
 **Problem**: Simulation runs slowly with ROS 2 integration
 **Solutions**:
-- Reduce sensor update rates
-- Limit the number of active sensors
-- Optimize QoS settings for network efficiency
-- Use appropriate physics parameters
+- • Reduce sensor update rates
+- • Limit the number of active sensors
+- • Optimize QoS settings for network efficiency
+- • Use appropriate physics parameters
 
 **Problem**: High CPU usage
 **Solutions**:
-- Monitor and optimize node execution
-- Reduce unnecessary message publications
-- Use efficient data structures in callbacks
-- Consider multi-threaded executors for complex nodes
+- • Monitor and optimize node execution
+- • Reduce unnecessary message publications
+- • Use efficient data structures in callbacks
+- • Consider multi-threaded executors for complex nodes
 
-## Summary
+<h2 className="second-heading">
+Summary
+</h2>
+<div className="underline-class"></div>
 
 ROS 2 integration with simulation environments creates a powerful development platform for humanoid robotics. By properly connecting sensors, actuators, and control systems, developers can create comprehensive testing environments that bridge the gap between simulation and reality. The key is establishing robust communication patterns, optimizing performance, and maintaining consistency between virtual and real-world behaviors.
 

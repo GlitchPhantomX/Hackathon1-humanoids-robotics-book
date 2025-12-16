@@ -1,5 +1,9 @@
-import React from "react";
+import { ReactNode } from "react";
 
-export default function Root({ children }: any) {
+interface RootProps {
+  children: ReactNode;
+}
+
+export default function Root({ children }: RootProps) {
   return <>{children}</>;
 }

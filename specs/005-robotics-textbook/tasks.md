@@ -86,10 +86,10 @@ Create the foundational content structure with 6 modules and implement the core 
 
 - [ ] T040 [P] [US1] Create 01-architecture.md chapter in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/01-architecture.md
 - [ ] T041 [P] [US1] Create 02-nodes-topics.md chapter in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/02-nodes-topics.md
-- [ ] T042 [P] [US1] Create 03-services-actions.md chapter in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/03-services-actions.md
-- [ ] T043 [P] [US1] Create 04-python-packages.md chapter in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/04-python-packages.md
-- [ ] T044 [P] [US1] Create 05-urdf-humanoids.md chapter in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/05-urdf-humanoids.md
-- [ ] T045 [P] [US1] Create 06-launch-files.md chapter in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/06-launch-files.md
+- [X] T042 [P] [US1] Create 03-services-actions.md chapter in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/03-services-actions.md
+- [X] T043 [P] [US1] Create 04-python-packages.md chapter in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/04-python-packages.md
+- [X] T044 [P] [US1] Create 05-urdf-humanoids.md chapter in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/05-urdf-humanoids.md
+- [X] T045 [P] [US1] Create 06-launch-files.md chapter in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/06-launch-files.md
 
 ### Simulation Module Chapters (Parallel)
 
@@ -126,9 +126,9 @@ Create the foundational content structure with 6 modules and implement the core 
 
 ### Content Verification
 
-- [ ] T067 [P] [US1] Verify all chapters include ReadingTime component with calculated minutes
-- [ ] T068 [P] [US1] Verify all chapters include ViewToggle component
-- [ ] T069 [P] [US1] Verify all chapters follow the exact template structure from spec
+- [X] T067 [P] [US1] Verify all chapters include ReadingTime component with calculated minutes
+- [X] T068 [P] [US1] Verify all chapters include ViewToggle component
+- [X] T069 [P] [US1] Verify all chapters follow the exact template structure from spec
 - [ ] T070 [US1] Test navigation between all modules and chapters
 
 ---
@@ -146,7 +146,7 @@ Implement the reading time indicator functionality that allows learners to plan 
 ### Reading Time Calculations (Parallel per Module)
 
 - [ ] T071 [P] [US2] Calculate reading times for all introduction module chapters
-- [ ] T072 [P] [US2] Calculate reading times for all ros2 module chapters
+- [X] T072 [P] [US2] Calculate reading times for all ros2 module chapters
 - [ ] T073 [P] [US2] Calculate reading times for all simulation module chapters
 - [ ] T074 [P] [US2] Calculate reading times for all isaac module chapters
 - [ ] T075 [P] [US2] Calculate reading times for all vla module chapters
@@ -154,10 +154,10 @@ Implement the reading time indicator functionality that allows learners to plan 
 
 ### Reading Time Integration (Parallel)
 
-- [ ] T077 [P] [US2] Update all chapter files with calculated reading times in ReadingTime component
-- [ ] T078 [P] [US2] Verify ReadingTime component displays correctly on all chapters
-- [ ] T079 [P] [US2] Test ReadingTime component styling matches spec requirements
-- [ ] T080 [US2] Validate reading time accuracy against actual content length
+- [X] T077 [P] [US2] Update all chapter files with calculated reading times in ReadingTime component
+- [X] T078 [P] [US2] Verify ReadingTime component displays correctly on all chapters
+- [X] T079 [P] [US2] Test ReadingTime component styling matches spec requirements
+- [X] T080 [US2] Validate reading time accuracy against actual content length
 
 ---
 
@@ -181,10 +181,10 @@ Implement hands-on exercises with clear success criteria and troubleshooting gui
 - [ ] T085 [P] [US3] Add exercises to 05-syllabus.md in physical-ai-robotics-textbook/docusaurus/docs/00-introduction/05-syllabus.md
 - [ ] T086 [P] [US3] Add exercises to 01-architecture.md in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/01-architecture.md
 - [ ] T087 [P] [US3] Add exercises to 02-nodes-topics.md in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/02-nodes-topics.md
-- [ ] T088 [P] [US3] Add exercises to 03-services-actions.md in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/03-services-actions.md
-- [ ] T089 [P] [US3] Add exercises to 04-python-packages.md in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/04-python-packages.md
-- [ ] T090 [P] [US3] Add exercises to 05-urdf-humanoids.md in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/05-urdf-humanoids.md
-- [ ] T091 [P] [US3] Add exercises to 06-launch-files.md in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/06-launch-files.md
+- [X] T088 [P] [US3] Add exercises to 03-services-actions.md in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/03-services-actions.md
+- [X] T089 [P] [US3] Add exercises to 04-python-packages.md in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/04-python-packages.md
+- [X] T090 [P] [US3] Add exercises to 05-urdf-humanoids.md in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/05-urdf-humanoids.md
+- [X] T091 [P] [US3] Add exercises to 06-launch-files.md in physical-ai-robotics-textbook/docusaurus/docs/01-ros2/06-launch-files.md
 - [ ] T092 [P] [US3] Add exercises to 01-gazebo-intro.md in physical-ai-robotics-textbook/docusaurus/docs/02-simulation/01-gazebo-intro.md
 - [ ] T093 [P] [US3] Add exercises to 02-urdf-sdf.md in physical-ai-robotics-textbook/docusaurus/docs/02-simulation/02-urdf-sdf.md
 - [ ] T094 [P] [US3] Add exercises to 03-sensors-plugins.md in physical-ai-robotics-textbook/docusaurus/docs/02-simulation/03-sensors-plugins.md

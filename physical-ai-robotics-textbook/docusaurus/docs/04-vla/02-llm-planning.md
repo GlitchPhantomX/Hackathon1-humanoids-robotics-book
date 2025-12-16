@@ -3,51 +3,69 @@ sidebar_position: 2
 title: "Large Language Model Planning"
 description: "Using LLMs for high-level robotic task planning and decision making"
 ---
-
-# Large Language Model Planning
+# <h1 className="main-heading">Large Language Model Planning</h1>
+<div className="underline-class"></div>
 
 import ReadingTime from '@site/src/components/ReadingTime';
 import ViewToggle from '@site/src/components/ViewToggle';
 
 <ReadingTime minutes={94} />
 
-<ViewToggle />
+<!-- <ViewToggle /> -->
 
-## Learning Objectives
+<h2 className="second-heading">
+Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 After completing this chapter, you will be able to:
-- Understand how Large Language Models (LLMs) can be used for robotic task planning
-- Implement LLM-based planning systems for complex robotic tasks
-- Design prompt engineering strategies for effective robot planning
-- Integrate LLM planners with robotic execution systems
-- Evaluate the effectiveness and limitations of LLM-based planning
+- • Understand how Large Language Models (LLMs) can be used for robotic task planning
+- • Implement LLM-based planning systems for complex robotic tasks
+- • Design prompt engineering strategies for effective robot planning
+- • Integrate LLM planners with robotic execution systems
+- • Evaluate the effectiveness and limitations of LLM-based planning
 
-## Exercises
+<h2 className="second-heading">
+Exercises
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Exercise 4.2.1: Basic LLM Planner Implementation (⭐, ~35 min)</summary>
 
-### Exercise 4.2.1: Basic LLM Planner Implementation
+<h3 className="third-heading">
+- Exercise 4.2.1: Basic LLM Planner Implementation
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐ (Beginner)
 **Time Estimate**: 35 minutes
 **Requirements**: LLM API access (OpenAI, Claude, or similar), Python environment, basic understanding of task planning
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Create a basic LLM-based task planner:
-- Set up LLM API connection
-- Implement simple task decomposition
-- Create plan execution interface
-- Add basic validation and error handling
-- Test with simple robotic tasks
+- • Set up LLM API connection
+- • Implement simple task decomposition
+- • Create plan execution interface
+- • Add basic validation and error handling
+- • Test with simple robotic tasks
 
-#### Success Criteria
-- [ ] LLM API connection is established successfully
-- [ ] Task decomposition works for simple instructions
-- [ ] Plan execution interface functions correctly
-- [ ] Error handling is implemented properly
-- [ ] Basic validation checks pass
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] LLM API connection is established successfully
+- • [ ] Task decomposition works for simple instructions
+- • [ ] Plan execution interface functions correctly
+- • [ ] Error handling is implemented properly
+- • [ ] Basic validation checks pass
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Verify LLM API access
 python3 -c "
@@ -105,48 +123,69 @@ print('Test results:', test_results)
 "
 ```
 
-#### Expected Output
-- LLM API should connect without errors
-- Task decomposition should produce actionable steps
-- Plan format should be valid and executable
-- Error handling should catch and report issues appropriately
-- Basic validation should confirm plan correctness
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • LLM API should connect without errors
+- • Task decomposition should produce actionable steps
+- • Plan format should be valid and executable
+- • Error handling should catch and report issues appropriately
+- • Basic validation should confirm plan correctness
 
-#### Challenges
-- Implement fallback strategies when LLM is unavailable
-- Add caching mechanisms for repeated planning requests
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement fallback strategies when LLM is unavailable
+- • Add caching mechanisms for repeated planning requests
 
-#### Hints
-- Start with simple prompts and gradually increase complexity
-- Validate plan steps before attempting execution
-- Use appropriate error handling for API failures
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Start with simple prompts and gradually increase complexity
+- • Validate plan steps before attempting execution
+- • Use appropriate error handling for API failures
 
 </details>
 
 <details>
 <summary>Exercise 4.2.2: Advanced Task Planning with World State Integration (⭐⭐, ~50 min)</summary>
 
-### Exercise 4.2.2: Advanced Task Planning with World State Integration
+<h3 className="third-heading">
+- Exercise 4.2.2: Advanced Task Planning with World State Integration
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐ (Intermediate)
 **Time Estimate**: 50 minutes
 **Requirements**: Understanding of world state representation, LLM integration, robotic planning concepts
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Create an advanced LLM planner that incorporates world state:
-- Implement world state observation and update
-- Create context-aware planning system
-- Add plan refinement based on execution feedback
-- Integrate with ROS 2 for real-time state updates
-- Implement plan monitoring and replanning
+- • Implement world state observation and update
+- • Create context-aware planning system
+- • Add plan refinement based on execution feedback
+- • Integrate with ROS 2 for real-time state updates
+- • Implement plan monitoring and replanning
 
-#### Success Criteria
-- [ ] World state is properly observed and represented
-- [ ] Planning incorporates current world state information
-- [ ] Plan refinement works based on execution feedback
-- [ ] ROS 2 integration updates state in real-time
-- [ ] Plan monitoring detects execution failures
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] World state is properly observed and represented
+- • [ ] Planning incorporates current world state information
+- • [ ] Plan refinement works based on execution feedback
+- • [ ] ROS 2 integration updates state in real-time
+- • [ ] Plan monitoring detects execution failures
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Launch world state observation system
 ros2 run llm_planning world_state_observer --ros-args -p observation_frequency:=1.0
@@ -187,49 +226,70 @@ ros2 topic echo /llm_planner/world_state --field timestamp --field objects --fie
 ros2 run llm_planning plan_monitor --ros-args -p check_interval:=0.5
 ```
 
-#### Expected Output
-- World state should be accurately observed and represented
-- Plans should incorporate current state information
-- Plan refinement should adapt to execution feedback
-- ROS 2 topics should update state in real-time
-- Replanning should occur when execution fails
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • World state should be accurately observed and represented
+- • Plans should incorporate current state information
+- • Plan refinement should adapt to execution feedback
+- • ROS 2 topics should update state in real-time
+- • Replanning should occur when execution fails
 
-#### Challenges
-- Implement real-time world state updates during plan execution
-- Handle conflicting information in world state
-- Create efficient state representation for complex environments
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement real-time world state updates during plan execution
+- • Handle conflicting information in world state
+- • Create efficient state representation for complex environments
 
-#### Hints
-- Use structured world state representation with clear semantics
-- Implement efficient state update mechanisms
-- Design plan monitoring with appropriate failure detection thresholds
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Use structured world state representation with clear semantics
+- • Implement efficient state update mechanisms
+- • Design plan monitoring with appropriate failure detection thresholds
 
 </details>
 
 <details>
 <summary>Exercise 4.2.3: Multi-Agent LLM Coordination for Team Robotics (⭐⭐⭐, ~65 min)</summary>
 
-### Exercise 4.2.3: Multi-Agent LLM Coordination for Team Robotics
+<h3 className="third-heading">
+- Exercise 4.2.3: Multi-Agent LLM Coordination for Team Robotics
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐⭐ (Advanced)
 **Time Estimate**: 65 minutes
 **Requirements**: Multi-agent systems knowledge, advanced LLM integration, team coordination concepts
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Implement multi-agent LLM coordination for team robotics:
-- Create distributed planning system across multiple agents
-- Implement task allocation and coordination
-- Design communication protocols between agents
-- Add conflict resolution mechanisms
-- Validate coordinated execution performance
+- • Create distributed planning system across multiple agents
+- • Implement task allocation and coordination
+- • Design communication protocols between agents
+- • Add conflict resolution mechanisms
+- • Validate coordinated execution performance
 
-#### Success Criteria
-- [ ] Multiple LLM agents coordinate effectively
-- [ ] Task allocation works across team members
-- [ ] Communication protocols function properly
-- [ ] Conflict resolution handles resource contention
-- [ ] Coordinated execution meets performance requirements
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Multiple LLM agents coordinate effectively
+- • [ ] Task allocation works across team members
+- • [ ] Communication protocols function properly
+- • [ ] Conflict resolution handles resource contention
+- • [ ] Coordinated execution meets performance requirements
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Launch multi-agent planning system
 ros2 launch llm_planning multi_agent_planning.launch.py
@@ -273,52 +333,73 @@ ros2 run llm_planning team_performance_evaluator --ros-args -p metrics:=all
 ros2 action send_goal /team_execute_task llm_planning/action/TeamExecuteTask "{task_description: 'Clean the kitchen', required_agents: ['robot_1', 'robot_2']}"
 ```
 
-#### Expected Output
-- Multiple agents should coordinate effectively on shared tasks
-- Task allocation should be efficient and balanced
-- Communication should occur without conflicts
-- Resource conflicts should be resolved appropriately
-- Team performance should exceed individual agent performance
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Multiple agents should coordinate effectively on shared tasks
+- • Task allocation should be efficient and balanced
+- • Communication should occur without conflicts
+- • Resource conflicts should be resolved appropriately
+- • Team performance should exceed individual agent performance
 
-#### Challenges
-- Implement dynamic task re-allocation based on agent availability
-- Create efficient communication protocols to minimize overhead
-- Handle agent failures gracefully in coordination system
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement dynamic task re-allocation based on agent availability
+- • Create efficient communication protocols to minimize overhead
+- • Handle agent failures gracefully in coordination system
 
-#### Hints
-- Use leader-follower patterns for coordination
-- Implement distributed consensus mechanisms for critical decisions
-- Design communication protocols with appropriate redundancy
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Use leader-follower patterns for coordination
+- • Implement distributed consensus mechanisms for critical decisions
+- • Design communication protocols with appropriate redundancy
 
 </details>
 
 <details>
 <summary>Exercise Summary</summary>
 
-### Exercise Summary
+<h3 className="third-heading">
+- Exercise Summary
+</h3>
+<div className="underline-class"></div>
 This chapter covered Large Language Model planning for robotic systems. You learned about basic LLM planner implementation, advanced task planning with world state integration, and multi-agent coordination for team robotics. The exercises provided hands-on experience with setting up LLM-based planning systems, incorporating contextual information, and coordinating multiple robotic agents using LLMs.
 
 </details>
 
-## Troubleshooting
+<h2 className="second-heading">
+Troubleshooting
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Troubleshooting: LLM Planning Issues</summary>
 
-### Troubleshooting: LLM Planning Issues
+<h3 className="third-heading">
+- Troubleshooting: LLM Planning Issues
+</h3>
+<div className="underline-class"></div>
 
-#### Problem: LLM API connection fails or times out
+<h4 className="fourth-heading">
+Problem: LLM API connection fails or times out
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Connection errors when calling LLM APIs
-- Timeout errors during planning requests
-- Authentication failures
-- Rate limiting errors from LLM providers
+- • Connection errors when calling LLM APIs
+- • Timeout errors during planning requests
+- • Authentication failures
+- • Rate limiting errors from LLM providers
 
 **Causes**:
-- Invalid API keys or authentication credentials
-- Network connectivity issues
-- Rate limits exceeded
-- LLM service unavailable
+- • Invalid API keys or authentication credentials
+- • Network connectivity issues
+- • Rate limits exceeded
+- • LLM service unavailable
 
 **Solutions**:
 1. Verify API credentials and configuration:
@@ -459,23 +540,26 @@ This chapter covered Large Language Model planning for robotic systems. You lear
    ```
 
 **Verification Steps**:
-- [ ] LLM API connects without authentication errors
-- [ ] Planning requests complete within acceptable time
-- [ ] Rate limits are properly handled
-- [ ] Fallback mechanisms work when primary LLM is unavailable
+- • [ ] LLM API connects without authentication errors
+- • [ ] Planning requests complete within acceptable time
+- • [ ] Rate limits are properly handled
+- • [ ] Fallback mechanisms work when primary LLM is unavailable
 
-#### Problem: LLM generates invalid or unsafe plans
+<h4 className="fourth-heading">
+Problem: LLM generates invalid or unsafe plans
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Generated plans contain syntax errors
-- Plans include invalid robot actions
-- Plans result in unsafe robot behaviors
-- Planning output doesn't match expected format
+- • Generated plans contain syntax errors
+- • Plans include invalid robot actions
+- • Plans result in unsafe robot behaviors
+- • Planning output doesn't match expected format
 
 **Causes**:
-- Poor prompt engineering
-- Insufficient validation of LLM output
-- Lack of safety constraints in planning
-- Inadequate action space definition
+- • Poor prompt engineering
+- • Insufficient validation of LLM output
+- • Lack of safety constraints in planning
+- • Inadequate action space definition
 
 **Solutions**:
 1. Implement structured prompting and validation:
@@ -723,23 +807,26 @@ This chapter covered Large Language Model planning for robotic systems. You lear
    ```
 
 **Verification Steps**:
-- [ ] Generated plans follow correct JSON format
-- [ ] All actions are valid and executable by the robot
-- [ ] Safety constraints are properly enforced
-- [ ] Invalid plans are rejected with appropriate error messages
+- • [ ] Generated plans follow correct JSON format
+- • [ ] All actions are valid and executable by the robot
+- • [ ] Safety constraints are properly enforced
+- • [ ] Invalid plans are rejected with appropriate error messages
 
-#### Problem: Context integration and world state management issues
+<h4 className="fourth-heading">
+Problem: Context integration and world state management issues
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- LLM ignores current world state in planning
-- Outdated world state leads to invalid plans
-- Inconsistent state representation across planning cycles
-- State updates are not propagated correctly
+- • LLM ignores current world state in planning
+- • Outdated world state leads to invalid plans
+- • Inconsistent state representation across planning cycles
+- • State updates are not propagated correctly
 
 **Causes**:
-- Poor state representation design
-- Inadequate state synchronization
-- Missing state update triggers
-- Inefficient state observation mechanisms
+- • Poor state representation design
+- • Inadequate state synchronization
+- • Missing state update triggers
+- • Inefficient state observation mechanisms
 
 **Solutions**:
 1. Implement proper world state representation:
@@ -983,23 +1070,26 @@ This chapter covered Large Language Model planning for robotic systems. You lear
    ```
 
 **Verification Steps**:
-- [ ] World state is updated with appropriate frequency
-- [ ] Robot state information is accurately reflected in planning context
-- [ ] Object and environment states are properly integrated
-- [ ] State changes are propagated to the LLM planner in real-time
+- • [ ] World state is updated with appropriate frequency
+- • [ ] Robot state information is accurately reflected in planning context
+- • [ ] Object and environment states are properly integrated
+- • [ ] State changes are propagated to the LLM planner in real-time
 
-#### Problem: Performance issues with LLM planning
+<h4 className="fourth-heading">
+Problem: Performance issues with LLM planning
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- High latency in plan generation
-- Excessive API costs from frequent LLM calls
-- Memory consumption issues with long planning sessions
-- Bottlenecks in the planning pipeline
+- • High latency in plan generation
+- • Excessive API costs from frequent LLM calls
+- • Memory consumption issues with long planning sessions
+- • Bottlenecks in the planning pipeline
 
 **Causes**:
-- Inefficient prompt construction
-- Too frequent LLM calls
-- Large context windows causing processing delays
-- Suboptimal LLM model selection
+- • Inefficient prompt construction
+- • Too frequent LLM calls
+- • Large context windows causing processing delays
+- • Suboptimal LLM model selection
 
 **Solutions**:
 1. Implement plan caching and reuse:
@@ -1233,29 +1323,38 @@ This chapter covered Large Language Model planning for robotic systems. You lear
    ```
 
 **Verification Steps**:
-- [ ] Plan generation latency is below 2 seconds for simple tasks
-- [ ] API usage is optimized through caching and batching
-- [ ] Memory consumption remains stable during long sessions
-- [ ] Planning pipeline processes tasks efficiently without bottlenecks
+- • [ ] Plan generation latency is below 2 seconds for simple tasks
+- • [ ] API usage is optimized through caching and batching
+- • [ ] Memory consumption remains stable during long sessions
+- • [ ] Planning pipeline processes tasks efficiently without bottlenecks
 
 </details>
 
-## Introduction to LLM-Based Robotic Planning
+<h2 className="second-heading">
+Introduction to LLM-Based Robotic Planning
+</h2>
+<div className="underline-class"></div>
 
 Large Language Models (LLMs) have emerged as powerful tools for robotic task planning, offering the ability to understand natural language instructions, decompose complex tasks into executable steps, and reason about the world in ways that traditional planning algorithms cannot. Unlike classical planning approaches that rely on predefined symbolic representations and logical rules, LLMs can leverage their vast knowledge of common-sense reasoning, object affordances, and procedural knowledge to generate effective plans for complex robotic tasks.
 
 In the context of robotics, LLMs serve as high-level cognitive controllers that can interpret human instructions, understand the environment, and generate sequences of actions that achieve desired goals. This chapter explores how LLMs can be integrated into robotic systems to enable sophisticated task planning and decision-making capabilities.
 
-## LLM Fundamentals for Robotics
+<h2 className="second-heading">
+LLM Fundamentals for Robotics
+</h2>
+<div className="underline-class"></div>
 
-### Understanding LLM Capabilities in Robotics
+<h3 className="third-heading">
+- Understanding LLM Capabilities in Robotics
+</h3>
+<div className="underline-class"></div>
 
 Large Language Models possess several capabilities that make them valuable for robotic planning:
 
-- **Common-sense Reasoning**: LLMs have been trained on vast amounts of text that contain implicit knowledge about how the world works
-- **Procedural Knowledge**: They understand sequences of actions required to accomplish tasks
-- **Natural Language Understanding**: They can interpret complex instructions expressed in natural language
-- **Contextual Reasoning**: They can adapt their responses based on context and constraints
+- • **Common-sense Reasoning**: LLMs have been trained on vast amounts of text that contain implicit knowledge about how the world works
+- • **Procedural Knowledge**: They understand sequences of actions required to accomplish tasks
+- • **Natural Language Understanding**: They can interpret complex instructions expressed in natural language
+- • **Contextual Reasoning**: They can adapt their responses based on context and constraints
 
 ```python
 # Example: LLM-based task decomposition
@@ -1339,7 +1438,10 @@ class LLMTaskDecomposer:
         }
 ```
 
-### Robot-Specific Prompt Engineering
+<h3 className="third-heading">
+- Robot-Specific Prompt Engineering
+</h3>
+<div className="underline-class"></div>
 
 Effective LLM-based planning requires careful prompt engineering that takes into account the specific capabilities and constraints of the robot:
 
@@ -1405,9 +1507,15 @@ class RobotPromptEngineer:
         """
 ```
 
-## Planning Architectures with LLMs
+<h2 className="second-heading">
+Planning Architectures with LLMs
+</h2>
+<div className="underline-class"></div>
 
-### Hierarchical Planning with LLMs
+<h3 className="third-heading">
+- Hierarchical Planning with LLMs
+</h3>
+<div className="underline-class"></div>
 
 LLMs can be used in hierarchical planning architectures where high-level plans are generated by the LLM and refined by lower-level planners:
 
@@ -1519,7 +1627,10 @@ class HierarchicalLLMPlanner:
         ]
 ```
 
-### Reactive Planning with LLMs
+<h3 className="third-heading">
+- Reactive Planning with LLMs
+</h3>
+<div className="underline-class"></div>
 
 LLMs can also be integrated into reactive planning systems that adapt to changing conditions:
 
@@ -1625,9 +1736,15 @@ class ReactiveLLMPlanner:
         }
 ```
 
-## Isaac Integration for LLM Planning
+<h2 className="second-heading">
+Isaac Integration for LLM Planning
+</h2>
+<div className="underline-class"></div>
 
-### Isaac LLM Components
+<h3 className="third-heading">
+- Isaac LLM Components
+</h3>
+<div className="underline-class"></div>
 
 Isaac provides specialized components for integrating LLMs with robotic systems:
 
@@ -1768,7 +1885,10 @@ class IsaacLLMPlannerNode(Node):
         self.status_pub.publish(status_msg)
 ```
 
-### Planning with Perception Integration
+<h3 className="third-heading">
+- Planning with Perception Integration
+</h3>
+<div className="underline-class"></div>
 
 LLM planning can be enhanced by integrating real-time perception data:
 
@@ -1923,9 +2043,15 @@ class PerceptionEnhancedLLMPlanner:
         ]
 ```
 
-## Prompt Engineering for Robotic Planning
+<h2 className="second-heading">
+Prompt Engineering for Robotic Planning
+</h2>
+<div className="underline-class"></div>
 
-### Effective Prompt Strategies
+<h3 className="third-heading">
+- Effective Prompt Strategies
+</h3>
+<div className="underline-class"></div>
 
 Creating effective prompts for robotic planning requires careful consideration of the robot's capabilities and constraints:
 
@@ -2071,7 +2197,10 @@ class AdvancedPromptEngineer:
         return steps
 ```
 
-### Safety and Validation Prompts
+<h3 className="third-heading">
+- Safety and Validation Prompts
+</h3>
+<div className="underline-class"></div>
 
 Safety is paramount in robotic planning, requiring specific prompt strategies:
 
@@ -2192,9 +2321,15 @@ class SafetyPromptEngineer:
             return "low"
 ```
 
-## Evaluation and Benchmarking
+<h2 className="second-heading">
+Evaluation and Benchmarking
+</h2>
+<div className="underline-class"></div>
 
-### Planning Quality Metrics
+<h3 className="third-heading">
+- Planning Quality Metrics
+</h3>
+<div className="underline-class"></div>
 
 Evaluating LLM-based planning systems requires comprehensive metrics:
 
@@ -2387,24 +2522,36 @@ class LLMPlanningEvaluator:
         return True
 ```
 
-## Best Practices and Guidelines
+<h2 className="second-heading">
+Best Practices and Guidelines
+</h2>
+<div className="underline-class"></div>
 
-### Implementation Best Practices
+<h3 className="third-heading">
+- Implementation Best Practices
+</h3>
+<div className="underline-class"></div>
 
-- **Prompt Consistency**: Use consistent prompt formats to ensure reliable LLM outputs
-- **Context Management**: Carefully manage context information to avoid overwhelming the LLM
-- **Error Handling**: Implement robust error handling for LLM failures
-- **Safety First**: Always prioritize safety in planning decisions
-- **Validation**: Validate LLM outputs before execution
+- • **Prompt Consistency**: Use consistent prompt formats to ensure reliable LLM outputs
+- • **Context Management**: Carefully manage context information to avoid overwhelming the LLM
+- • **Error Handling**: Implement robust error handling for LLM failures
+- • **Safety First**: Always prioritize safety in planning decisions
+- • **Validation**: Validate LLM outputs before execution
 
-### Performance Optimization
+<h3 className="third-heading">
+- Performance Optimization
+</h3>
+<div className="underline-class"></div>
 
-- **Caching**: Cache frequently used plans or plan components
-- **Parallel Processing**: Process multiple planning requests in parallel where possible
-- **Model Selection**: Choose appropriate LLM size based on planning complexity needs
-- **Context Window Management**: Efficiently manage context to stay within token limits
+- • **Caching**: Cache frequently used plans or plan components
+- • **Parallel Processing**: Process multiple planning requests in parallel where possible
+- • **Model Selection**: Choose appropriate LLM size based on planning complexity needs
+- • **Context Window Management**: Efficiently manage context to stay within token limits
 
-## Summary
+<h2 className="second-heading">
+Summary
+</h2>
+<div className="underline-class"></div>
 
 Large Language Model planning represents a paradigm shift in robotic task planning, enabling robots to understand complex natural language instructions and generate sophisticated plans based on common-sense reasoning and world knowledge. The integration of LLMs with robotic systems through careful prompt engineering, hierarchical planning architectures, and safety-focused validation creates powerful planning capabilities.
 
@@ -2412,7 +2559,10 @@ The key to successful LLM-based planning lies in understanding both the capabili
 
 As LLMs continue to advance, we can expect even more sophisticated planning capabilities that will enable robots to handle increasingly complex and nuanced tasks in real-world environments.
 
-## Exercises
+<h2 className="second-heading">
+Exercises
+</h2>
+<div className="underline-class"></div>
 
 1. Implement an LLM-based planner for a simple mobile robot navigation task
 2. Design prompt engineering strategies for a robotic manipulation task
@@ -2420,9 +2570,12 @@ As LLMs continue to advance, we can expect even more sophisticated planning capa
 4. Develop a safety validation system for LLM-generated robot plans
 5. Build an evaluation framework to assess the quality of LLM-based robotic plans
 
-## Further Reading
+<h2 className="second-heading">
+Further Reading
+</h2>
+<div className="underline-class"></div>
 
-- "Language Models as Zero-Shot Planners" by Chen et al.
-- "Inner Monologue: Embodied Reasoning through Planning with Language Models" by Ha et al.
-- NVIDIA Isaac documentation on AI integration
-- "Robot Learning from Language" by Misra et al.
+- • "Language Models as Zero-Shot Planners" by Chen et al.
+- • "Inner Monologue: Embodied Reasoning through Planning with Language Models" by Ha et al.
+- • NVIDIA Isaac documentation on AI integration
+- • "Robot Learning from Language" by Misra et al.

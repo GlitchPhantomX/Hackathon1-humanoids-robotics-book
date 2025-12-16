@@ -8,7 +8,7 @@ import ReadingTime from '@site/src/components/ReadingTime';
 import ViewToggle from '@site/src/components/ViewToggle';
 
 <ReadingTime minutes={20} />
-<ViewToggle />
+<!-- <ViewToggle /> -->
 
 <h1 className="main-heading">Services and Actions: Synchronous and Goal-Oriented Communication</h1>
 <div className="underline-class"></div>
@@ -57,10 +57,15 @@ Services provide a synchronous client-server communication pattern where a clien
 - ➤ **Service Client**: Makes requests to the service
 - ➤ **Service Type**: Defines request and response message types
 - ➤ **Blocking Call**: Client waits for server response
+<div className="border-line"></div>
 
-### Creating Custom Service Types
+<h3 className="third-heading">
+- Creating Custom Service Types
+</h3>
+<div className="underline-class"></div>
 
 Service types are defined in `.srv` files with the request and response separated by `---`:
+<div className="border-line"></div>
 
 ```
 # AddTwoInts.srv
@@ -70,9 +75,16 @@ int64 b
 int64 sum
 ```
 
-### Service Server Implementation
+<h3 className="third-heading">
+- Service Server Implementation
+</h3>
+<div className="underline-class"></div>
 
-#### Python Service Server
+<h4 className="fourth-heading">
+Python Service Server
+</h4>
+
+<div className="underline-class"></div>
 
 ```python
 import rclpy
@@ -100,7 +112,11 @@ if __name__ == '__main__':
     main()
 ```
 
-#### C++ Service Server
+<h4 className="fourth-heading">
+C++ Service Server
+</h4>
+
+<div className="underline-class"></div>
 
 ```cpp
 #include "rclcpp/rclcpp.hpp"
@@ -126,9 +142,16 @@ private:
 };
 ```
 
-### Service Client Implementation
+<h3 className="third-heading">
+- Service Client Implementation
+</h3>
+<div className="underline-class"></div>
 
-#### Python Service Client
+<h4 className="fourth-heading">
+Python Service Client
+</h4>
+
+<div className="underline-class"></div>
 
 ```python
 import sys
@@ -163,7 +186,11 @@ if __name__ == '__main__':
     main()
 ```
 
-#### C++ Service Client
+<h4 className="fourth-heading">
+C++ Service Client
+</h4>
+
+<div className="underline-class"></div>
 
 ```cpp
 #include "rclcpp/rclcpp.hpp"
@@ -202,20 +229,32 @@ private:
 };
 ```
 
-## Actions: Goal-Oriented Communication
+<h2 className="second-heading">
+ Actions: Goal-Oriented Communication
+</h2>
+<div className="underline-class"></div>
 
 Actions are designed for long-running tasks that provide feedback and can be canceled. They use a goal-feedback-result pattern, making them ideal for operations that take time and need to report progress.
+<div className="border-line"></div>
 
-### Action Architecture
+<h3 className="third-heading">
+- Action Architecture
+</h3>
+<div className="underline-class"></div>
 
-- **Goal**: Request for a long-running task
-- **Feedback**: Periodic updates on task progress
-- **Result**: Final outcome of the task
-- **Cancelation**: Ability to stop ongoing actions
+- ➤ **Goal**: Request for a long-running task
+- ➤ **Feedback**: Periodic updates on task progress
+- ➤ **Result**: Final outcome of the task
+- ➤ **Cancelation**: Ability to stop ongoing actions
+<div className="border-line"></div>
 
-### Creating Custom Action Types
+<h3 className="third-heading">
+- Creating Custom Action Types
+</h3>
+<div className="underline-class"></div>
 
 Action types are defined in `.action` files with goal, result, and feedback separated by `---`:
+<div className="border-line"></div>
 
 ```
 # Fibonacci.action
@@ -226,9 +265,16 @@ int32[] sequence
 int32[] partial_sequence
 ```
 
-### Action Server Implementation
+<h3 className="third-heading">
+- Action Server Implementation
+</h3>
+<div className="underline-class"></div>
 
-#### Python Action Server
+<h4 className="fourth-heading">
+Python Action Server
+</h4>
+
+<div className="underline-class"></div>
 
 ```python
 import time
@@ -298,9 +344,16 @@ if __name__ == '__main__':
     main()
 ```
 
-### Action Client Implementation
+<h3 className="third-heading">
+- Action Client Implementation
+</h3>
+<div className="underline-class"></div>
 
-#### Python Action Client
+<h4 className="fourth-heading">
+Python Action Client
+</h4>
+
+<div className="underline-class"></div>
 
 ```python
 import rclpy
@@ -355,7 +408,13 @@ if __name__ == '__main__':
     main()
 ```
 
-## Hands-On Exercises
+<h2 className="second-heading">
+ Hands-On Exercises
+</h2>
+<div className="underline-class"></div>
+
+<div className="border-line"></div>
+---
 
 :::tip Exercise 1.3.1: Robot Configuration Service Implementation
 
@@ -395,7 +454,7 @@ class RobotConfigServer(Node):
     """Service server that handles robot configuration requests."""
 
     def __init__(self):
-        """Initialize the robot configuration service server."""
+        """Initialize the robot configuration server."""
         super().__init__('robot_config_server')
 
         # TODO: Create service for robot configuration
@@ -561,6 +620,9 @@ Custom service types go in the `srv/` directory of your package and need to be l
 Use `rclpy.callback_groups.MutuallyExclusiveCallbackGroup()` for services that modify shared resources.
 </details>
 :::
+
+<div className="border-line"></div>
+---
 
 :::tip Exercise 1.3.2: Navigation Action with Feedback and Cancellation
 
@@ -843,6 +905,9 @@ Check `goal_handle.is_cancel_requested` regularly during long-running operations
 </details>
 :::
 
+<div className="border-line"></div>
+---
+
 :::tip Exercise 1.3.3: Communication Pattern Selection and Optimization
 
 **Objective**: Analyze and implement the most appropriate communication patterns for different humanoid robotics scenarios.
@@ -1085,19 +1150,23 @@ Use services for operations that need immediate results and are relatively quick
 </details>
 :::
 
+<div className="border-line"></div>
 ---
 
-## Common Issues and Debugging
+<h2 className="second-heading">
+ Common Issues and Debugging
+</h2>
+<div className="underline-class"></div>
 
 :::caution Common Problems
 
 **Problem 1: Service Connection and Discovery Issues**
 
 **Symptoms**:
-- Service client cannot find the service server
-- Error messages about service not being available
-- Service calls timing out
-- Nodes running on different machines cannot discover services
+- • Service client cannot find the service server
+- • Error messages about service not being available
+- • Service calls timing out
+- • Nodes running on different machines cannot discover services
 
 **Cause**: Service discovery in ROS 2 relies on domain IDs, network configuration, and proper service initialization. If any of these aren't set up correctly, clients cannot connect to services.
 
@@ -1123,15 +1192,16 @@ ros2 service info /service_name  # Get detailed service information
 ros2 node info /node_name  # Check node services
 ```
 
+<div className="border-line"></div>
 ---
 
 **Problem 2: Action Server and Client Communication Issues**
 
 **Symptoms**:
-- Action goals not being accepted by the server
-- Feedback messages not being received by the client
-- Action results not being delivered
-- Cancellation requests not being processed
+- • Action goals not being accepted by the server
+- • Feedback messages not being received by the client
+- • Action results not being delivered
+- • Cancellation requests not being processed
 
 **Cause**: Action communication requires proper initialization of both server and client, correct action type matching, and appropriate callback group configurations.
 
@@ -1324,11 +1394,18 @@ regular_group = node.default_callback_group  # Used for most entities
 ```
 :::
 
+<div className="border-line"></div>
 ---
 
-## When to Use Each Communication Pattern
+<h2 className="second-heading">
+ When to Use Each Communication Pattern
+</h2>
+<div className="underline-class"></div>
 
-### Topics vs Services vs Actions
+<h3 className="third-heading">
+- Topics vs Services vs Actions
+</h3>
+<div className="underline-class"></div>
 
 | Pattern | Use Case | Characteristics |
 |---------|----------|-----------------|
@@ -1336,53 +1413,85 @@ regular_group = node.default_callback_group  # Used for most entities
 | **Services** | Request-response operations | Synchronous, one-to-one, blocking |
 | **Actions** | Long-running tasks | Asynchronous, with feedback and cancellation |
 
-### Communication Pattern Selection Guide
+<h3 className="third-heading">
+- Communication Pattern Selection Guide
+</h3>
+<div className="underline-class"></div>
 
-- **Use Topics** for:
-  - Sensor data streams (LIDAR, cameras, IMU)
-  - Robot state updates (odometry, joint states)
-  - Continuous monitoring data
-  - Broadcast information to multiple subscribers
+- ➤ **Use Topics** for:
+  - ▸ Sensor data streams (LIDAR, cameras, IMU)
+  - ▸ Robot state updates (odometry, joint states)
+  - ▸ Continuous monitoring data
+  - ▸ Broadcast information to multiple subscribers
 
-- **Use Services** for:
-  - Calibration procedures
-  - Configuration changes
-  - One-time operations with immediate results
-  - Simple queries that require responses
+- ➤ **Use Services** for:
+  - ▸ Calibration procedures
+  - ▸ Configuration changes
+  - ▸ One-time operations with immediate results
+  - ▸ Simple queries that require responses
 
-- **Use Actions** for:
-  - Navigation tasks
-  - Manipulation sequences
-  - Any long-running operation requiring feedback
-  - Operations that might need cancellation
+- ➤ **Use Actions** for:
+  - ▸ Navigation tasks
+  - ▸ Manipulation sequences
+  - ▸ Any long-running operation requiring feedback
+  - ▸ Operations that might need cancellation
+  <div className="border-line"></div>
 
-## Best Practices
+<h2 className="second-heading">
+ Best Practices
+</h2>
+<div className="underline-class"></div>
 
-### Service Design
-- Keep service calls short and efficient
-- Use appropriate timeout values for service calls
-- Implement proper error handling in service callbacks
-- Avoid blocking operations in service callbacks
+<h3 className="third-heading">
+- Service Design
+</h3>
+<div className="underline-class"></div>
 
-### Action Design
-- Provide meaningful feedback during long operations
-- Implement proper cancellation handling
-- Set realistic goal acceptance criteria
-- Use appropriate callback groups for concurrency
+- ➤ Keep service calls short and efficient
+- ➤ Use appropriate timeout values for service calls
+- ➤ Implement proper error handling in service callbacks
+- ➤ Avoid blocking operations in service callbacks
+<div className="border-line"></div>
 
-### Performance Considerations
-- Avoid blocking operations in service callbacks
+<h3 className="third-heading">
+- Action Design
+</h3>
+<div className="underline-class"></div>
+
+- ➤ Provide meaningful feedback during long operations
+- ➤ Implement proper cancellation handling
+- ➤ Set realistic goal acceptance criteria
+- ➤ Use appropriate callback groups for concurrency
+<div className="border-line"></div>
+
+<h3 className="third-heading">
+- Performance Considerations
+</h3>
+<div className="underline-class"></div>
+
+- ➤ Avoid blocking operations in service callbacks
 - Use appropriate callback groups for concurrency
 - Monitor service and action response times
 - Consider QoS settings for different communication patterns
+<div className="border-line"></div>
 
-### Error Handling
-- Always check for service availability before calling
-- Handle action goal rejection appropriately
-- Implement timeout mechanisms for long operations
-- Use proper exception handling in callbacks
+<h3 className="third-heading">
+- Error Handling
+</h3>
+<div className="underline-class"></div>
 
-## Summary
+- ➤ Always check for service availability before calling
+- ➤ Handle action goal rejection appropriately
+- ➤ Implement timeout mechanisms for long operations
+- ➤ Use proper exception handling in callbacks
+
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Summary
+</h2>
+<div className="underline-class"></div>
 
 In this chapter, you learned:
 
@@ -1391,47 +1500,70 @@ In this chapter, you learned:
 - ✅ How to design appropriate communication patterns for different use cases in humanoid robotics
 - ✅ How to handle service and action responses, feedback, and errors effectively
 - ✅ How to debug common service and action issues and implement proper error handling
+<div className="border-line"></div>
 
 **Key Takeaways**:
-- Services are ideal for simple request-response operations that require immediate results
-- Actions are designed for long-running tasks that need progress feedback and cancellation
-- Proper callback group configuration is essential for concurrent execution
-- Each communication pattern has specific use cases where it excels
-- Error handling and timeout management are critical for robust operation
+- • Services are ideal for simple request-response operations that require immediate results
+- • Actions are designed for long-running tasks that need progress feedback and cancellation
+- • Proper callback group configuration is essential for concurrent execution
+- • Each communication pattern has specific use cases where it excels
+- • Error handling and timeout management are critical for robust operation
 
+<div className="border-line"></div>
 ---
 
-## Additional Resources
+<h2 className="second-heading">
+ Additional Resources
+</h2>
+<div className="underline-class"></div>
 
 **Official Documentation**:
-- [ROS 2 Services and Actions](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Using-Async-Callbacks.html)
-- [Creating Services](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Single-Package-Define-And-Use-Interface-Python.html)
+- • [ROS 2 Services and Actions](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Using-Async-Callbacks.html)
+- • [Creating Services](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Single-Package-Define-And-Use-Interface-Python.html)
 
 **Tutorials**:
-- [Writing a Simple Service and Client](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Service-And-Client.html)
-- [Writing an Action Server and Client](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-An-Action-Server-Client/Py.html)
+- • [Writing a Simple Service and Client](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Py-Service-And-Client.html)
+- • [Writing an Action Server and Client](https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-An-Action-Server-Client/Py.html)
 
 **Example Code**:
-- [ROS 2 Demos Repository](https://github.com/ros2/demos)
+- • [ROS 2 Demos Repository](https://github.com/ros2/demos)
 
+<div className="border-line"></div>
 ---
 
-**Navigation**: [← Previous Chapter](./02-nodes-topics.md) | [Next Chapter →](./04-python-packages.md)
+<h2 className="second-heading">
+ Navigation
+</h2>
+<div className="underline-class"></div>
 
+[← Previous Chapter](./02-nodes-topics.md) | [Next Chapter →](./04-python-packages.md)
+<div className="border-line"></div>
 </div>
 
 <div className="summary-content">
 
-## 📝 Chapter Summary
+<h2 className="second-heading">
+ 📝 Chapter Summary
+</h2>
+<div className="underline-class"></div>
 
-### Key Concepts
-- **Services**: Synchronous request-response communication for immediate operations
-- **Actions**: Asynchronous goal-feedback-result pattern for long-running tasks
-- **Communication Patterns**: Appropriate selection based on operation characteristics
-- **Callback Groups**: Proper concurrency management for multiple callbacks
-- **Error Handling**: Robust handling of timeouts, cancellations, and failures
+<h3 className="third-heading">
+- Key Concepts
+</h3>
+<div className="underline-class"></div>
 
-### Essential Code Pattern
+- ➤ **Services**: Synchronous request-response communication for immediate operations
+- ➤ **Actions**: Asynchronous goal-feedback-result pattern for long-running tasks
+- ➤ **Communication Patterns**: Appropriate selection based on operation characteristics
+- ➤ **Callback Groups**: Proper concurrency management for multiple callbacks
+- ➤ **Error Handling**: Robust handling of timeouts, cancellations, and failures
+<div className="border-line"></div>
+
+<h3 className="third-heading">
+- Essential Code Pattern
+</h3>
+<div className="underline-class"></div>
+
 ```python
 # Service Server Pattern
 from rclpy.node import Node
@@ -1467,7 +1599,11 @@ class ActionServerClass(Node):
         return Fibonacci.Result()
 ```
 
-### Quick Reference
+<h3 className="third-heading">
+- Quick Reference
+</h3>
+<div className="underline-class"></div>
+
 | Pattern | Use Case | Best Practice |
 |---------|----------|---------------|
 | Services | Immediate responses | Keep callbacks short, handle timeouts |
@@ -1475,13 +1611,21 @@ class ActionServerClass(Node):
 | Topics | Continuous data | Use appropriate QoS for reliability |
 | Callback Groups | Concurrency | Use Reentrant for actions, Exclusive for shared resources |
 
-### What You Built
-- Service-based configuration system
-- Action-based navigation system
-- Communication pattern selection system
-- Error handling and debugging skills
+<h3 className="third-heading">
+- What You Built
+</h3>
+<div className="underline-class"></div>
 
-### Next Steps
+- ➤ Service-based configuration system
+- ➤ Action-based navigation system
+- ➤ Communication pattern selection system
+- ➤ Error handling and debugging skills
+<div className="border-line"></div>
+<h3 className="third-heading">
+- Next Steps
+</h3>
+<div className="underline-class"></div>
+
 Continue to [Python Packages for Robotics](./04-python-packages.md) to learn about organizing and packaging your robotics code effectively.
 
 </div>

@@ -3,51 +3,69 @@ sidebar_position: 3
 title: "Natural Language for Robotics"
 description: "Understanding and processing natural language in robotic systems"
 ---
-
-# Natural Language for Robotics
+# <h1 className="main-heading">Natural Language for Robotics</h1>
+<div className="underline-class"></div>
 
 import ReadingTime from '@site/src/components/ReadingTime';
 import ViewToggle from '@site/src/components/ViewToggle';
 
 <ReadingTime minutes={131} />
 
-<ViewToggle />
+<!-- <ViewToggle /> -->
 
-## Learning Objectives
+<h2 className="second-heading">
+Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 After completing this chapter, you will be able to:
-- Understand the challenges and opportunities of natural language processing in robotics
-- Implement natural language understanding systems for robotic applications
-- Design language grounding mechanisms that connect language to perception and action
-- Create dialogue systems for human-robot interaction
-- Evaluate the effectiveness of natural language interfaces for robots
+- • Understand the challenges and opportunities of natural language processing in robotics
+- • Implement natural language understanding systems for robotic applications
+- • Design language grounding mechanisms that connect language to perception and action
+- • Create dialogue systems for human-robot interaction
+- • Evaluate the effectiveness of natural language interfaces for robots
 
-## Exercises
+<h2 className="second-heading">
+Exercises
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Exercise 4.3.1: Spatial Language Understanding Implementation (⭐, ~30 min)</summary>
 
-### Exercise 4.3.1: Spatial Language Understanding Implementation
+<h3 className="third-heading">
+- Exercise 4.3.1: Spatial Language Understanding Implementation
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐ (Beginner)
 **Time Estimate**: 30 minutes
 **Requirements**: Python environment, spaCy installation, basic understanding of spatial language concepts
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Implement a basic spatial language understanding system:
-- Set up spaCy for natural language processing
-- Create spatial reference pattern recognition
-- Implement basic spatial relation extraction
-- Connect language references to environment objects
-- Test with simple spatial commands
+- • Set up spaCy for natural language processing
+- • Create spatial reference pattern recognition
+- • Implement basic spatial relation extraction
+- • Connect language references to environment objects
+- • Test with simple spatial commands
 
-#### Success Criteria
-- [ ] spaCy NLP system is properly initialized
-- [ ] Spatial reference patterns are recognized correctly
-- [ ] Basic spatial relations are extracted from text
-- [ ] Language references connect to environment objects
-- [ ] Simple spatial commands are interpreted successfully
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] spaCy NLP system is properly initialized
+- • [ ] Spatial reference patterns are recognized correctly
+- • [ ] Basic spatial relations are extracted from text
+- • [ ] Language references connect to environment objects
+- • [ ] Simple spatial commands are interpreted successfully
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Verify spaCy installation
 python3 -c "import spacy; print('spaCy available'); spacy.load('en_core_web_sm'); print('English model loaded')"
@@ -126,48 +144,69 @@ print(f'Average processing time: {avg_time:.2f}ms per command')
 "
 ```
 
-#### Expected Output
-- spaCy should load without errors
-- Spatial language processor should recognize spatial references
-- Environment objects should be properly mapped to language references
-- Processing should be efficient (under 50ms per command)
-- Results should include entities, relationships, and target locations
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • spaCy should load without errors
+- • Spatial language processor should recognize spatial references
+- • Environment objects should be properly mapped to language references
+- • Processing should be efficient (under 50ms per command)
+- • Results should include entities, relationships, and target locations
 
-#### Challenges
-- Implement relative spatial reference resolution (left/right from robot perspective)
-- Add temporal language processing (before/after)
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement relative spatial reference resolution (left/right from robot perspective)
+- • Add temporal language processing (before/after)
 
-#### Hints
-- Use spaCy's dependency parsing for spatial relation extraction
-- Implement fallback mechanisms for when spaCy is unavailable
-- Test with various spatial prepositions and directions
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Use spaCy's dependency parsing for spatial relation extraction
+- • Implement fallback mechanisms for when spaCy is unavailable
+- • Test with various spatial prepositions and directions
 
 </details>
 
 <details>
 <summary>Exercise 4.3.2: Object Language Grounding with Vision Integration (⭐⭐, ~45 min)</summary>
 
-### Exercise 4.3.2: Object Language Grounding with Vision Integration
+<h3 className="third-heading">
+- Exercise 4.3.2: Object Language Grounding with Vision Integration
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐ (Intermediate)
 **Time Estimate**: 45 minutes
 **Requirements**: Understanding of vision-language models, CLIP, object detection, Python environment
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Create an object language grounding system:
-- Integrate vision-language models (CLIP) for object recognition
-- Implement object attribute matching (color, shape, size)
-- Connect language descriptions to visual objects
-- Create similarity scoring between text and objects
-- Test with real images and language queries
+- • Integrate vision-language models (CLIP) for object recognition
+- • Implement object attribute matching (color, shape, size)
+- • Connect language descriptions to visual objects
+- • Create similarity scoring between text and objects
+- • Test with real images and language queries
 
-#### Success Criteria
-- [ ] Vision-language model processes text-object similarities correctly
-- [ ] Object attributes are properly matched to language descriptions
-- [ ] Language-to-object grounding achieves high accuracy
-- [ ] System handles ambiguous object references
-- [ ] Performance is suitable for real-time applications
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Vision-language model processes text-object similarities correctly
+- • [ ] Object attributes are properly matched to language descriptions
+- • [ ] Language-to-object grounding achieves high accuracy
+- • [ ] System handles ambiguous object references
+- • [ ] Performance is suitable for real-time applications
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Check vision-language dependencies
 python3 -c "import clip; import torch; print('CLIP and PyTorch available')"
@@ -242,49 +281,70 @@ print(f'Objects per second: {1000/avg_time:.2f}')
 "
 ```
 
-#### Expected Output
-- CLIP model should load and process text-image pairs
-- Object grounding should match language descriptions to visual objects
-- Similarity scores should reflect actual semantic relationships
-- Ambiguous references should be handled with confidence scores
-- Performance should be suitable for real-time applications (> 10 FPS)
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • CLIP model should load and process text-image pairs
+- • Object grounding should match language descriptions to visual objects
+- • Similarity scores should reflect actual semantic relationships
+- • Ambiguous references should be handled with confidence scores
+- • Performance should be suitable for real-time applications (> 10 FPS)
 
-#### Challenges
-- Implement grounding for partially occluded objects
-- Handle language ambiguity with multiple possible interpretations
-- Optimize for resource-constrained platforms
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement grounding for partially occluded objects
+- • Handle language ambiguity with multiple possible interpretations
+- • Optimize for resource-constrained platforms
 
-#### Hints
-- Use appropriate text encodings for object descriptions
-- Implement efficient similarity calculation algorithms
-- Consider using TensorRT for hardware acceleration
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Use appropriate text encodings for object descriptions
+- • Implement efficient similarity calculation algorithms
+- • Consider using TensorRT for hardware acceleration
 
 </details>
 
 <details>
 <summary>Exercise 4.3.3: Context-Aware Dialogue System for Robotics (⭐⭐⭐, ~60 min)</summary>
 
-### Exercise 4.3.3: Context-Aware Dialogue System for Robotics
+<h3 className="third-heading">
+- Exercise 4.3.3: Context-Aware Dialogue System for Robotics
+</h3>
+<div className="underline-class"></div>
 **Difficulty**: ⭐⭐⭐ (Advanced)
 **Time Estimate**: 60 minutes
 **Requirements**: Advanced NLP knowledge, dialogue management, context tracking, ROS 2 integration
 
-#### Starter Code
+<h4 className="fourth-heading">
+Starter Code
+</h4>
+<div className="underline-class"></div>
 Develop a context-aware dialogue system:
-- Implement multi-turn conversation management
-- Create dialogue state tracking with environmental context
-- Integrate with robot perception and action systems
-- Handle clarification and confirmation requests
-- Implement error recovery and graceful degradation
+- • Implement multi-turn conversation management
+- • Create dialogue state tracking with environmental context
+- • Integrate with robot perception and action systems
+- • Handle clarification and confirmation requests
+- • Implement error recovery and graceful degradation
 
-#### Success Criteria
-- [ ] Multi-turn conversations are properly managed
-- [ ] Environmental context is maintained and updated
-- [ ] Robot actions are triggered based on dialogue understanding
-- [ ] Clarification and confirmation work effectively
-- [ ] Error recovery handles misunderstandings gracefully
+<h4 className="fourth-heading">
+Success Criteria
+</h4>
+<div className="underline-class"></div>
+- • [ ] Multi-turn conversations are properly managed
+- • [ ] Environmental context is maintained and updated
+- • [ ] Robot actions are triggered based on dialogue understanding
+- • [ ] Clarification and confirmation work effectively
+- • [ ] Error recovery handles misunderstandings gracefully
 
-#### Test Commands
+<h4 className="fourth-heading">
+Test Commands
+</h4>
+<div className="underline-class"></div>
 ```bash
 # Launch dialogue system
 ros2 run natural_language dialogue_manager --ros-args -p enable_context_tracking:=true
@@ -330,52 +390,73 @@ ros2 topic echo /dialogue/context --field robot_state --field environment --fiel
 ros2 run natural_language conversation_stress_test --ros-args -p num_conversations:=10 -p turns_per_conversation:=5
 ```
 
-#### Expected Output
-- Robot should maintain context across conversation turns
-- Responses should be appropriate to the current state and environment
-- Robot should request clarification when needed
-- Error recovery should handle ambiguous or impossible requests
-- System should maintain stable performance under conversation load
+<h4 className="fourth-heading">
+Expected Output
+</h4>
+<div className="underline-class"></div>
+- • Robot should maintain context across conversation turns
+- • Responses should be appropriate to the current state and environment
+- • Robot should request clarification when needed
+- • Error recovery should handle ambiguous or impossible requests
+- • System should maintain stable performance under conversation load
 
-#### Challenges
-- Implement coreference resolution (handling pronouns like "it", "that")
-- Create adaptive dialogue strategies based on user expertise
-- Handle interruptions and corrections during ongoing tasks
+<h4 className="fourth-heading">
+Challenges
+</h4>
+<div className="underline-class"></div>
+- • Implement coreference resolution (handling pronouns like "it", "that")
+- • Create adaptive dialogue strategies based on user expertise
+- • Handle interruptions and corrections during ongoing tasks
 
-#### Hints
-- Use dialogue act classification to understand user intentions
-- Implement context windows to limit memory usage
-- Design graceful fallback strategies for failed understanding
+<h4 className="fourth-heading">
+Hints
+</h4>
+<div className="underline-class"></div>
+- • Use dialogue act classification to understand user intentions
+- • Implement context windows to limit memory usage
+- • Design graceful fallback strategies for failed understanding
 
 </details>
 
 <details>
 <summary>Exercise Summary</summary>
 
-### Exercise Summary
+<h3 className="third-heading">
+- Exercise Summary
+</h3>
+<div className="underline-class"></div>
 This chapter covered natural language processing for robotics applications. You learned about spatial language understanding, object language grounding, and context-aware dialogue systems. The exercises provided hands-on experience with implementing spatial reference processing, vision-language integration for object grounding, and multi-turn dialogue management for human-robot interaction.
 
 </details>
 
-## Troubleshooting
+<h2 className="second-heading">
+Troubleshooting
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Troubleshooting: Natural Language Processing Issues</summary>
 
-### Troubleshooting: Natural Language Processing Issues
+<h3 className="third-heading">
+- Troubleshooting: Natural Language Processing Issues
+</h3>
+<div className="underline-class"></div>
 
-#### Problem: Natural language understanding fails to recognize commands
+<h4 className="fourth-heading">
+Problem: Natural language understanding fails to recognize commands
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Robot doesn't respond to spoken or text commands
-- NLU system reports low confidence for all inputs
-- Commands are misinterpreted or ignored
-- Error messages about unrecognized intents or entities
+- • Robot doesn't respond to spoken or text commands
+- • NLU system reports low confidence for all inputs
+- • Commands are misinterpreted or ignored
+- • Error messages about unrecognized intents or entities
 
 **Causes**:
-- Missing or incorrect spaCy language models
-- Poor language model performance in domain-specific contexts
-- Inadequate preprocessing of input text
-- Insufficient training data for domain-specific language
+- • Missing or incorrect spaCy language models
+- • Poor language model performance in domain-specific contexts
+- • Inadequate preprocessing of input text
+- • Insufficient training data for domain-specific language
 
 **Solutions**:
 1. Verify spaCy installation and models:
@@ -554,23 +635,26 @@ This chapter covered natural language processing for robotics applications. You 
    ```
 
 **Verification Steps**:
-- [ ] NLU system recognizes basic commands with acceptable accuracy
-- [ ] spaCy models are properly installed and accessible
-- [ ] Preprocessing improves recognition rates
-- [ ] Fallback mechanisms work when primary NLU fails
+- • [ ] NLU system recognizes basic commands with acceptable accuracy
+- • [ ] spaCy models are properly installed and accessible
+- • [ ] Preprocessing improves recognition rates
+- • [ ] Fallback mechanisms work when primary NLU fails
 
-#### Problem: Object grounding fails or produces incorrect matches
+<h4 className="fourth-heading">
+Problem: Object grounding fails or produces incorrect matches
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Language references don't connect to correct objects in environment
-- Wrong objects selected for manipulation tasks
-- Grounding confidence is low even for clear references
-- System cannot distinguish between similar objects
+- • Language references don't connect to correct objects in environment
+- • Wrong objects selected for manipulation tasks
+- • Grounding confidence is low even for clear references
+- • System cannot distinguish between similar objects
 
 **Causes**:
-- Inadequate object descriptions or features
-- Poor similarity calculation methods
-- Missing or incorrect environmental context
-- Insufficient disambiguation mechanisms
+- • Inadequate object descriptions or features
+- • Poor similarity calculation methods
+- • Missing or incorrect environmental context
+- • Insufficient disambiguation mechanisms
 
 **Solutions**:
 1. Improve object representation for grounding:
@@ -846,23 +930,26 @@ This chapter covered natural language processing for robotics applications. You 
    ```
 
 **Verification Steps**:
-- [ ] Object grounding achieves > 80% accuracy on test cases
-- [ ] System handles ambiguous references appropriately
-- [ ] Disambiguation requests are generated when needed
-- [ ] Grounding performance is suitable for real-time applications
+- • [ ] Object grounding achieves > 80% accuracy on test cases
+- • [ ] System handles ambiguous references appropriately
+- • [ ] Disambiguation requests are generated when needed
+- • [ ] Grounding performance is suitable for real-time applications
 
-#### Problem: Dialogue system fails to maintain context or conversation state
+<h4 className="fourth-heading">
+Problem: Dialogue system fails to maintain context or conversation state
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Robot loses track of conversation history
-- Responses are inconsistent with previous dialogue
-- Context information is not used in subsequent turns
-- Dialogue state machine gets stuck in wrong states
+- • Robot loses track of conversation history
+- • Responses are inconsistent with previous dialogue
+- • Context information is not used in subsequent turns
+- • Dialogue state machine gets stuck in wrong states
 
 **Causes**:
-- Poor context management and storage
-- Inadequate state transition logic
-- Missing conversation history tracking
-- Context not properly updated during dialogue
+- • Poor context management and storage
+- • Inadequate state transition logic
+- • Missing conversation history tracking
+- • Context not properly updated during dialogue
 
 **Solutions**:
 1. Implement robust context management:
@@ -1141,23 +1228,26 @@ This chapter covered natural language processing for robotics applications. You 
    ```
 
 **Verification Steps**:
-- [ ] Conversation history is properly maintained across turns
-- [ ] Context information is used in subsequent responses
-- [ ] State transitions occur correctly based on dialogue flow
-- [ ] Coreference resolution correctly handles pronouns and references
+- • [ ] Conversation history is properly maintained across turns
+- • [ ] Context information is used in subsequent responses
+- • [ ] State transitions occur correctly based on dialogue flow
+- • [ ] Coreference resolution correctly handles pronouns and references
 
-#### Problem: Performance issues with natural language processing
+<h4 className="fourth-heading">
+Problem: Performance issues with natural language processing
+</h4>
+<div className="underline-class"></div>
 **Symptoms**:
-- Slow response times to language commands (> 1 second)
-- High memory usage during language processing
-- CPU usage spikes during NLU operations
-- Degraded performance with longer conversations
+- • Slow response times to language commands (> 1 second)
+- • High memory usage during language processing
+- • CPU usage spikes during NLU operations
+- • Degraded performance with longer conversations
 
 **Causes**:
-- Inefficient NLU algorithms or models
-- Lack of caching for repeated language patterns
-- Memory leaks in context management
-- Suboptimal text processing pipelines
+- • Inefficient NLU algorithms or models
+- • Lack of caching for repeated language patterns
+- • Memory leaks in context management
+- • Suboptimal text processing pipelines
 
 **Solutions**:
 1. Implement caching for language understanding:
@@ -1374,14 +1464,17 @@ This chapter covered natural language processing for robotics applications. You 
    ```
 
 **Verification Steps**:
-- [ ] Language processing responds in < 500ms for most commands
-- [ ] Memory usage remains stable during extended conversations
-- [ ] CPU usage stays below 70% during normal operation
-- [ ] System maintains performance under load conditions
+- • [ ] Language processing responds in < 500ms for most commands
+- • [ ] Memory usage remains stable during extended conversations
+- • [ ] CPU usage stays below 70% during normal operation
+- • [ ] System maintains performance under load conditions
 
 </details>
 
-## Introduction to Natural Language in Robotics
+<h2 className="second-heading">
+Introduction to Natural Language in Robotics
+</h2>
+<div className="underline-class"></div>
 
 Natural language processing (NLP) in robotics represents a critical intersection between human communication and robotic action execution. Unlike traditional NLP applications that operate on text in isolation, robotic NLP must ground language in the physical world, connecting words to objects, actions, locations, and states that exist in the robot's environment.
 
@@ -1389,9 +1482,15 @@ The challenge of natural language for robotics lies in the need for spatial and 
 
 This chapter explores the specialized techniques and architectures needed to implement effective natural language interfaces for robotic systems, with a focus on the Vision-Language-Action paradigm that connects language understanding with visual perception and robotic action execution.
 
-## Language Grounding in Robotics
+<h2 className="second-heading">
+Language Grounding in Robotics
+</h2>
+<div className="underline-class"></div>
 
-### Spatial Language Understanding
+<h3 className="third-heading">
+- Spatial Language Understanding
+</h3>
+<div className="underline-class"></div>
 
 Spatial language understanding is fundamental to robotic NLP, as robots must interpret references to locations, directions, and spatial relationships in their environment:
 
@@ -1576,7 +1675,10 @@ class SpatialLanguageProcessor:
         }
 ```
 
-### Object Language Grounding
+<h3 className="third-heading">
+- Object Language Grounding
+</h3>
+<div className="underline-class"></div>
 
 Connecting language references to specific objects in the robot's environment requires sophisticated grounding mechanisms:
 
@@ -1777,9 +1879,15 @@ class ObjectLanguageGrounding:
         return None
 ```
 
-## Dialogue Systems for Human-Robot Interaction
+<h2 className="second-heading">
+Dialogue Systems for Human-Robot Interaction
+</h2>
+<div className="underline-class"></div>
 
-### Task-Oriented Dialogue Management
+<h3 className="third-heading">
+- Task-Oriented Dialogue Management
+</h3>
+<div className="underline-class"></div>
 
 Task-oriented dialogue systems enable robots to engage in meaningful conversations to understand and execute user requests:
 
@@ -1994,7 +2102,10 @@ class DialogueManager:
         return "I'm not sure how to respond to that. Could you please rephrase your request?"
 ```
 
-### Context-Aware Dialogue
+<h3 className="third-heading">
+- Context-Aware Dialogue
+</h3>
+<div className="underline-class"></div>
 
 Context-aware dialogue systems maintain conversation state and use environmental information:
 
@@ -2193,9 +2304,15 @@ class ContextAwareDialogue:
         return obj_name.lower() in known_objects
 ```
 
-## Isaac Integration for Natural Language
+<h2 className="second-heading">
+Isaac Integration for Natural Language
+</h2>
+<div className="underline-class"></div>
 
-### Isaac NLP Components
+<h3 className="third-heading">
+- Isaac NLP Components
+</h3>
+<div className="underline-class"></div>
 
 Isaac provides specialized components for natural language processing in robotic applications:
 
@@ -2453,7 +2570,10 @@ class IsaacNaturalLanguageNode(Node):
         self.get_logger().info(f'Robot says: {response}')
 ```
 
-### Language-Action Integration
+<h3 className="third-heading">
+- Language-Action Integration
+</h3>
+<div className="underline-class"></div>
 
 The connection between language understanding and robotic action execution:
 
@@ -2716,9 +2836,15 @@ class LanguageActionMapper:
             return 'grasp'  # Default action
 ```
 
-## Evaluation and Performance Metrics
+<h2 className="second-heading">
+Evaluation and Performance Metrics
+</h2>
+<div className="underline-class"></div>
 
-### Natural Language Understanding Evaluation
+<h3 className="third-heading">
+- Natural Language Understanding Evaluation
+</h3>
+<div className="underline-class"></div>
 
 Evaluating natural language systems for robotics requires specialized metrics:
 
@@ -2920,24 +3046,36 @@ class NaturalLanguageEvaluator:
         }
 ```
 
-## Best Practices and Guidelines
+<h2 className="second-heading">
+Best Practices and Guidelines
+</h2>
+<div className="underline-class"></div>
 
-### Design Principles
+<h3 className="third-heading">
+- Design Principles
+</h3>
+<div className="underline-class"></div>
 
-- **Context Awareness**: Always consider environmental context when processing language
-- **Incremental Understanding**: Build understanding incrementally rather than all at once
-- **Error Recovery**: Implement graceful error handling for misunderstood commands
-- **User Feedback**: Provide clear feedback about command interpretation and execution
-- **Safety First**: Ensure all language-interpretation results are safe to execute
+- • **Context Awareness**: Always consider environmental context when processing language
+- • **Incremental Understanding**: Build understanding incrementally rather than all at once
+- • **Error Recovery**: Implement graceful error handling for misunderstood commands
+- • **User Feedback**: Provide clear feedback about command interpretation and execution
+- • **Safety First**: Ensure all language-interpretation results are safe to execute
 
-### Performance Optimization
+<h3 className="third-heading">
+- Performance Optimization
+</h3>
+<div className="underline-class"></div>
 
-- **Efficient Parsing**: Use efficient algorithms for real-time language processing
-- **Caching**: Cache frequently accessed environmental information
-- **Parallel Processing**: Process perception and language understanding in parallel when possible
-- **Incremental Updates**: Update environmental models incrementally rather than from scratch
+- • **Efficient Parsing**: Use efficient algorithms for real-time language processing
+- • **Caching**: Cache frequently accessed environmental information
+- • **Parallel Processing**: Process perception and language understanding in parallel when possible
+- • **Incremental Updates**: Update environmental models incrementally rather than from scratch
 
-## Summary
+<h2 className="second-heading">
+Summary
+</h2>
+<div className="underline-class"></div>
 
 Natural language processing for robotics requires specialized approaches that ground language in the physical world, connecting words to objects, locations, and actions that exist in the robot's environment. The Vision-Language-Action paradigm provides a framework for integrating language understanding with perception and action execution.
 
@@ -2945,7 +3083,10 @@ Successful natural language interfaces for robots must handle spatial references
 
 The key to effective natural language robotics interfaces lies in careful attention to context awareness, grounding mechanisms, and the integration between high-level language understanding and low-level robotic execution systems.
 
-## Exercises
+<h2 className="second-heading">
+Exercises
+</h2>
+<div className="underline-class"></div>
 
 1. Implement a spatial language understanding system for a mobile robot
 2. Create a dialogue system that can handle multi-step task requests
@@ -2953,9 +3094,12 @@ The key to effective natural language robotics interfaces lies in careful attent
 4. Build an evaluation framework for natural language understanding in robotics
 5. Integrate a natural language system with a robot simulation environment
 
-## Further Reading
+<h2 className="second-heading">
+Further Reading
+</h2>
+<div className="underline-class"></div>
 
-- "Grounded Language Learning for Robotics" by Tellex et al.
-- "Natural Language Interface for Robotics: A Survey" by Matuszek et al.
-- NVIDIA Isaac documentation on natural language processing
-- "Learning to Follow Natural Language Navigation Instructions" by Chen et al.
+- • "Grounded Language Learning for Robotics" by Tellex et al.
+- • "Natural Language Interface for Robotics: A Survey" by Matuszek et al.
+- • NVIDIA Isaac documentation on natural language processing
+- • "Learning to Follow Natural Language Navigation Instructions" by Chen et al.

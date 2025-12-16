@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "title": "ہارڈ ویئر تقاضے",
+    "description": "ہیومنوائڈ روبوٹکس کے لیے ہارڈ ویئر تقاضے",
+    "language": "ur",
+    "chapter": "00-introduction",
+    "sourceFile": "00-introduction/03-hardware-requirements.md",
+    "lastUpdated": "2025-12-15T05:40:00.000Z"
+  },
+  "content": {
+    "headings": {},
+    "paragraphs": {},
+    "lists": {}
+  },
+  "html": "# ہارڈ ویئر تقاضے\n\nہیومنوائڈ روبوٹکس کے لیے درج ذیل ہارڈ ویئر ضروری ہے:\n\n## مشینی ڈیزائن\n\n- 18+ سرۏو موتورز\n- اسٹرکچرل فریم\n- بیلنس سسٹم\n\n## سینسرز\n\n- IMU (انرٹیل میزورمینٹ یونٹ)\n- کیمرہ\n- لائیڈر"
+}

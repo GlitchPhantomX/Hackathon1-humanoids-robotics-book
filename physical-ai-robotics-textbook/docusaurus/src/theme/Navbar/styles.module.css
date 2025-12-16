@@ -1,0 +1,23 @@
+.navbarContainer {
+  position: relative;
+}
+
+.languageToggleWrapper {
+  position: absolute;
+  top: 50%;
+  right: 120px;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+@media (max-width: 996px) {
+  .languageToggleWrapper {
+    right: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .languageToggleWrapper {
+    right: 60px;
+  }
+}

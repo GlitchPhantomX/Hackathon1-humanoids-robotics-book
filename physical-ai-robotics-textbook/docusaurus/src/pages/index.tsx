@@ -6,7 +6,6 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 // @ts-ignore - provided by Docusaurus theme at runtime; types are supplied by the framework
 import Layout from '@theme/Layout';
 // @ts-ignore - resolved via Docusaurus site alias; TS doesn't see the module path
-import ChatPanel from '@site/src/components/ChatPanel';
 // @ts-ignore - CSS modules are handled by the bundler, not directly by TypeScript
 import styles from './index.module.css';
 import '@site/src/styles/chatbot.css';
@@ -19,7 +18,7 @@ import LearningJourney from '../components/LearningJourney/LearningJourney';
 import PhysicalAIParadigmShift from '../components/PhysicalAIParadigmShift';
 import PhysicalAICTA from '../components/PhysicalAICTA';
 import ThreePoints from '../components/ThreePoints';
-import ChatWidget from '../components/ChatWidget'; // Import ChatWidget
+// import ChatWidget from '../components/ChatWidget'; // Import ChatWidget
 
 
 function HomepageHeader() {
@@ -41,20 +40,15 @@ function HomepageHeader() {
   );
 }
 
-export default function Home() {  // `: JSX.Element` hata diya
+export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
-  <div className="">
-   <Banner/>
-      <Layout
+    <Layout
       title={`Welcome to ${siteConfig.title}`}
-      description="Learn about Physical AI and Humanoid Robotics">
-      {/* <HomepageHeader /> */}
+      description="Learn about Physical AI and Humanoid Robotics"
+    >
+      {/* ❌ Banner yahan se remove kar diya */}
       <main>
-        {/* <div className="docs-chatbot-sidebar">
-          <ChatWidget />
-        </div> */}
-      
         <HeroSection/>
         <PhysicalAISection/>
         <ThreePoints/>
@@ -64,8 +58,6 @@ export default function Home() {  // `: JSX.Element` hata diya
         <PhysicalAICTA/>
         <Footer/>
       </main>
-
     </Layout>
-  </div>
   );
 }

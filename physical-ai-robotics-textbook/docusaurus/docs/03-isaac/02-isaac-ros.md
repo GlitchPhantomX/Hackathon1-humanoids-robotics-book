@@ -4,46 +4,78 @@ title: 'Isaac ROS: Hardware Accelerated Robotics Perception'
 description: 'Isaac ROS brings hardware acceleration to robotics perception pipelines using NVIDIA GPUs'
 ---
 
-# Isaac ROS: Hardware Accelerated Robotics Perception
+import ReadingTime from '@site/src/components/ReadingTime';
+import ViewToggle from '@site/src/components/ViewToggle';
+
+<ReadingTime minutes={20} />
+<!-- <ViewToggle /> -->
+
+<h1 className="main-heading">Isaac ROS: Hardware Accelerated Robotics Perception</h1>
+
+<div className="underline-class"></div>
 
 Isaac ROS is NVIDIA's hardware-accelerated perception pipeline that brings GPU acceleration to robotics applications. It provides optimized, plug-and-play perception and navigation capabilities designed specifically for NVIDIA hardware platforms. This chapter explores how Isaac ROS accelerates perception tasks and integrates with robotics frameworks.
 
-## Learning Objectives
+<div className="border-line"></div>
+
+<h2 className="second-heading">Learning Objectives</h2>
+
+<div className="border-line"></div>
 
 By the end of this chapter, you will be able to:
-- Understand the architecture and capabilities of Isaac ROS
-- Set up Isaac ROS for hardware-accelerated perception
-- Implement accelerated perception pipelines
-- Integrate Isaac ROS with ROS 2 applications
-- Optimize perception pipelines for performance
-- Leverage Isaac ROS for AI-powered robotics applications
+- • Understand the architecture and capabilities of Isaac ROS
+- • Set up Isaac ROS for hardware-accelerated perception
+- • Implement accelerated perception pipelines
+- • Integrate Isaac ROS with ROS 2 applications
+- • Optimize perception pipelines for performance
+- • Leverage Isaac ROS for AI-powered robotics applications
 
-## Exercises
+<div className="border-line"></div>
+
+<h2 className="second-heading">Exercises</h2>
+
+<div className="border-line"></div>
 
 <details>
 <summary>Exercise 3.2.1: Isaac ROS Installation and Basic Perception Pipeline (⭐, ~35 min)</summary>
 
-### Exercise 3.2.1: Isaac ROS Installation and Basic Perception Pipeline
+<h3 className="third-heading">Exercise 3.2.1: Isaac ROS Installation and Basic Perception Pipeline</h3>
+
+<div className="border-line"></div>
+
 **Difficulty**: ⭐ (Beginner)
 **Time Estimate**: 35 minutes
 **Requirements**: NVIDIA GPU, CUDA installation, ROS 2 Humble, Isaac ROS compatible hardware
 
-#### Starter Code
-Set up Isaac ROS and create a basic perception pipeline:
-- Install Isaac ROS packages
-- Configure GPU acceleration
-- Create a simple image processing node
-- Test hardware acceleration functionality
-- Validate basic perception capabilities
+<h4 className="fourth-heading">Starter Code</h4>
 
-#### Success Criteria
+<div className="border-line"></div>
+
+Set up Isaac ROS and create a basic perception pipeline:
+- • Install Isaac ROS packages
+- • Configure GPU acceleration
+- • Create a simple image processing node
+- • Test hardware acceleration functionality
+- • Validate basic perception capabilities
+
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Success Criteria</h4>
+
+<div className="border-line"></div>
+
 - [ ] Isaac ROS packages are installed and configured correctly
 - [ ] GPU acceleration is properly enabled and detected
 - [ ] Basic image processing node runs without errors
 - [ ] Hardware acceleration provides performance benefits
 - [ ] Perception pipeline processes data successfully
 
-#### Test Commands
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Test Commands</h4>
+
+<div className="border-line"></div>
+
 ```bash
 # Verify Isaac ROS installation
 dpkg -l | grep isaac-ros
@@ -65,48 +97,81 @@ watch -n 1 nvidia-smi
 ros2 topic list | grep isaac
 ```
 
-#### Expected Output
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Expected Output</h4>
+
+<div className="border-line"></div>
+
 - Isaac ROS packages should be installed and accessible
 - GPU should be detected and available for acceleration
 - Basic perception node should run without errors
 - Hardware acceleration should provide performance benefits
 - ROS 2 topics should be properly published/subscribed
 
-#### Challenges
-- Optimize GPU memory usage for multiple concurrent operations
-- Implement error handling for GPU failures
+<div className="border-line"></div>
 
-#### Hints
-- Ensure CUDA and TensorRT versions are compatible
-- Check system requirements before installation
-- Verify GPU compute capability meets requirements
+<h4 className="fourth-heading">Challenges</h4>
+
+<div className="border-line"></div>
+
+- • Optimize GPU memory usage for multiple concurrent operations
+- • Implement error handling for GPU failures
+
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Hints</h4>
+
+<div className="border-line"></div>
+
+- • Ensure CUDA and TensorRT versions are compatible
+- • Check system requirements before installation
+- • Verify GPU compute capability meets requirements
+
+<div className="border-line"></div>
 
 </details>
 
 <details>
 <summary>Exercise 3.2.2: Accelerated Depth Processing and Stereo Vision Pipeline (⭐⭐, ~50 min)</summary>
 
-### Exercise 3.2.2: Accelerated Depth Processing and Stereo Vision Pipeline
+<h3 className="third-heading">Exercise 3.2.2: Accelerated Depth Processing and Stereo Vision Pipeline</h3>
+
+<div className="border-line"></div>
+
 **Difficulty**: ⭐⭐ (Intermediate)
 **Time Estimate**: 50 minutes
 **Requirements**: Stereo camera setup, Isaac ROS depth processing packages, GPU acceleration
 
-#### Starter Code
-Create an accelerated depth processing pipeline:
-- Set up stereo camera input nodes
-- Implement GPU-accelerated stereo matching
-- Process depth data with Isaac ROS nodes
-- Generate 3D point clouds from depth data
-- Optimize pipeline for real-time performance
+<h4 className="fourth-heading">Starter Code</h4>
 
-#### Success Criteria
+<div className="border-line"></div>
+
+Create an accelerated depth processing pipeline:
+- • Set up stereo camera input nodes
+- • Implement GPU-accelerated stereo matching
+- • Process depth data with Isaac ROS nodes
+- • Generate 3D point clouds from depth data
+- • Optimize pipeline for real-time performance
+
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Success Criteria</h4>
+
+<div className="border-line"></div>
+
 - [ ] Stereo camera data is properly received and processed
 - [ ] GPU-accelerated stereo matching runs efficiently
 - [ ] Depth maps are generated with good quality
 - [ ] Point clouds are created from depth data
 - [ ] Pipeline achieves real-time performance
 
-#### Test Commands
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Test Commands</h4>
+
+<div className="border-line"></div>
+
 ```bash
 # Launch Isaac ROS stereo processing pipeline
 ros2 launch isaac_ros_stereo_image_proc stereo_image_proc.launch.py
@@ -128,48 +193,81 @@ ros2 run isaac_ros_utilities performance_monitor
 nvidia-smi dmon -s u -d 1
 ```
 
-#### Expected Output
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Expected Output</h4>
+
+<div className="border-line"></div>
+
 - Stereo camera images should be received in sync
 - Disparity maps should be generated with good quality
 - Point clouds should be properly formed from depth data
 - GPU utilization should be visible during processing
 - Pipeline should maintain real-time performance
 
-#### Challenges
-- Implement dynamic parameter adjustment for different lighting conditions
-- Optimize stereo matching parameters for accuracy vs. performance trade-off
+<div className="border-line"></div>
 
-#### Hints
-- Use appropriate stereo camera calibration parameters
-- Adjust block matching parameters for your specific use case
-- Monitor GPU memory usage during processing
+<h4 className="fourth-heading">Challenges</h4>
+
+<div className="border-line"></div>
+
+- • Implement dynamic parameter adjustment for different lighting conditions
+- • Optimize stereo matching parameters for accuracy vs. performance trade-off
+
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Hints</h4>
+
+<div className="border-line"></div>
+
+- • Use appropriate stereo camera calibration parameters
+- • Adjust block matching parameters for your specific use case
+- • Monitor GPU memory usage during processing
+
+<div className="border-line"></div>
 
 </details>
 
 <details>
 <summary>Exercise 3.2.3: AI-Powered Object Detection with TensorRT Acceleration (⭐⭐⭐, ~65 min)</summary>
 
-### Exercise 3.2.3: AI-Powered Object Detection with TensorRT Acceleration
+<h3 className="third-heading">Exercise 3.2.3: AI-Powered Object Detection with TensorRT Acceleration</h3>
+
+<div className="border-line"></div>
+
 **Difficulty**: ⭐⭐⭐ (Advanced)
 **Time Estimate**: 65 minutes
 **Requirements**: Isaac ROS object detection packages, TensorRT, trained model, GPU acceleration
 
-#### Starter Code
-Implement AI-powered object detection with TensorRT acceleration:
-- Load and configure TensorRT model for object detection
-- Create GPU-accelerated detection pipeline
-- Process camera input with hardware acceleration
-- Generate detection results with confidence scores
-- Optimize model for edge deployment scenarios
+<h4 className="fourth-heading">Starter Code</h4>
 
-#### Success Criteria
+<div className="border-line"></div>
+
+Implement AI-powered object detection with TensorRT acceleration:
+- • Load and configure TensorRT model for object detection
+- • Create GPU-accelerated detection pipeline
+- • Process camera input with hardware acceleration
+- • Generate detection results with confidence scores
+- • Optimize model for edge deployment scenarios
+
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Success Criteria</h4>
+
+<div className="border-line"></div>
+
 - [ ] TensorRT model loads and initializes correctly
 - [ ] Object detection runs with GPU acceleration
 - [ ] Detection results include bounding boxes and confidence
 - [ ] Pipeline achieves real-time performance
 - [ ] Model inference is optimized for edge deployment
 
-#### Test Commands
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Test Commands</h4>
+
+<div className="border-line"></div>
+
 ```bash
 # Check available Isaac ROS detection models
 ls /opt/ros/humble/lib/isaac_ros_detectnet/
@@ -200,54 +298,90 @@ nvidia-ml-py3 --version
 nvidia-smi dmon -s u -d 1
 ```
 
-#### Expected Output
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Expected Output</h4>
+
+<div className="border-line"></div>
+
 - TensorRT model should load without errors
 - Object detection should run with good performance
 - Detection results should include accurate bounding boxes
 - GPU utilization should be visible during inference
 - Pipeline should maintain high frame rate for real-time detection
 
-#### Challenges
-- Implement custom model optimization for specific use cases
-- Create model ensemble for multi-task inference
-- Optimize memory usage for multiple concurrent models
+<div className="border-line"></div>
 
-#### Hints
-- Use appropriate input resolution for your model
-- Verify TensorRT version compatibility
-- Monitor inference latency and throughput
+<h4 className="fourth-heading">Challenges</h4>
+
+<div className="border-line"></div>
+
+- • Implement custom model optimization for specific use cases
+- • Create model ensemble for multi-task inference
+- • Optimize memory usage for multiple concurrent models
+
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Hints</h4>
+
+<div className="border-line"></div>
+
+- • Use appropriate input resolution for your model
+- • Verify TensorRT version compatibility
+- • Monitor inference latency and throughput
+
+<div className="border-line"></div>
 
 </details>
 
 <details>
 <summary>Exercise Summary</summary>
 
-### Exercise Summary
+<h3 className="third-heading">Exercise Summary</h3>
+
+<div className="border-line"></div>
+
 This chapter covered Isaac ROS, NVIDIA's hardware-accelerated perception pipeline for robotics. You learned about the architecture and capabilities of Isaac ROS, how to set up and configure hardware-accelerated perception, implement accelerated perception pipelines, integrate with ROS 2 applications, optimize perception pipelines for performance, and leverage Isaac ROS for AI-powered robotics applications. The exercises provided hands-on experience with basic setup, depth processing, and AI-powered object detection.
+
+<div className="border-line"></div>
 
 </details>
 
-## Troubleshooting
+<h2 className="second-heading">Troubleshooting</h2>
+
+<div className="border-line"></div>
 
 <details>
 <summary>Troubleshooting: Isaac ROS Issues</summary>
 
-### Troubleshooting: Isaac ROS Issues
+<h3 className="third-heading">Troubleshooting: Isaac ROS Issues</h3>
 
-#### Problem: Isaac ROS packages fail to install or build
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Problem: Isaac ROS packages fail to install or build</h4>
+
+<div className="border-line"></div>
+
 **Symptoms**:
-- Installation commands fail with dependency errors
-- Build process fails with CUDA-related errors
-- Package manager reports missing dependencies
-- Isaac ROS nodes are not found after installation
+- • Installation commands fail with dependency errors
+- • Build process fails with CUDA-related errors
+- • Package manager reports missing dependencies
+- • Isaac ROS nodes are not found after installation
+
+<div className="border-line"></div>
 
 **Causes**:
-- Incompatible CUDA or TensorRT versions
-- Missing system dependencies
-- Incorrect ROS 2 distribution
-- Hardware compatibility issues
+- • Incompatible CUDA or TensorRT versions
+- • Missing system dependencies
+- • Incorrect ROS 2 distribution
+- • Hardware compatibility issues
 
-**Solutions**:
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Solutions</h4>
+
+<div className="border-line"></div>
+
 1. Verify system compatibility and requirements:
    ```bash
    # Check CUDA version compatibility
@@ -267,6 +401,8 @@ This chapter covered Isaac ROS, NVIDIA's hardware-accelerated perception pipelin
    lsb_release -a
    ```
 
+<div className="border-line"></div>
+
 2. Install required dependencies:
    ```bash
    # Update system packages
@@ -284,6 +420,8 @@ This chapter covered Isaac ROS, NVIDIA's hardware-accelerated perception pipelin
    sudo apt install ros-humble-image-transport
    ```
 
+<div className="border-line"></div>
+
 3. Verify Isaac ROS installation:
    ```bash
    # Check available Isaac ROS packages
@@ -295,6 +433,8 @@ This chapter covered Isaac ROS, NVIDIA's hardware-accelerated perception pipelin
    # Verify Isaac ROS common installation
    python3 -c "import isaac_ros_common; print('Isaac ROS common available')"
    ```
+
+<div className="border-line"></div>
 
 4. Install Isaac ROS using Docker (alternative approach):
    ```bash
@@ -309,26 +449,43 @@ This chapter covered Isaac ROS, NVIDIA's hardware-accelerated perception pipelin
      nvcr.io/nvidia/isaac-ros/isaac_ros_common:latest
    ```
 
-**Verification Steps**:
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Verification Steps</h4>
+
+<div className="border-line"></div>
+
 - [ ] Isaac ROS packages are listed in ros2 pkg list
 - [ ] Required dependencies are installed
 - [ ] CUDA and TensorRT are properly configured
 - [ ] Isaac ROS nodes can be executed
 
-#### Problem: GPU acceleration not working or not detected
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Problem: GPU acceleration not working or not detected</h4>
+
+<div className="border-line"></div>
+
 **Symptoms**:
-- Isaac ROS nodes run but without GPU acceleration
-- CPU usage is high while GPU remains idle
-- Performance is similar to CPU-only processing
-- CUDA errors in console output
+- • Isaac ROS nodes run but without GPU acceleration
+- • CPU usage is high while GPU remains idle
+- • Performance is similar to CPU-only processing
+- • CUDA errors in console output
+
+<div className="border-line"></div>
 
 **Causes**:
-- CUDA runtime not properly installed
-- GPU compute capability not supported
-- Isaac ROS nodes not configured for GPU
-- Permission issues with GPU access
+- • CUDA runtime not properly installed
+- • GPU compute capability not supported
+- • Isaac ROS nodes not configured for GPU
+- • Permission issues with GPU access
 
-**Solutions**:
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Solutions</h4>
+
+<div className="border-line"></div>
+
 1. Verify CUDA installation and GPU access:
    ```bash
    # Check CUDA installation
@@ -345,6 +502,8 @@ This chapter covered Isaac ROS, NVIDIA's hardware-accelerated perception pipelin
    /usr/local/cuda/samples/1_Utilities/deviceQuery/deviceQuery
    ```
 
+<div className="border-line"></div>
+
 2. Check Isaac ROS GPU configuration:
    ```bash
    # Check Isaac ROS parameters for GPU usage
@@ -356,6 +515,8 @@ This chapter covered Isaac ROS, NVIDIA's hardware-accelerated perception pipelin
    # Check for CUDA-related ROS parameters
    ros2 param describe /your_isaac_ros_node gpu_index
    ```
+
+<div className="border-line"></div>
 
 3. Configure Isaac ROS nodes for GPU:
    ```python
@@ -690,9 +851,13 @@ This chapter covered Isaac ROS, NVIDIA's hardware-accelerated perception pipelin
 
 </details>
 
-## Introduction to Isaac ROS
+<h2 className="second-heading">Introduction to Isaac ROS</h2>
 
-### Overview and Architecture
+<div className="border-line"></div>
+
+<h3 className="third-heading">Overview and Architecture</h3>
+
+<div className="border-line"></div>
 
 Isaac ROS is a collection of hardware-accelerated perception packages that run on NVIDIA Jetson and GPU-enabled platforms. It bridges the gap between high-performance GPU computing and robotics frameworks, specifically ROS 2. The architecture consists of:
 
@@ -716,30 +881,42 @@ Isaac ROS includes specialized nodes for:
 - Image rectification and camera processing
 - Sensor fusion and calibration
 
-### Key Features and Benefits
+<h3 className="third-heading">Key Features and Benefits</h3>
+
+<div className="border-line"></div>
 
 Isaac ROS offers several key advantages for robotics applications:
 
-1. **Hardware Acceleration**: Utilizes NVIDIA GPUs for parallel processing
-2. **Plug-and-Play Integration**: Seamless integration with existing ROS 2 systems
-3. **Optimized Algorithms**: GPU-optimized implementations of common perception tasks
-4. **Real-time Performance**: Achieves real-time processing for demanding applications
-5. **Low Latency**: Minimized processing delays for responsive systems
-6. **Energy Efficient**: Optimized for edge computing platforms like Jetson
+- • **Hardware Acceleration**: Utilizes NVIDIA GPUs for parallel processing
+- • **Plug-and-Play Integration**: Seamless integration with existing ROS 2 systems
+- • **Optimized Algorithms**: GPU-optimized implementations of common perception tasks
+- • **Real-time Performance**: Achieves real-time processing for demanding applications
+- • **Low Latency**: Minimized processing delays for responsive systems
+- • **Energy Efficient**: Optimized for edge computing platforms like Jetson
 
-## Installation and Setup
+<div className="border-line"></div>
 
-### System Requirements
+<h2 className="second-heading">Installation and Setup</h2>
+
+<div className="border-line"></div>
+
+<h3 className="third-heading">System Requirements</h3>
+
+<div className="border-line"></div>
 
 Isaac ROS requires NVIDIA hardware with specific capabilities:
 
-- **GPU**: NVIDIA GPU with CUDA support (Jetson series, RTX/Tesla cards)
-- **CUDA**: CUDA 11.8 or later
-- **OS**: Ubuntu 20.04 or 22.04 LTS
-- **ROS 2**: Humble Hawksbill or later
-- **TensorRT**: 8.5 or later for AI acceleration
+- • **GPU**: NVIDIA GPU with CUDA support (Jetson series, RTX/Tesla cards)
+- • **CUDA**: CUDA 11.8 or later
+- • **OS**: Ubuntu 20.04 or 22.04 LTS
+- • **ROS 2**: Humble Hawksbill or later
+- • **TensorRT**: 8.5 or later for AI acceleration
 
-### Installation Methods
+<div className="border-line"></div>
+
+<h3 className="third-heading">Installation Methods</h3>
+
+<div className="border-line"></div>
 
 Isaac ROS can be installed in multiple ways:
 
@@ -757,7 +934,11 @@ cd isaac_ros_common
 colcon build --packages-select isaac_ros_common
 ```
 
-### Verification Installation
+<div className="border-line"></div>
+
+<h3 className="third-heading">Verification Installation</h3>
+
+<div className="border-line"></div>
 
 Verify Isaac ROS installation with a simple test:
 
@@ -805,9 +986,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## Isaac ROS Perception Pipelines
+<div className="border-line"></div>
 
-### Depth Processing Pipeline
+<h2 className="second-heading">Isaac ROS Perception Pipelines</h2>
+
+<div className="border-line"></div>
+
+<h3 className="third-heading">Depth Processing Pipeline</h3>
+
+<div className="border-line"></div>
 
 Isaac ROS provides accelerated depth processing for stereo vision and depth sensors:
 
@@ -922,7 +1109,11 @@ if __name__ == '__main__':
     main()
 ```
 
-### Object Detection Pipeline
+<div className="border-line"></div>
+
+<h3 className="third-heading">Object Detection Pipeline</h3>
+
+<div className="border-line"></div>
 
 Isaac ROS provides hardware-accelerated object detection using TensorRT:
 
@@ -1063,7 +1254,11 @@ if __name__ == '__main__':
     main()
 ```
 
-### Point Cloud Processing Pipeline
+<div className="border-line"></div>
+
+<h3 className="third-heading">Point Cloud Processing Pipeline</h3>
+
+<div className="border-line"></div>
 
 Isaac ROS accelerates point cloud operations and processing:
 
@@ -1223,9 +1418,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## Isaac ROS Navigation and SLAM
+<div className="border-line"></div>
 
-### Hardware-Accelerated SLAM
+<h2 className="second-heading">Isaac ROS Navigation and SLAM</h2>
+
+<div className="border-line"></div>
+
+<h3 className="third-heading">Hardware-Accelerated SLAM</h3>
+
+<div className="border-line"></div>
 
 Isaac ROS provides GPU-accelerated SLAM capabilities:
 
@@ -1403,9 +1604,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## Integration with Isaac Sim
+<div className="border-line"></div>
 
-### Isaac ROS and Isaac Sim Bridge
+<h2 className="second-heading">Integration with Isaac Sim</h2>
+
+<div className="border-line"></div>
+
+<h3 className="third-heading">Isaac ROS and Isaac Sim Bridge</h3>
+
+<div className="border-line"></div>
 
 Connecting Isaac ROS perception pipelines with Isaac Sim simulation:
 
@@ -1619,9 +1826,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## Performance Optimization
+<div className="border-line"></div>
 
-### Pipeline Optimization
+<h2 className="second-heading">Performance Optimization</h2>
+
+<div className="border-line"></div>
+
+<h3 className="third-heading">Pipeline Optimization</h3>
+
+<div className="border-line"></div>
 
 Optimizing Isaac ROS pipelines for maximum performance:
 
@@ -1753,64 +1966,86 @@ if __name__ == '__main__':
     main()
 ```
 
-## Best Practices
+<div className="border-line"></div>
 
-### Pipeline Design Best Practices
+<h2 className="second-heading">Best Practices</h2>
 
-1. **Resource Management**: Properly manage GPU memory and compute resources
-2. **Pipeline Synchronization**: Ensure proper timing between different pipeline stages
-3. **Error Handling**: Implement robust error handling for hardware failures
-4. **Modular Design**: Create modular nodes that can be easily combined
-5. **Performance Monitoring**: Continuously monitor and optimize performance
+<div className="border-line"></div>
 
-### Hardware Optimization
+<h3 className="third-heading">Pipeline Design Best Practices</h3>
 
-1. **GPU Memory Management**: Efficiently use GPU memory with proper buffer management
-2. **Stream Processing**: Use CUDA streams for overlapping operations
-3. **Kernel Optimization**: Optimize custom CUDA kernels for specific tasks
-4. **Data Transfers**: Minimize CPU-GPU data transfers
-5. **Batch Processing**: Process data in batches for better throughput
+<div className="border-line"></div>
 
-## Troubleshooting Common Issues
+- • **Resource Management**: Properly manage GPU memory and compute resources
+- • **Pipeline Synchronization**: Ensure proper timing between different pipeline stages
+- • **Error Handling**: Implement robust error handling for hardware failures
+- • **Modular Design**: Create modular nodes that can be easily combined
+- • **Performance Monitoring**: Continuously monitor and optimize performance
 
-### Installation and Configuration Issues
+<div className="border-line"></div>
+
+<h3 className="third-heading">Hardware Optimization</h3>
+
+<div className="border-line"></div>
+
+- • **GPU Memory Management**: Efficiently use GPU memory with proper buffer management
+- • **Stream Processing**: Use CUDA streams for overlapping operations
+- • **Kernel Optimization**: Optimize custom CUDA kernels for specific tasks
+- • **Data Transfers**: Minimize CPU-GPU data transfers
+- • **Batch Processing**: Process data in batches for better throughput
+
+<div className="border-line"></div>
+
+<h2 className="second-heading">Troubleshooting Common Issues</h2>
+
+<div className="border-line"></div>
+
+<h3 className="third-heading">Installation and Configuration Issues</h3>
+
+<div className="border-line"></div>
 
 **Problem**: Isaac ROS packages fail to install or build
 **Solutions**:
-- Verify NVIDIA hardware compatibility
-- Check CUDA and TensorRT versions
-- Ensure proper ROS 2 installation
-- Verify system dependencies
+- • Verify NVIDIA hardware compatibility
+- • Check CUDA and TensorRT versions
+- • Ensure proper ROS 2 installation
+- • Verify system dependencies
+
+<div className="border-line"></div>
 
 **Problem**: Nodes fail to initialize with GPU errors
 **Solutions**:
-- Check GPU driver installation
-- Verify CUDA runtime and toolkit versions
-- Ensure sufficient GPU memory
-- Check user permissions for GPU access
+- • Check GPU driver installation
+- • Verify CUDA runtime and toolkit versions
+- • Ensure sufficient GPU memory
+- • Check user permissions for GPU access
 
-### Performance Issues
+<div className="border-line"></div>
+
+<h3 className="third-heading">Performance Issues</h3>
+
+<div className="border-line"></div>
 
 **Problem**: Processing pipeline runs slowly or has high latency
 **Solutions**:
-- Profile the pipeline to identify bottlenecks
-- Optimize buffer sizes and queue lengths
-- Ensure proper hardware utilization
-- Check for CPU-GPU synchronization issues
+- • Profile the pipeline to identify bottlenecks
+- • Optimize buffer sizes and queue lengths
+- • Ensure proper hardware utilization
+- • Check for CPU-GPU synchronization issues
+
+<div className="border-line"></div>
 
 **Problem**: High GPU memory usage
 **Solutions**:
-- Implement proper memory management
-- Use memory pools for repeated allocations
-- Reduce data resolution if possible
-- Optimize batch sizes
+- • Implement proper memory management
+- • Use memory pools for repeated allocations
+- • Reduce data resolution if possible
+- • Optimize batch sizes
 
-## Summary
+<div className="border-line"></div>
+
+<h2 className="second-heading">Summary</h2>
+
+<div className="border-line"></div>
 
 Isaac ROS provides hardware-accelerated perception capabilities that significantly enhance robotics applications by leveraging NVIDIA GPU technology. By understanding its architecture, installation process, and integration patterns, developers can create high-performance perception pipelines for robotics applications. The platform's strength lies in bridging high-performance GPU computing with the ROS 2 ecosystem, enabling advanced perception capabilities for robotics platforms.
-
-import ReadingTime from '@site/src/components/ReadingTime';
-import ViewToggle from '@site/src/components/ViewToggle';
-
-<ReadingTime minutes={20} />
-<ViewToggle />

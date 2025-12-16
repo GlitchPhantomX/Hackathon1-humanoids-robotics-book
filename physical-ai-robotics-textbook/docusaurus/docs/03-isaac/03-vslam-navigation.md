@@ -4,21 +4,35 @@ title: 'Visual SLAM and Navigation: Real-time Mapping and Path Planning'
 description: 'Advanced visual SLAM techniques and navigation algorithms for autonomous robotics'
 ---
 
-# Visual SLAM and Navigation: Real-time Mapping and Path Planning
+import ReadingTime from '@site/src/components/ReadingTime';
+import ViewToggle from '@site/src/components/ViewToggle';
+
+<ReadingTime minutes={22} />
+<!-- <ViewToggle /> -->
+
+<h1 className="main-heading">Visual SLAM and Navigation: Real-time Mapping and Path Planning</h1>
+
+<div className="underline-class"></div>
 
 Visual Simultaneous Localization and Mapping (VSLAM) is a critical technology for autonomous robotics, enabling robots to understand and navigate through unknown environments using visual sensors. This chapter explores advanced VSLAM techniques, navigation algorithms, and their implementation using Isaac Sim and Isaac ROS for hardware-accelerated performance.
 
-## Learning Objectives
+<h2 className="second-heading">Learning Objectives</h2>
+
+<div className="border-line"></div>
 
 By the end of this chapter, you will be able to:
-- Understand the principles and algorithms of Visual SLAM
-- Implement VSLAM pipelines using Isaac Sim and Isaac ROS
-- Design navigation systems that leverage visual mapping
-- Optimize VSLAM performance for real-time applications
-- Integrate VSLAM with path planning and obstacle avoidance
-- Evaluate VSLAM system performance and accuracy
+- • Understand the principles and algorithms of Visual SLAM
+- • Implement VSLAM pipelines using Isaac Sim and Isaac ROS
+- • Design navigation systems that leverage visual mapping
+- • Optimize VSLAM performance for real-time applications
+- • Integrate VSLAM with path planning and obstacle avoidance
+- • Evaluate VSLAM system performance and accuracy
 
-## Exercises
+<div className="border-line"></div>
+
+<h2 className="second-heading">Exercises</h2>
+
+<div className="border-line"></div>
 
 <details>
 <summary>Exercise 3.3.1: Basic VSLAM Pipeline with Isaac Sim (⭐, ~30 min)</summary>
@@ -224,26 +238,37 @@ This chapter covered Visual SLAM and Navigation, focusing on real-time mapping a
 
 </details>
 
-## Troubleshooting
+<h2 className="second-heading">Troubleshooting</h2>
+
+<div className="border-line"></div>
 
 <details>
 <summary>Troubleshooting: VSLAM and Navigation Issues</summary>
 
-### Troubleshooting: VSLAM and Navigation Issues
+<h3 className="third-heading">Troubleshooting: VSLAM and Navigation Issues</h3>
 
-#### Problem: VSLAM fails to initialize or track properly
+<div className="border-line"></div>
+
+<h4 className="fourth-heading">Problem: VSLAM fails to initialize or track properly</h4>
+
+<div className="border-line"></div>
+
 **Symptoms**:
-- VSLAM system cannot initialize
-- Tracking fails frequently
-- Large pose estimation errors
-- No feature points detected
+- • VSLAM system cannot initialize
+- • Tracking fails frequently
+- • Large pose estimation errors
+- • No feature points detected
+
+<div className="border-line"></div>
 
 **Causes**:
-- Poor camera calibration
-- Insufficient visual features in environment
-- Inadequate lighting conditions
-- Motion blur or camera shake
-- Incorrect stereo baseline
+- • Poor camera calibration
+- • Insufficient visual features in environment
+- • Inadequate lighting conditions
+- • Motion blur or camera shake
+- • Incorrect stereo baseline
+
+<div className="border-line"></div>
 
 **Solutions**:
 1. Verify camera calibration:
@@ -922,9 +947,15 @@ This chapter covered Visual SLAM and Navigation, focusing on real-time mapping a
 
 </details>
 
-## Visual SLAM Fundamentals
+<div className="border-line"></div>
 
-### Overview of Visual SLAM
+<h2 className="second-heading">Visual SLAM Fundamentals</h2>
+
+<div className="border-line"></div>
+
+<h3 className="third-heading">Overview of Visual SLAM</h3>
+
+<div className="border-line"></div>
 
 Visual SLAM enables robots to simultaneously estimate their position and map the environment using visual sensors. The process involves:
 
@@ -935,11 +966,15 @@ Visual SLAM enables robots to simultaneously estimate their position and map the
 5. **Loop Closure**: Recognizing previously visited locations
 
 The mathematical foundation of VSLAM relies on:
-- **Epipolar Geometry**: Relationships between corresponding points in stereo images
-- **Bundle Adjustment**: Optimization of camera poses and 3D point positions
-- **Graph Optimization**: Refinement of pose and map estimates
+- • **Epipolar Geometry**: Relationships between corresponding points in stereo images
+- • **Bundle Adjustment**: Optimization of camera poses and 3D point positions
+- • **Graph Optimization**: Refinement of pose and map estimates
 
-### VSLAM Pipeline Architecture
+<div className="border-line"></div>
+
+<h3 className="third-heading">VSLAM Pipeline Architecture</h3>
+
+<div className="border-line"></div>
 
 ```
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
@@ -957,9 +992,13 @@ The mathematical foundation of VSLAM relies on:
 └─────────────────┘    └──────────────────┘    └─────────────────┘
 ```
 
-## Isaac Sim for VSLAM Development
+<h2 className="second-heading">Isaac Sim for VSLAM Development</h2>
 
-### VSLAM Simulation Environment
+<div className="border-line"></div>
+
+<h3 className="third-heading">VSLAM Simulation Environment</h3>
+
+<div className="border-line"></div>
 
 Creating a realistic VSLAM simulation environment in Isaac Sim:
 
@@ -1081,7 +1120,11 @@ class VSLAMEnvironment:
         self.world.step(render=True)
 ```
 
-### Synthetic Data Generation for VSLAM
+<div className="border-line"></div>
+
+<h3 className="third-heading">Synthetic Data Generation for VSLAM</h3>
+
+<div className="border-line"></div>
 
 Generating synthetic data for VSLAM training and testing:
 
@@ -1193,9 +1236,13 @@ if __name__ == "__main__":
     main()
 ```
 
-## Isaac ROS VSLAM Integration
+<h2 className="second-heading">Isaac ROS VSLAM Integration</h2>
 
-### Hardware-Accelerated VSLAM Pipeline
+<div className="border-line"></div>
+
+<h3 className="third-heading">Hardware-Accelerated VSLAM Pipeline</h3>
+
+<div className="border-line"></div>
 
 Implementing a hardware-accelerated VSLAM pipeline using Isaac ROS:
 
@@ -1460,9 +1507,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## Navigation with Visual Maps
+<div className="border-line"></div>
 
-### Path Planning Using Visual Maps
+<h2 className="second-heading">Navigation with Visual Maps</h2>
+
+<div className="border-line"></div>
+
+<h3 className="third-heading">Path Planning Using Visual Maps</h3>
+
+<div className="border-line"></div>
 
 Implementing navigation systems that leverage visual SLAM maps:
 
@@ -1696,7 +1749,11 @@ if __name__ == '__main__':
     main()
 ```
 
-### Obstacle Avoidance with Visual Sensors
+<div className="border-line"></div>
+
+<h3 className="third-heading">Obstacle Avoidance with Visual Sensors</h3>
+
+<div className="border-line"></div>
 
 Implementing obstacle avoidance using visual SLAM data:
 
@@ -1889,9 +1946,13 @@ if __name__ == '__main__':
     main()
 ```
 
-## Performance Optimization for VSLAM
+<h2 className="second-heading">Performance Optimization for VSLAM</h2>
 
-### Optimizing VSLAM Pipelines
+<div className="border-line"></div>
+
+<h3 className="third-heading">Optimizing VSLAM Pipelines</h3>
+
+<div className="border-line"></div>
 
 Optimizing VSLAM for real-time performance:
 
@@ -2068,9 +2129,15 @@ if __name__ == '__main__':
     main()
 ```
 
-## Integration with Isaac Sim for Navigation
+<div className="border-line"></div>
 
-### Complete VSLAM-Navigation System
+<h2 className="second-heading">Integration with Isaac Sim for Navigation</h2>
+
+<div className="border-line"></div>
+
+<h3 className="third-heading">Complete VSLAM-Navigation System</h3>
+
+<div className="border-line"></div>
 
 Creating a complete system that integrates VSLAM with navigation:
 
@@ -2269,64 +2336,86 @@ if __name__ == '__main__':
     main()
 ```
 
-## Best Practices for VSLAM Systems
+<div className="border-line"></div>
 
-### System Design Best Practices
+<h2 className="second-heading">Best Practices for VSLAM Systems</h2>
 
-1. **Multi-Sensor Fusion**: Combine visual, inertial, and other sensors for robustness
-2. **Real-time Processing**: Optimize algorithms for real-time performance
-3. **Map Management**: Efficiently manage map size and resolution
-4. **Loop Closure**: Implement robust loop closure detection
-5. **Failure Recovery**: Handle tracking failures gracefully
+<div className="border-line"></div>
 
-### Performance Considerations
+<h3 className="third-heading">System Design Best Practices</h3>
 
-1. **Feature Management**: Balance feature count with processing speed
-2. **Memory Management**: Efficiently manage memory for keyframes and map points
-3. **Threading**: Use multi-threading for parallel processing
-4. **GPU Acceleration**: Leverage hardware acceleration where possible
-5. **Adaptive Processing**: Adjust processing based on scene complexity
+<div className="border-line"></div>
 
-## Troubleshooting Common Issues
+- • **Multi-Sensor Fusion**: Combine visual, inertial, and other sensors for robustness
+- • **Real-time Processing**: Optimize algorithms for real-time performance
+- • **Map Management**: Efficiently manage map size and resolution
+- • **Loop Closure**: Implement robust loop closure detection
+- • **Failure Recovery**: Handle tracking failures gracefully
 
-### VSLAM Issues
+<div className="border-line"></div>
+
+<h3 className="third-heading">Performance Considerations</h3>
+
+<div className="border-line"></div>
+
+- • **Feature Management**: Balance feature count with processing speed
+- • **Memory Management**: Efficiently manage memory for keyframes and map points
+- • **Threading**: Use multi-threading for parallel processing
+- • **GPU Acceleration**: Leverage hardware acceleration where possible
+- • **Adaptive Processing**: Adjust processing based on scene complexity
+
+<div className="border-line"></div>
+
+<h2 className="second-heading">Troubleshooting Common Issues</h2>
+
+<div className="border-line"></div>
+
+<h3 className="third-heading">VSLAM Issues</h3>
+
+<div className="border-line"></div>
 
 **Problem**: VSLAM fails to initialize or track in textureless environments
 **Solutions**:
-- Use multiple sensor modalities (visual + IMU)
-- Implement featureless tracking fallbacks
-- Add artificial features to environment
-- Use direct methods instead of feature-based methods
+- • Use multiple sensor modalities (visual + IMU)
+- • Implement featureless tracking fallbacks
+- • Add artificial features to environment
+- • Use direct methods instead of feature-based methods
+
+<div className="border-line"></div>
 
 **Problem**: Drift in VSLAM estimates over time
 **Solutions**:
-- Implement robust loop closure detection
-- Use pose graph optimization
-- Add external reference points
-- Regular map relocalization
+- • Implement robust loop closure detection
+- • Use pose graph optimization
+- • Add external reference points
+- • Regular map relocalization
 
-### Navigation Issues
+<div className="border-line"></div>
+
+<h3 className="third-heading">Navigation Issues</h3>
+
+<div className="border-line"></div>
 
 **Problem**: Navigation fails in dynamic environments
 **Solutions**:
-- Implement dynamic obstacle detection and tracking
-- Use short-term local planning
-- Increase sensor fusion with other modalities
-- Implement reactive obstacle avoidance
+- • Implement dynamic obstacle detection and tracking
+- • Use short-term local planning
+- • Increase sensor fusion with other modalities
+- • Implement reactive obstacle avoidance
+
+<div className="border-line"></div>
 
 **Problem**: Path planning fails in large maps
 **Solutions**:
-- Use hierarchical path planning
-- Implement map partitioning
-- Use approximate methods for large-scale planning
-- Optimize map data structures
+- • Use hierarchical path planning
+- • Implement map partitioning
+- • Use approximate methods for large-scale planning
+- • Optimize map data structures
 
-## Summary
+<div className="border-line"></div>
+
+<h2 className="second-heading">Summary</h2>
+
+<div className="border-line"></div>
 
 Visual SLAM and navigation form a powerful combination for autonomous robotics, enabling robots to understand and navigate through unknown environments using visual sensors. By leveraging Isaac Sim for development and Isaac ROS for hardware acceleration, developers can create robust, real-time VSLAM systems that enable sophisticated navigation capabilities. The key to success lies in proper system integration, performance optimization, and handling of real-world challenges like dynamic environments and sensor limitations.
-
-import ReadingTime from '@site/src/components/ReadingTime';
-import ViewToggle from '@site/src/components/ViewToggle';
-
-<ReadingTime minutes={22} />
-<ViewToggle />

@@ -9,7 +9,7 @@ import ViewToggle from '@site/src/components/ViewToggle';
 
 <ReadingTime minutes={153} />
 
-<ViewToggle />
+<!-- <ViewToggle /> -->
 
 <h1 className="main-heading">Voice Command and Interaction System</h1>
 <div className="underline-class"></div>
@@ -322,7 +322,10 @@ class AudioPreprocessingSystem:
         return audio_data
 ```
 
-### Speech-to-Text Integration
+<h3 className="third-heading">
+- Speech-to-Text Integration
+</h3>
+<div className="underline-class"></div>
 
 The speech recognition component converts audio to text for further processing:
 
@@ -578,9 +581,15 @@ class AdvancedSpeechRecognitionSystem:
         return min(1.0, base_confidence + similarity_factor)
 ```
 
-## Natural Language Understanding
+<h2 className="second-heading">
+Natural Language Understanding
+</h2>
+<div className="underline-class"></div>
 
-### Intent Recognition and Entity Extraction
+<h3 className="third-heading">
+- Intent Recognition and Entity Extraction
+</h3>
+<div className="underline-class"></div>
 
 The natural language understanding component interprets the meaning behind recognized text:
 
@@ -852,7 +861,10 @@ class NaturalLanguageUnderstandingSystem:
         return suggestions.get(entity_type, [])
 ```
 
-### Context-Aware Dialogue Management
+<h3 className="third-heading">
+- Context-Aware Dialogue Management
+</h3>
+<div className="underline-class"></div>
 
 Advanced dialogue management maintains conversation context and handles multi-turn interactions:
 
@@ -1094,9 +1106,15 @@ class ContextAwareDialogueManager:
         return self.context
 ```
 
-## Isaac Integration for Voice Systems
+<h2 className="second-heading">
+Isaac Integration for Voice Systems
+</h2>
+<div className="underline-class"></div>
 
-### Isaac Voice Processing Components
+<h3 className="third-heading">
+- Isaac Voice Processing Components
+</h3>
+<div className="underline-class"></div>
 
 The Isaac ecosystem provides specialized components for voice processing and natural language understanding:
 
@@ -1298,7 +1316,10 @@ class IsaacVoiceProcessingNode(Node):
         return None
 ```
 
-### Voice Command Planning Integration
+<h3 className="third-heading">
+- Voice Command Planning Integration
+</h3>
+<div className="underline-class"></div>
 
 Integrating voice commands with the robot's planning system:
 
@@ -1558,9 +1579,15 @@ class VoiceCommandPlanner:
         }
 ```
 
-## Voice Interaction Best Practices
+<h2 className="second-heading">
+Voice Interaction Best Practices
+</h2>
+<div className="underline-class"></div>
 
-### Robustness and Error Handling
+<h3 className="third-heading">
+- Robustness and Error Handling
+</h3>
+<div className="underline-class"></div>
 
 Creating robust voice interaction systems requires careful attention to error handling and user experience:
 
@@ -1724,9 +1751,15 @@ class RobustVoiceInteractionSystem:
         }
 ```
 
-## Evaluation and Performance Metrics
+<h2 className="second-heading">
+Evaluation and Performance Metrics
+</h2>
+<div className="underline-class"></div>
 
-### Voice System Evaluation
+<h3 className="third-heading">
+- Voice System Evaluation
+</h3>
+<div className="underline-class"></div>
 
 Evaluating voice systems requires specialized metrics that account for the multi-modal nature of human-robot interaction:
 
@@ -1924,42 +1957,57 @@ class VoiceSystemEvaluator:
         return "\n".join(report)
 ```
 
-## Summary
+<div className="border-line"></div>
+---
+<h2 className="second-heading">
+ Summary
+</h2>
+<div className="underline-class"></div>
 
 The voice command and interaction system represents a critical component of humanoid robotics, enabling natural and intuitive communication between humans and robots. The system integrates multiple sophisticated technologies including speech recognition, natural language understanding, dialogue management, and action planning to create a seamless user experience.
 
 Key components of the voice system include:
 
-1. **Audio Processing**: Robust audio capture and preprocessing that handles real-world acoustic conditions and noise.
+1. • **Audio Processing**: Robust audio capture and preprocessing that handles real-world acoustic conditions and noise.
 
-2. **Speech Recognition**: Advanced recognition systems that convert speech to text with high accuracy, often using models like Whisper or Wav2Vec2.
+2. • **Speech Recognition**: Advanced recognition systems that convert speech to text with high accuracy, often using models like Whisper or Wav2Vec2.
 
-3. **Natural Language Understanding**: Sophisticated NLU systems that extract intent and entities from recognized text, resolving contextual references and handling ambiguous commands.
+3. • **Natural Language Understanding**: Sophisticated NLU systems that extract intent and entities from recognized text, resolving contextual references and handling ambiguous commands.
 
-4. **Dialogue Management**: Context-aware dialogue systems that maintain conversation state and handle multi-turn interactions.
+4. • **Dialogue Management**: Context-aware dialogue systems that maintain conversation state and handle multi-turn interactions.
 
-5. **Isaac Integration**: Specialized components that leverage the Isaac ecosystem for enhanced voice processing capabilities.
+5. • **Isaac Integration**: Specialized components that leverage the Isaac ecosystem for enhanced voice processing capabilities.
 
-6. **Task Planning**: Integration between voice commands and robot action planning systems to execute user requests.
+6. • **Task Planning**: Integration between voice commands and robot action planning systems to execute user requests.
 
-7. **Error Handling**: Comprehensive error handling and user feedback mechanisms that ensure robust operation in real-world conditions.
+7. • **Error Handling**: Comprehensive error handling and user feedback mechanisms that ensure robust operation in real-world conditions.
 
 The success of the voice system depends on careful attention to real-world challenges including acoustic noise, ambiguous commands, and the need for natural, conversational interaction. The system must balance accuracy with responsiveness while maintaining safety and reliability.
 
-## Exercises
+<div className="border-line"></div>
+---
+<h2 className="second-heading">
+ Exercises
+</h2>
+<div className="underline-class"></div>
 
-1. Implement a speech recognition system using the Whisper model for your robot platform
-2. Create a natural language understanding system that can handle domain-specific commands
-3. Design a dialogue manager that maintains context across multiple interactions
-4. Build an evaluation framework to test voice system performance
-5. Integrate the voice system with your robot's planning and execution systems
+1. • Implement a speech recognition system using the Whisper model for your robot platform
+2. • Create a natural language understanding system that can handle domain-specific commands
+3. • Design a dialogue manager that maintains context across multiple interactions
+4. • Build an evaluation framework to test voice system performance
+5. • Integrate the voice system with your robot's planning and execution systems
 
-## Further Reading
+<div className="border-line"></div>
+---
+<h2 className="second-heading">
+ Further Reading
+</h2>
+<div className="underline-class"></div>
 
-- "Spoken Language Processing" by Rabiner and Juang
-- "Natural Language Understanding" by James Allen
-- "Dialog Systems and Natural Language Understanding" by Walker et al.
-- "Speech and Audio Signal Processing" by Rabiner and Schafer
-- NVIDIA Isaac documentation on voice processing
+- • "Spoken Language Processing" by Rabiner and Juang
+- • "Natural Language Understanding" by James Allen
+- • "Dialog Systems and Natural Language Understanding" by Walker et al.
+- • "Speech and Audio Signal Processing" by Rabiner and Schafer
+- • NVIDIA Isaac documentation on voice processing
 
 </div>

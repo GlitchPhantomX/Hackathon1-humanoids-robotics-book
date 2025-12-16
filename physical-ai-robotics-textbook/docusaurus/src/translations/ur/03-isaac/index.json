@@ -1,0 +1,16 @@
+{
+  "meta": {
+    "title": "آئیساک سیم کا تعارف",
+    "description": "NVIDIA Isaac Sim کی بنیادیں",
+    "language": "ur",
+    "chapter": "03-isaac",
+    "sourceFile": "03-isaac/index.md",
+    "lastUpdated": "2025-12-15T05:40:00.000Z"
+  },
+  "content": {
+    "headings": {},
+    "paragraphs": {},
+    "lists": {}
+  },
+  "html": "# آئیساک سیم کا تعارف\n\nIsaac Sim NVIDIA کا ایک اعلی درجے کا سیمولیشن پلیٹ فارم ہے جو روبوٹکس تحقیق اور ترقی کے لیے استعمال ہوتا ہے۔"
+}

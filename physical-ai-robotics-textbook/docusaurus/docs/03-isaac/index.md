@@ -4,28 +4,41 @@ title: 'NVIDIA Isaac: AI-Powered Robotics'
 description: 'Isaac Sim, perception, and navigation for humanoid robots'
 ---
 
-# NVIDIA Isaac: AI-Powered Robotics
+import ReadingTime from '@site/src/components/ReadingTime';
+import ViewToggle from '@site/src/components/ViewToggle';
+
+<ReadingTime minutes={14} />
+<!-- <ViewToggle /> -->
+
+<h1 className="main-heading">NVIDIA Isaac: AI-Powered Robotics</h1>
+<div className="underline-class"></div>
 
 This module introduces you to NVIDIA Isaac, a comprehensive robotics platform that combines simulation, perception, and navigation capabilities. You'll learn how to leverage NVIDIA's GPU-accelerated technologies for humanoid robot applications.
 
-## Learning Objectives
+<div className="border-line"></div>
+
+<h2 className="second-heading">Learning Objectives</h2>
 
 By the end of this module, you will be able to:
-- Set up and configure NVIDIA Isaac Sim for humanoid robot simulation
-- Implement perception systems using Isaac's computer vision capabilities
-- Create navigation systems for humanoid robots
-- Utilize Isaac's AI frameworks for robot learning
-- Integrate Isaac with other robotics frameworks like ROS 2
+- • Set up and configure NVIDIA Isaac Sim for humanoid robot simulation
+- • Implement perception systems using Isaac's computer vision capabilities
+- • Create navigation systems for humanoid robots
+- • Utilize Isaac's AI frameworks for robot learning
+- • Integrate Isaac with other robotics frameworks like ROS 2
 
-## Prerequisites
+<div className="border-line"></div>
+
+<h2 className="second-heading">Prerequisites</h2>
 
 Before starting this module, you should have:
-- Completed the Introduction, ROS 2, and Simulation modules
-- Access to NVIDIA GPU hardware or cloud resources
-- Understanding of computer vision concepts
-- Experience with deep learning frameworks
+- • Completed the Introduction, ROS 2, and Simulation modules
+- • Access to NVIDIA GPU hardware or cloud resources
+- • Understanding of computer vision concepts
+- • Experience with deep learning frameworks
 
-## Module Overview
+<div className="border-line"></div>
+
+<h2 className="second-heading">Module Overview</h2>
 
 This module covers:
 1. Introduction to NVIDIA Isaac Platform
@@ -35,8 +48,4 @@ This module covers:
 5. AI Integration and Learning
 6. Isaac-ROS Integration
 
-import ReadingTime from '@site/src/components/ReadingTime';
-import ViewToggle from '@site/src/components/ViewToggle';
-
-<ReadingTime minutes={14} />
-<ViewToggle />
+<div className="border-line"></div>

@@ -1,0 +1,37 @@
+subagent:
+  name: technical-writer
+  version: 1.0.0
+  description: "Specialized technical documentation generator for robotics and AI content"
+
+  capabilities:
+    - technical_writing
+    - code_examples
+    - diagram_generation
+    - cross_referencing
+
+  domains:
+    - ros2
+    - gazebo
+    - isaac_sim
+    - physical_ai
+    - robotics
+
+  settings:
+    temperature: 0.3
+    max_tokens: 4000
+    top_p: 0.9
+
+  output_formats:
+    - mdx
+    - markdown
+
+  quality_checks:
+    - technical_accuracy
+    - code_syntax
+    - link_validation
+    - heading_hierarchy
+
+  integrations:
+    - docusaurus
+    - github
+    - markdown_linters

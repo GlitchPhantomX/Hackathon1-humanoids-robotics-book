@@ -4,20 +4,39 @@ title: 'URDF for Humanoid Robots: Robot Description and Modeling'
 description: 'Understanding URDF (Unified Robot Description Format) for modeling humanoid robots in ROS 2'
 ---
 
-# URDF for Humanoid Robots: Robot Description and Modeling
+import ReadingTime from '@site/src/components/ReadingTime';
+import ViewToggle from '@site/src/components/ViewToggle';
+
+<ReadingTime minutes={20} />
+
+
+<h1 className="main-heading">URDF for Humanoid Robots: Robot Description and Modeling</h1>
+<div className="underline-class"></div>
 
 Unified Robot Description Format (URDF) is the standard way to describe robot models in ROS. For humanoid robots, URDF becomes particularly important as it defines the complex kinematic structure, joint configurations, and physical properties necessary for simulation and control.
 
-## Learning Objectives
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 By the end of this chapter, you will be able to:
-- Create URDF models for humanoid robots with multiple degrees of freedom
-- Define links, joints, and materials for complex robot structures
-- Implement kinematic chains for arms, legs, and torso
-- Use Xacro to simplify complex humanoid URDF models
-- Validate and visualize humanoid robot models in RViz
+- • Create URDF models for humanoid robots with multiple degrees of freedom
+- • Define links, joints, and materials for complex robot structures
+- • Implement kinematic chains for arms, legs, and torso
+- • Use Xacro to simplify complex humanoid URDF models
+- • Validate and visualize humanoid robot models in RViz
 
-## Exercises
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Exercises
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Exercise 1.5.1: Basic Humanoid URDF Creation (⭐, ~30 min)</summary>
@@ -311,20 +330,32 @@ This chapter covered creating URDF models for humanoid robots with multiple degr
 
 </details>
 
-## Understanding URDF for Humanoid Robots
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Understanding URDF for Humanoid Robots
+</h2>
+<div className="underline-class"></div>
 
 URDF (Unified Robot Description Format) is an XML-based format for representing robots. For humanoid robots, URDF must capture the complex kinematic structure that mimics human anatomy with multiple limbs and joints.
 
-### Key Components of Humanoid URDF
+<h3 className="third-heading">
+ Key Components of Humanoid URDF
+</h3>
+<div className="underline-class"></div>
 
-- **Links**: Rigid bodies that represent robot parts (torso, limbs, head)
-- **Joints**: Connections between links with specific degrees of freedom
-- **Materials**: Visual properties for rendering
-- **Inertial Properties**: Mass, center of mass, and inertia tensor
-- **Collision Models**: Simplified geometry for collision detection
-- **Visual Models**: Detailed geometry for visualization
+- • **Links**: Rigid bodies that represent robot parts (torso, limbs, head)
+- • **Joints**: Connections between links with specific degrees of freedom
+- • **Materials**: Visual properties for rendering
+- • **Inertial Properties**: Mass, center of mass, and inertia tensor
+- • **Collision Models**: Simplified geometry for collision detection
+- • **Visual Models**: Detailed geometry for visualization
 
-### Basic URDF Structure
+<h3 className="third-heading">
+ Basic URDF Structure
+</h3>
+<div className="underline-class"></div>
 
 ```xml
 <?xml version="1.0"?>
@@ -370,11 +401,17 @@ URDF (Unified Robot Description Format) is an XML-based format for representing 
 </robot>
 ```
 
-## Humanoid Robot Kinematic Structure
+<h2 className="second-heading">
+ Humanoid Robot Kinematic Structure
+</h2>
+<div className="underline-class"></div>
 
 Humanoid robots typically follow a hierarchical structure with the torso as the main body and limbs branching out.
 
-### Standard Humanoid Structure
+<h3 className="third-heading">
+ Standard Humanoid Structure
+</h3>
+<div className="underline-class"></div>
 
 ```
 base_link (or world)
@@ -394,14 +431,20 @@ base_link (or world)
         └── right_foot
 ```
 
-### Joint Types for Humanoid Robots
+<h3 className="third-heading">
+ Joint Types for Humanoid Robots
+</h3>
+<div className="underline-class"></div>
 
-- **Revolute Joints**: Single-axis rotation (shoulders, elbows, knees)
-- **Continuous Joints**: Unlimited rotation (waist, neck)
-- **Prismatic Joints**: Linear motion (if needed)
-- **Fixed Joints**: Rigid connections (head to camera mount)
+- • **Revolute Joints**: Single-axis rotation (shoulders, elbows, knees)
+- • **Continuous Joints**: Unlimited rotation (waist, neck)
+- • **Prismatic Joints**: Linear motion (if needed)
+- • **Fixed Joints**: Rigid connections (head to camera mount)
 
-## Detailed Humanoid URDF Example
+<h2 className="second-heading">
+ Detailed Humanoid URDF Example
+</h2>
+<div className="underline-class"></div>
 
 Let's create a complete humanoid robot model:
 
@@ -748,11 +791,17 @@ Let's create a complete humanoid robot model:
 </robot>
 ```
 
-## Using Xacro for Complex Humanoid Models
+<h2 className="second-heading">
+ Using Xacro for Complex Humanoid Models
+</h2>
+<div className="underline-class"></div>
 
 Xacro (XML Macros) allows you to create more maintainable and reusable URDF models by using variables, macros, and includes.
 
-### Basic Xacro Example
+<h3 className="third-heading">
+ Basic Xacro Example
+</h3>
+<div className="underline-class"></div>
 
 ```xml
 <?xml version="1.0"?>
@@ -829,9 +878,15 @@ Xacro (XML Macros) allows you to create more maintainable and reusable URDF mode
 </robot>
 ```
 
-## Advanced Humanoid Features
+<h2 className="second-heading">
+ Advanced Humanoid Features
+</h2>
+<div className="underline-class"></div>
 
-### Transmission Elements
+<h3 className="third-heading">
+ Transmission Elements
+</h3>
+<div className="underline-class"></div>
 
 For controlling joints in simulation and real robots, you need to define transmissions:
 
@@ -849,7 +904,10 @@ For controlling joints in simulation and real robots, you need to define transmi
 </transmission>
 ```
 
-### Gazebo-Specific Elements
+<h3 className="third-heading">
+ Gazebo-Specific Elements
+</h3>
+<div className="underline-class"></div>
 
 To use the model in Gazebo simulation:
 
@@ -867,9 +925,15 @@ To use the model in Gazebo simulation:
 </gazebo>
 ```
 
-## Validating and Visualizing URDF Models
+<h2 className="second-heading">
+ Validating and Visualizing URDF Models
+</h2>
+<div className="underline-class"></div>
 
-### Checking URDF Validity
+<h3 className="third-heading">
+ Checking URDF Validity
+</h3>
+<div className="underline-class"></div>
 
 ```bash
 # Check if URDF is well-formed
@@ -879,7 +943,10 @@ check_urdf /path/to/your/robot.urdf
 urdf_to_graphiz /path/to/your/robot.urdf
 ```
 
-### Visualizing in RViz
+<h3 className="third-heading">
+ Visualizing in RViz
+</h3>
+<div className="underline-class"></div>
 
 ```bash
 # Launch RViz with robot model
@@ -888,7 +955,10 @@ ros2 run rviz2 rviz2
 # Add RobotModel display and set Robot Description to your robot's parameter
 ```
 
-### Using Robot State Publisher
+<h3 className="third-heading">
+ Using Robot State Publisher
+</h3>
+<div className="underline-class"></div>
 
 ```python
 import rclpy
@@ -923,25 +993,37 @@ if __name__ == '__main__':
     main()
 ```
 
-## Best Practices for Humanoid URDF
+<h2 className="second-heading">
+ Best Practices for Humanoid URDF
+</h2>
+<div className="underline-class"></div>
 
-### Kinematic Design
-- Follow human-like joint limits and ranges of motion
-- Ensure proper mass distribution for stability
-- Consider center of mass for balance
+<h3 className="third-heading">
+ Kinematic Design
+</h3>
+<div className="underline-class"></div>
 
-### Performance Considerations
-- Use simplified collision geometry where possible
-- Balance visual detail with performance
-- Optimize joint limits for realistic movement
+- • Follow human-like joint limits and ranges of motion
+- • Ensure proper mass distribution for stability
+- • Consider center of mass for balance
 
-### Maintainability
-- Use Xacro for complex models to avoid duplication
-- Organize links and joints logically
-- Document joint purposes and limitations
+<h3 className="third-heading">
+ Performance Considerations
+</h3>
+<div className="underline-class"></div>
 
-import ReadingTime from '@site/src/components/ReadingTime';
-import ViewToggle from '@site/src/components/ViewToggle';
+- • Use simplified collision geometry where possible
+- • Balance visual detail with performance
+- • Optimize joint limits for realistic movement
 
-<ReadingTime minutes={20} />
-<ViewToggle />
+<h3 className="third-heading">
+ Maintainability
+</h3>
+<div className="underline-class"></div>
+
+- • Use Xacro for complex models to avoid duplication
+- • Organize links and joints logically
+- • Document joint purposes and limitations
+
+
+<!-- <ViewToggle /> -->

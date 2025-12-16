@@ -4,43 +4,81 @@ title: 'Gazebo Introduction: Simulation for Robotics'
 description: 'Getting started with Gazebo simulation environment for robotics development'
 ---
 
-# Gazebo Introduction: Simulation for Robotics
+import ReadingTime from '@site/src/components/ReadingTime';
+import ViewToggle from '@site/src/components/ViewToggle';
+
+<ReadingTime minutes={14} />
+<!-- <ViewToggle /> -->
+
+<h1 className="main-heading">Gazebo Introduction: Simulation for Robotics</h1>
+<div className="underline-class"></div>
 
 Gazebo is a powerful 3D simulation environment that plays a crucial role in robotics development. It provides realistic physics simulation, high-quality graphics, and convenient programmatic interfaces that make it ideal for testing humanoid robots before deploying to real hardware.
 
-## Learning Objectives
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 By the end of this chapter, you will be able to:
-- Understand the core concepts and architecture of Gazebo
-- Install and configure Gazebo for robotics simulation
-- Create basic simulation worlds with models and physics
-- Integrate Gazebo with ROS 2 for robot simulation
-- Control simulated robots using ROS 2 interfaces
+- • Understand the core concepts and architecture of Gazebo
+- • Install and configure Gazebo for robotics simulation
+- • Create basic simulation worlds with models and physics
+- • Integrate Gazebo with ROS 2 for robot simulation
+- • Control simulated robots using ROS 2 interfaces
+<div className="border-line"></div>
 
-## Exercises
+<h2 className="second-heading">
+  Exercises
+</h2>
+<div className="underline-class"></div>
 
 <details>
 <summary>Exercise 2.1.1: Gazebo Installation and Basic Simulation (⭐, ~30 min)</summary>
 
-### Exercise 2.1.1: Gazebo Installation and Basic Simulation
+
+<h2 className="third-heading">
+Exercise 2.1.1: Gazebo Installation and Basic Simulation
+</h2>
+<div className="underline-class"></div>
+
 **Difficulty**: ⭐ (Beginner)
 **Time Estimate**: 30 minutes
 **Requirements**: Ubuntu system, ROS 2 installation, internet connection
 
-#### Starter Code
+<h2 className="fourth-heading">
+Starter Code
+</h2>
+<div className="underline-class"></div>
+
 Install Gazebo Garden and launch a basic simulation:
 1. Install Gazebo Garden and ROS 2 Gazebo packages
 2. Launch Gazebo with the default world
 3. Explore the basic interface and controls
+<div className="border-line"></div>
 
-#### Success Criteria
+<div className="border-line"></div>
+
+<h2 className="fourth-heading">
+Success Criteria
+</h2>
+<div className="underline-class"></div>
+
 - [ ] Gazebo installs without errors
 - [ ] Gazebo launches successfully with default world
 - [ ] Basic camera controls work (orbit, pan, zoom)
 - [ ] Simulation runs with acceptable real-time factor
 - [ ] Interface elements are accessible and functional
+<div className="border-line"></div>
 
-#### Test Commands
+<h2 className="fourth-heading">
+Test Commands
+</h2>
+<div className="underline-class"></div>
+
 ```bash
 # Install Gazebo
 sudo apt update
@@ -53,16 +91,29 @@ gazebo
 ros2 launch gazebo_ros gazebo.launch.py
 ```
 
-#### Expected Output
+<h2 className="fourth-heading">
+Expected Output
+</h2>
+<div className="underline-class"></div>
+
 - Gazebo GUI should open with default world
 - Camera controls should work properly
 - Simulation should run smoothly
+<div className="border-line"></div>
+<h2 className="fourth-heading">
+Challenges
+</h2>
+<div className="underline-class"></div>
 
-#### Challenges
 - Try different built-in models from the insert menu
 - Experiment with different lighting conditions
+<div className="border-line"></div>
 
-#### Hints
+<h2 className="fourth-heading">
+Hints
+</h2>
+<div className="underline-class"></div>
+
 - Make sure your system meets the minimum requirements
 - Check that your graphics drivers are up to date
 
@@ -71,26 +122,42 @@ ros2 launch gazebo_ros gazebo.launch.py
 <details>
 <summary>Exercise 2.1.2: Custom World Creation (⭐⭐, ~45 min)</summary>
 
-### Exercise 2.1.2: Custom World Creation
+<h2 className="third-heading">
+Exercise 2.1.2: Custom World Creation
+</h2>
+<div className="underline-class"></div>
+
 **Difficulty**: ⭐⭐ (Intermediate)
 **Time Estimate**: 45 minutes
 **Requirements**: Understanding of SDF format, text editor
 
-#### Starter Code
+<h2 className="third-heading">
+ Starter Code
+</h2>
+<div className="underline-class"></div>
+
 Create a custom world file with:
 - Ground plane and lighting
 - Multiple objects with different shapes and properties
 - At least one simple robot model
 - Physics parameters configuration
 
-#### Success Criteria
+<h2 className="fourth-heading">
+Success Criteria
+</h2>
+<div className="underline-class"></div>
+
 - [ ] World file is valid SDF format
 - [ ] Objects appear correctly in simulation
 - [ ] Physics simulation works properly
 - [ ] Robot model is stable and doesn't fall through ground
 - [ ] World loads without errors
 
-#### Test Commands
+<h2 className="fourth-heading">
+Test Commands
+</h2>
+<div className="underline-class"></div>
+
 ```bash
 # Validate SDF file
 gz sdf -k your_world.sdf
@@ -102,46 +169,79 @@ gazebo your_world.sdf
 ros2 launch gazebo_ros gazebo.launch.py world:=/path/to/your_world.sdf
 ```
 
-#### Expected Output
+<h2 className="fourth-heading">
+Expected Output
+</h2>
+<div className="underline-class"></div>
+
 - Custom world should load successfully
 - All objects should be visible and positioned correctly
 - Physics simulation should be stable
+<div className="border-line"></div>
 
-#### Challenges
+<h2 className="fourth-heading">
+Challenges
+</h2>
+<div className="underline-class"></div>
+
 - Add a moving object or dynamic element
 - Include sensor models in your world
+<div className="border-line"></div>
 
-#### Hints
+<h2 className="fourth-heading">
+Hints
+</h2>
+<div className="underline-class"></div>
+ 
 - Start with the default world as a template
 - Validate SDF syntax before testing
 - Use proper inertial properties for stable simulation
+<div className="border-line"></div>
 
 </details>
 
 <details>
 <summary>Exercise 2.1.3: ROS 2 Integration (⭐⭐⭐, ~60 min)</summary>
 
-### Exercise 2.1.3: ROS 2 Integration
+<h2 className="third-heading">
+Exercise 2.1.3: ROS 2 Integration
+</h2>
+<div className="underline-class"></div>
+
 **Difficulty**: ⭐⭐⭐ (Advanced)
 **Time Estimate**: 60 minutes
 **Requirements**: Complete ROS 2 knowledge, Gazebo installation
 
-#### Starter Code
+<h2 className="fourth-heading">
+Starter Code
+</h2>
+<div className="underline-class"></div>
+
 Create a complete simulation system with:
 - URDF robot model
 - Gazebo launch file
 - Robot state publisher
 - Joint state publisher
 - Basic controller node to move the robot
+<div className="border-line"></div>
 
-#### Success Criteria
+<h2 className="fourth-heading">
+Success Criteria
+</h2>
+<div className="underline-class"></div>
+
 - [ ] Robot spawns correctly in Gazebo
 - [ ] Robot state is published to ROS 2 topics
 - [ ] Robot responds to ROS 2 commands
 - [ ] TF tree is properly maintained
 - [ ] All components work together seamlessly
+<div className="border-line"></div>
 
-#### Test Commands
+<h2 className="fourth-heading">
+Test Commands
+</h2>
+<div className="underline-class"></div>
+
 ```bash
 # Launch the complete system
 ros2 launch your_robot_gazebo your_robot.launch.py
@@ -153,47 +253,82 @@ ros2 topic list
 ros2 topic pub /joint_commands trajectory_msgs/msg/JointTrajectory "..."
 ```
 
-#### Expected Output
+<h2 className="fourth-heading">
+ Expected Output
+</h2>
+<div className="underline-class"></div>
+
 - Robot should appear in Gazebo simulation
 - ROS 2 nodes should communicate properly
 - Robot should respond to control commands
+<div className="border-line"></div>
 
-#### Challenges
+<h2 className="fourth-heading">
+ Challenges
+</h2>
+<div className="underline-class"></div>
+
 - Add sensor integration (camera, IMU)
 - Implement a simple navigation or manipulation task
+<div className="border-line"></div>
 
-#### Hints
+<h2 className="fourth-heading">
+Hints
+</h2>
+<div className="underline-class"></div>
+
 - Use the robot_state_publisher for proper TF publishing
 - Make sure your URDF has proper Gazebo plugins defined
 - Test components individually before integration
-
+<div className="border-line"></div>
 </details>
 
 <details>
 <summary>Exercise Summary</summary>
 
-### Exercise Summary
+<h2 className="fourth-heading">
+Exercise Summary
+</h2>
+<div className="underline-class"></div>
+
 This chapter covered getting started with Gazebo simulation environment for robotics development. You learned to install and configure Gazebo, create basic simulation worlds, and integrate Gazebo with ROS 2. The exercises provided hands-on experience with basic installation and simulation, custom world creation, and advanced ROS 2 integration.
 
 </details>
 
-## Troubleshooting
+<div className="border-line"></div>
+<h2 className="fourth-heading">
+Troubleshooting
+</h2>
+<div className="underline-class"></div>
+<div className="border-line"></div>
 
 <details>
 <summary>Troubleshooting: Gazebo Simulation Issues</summary>
 
-### Troubleshooting: Gazebo Simulation Issues
+<h2 className="third-heading">
+Troubleshooting
+</h2>
+<div className="underline-class"></div>
 
-#### Problem: Gazebo fails to start or crashes immediately
+<h2 className="third-heading">
+Troubleshooting: Gazebo Simulation Issues
+</h2>
+<div className="underline-class"></div>
+
+<h2 className="fourth-heading">
+Problem: Gazebo fails to start or crashes immediately
+</h2>
+<div className="underline-class"></div>
+
 **Symptoms**:
-- Gazebo window doesn't open
-- Process terminates with errors
-- Segmentation fault or graphics errors
+- ▸ Gazebo window doesn't open
+- ▸ Process terminates with errors
+- ▸ Segmentation fault or graphics errors
 
 **Causes**:
-- Graphics driver issues
-- Insufficient system resources
-- Missing dependencies
+- ▸ Graphics driver issues
+- ▸ Insufficient system resources
+- ▸ Missing dependencies
 
 **Solutions**:
 1. Check graphics drivers and compatibility:
@@ -216,20 +351,24 @@ This chapter covered getting started with Gazebo simulation environment for robo
    ```
 
 **Verification Steps**:
-- [ ] Graphics drivers are properly installed
-- [ ] OpenGL is supported and working
-- [ ] Gazebo launches without errors
+- ▸ [ ] Graphics drivers are properly installed
+- ▸ [ ] OpenGL is supported and working
+- ▸ [ ] Gazebo launches without errors
 
-#### Problem: Robot falls through the ground or behaves erratically
+<h2 className="fourth-heading">
+Problem: Robot falls through the ground or behaves erratically
+</h2>
+<div className="underline-class"></div>
+
 **Symptoms**:
-- Robot model falls through surfaces
-- Unstable or unrealistic physics behavior
-- Robot explodes or moves randomly
+- ▹ Robot model falls through surfaces
+- ▹ Unstable or unrealistic physics behavior
+- ▹ Robot explodes or moves randomly
 
 **Causes**:
-- Incorrect inertial properties
-- Poor collision geometry
-- Unbalanced mass distribution
+- ▹ Incorrect inertial properties
+- ▹ Poor collision geometry
+- ▹ Unbalanced mass distribution
 
 **Solutions**:
 1. Verify inertial properties in your model:
@@ -247,20 +386,24 @@ This chapter covered getting started with Gazebo simulation environment for robo
 3. Ensure proper mesh scaling and units (meters)
 
 **Verification Steps**:
-- [ ] Robot maintains stable position in simulation
-- [ ] Proper collision detection occurs
-- [ ] Robot responds appropriately to physics
+- ▹ [ ] Robot maintains stable position in simulation
+- ▹ [ ] Proper collision detection occurs
+- ▹ [ ] Robot responds appropriately to physics
 
-#### Problem: Simulation runs slowly or real-time factor is low
+<h2 className="fourth-heading">
+Problem: Simulation runs slowly or real-time factor is low
+</h2>
+<div className="underline-class"></div>
+
 **Symptoms**:
-- Low real-time factor (< 0.5)
-- Choppiness or lag in simulation
-- High CPU or GPU usage
+- ▹ Low real-time factor (< 0.5)
+- ▹ Choppiness or lag in simulation
+- ▹ High CPU or GPU usage
 
 **Causes**:
-- Complex collision geometry
-- High sensor update rates
-- Resource-intensive physics calculations
+- ▹ Complex collision geometry
+- ▹ High sensor update rates
+- ▹ Resource-intensive physics calculations
 
 **Solutions**:
 1. Reduce sensor update rates:
@@ -287,20 +430,24 @@ This chapter covered getting started with Gazebo simulation environment for robo
    ```
 
 **Verification Steps**:
-- [ ] Real-time factor is above 0.8
-- [ ] Simulation runs smoothly
-- [ ] Acceptable CPU/GPU usage
+- ▹ [ ] Real-time factor is above 0.8
+- ▹ [ ] Simulation runs smoothly
+- ▹ [ ] Acceptable CPU/GPU usage
 
-#### Problem: ROS 2 integration fails or nodes don't communicate
+<h2 className="fourth-heading">
+Problem: ROS 2 integration fails or nodes don't communicate
+</h2>
+<div className="underline-class"></div>
+
 **Symptoms**:
-- Robot doesn't respond to ROS 2 commands
-- Missing topics or services
-- Plugin loading errors
+- ▹ Robot doesn't respond to ROS 2 commands
+- ▹ Missing topics or services
+- ▹ Plugin loading errors
 
 **Causes**:
-- Incorrect plugin names or filenames
-- Namespace mismatches
-- Missing Gazebo-ROS packages
+- ▹ Incorrect plugin names or filenames
+- ▹ Namespace mismatches
+- ▹ Missing Gazebo-ROS packages
 
 **Solutions**:
 1. Verify plugin names and filenames:
@@ -325,11 +472,15 @@ This chapter covered getting started with Gazebo simulation environment for robo
    ```
 
 **Verification Steps**:
-- [ ] ROS 2 topics are available and publishing
-- [ ] Robot responds to ROS 2 commands
-- [ ] TF tree is properly maintained
+- ▹ [ ] ROS 2 topics are available and publishing
+- ▹ [ ] Robot responds to ROS 2 commands
+- ▹ [ ] TF tree is properly maintained
 
-#### Problem: Models don't appear or textures are missing
+<h2 className="fourth-heading">
+Problem: Models don't appear or textures are missing
+</h2>
+<div className="underline-class"></div>
+
 **Symptoms**:
 - Robot or objects appear as wireframes
 - Textures don't load properly
@@ -361,33 +512,48 @@ This chapter covered getting started with Gazebo simulation environment for robo
    ```
 
 **Verification Steps**:
-- [ ] Models appear with correct geometry
-- [ ] Textures and materials display properly
-- [ ] Models load without errors
+- ▹ [ ] Models appear with correct geometry
+- ▹ [ ] Textures and materials display properly
+- ▹ [ ] Models load without errors
 
 </details>
 
-## What is Gazebo?
+<h2 className="second-heading">
+What is Gazebo?
+</h2>
+<div className="underline-class"></div>
+ <div className="border-line"></div>
 
 Gazebo is a 3D dynamic simulator with the ability to accurately and efficiently simulate populations of robots in complex indoor and outdoor environments. It provides:
 
-- **Realistic Physics**: Based on ODE (Open Dynamics Engine), Bullet Physics, or DART
-- **High-Quality Graphics**: Using OGRE for rendering
-- **Sensors**: Including cameras, LIDAR, IMU, GPS, and more
-- **Plugins**: Extensible architecture for custom functionality
-- **ROS Integration**: Seamless integration with ROS and ROS 2
+- ➛ **Realistic Physics**: Based on ODE (Open Dynamics Engine), Bullet Physics, or DART
+- ➛ **High-Quality Graphics**: Using OGRE for rendering
+- ➛ **Sensors**: Including cameras, LIDAR, IMU, GPS, and more
+- ➛ **Plugins**: Extensible architecture for custom functionality
+- ➛ **ROS Integration**: Seamless integration with ROS and ROS 2
+<div className="border-line"></div>
+<h2 className="third-heading">
+Key Features for Humanoid Robotics
+</h2>
+<div className="underline-class"></div>
 
-### Key Features for Humanoid Robotics
+- ➛ **Complex Kinematics**: Support for robots with many degrees of freedom
+- ➛ **Realistic Physics**: Accurate simulation of balance, contact, and dynamics
+- ➛ **Sensor Simulation**: Realistic sensor data for perception algorithms
+- ➛ **Collision Detection**: Advanced collision detection for safe interaction
+- ➛ **Environment Simulation**: Complex indoor and outdoor environments
 
-- **Complex Kinematics**: Support for robots with many degrees of freedom
-- **Realistic Physics**: Accurate simulation of balance, contact, and dynamics
-- **Sensor Simulation**: Realistic sensor data for perception algorithms
-- **Collision Detection**: Advanced collision detection for safe interaction
-- **Environment Simulation**: Complex indoor and outdoor environments
+<h2 className="second-heading">
+Installing Gazebo
+</h2>
+<div className="underline-class"></div>
+<div className="border-line"></div>
 
-## Installing Gazebo
+<h2 className="third-heading">
+Gazebo Garden (Recommended for ROS 2 Humble)
+</h2>
+<div className="underline-class"></div>
 
-### Gazebo Garden (Recommended for ROS 2 Humble)
 
 ```bash
 # Update package list
@@ -399,17 +565,27 @@ sudo apt install gazebo-garden
 # Install ROS 2 Gazebo packages
 sudo apt install ros-humble-gazebo-ros-pkgs ros-humble-gazebo-ros2-control
 ```
-
-### Alternative: Ignition Gazebo (Forthcoming versions)
+<div className="border-line"></div>
+<h2 className="third-heading">
+Alternative: Ignition Gazebo (Forthcoming versions)
+</h2>
+<div className="underline-class"></div>
 
 For newer versions of ROS 2:
 ```bash
 sudo apt install ignition-harmonic
 ```
 
-## Basic Gazebo Concepts
+<h2 className="second-heading">
+Basic Gazebo Concepts
+</h2>
+<div className="underline-class"></div>
+<div className="border-line"></div>
+<h2 className="third-heading">
+World Files
+</h2>
+<div className="underline-class"></div>
 
-### World Files
 World files define the simulation environment in SDF (Simulation Description Format):
 
 ```xml
@@ -463,8 +639,12 @@ World files define the simulation environment in SDF (Simulation Description For
   </world>
 </sdf>
 ```
+<div className="border-line"></div>
+<h2 className="third-heading">
+Model Files
+</h2>
+<div className="underline-class"></div>
 
-### Model Files
 Models are described in SDF format and can be placed in worlds:
 
 ```xml
@@ -499,9 +679,15 @@ Models are described in SDF format and can be placed in worlds:
 </sdf>
 ```
 
-## Running Gazebo
-
-### Basic Gazebo Commands
+<h2 className="second-heading">
+Running Gazebo
+</h2>
+<div className="underline-class"></div>
+<div className="border-line"></div>
+<h2 className="third-heading">
+Basic Gazebo Commands
+</h2>
+<div className="underline-class"></div>
 
 ```bash
 # Launch Gazebo with default world
@@ -514,7 +700,10 @@ gazebo /path/to/world.world
 gazebo -v 4 /path/to/world.world
 ```
 
-### Using Gazebo with ROS 2
+<h2 className="third-heading">
+Using Gazebo with ROS 2
+</h2>
+<div className="underline-class"></div>
 
 ```bash
 # Launch Gazebo through ROS 2
@@ -524,24 +713,49 @@ ros2 launch gazebo_ros gazebo.launch.py
 ros2 launch gazebo_ros gazebo.launch.py world:=/path/to/my/world.sdf
 ```
 
-## Gazebo GUI Overview
+<h2 className="second-heading">
+Gazebo GUI Overview
+</h2>
+<div className="underline-class"></div>
+<div className="border-line"></div>
+<h2 className="third-heading">
+Gazebo GUI Overview
+</h2>
+<div className="underline-class"></div>
+<div className="border-line"></div>
+<h2 className="third-heading">
+Main Interface Components
+</h2>
+<div className="underline-class"></div>
 
-### Main Interface Components
-- **3D View**: The main simulation environment
-- **Scene Tree**: Hierarchical view of all objects in the scene
-- **Tools**: Various simulation tools (play/pause, reset, etc.)
-- **Layers**: Control visibility of different elements
-- **Time Panel**: Simulation time and real-time factors
+- ➣ **3D View**: The main simulation environment
+- ➣ **Scene Tree**: Hierarchical view of all objects in the scene
+- ➣ **Tools**: Various simulation tools (play/pause, reset, etc.)
+- ➣ **Layers**: Control visibility of different elements
+- ➣ **Time Panel**: Simulation time and real-time factors
+<div className="border-line"></div>
 
-### Camera Controls
-- **Orbit**: Right-click and drag to orbit around a point
-- **Pan**: Shift + right-click and drag to pan
-- **Zoom**: Scroll wheel to zoom in/out
-- **Focus**: Double-click on an object to focus the camera
+<h2 className="third-heading">
+Camera Controls
+</h2>
+<div className="underline-class"></div>
 
-## Creating Your First Simulation
+- ➣ **Orbit**: Right-click and drag to orbit around a point
+- ➣ **Pan**: Shift + right-click and drag to pan
+- ➣ **Zoom**: Scroll wheel to zoom in/out
+- ➣ **Focus**: Double-click on an object to focus the camera
+<div className="border-line"></div>
 
-### Simple World with a Robot
+<h2 className="second-heading">
+Creating Your First Simulation
+</h2>
+<div className="underline-class"></div>
+<div className="border-line"></div>
+
+<h2 className="third-heading">
+Simple World with a Robot
+</h2>
+<div className="underline-class"></div>
 
 Let's create a simple world file with a robot:
 
@@ -611,17 +825,27 @@ Let's create a simple world file with a robot:
 </sdf>
 ```
 
-## ROS 2 Integration
-
-### Gazebo ROS Packages
+<h2 className="second-heading">
+ROS 2 Integration
+</h2>
+<div className="underline-class"></div>
+<div className="border-line"></div>
+<h2 className="third-heading">
+Gazebo ROS Packages
+</h2>
+<div className="underline-class"></div>
 
 Gazebo integrates with ROS 2 through several packages:
-- `gazebo_ros`: Core ROS 2 plugins and launch files
-- `gazebo_plugins`: Various sensor and actuator plugins
-- `gazebo_dev`: Development headers and libraries
-- `gazebo_msgs`: Message and service definitions
+- ➱ `gazebo_ros`: Core ROS 2 plugins and launch files
+- ➱ `gazebo_plugins`: Various sensor and actuator plugins
+- ➱ `gazebo_dev`: Development headers and libraries
+- ➱ `gazebo_msgs`: Message and service definitions
 
-### Spawning Robots in Gazebo
+<div className="border-line"></div>
+<h2 className="third-heading">
+Spawning Robots in Gazebo
+</h2>
+<div className="underline-class"></div>
 
 To spawn a robot in Gazebo from ROS 2:
 
@@ -683,9 +907,17 @@ if __name__ == '__main__':
     main()
 ```
 
-## Gazebo Plugins for Humanoid Robots
+<h2 className="second-heading">
+Gazebo Plugins for Humanoid Robots
+</h2>
+<div className="underline-class"></div>
 
-### Joint Control Plugins
+<div className="border-line"></div>
+
+<h2 className="third-heading">
+Joint Control Plugins
+</h2>
+<div className="underline-class"></div>
 
 For humanoid robots, you'll need plugins to control joints:
 
@@ -715,7 +947,11 @@ For humanoid robots, you'll need plugins to control joints:
 </gazebo>
 ```
 
-### Sensor Plugins
+<div className="border-line"></div>
+<h2 className="third-heading">
+Sensor Plugins
+</h2>
+<div className="underline-class"></div>
 
 Add sensors to your robot model:
 
@@ -763,52 +999,81 @@ Add sensors to your robot model:
 </gazebo>
 ```
 
-## Simulation Best Practices
+<div className="border-line"></div>
+---
 
-### Performance Optimization
-- **Reduce Update Rates**: Use appropriate update rates for sensors (not all need 1000Hz)
-- **Simplify Collision Geometry**: Use simpler shapes for collision detection
-- **Limit Physics Steps**: Balance accuracy with performance
-- **Use Appropriate World Size**: Don't make worlds larger than necessary
+<h2 className="second-heading">
+ Simulation Best Practices
+</h2>
+<div className="underline-class"></div>
 
-### Realistic Simulation
-- **Accurate Inertial Properties**: Use real robot specifications
-- **Proper Joint Limits**: Match physical robot capabilities
-- **Realistic Sensor Noise**: Add appropriate noise models
-- **Correct Friction Values**: Match real-world materials
+<h3 className="third-heading">
+ Performance Optimization
+</h3>
+<div className="underline-class"></div>
 
-### Debugging Tips
-- **Use Wireframe Mode**: Press 'W' to see collision geometry
-- **Enable Contact Visualization**: Visualize contact points
-- **Monitor Real-time Factor**: Ensure simulation runs at acceptable speed
-- **Use Gazebo's Built-in Tools**: Physics statistics, profiler, etc.
+- • **Reduce Update Rates**: Use appropriate update rates for sensors (not all need 1000Hz)
+- • **Simplify Collision Geometry**: Use simpler shapes for collision detection
+- • **Limit Physics Steps**: Balance accuracy with performance
+- • **Use Appropriate World Size**: Don't make worlds larger than necessary
 
-## Summary
+<h3 className="third-heading">
+ Realistic Simulation
+</h3>
+<div className="underline-class"></div>
+
+- • **Accurate Inertial Properties**: Use real robot specifications
+- • **Proper Joint Limits**: Match physical robot capabilities
+- • **Realistic Sensor Noise**: Add appropriate noise models
+- • **Correct Friction Values**: Match real-world materials
+
+<h3 className="third-heading">
+ Debugging Tips
+</h3>
+<div className="underline-class"></div>
+
+- • **Use Wireframe Mode**: Press 'W' to see collision geometry
+- • **Enable Contact Visualization**: Visualize contact points
+- • **Monitor Real-time Factor**: Ensure simulation runs at acceptable speed
+- • **Use Gazebo's Built-in Tools**: Physics statistics, profiler, etc.
+
+<div className="border-line"></div>
+---
+
+<h2 className="second-heading">
+ Summary
+</h2>
+<div className="underline-class"></div>
 
 Gazebo provides a powerful simulation environment for humanoid robotics development. By understanding its core concepts, installation process, and integration with ROS 2, you can create realistic simulations that help develop and test robotic systems before deploying to real hardware. The combination of accurate physics, realistic sensors, and ROS 2 integration makes Gazebo an invaluable tool in the robotics development pipeline.
 
+<div className="border-line"></div>
 ---
 
-## Additional Resources
+<h2 className="second-heading">
+ Additional Resources
+</h2>
+<div className="underline-class"></div>
 
 **Official Documentation**:
-- [Gazebo Classic Documentation](http://gazebosim.org/)
-- [Ignition Robotics Documentation](https://ignitionrobotics.org/)
-- [Gazebo ROS Packages](https://github.com/ros-simulation/gazebo_ros_pkgs)
+- • [Gazebo Classic Documentation](http://gazebosim.org/)
+- • [Ignition Robotics Documentation](https://ignitionrobotics.org/)
+- • [Gazebo ROS Packages](https://github.com/ros-simulation/gazebo_ros_pkgs)
+
+<div className="border-line"></div>
 
 **Tutorials**:
-- [Gazebo Tutorials](http://gazebosim.org/tutorials)
-- [ROS 2 with Gazebo](https://docs.ros.org/en/humble/Tutorials/Advanced/Simulators/Gazebo.html)
-- [Robot Simulation Best Practices](https://navigation.ros.org/tutorials/docs/get_back_to_real_world.html)
+- • [Gazebo Tutorials](http://gazebosim.org/tutorials)
+- • [ROS 2 with Gazebo](https://docs.ros.org/en/humble/Tutorials/Advanced/Simulators/Gazebo.html)
+- • [Robot Simulation Best Practices](https://navigation.ros.org/tutorials/docs/get_back_to_real_world.html)
+
+<div className="border-line"></div>
 
 **Example Code**:
-- [Gazebo ROS Examples](https://github.com/ros-simulation/gazebo_ros_demos)
-- [TurtleBot3 Gazebo Simulation](https://emanual.robotis.com/docs/en/platform/turtlebot3/simulation/)
+- • [Gazebo ROS Examples](https://github.com/ros-simulation/gazebo_ros_demos)
+- • [TurtleBot3 Gazebo Simulation](https://emanual.robotis.com/docs/en/platform/turtlebot3/simulation/)
 
 ---
 
-import ReadingTime from '@site/src/components/ReadingTime';
-import ViewToggle from '@site/src/components/ViewToggle';
 
-<ReadingTime minutes={14} />
-<ViewToggle />
+<div className="border-line"></div>

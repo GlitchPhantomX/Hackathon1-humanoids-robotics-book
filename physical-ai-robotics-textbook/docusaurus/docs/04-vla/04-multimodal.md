@@ -3,26 +3,32 @@ sidebar_position: 4
 title: "Multimodal Perception and Integration"
 description: "Combining multiple sensory modalities for enhanced robotic perception"
 ---
-
-# Multimodal Perception and Integration
+# <h1 className="main-heading">Multimodal Perception and Integration</h1>
+<div className="underline-class"></div>
 
 import ReadingTime from '@site/src/components/ReadingTime';
 import ViewToggle from '@site/src/components/ViewToggle';
 
 <ReadingTime minutes={123} />
 
-<ViewToggle />
+<!-- <ViewToggle /> -->
 
-## Learning Objectives
+<h2 className="second-heading">
+Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 After completing this chapter, you will be able to:
-- Understand the principles of multimodal perception in robotics
-- Implement systems that integrate visual, auditory, tactile, and other sensory modalities
-- Design fusion architectures for combining information from multiple sensors
-- Create robust perception systems that leverage multimodal redundancy
-- Evaluate the effectiveness of multimodal integration approaches
+- • Understand the principles of multimodal perception in robotics
+- • Implement systems that integrate visual, auditory, tactile, and other sensory modalities
+- • Design fusion architectures for combining information from multiple sensors
+- • Create robust perception systems that leverage multimodal redundancy
+- • Evaluate the effectiveness of multimodal integration approaches
 
-## Introduction to Multimodal Perception
+<h2 className="second-heading">
+Introduction to Multimodal Perception
+</h2>
+<div className="underline-class"></div>
 
 Multimodal perception represents a fundamental approach to robotic sensing that combines information from multiple sensory modalities to create a more complete and robust understanding of the environment than any single modality could provide. Unlike unimodal systems that rely on a single type of sensor (e.g., vision-only or audio-only), multimodal systems leverage the complementary strengths of different sensory channels to enhance perception accuracy, robustness, and reliability.
 
@@ -30,14 +36,21 @@ The human perceptual system provides an excellent example of multimodal integrat
 
 This chapter explores the architectures, algorithms, and practical implementations needed to create effective multimodal perception systems for robotics, with a focus on the Vision-Language-Action paradigm that connects multiple sensory modalities with robotic action execution.
 
-## Multimodal Sensor Architectures
+<h2 className="second-heading">
+Multimodal Sensor Architectures
+</h2>
+<div className="underline-class"></div>
 
-### Sensor Types and Modalities
+<h3 className="third-heading">
+- Sensor Types and Modalities
+</h3>
+<div className="underline-class"></div>
 
 Robotic multimodal systems typically integrate several types of sensors, each providing different types of information:
 
 ```python
-# Example: Multimodal sensor architecture
+# <h1 className="main-heading">Example: Multimodal sensor architecture</h1>
+<div className="underline-class"></div>
 import numpy as np
 import cv2
 from typing import Dict, List, Any, Optional
@@ -46,7 +59,8 @@ import time
 
 class MultimodalSensorManager:
     def __init__(self):
-        # Initialize different sensor types
+# <h1 className="main-heading">Initialize different sensor types</h1>
+<div className="underline-class"></div>
         self.vision_sensors = {
             'rgb_camera': self.initialize_rgb_camera(),
             'depth_camera': self.initialize_depth_camera(),
@@ -83,8 +97,10 @@ class MultimodalSensorManager:
                 self.exposure = 0.01  # seconds
 
             def capture(self):
-                # In practice, this would interface with actual camera hardware
-                # For simulation, return dummy RGB image
+# <h1 className="main-heading">In practice, this would interface with actual camera hardware</h1>
+<div className="underline-class"></div>
+# <h1 className="main-heading">For simulation, return dummy RGB image</h1>
+<div className="underline-class"></div>
                 return np.random.randint(0, 255, (self.height, self.width, 3), dtype=np.uint8)
 
             def get_intrinsics(self):
@@ -107,7 +123,8 @@ class MultimodalSensorManager:
                 self.max_depth = 10.0  # meters
 
             def capture(self):
-                # Return dummy depth image
+# <h1 className="main-heading">Return dummy depth image</h1>
+<div className="underline-class"></div>
                 return np.random.uniform(self.min_depth, self.max_depth,
                                        (self.height, self.width)).astype(np.float32)
 
@@ -129,11 +146,13 @@ class MultimodalSensorManager:
                 self.array_geometry = [(0, 0), (0.1, 0), (0, 0.1), (0.1, 0.1)]  # meters
 
             def capture_audio(self):
-                # Return dummy audio data
+# <h1 className="main-heading">Return dummy audio data</h1>
+<div className="underline-class"></div>
                 return np.random.randn(48000).astype(np.float32)
 
             def estimate_direction_of_arrival(self, audio_data):
-                # Simple DOA estimation (in practice, this would use beamforming)
+# <h1 className="main-heading">Simple DOA estimation (in practice, this would use beamforming)</h1>
+<div className="underline-class"></div>
                 return np.random.uniform(0, 360)  # degrees
 
         return MicrophoneArray()
@@ -147,7 +166,8 @@ class MultimodalSensorManager:
                 self.temperature_sensors = 2  # temperature sensors
 
             def get_tactile_data(self):
-                # Return dummy tactile sensor data
+# <h1 className="main-heading">Return dummy tactile sensor data</h1>
+<div className="underline-class"></div>
                 return {
                     'contact_force': np.random.rand(self.force_sensors).astype(np.float32),
                     'tactile_map': np.random.rand(self.tactile_resolution).astype(np.float32),
@@ -165,7 +185,8 @@ class MultimodalSensorManager:
                 self.magnetometer_range = 4800  # uT
 
             def get_imu_data(self):
-                # Return dummy IMU data
+# <h1 className="main-heading">Return dummy IMU data</h1>
+<div className="underline-class"></div>
                 return {
                     'acceleration': np.random.randn(3).astype(np.float32),
                     'angular_velocity': np.random.randn(3).astype(np.float32),
@@ -180,20 +201,25 @@ class MultimodalSensorManager:
         with self.synchronization_lock:
             multimodal_data = {}
 
-            # Capture visual data
+# <h1 className="main-heading">Capture visual data</h1>
+<div className="underline-class"></div>
             multimodal_data['rgb'] = self.vision_sensors['rgb_camera'].capture()
             multimodal_data['depth'] = self.vision_sensors['depth_camera'].capture()
 
-            # Capture audio data
+# <h1 className="main-heading">Capture audio data</h1>
+<div className="underline-class"></div>
             multimodal_data['audio'] = self.audio_sensors['microphone_array'].capture_audio()
 
-            # Capture tactile data (if robot is interacting)
+# <h1 className="main-heading">Capture tactile data (if robot is interacting)</h1>
+<div className="underline-class"></div>
             multimodal_data['tactile'] = self.tactile_sensors['gripper_sensors'].get_tactile_data()
 
-            # Capture proprioceptive data
+# <h1 className="main-heading">Capture proprioceptive data</h1>
+<div className="underline-class"></div>
             multimodal_data['imu'] = self.proprioceptive_sensors['imu'].get_imu_data()
 
-            # Add timestamp
+# <h1 className="main-heading">Add timestamp</h1>
+<div className="underline-class"></div>
             multimodal_data['timestamp'] = time.time()
 
             return multimodal_data
@@ -239,12 +265,16 @@ class MultimodalSensorManager:
         }
 ```
 
-### Sensor Synchronization and Calibration
+<h3 className="third-heading">
+- Sensor Synchronization and Calibration
+</h3>
+<div className="underline-class"></div>
 
 Proper synchronization and calibration are crucial for effective multimodal integration:
 
 ```python
-# Example: Sensor synchronization and calibration system
+# <h1 className="main-heading">Example: Sensor synchronization and calibration system</h1>
+<div className="underline-class"></div>
 class SensorCalibrationSystem:
     def __init__(self):
         self.calibration_data = {}
@@ -253,7 +283,8 @@ class SensorCalibrationSystem:
 
     def calibrate_camera_intrinsics(self, camera_name: str, images: List[np.ndarray]) -> Dict[str, Any]:
         """Calibrate camera intrinsic parameters"""
-        # Prepare object points (checkerboard corners in 3D space)
+# <h1 className="main-heading">Prepare object points (checkerboard corners in 3D space)</h1>
+<div className="underline-class"></div>
         objp = np.zeros((9*6, 3), np.float32)
         objp[:, :2] = np.mgrid[0:9, 0:6].T.reshape(-1, 2)
 
@@ -263,7 +294,8 @@ class SensorCalibrationSystem:
         for img in images:
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-            # Find checkerboard corners
+# <h1 className="main-heading">Find checkerboard corners</h1>
+<div className="underline-class"></div>
             ret, corners = cv2.findChessboardCorners(
                 gray, (9, 6), cv2.CALIB_CB_ADAPTIVE_THRESH + cv2.CALIB_CB_FAST_CHECK + cv2.CALIB_CB_NORMALIZE_IMAGE
             )
@@ -295,9 +327,12 @@ class SensorCalibrationSystem:
         extrinsics = {}
 
         for sensor1, sensor2 in sensor_pairs:
-            # This would involve capturing synchronized data from both sensors
-            # and computing the transformation between them
-            # For this example, we'll return a dummy transformation
+# <h1 className="main-heading">This would involve capturing synchronized data from both sensors</h1>
+<div className="underline-class"></div>
+# <h1 className="main-heading">and computing the transformation between them</h1>
+<div className="underline-class"></div>
+# <h1 className="main-heading">For this example, we'll return a dummy transformation</h1>
+<div className="underline-class"></div>
 
             transformation = self.compute_sensor_transformation(sensor1, sensor2)
             extrinsics[f'{sensor1}_to_{sensor2}'] = transformation
@@ -307,8 +342,10 @@ class SensorCalibrationSystem:
 
     def compute_sensor_transformation(self, sensor1: str, sensor2: str) -> Dict[str, Any]:
         """Compute transformation between two sensors"""
-        # In practice, this would use calibration objects and synchronized captures
-        # For this example, return a dummy transformation
+# <h1 className="main-heading">In practice, this would use calibration objects and synchronized captures</h1>
+<div className="underline-class"></div>
+# <h1 className="main-heading">For this example, return a dummy transformation</h1>
+<div className="underline-class"></div>
         return {
             'rotation': np.eye(3).tolist(),  # Identity rotation
             'translation': [0.0, 0.0, 0.0],  # Zero translation
@@ -320,10 +357,12 @@ class SensorCalibrationSystem:
         synchronized_data = {}
 
         for sensor_name, data in sensor_data.items():
-            # Apply timing offset correction
+# <h1 className="main-heading">Apply timing offset correction</h1>
+<div className="underline-class"></div>
             corrected_timestamp = data.get('timestamp', time.time()) + self.synchronization_offsets.get(sensor_name, 0.0)
 
-            # Apply geometric transformation if needed
+# <h1 className="main-heading">Apply geometric transformation if needed</h1>
+<div className="underline-class"></div>
             transformed_data = self.transform_sensor_data(data, sensor_name)
 
             synchronized_data[sensor_name] = {
@@ -336,16 +375,20 @@ class SensorCalibrationSystem:
 
     def transform_sensor_data(self, data: Any, sensor_name: str) -> Any:
         """Transform sensor data to common coordinate frame"""
-        # Apply extrinsic transformation to sensor data
-        # This would convert sensor-specific coordinates to a common frame
-        # For this example, return data unchanged
+# <h1 className="main-heading">Apply extrinsic transformation to sensor data</h1>
+<div className="underline-class"></div>
+# <h1 className="main-heading">This would convert sensor-specific coordinates to a common frame</h1>
+<div className="underline-class"></div>
+# <h1 className="main-heading">For this example, return data unchanged</h1>
+<div className="underline-class"></div>
         return data
 
     def validate_calibration(self, test_data: Dict[str, Any]) -> Dict[str, float]:
         """Validate calibration quality"""
         validation_results = {}
 
-        # Check reprojection errors for cameras
+# <h1 className="main-heading">Check reprojection errors for cameras</h1>
+<div className="underline-class"></div>
         for sensor_name, calib_data in self.calibration_data.items():
             if 'reprojection_error' in calib_data:
                 validation_results[sensor_name] = calib_data['reprojection_error']
@@ -353,14 +396,21 @@ class SensorCalibrationSystem:
         return validation_results
 ```
 
-## Multimodal Fusion Techniques
+<h2 className="second-heading">
+Multimodal Fusion Techniques
+</h2>
+<div className="underline-class"></div>
 
-### Early Fusion Approaches
+<h3 className="third-heading">
+- Early Fusion Approaches
+</h3>
+<div className="underline-class"></div>
 
 Early fusion combines raw sensor data at the lowest level, before individual processing:
 
 ```python
-# Example: Early fusion for multimodal perception
+# <h1 className="main-heading">Example: Early fusion for multimodal perception</h1>
+<div className="underline-class"></div>
 class EarlyFusionSystem:
     def __init__(self):
         self.fusion_weights = {
@@ -374,13 +424,15 @@ class EarlyFusionSystem:
     def early_fusion_rgb_depth(self, rgb_image: np.ndarray,
                               depth_image: np.ndarray) -> np.ndarray:
         """Fuse RGB and depth images at pixel level"""
-        # Ensure images are the same size
+# <h1 className="main-heading">Ensure images are the same size</h1>
+<div className="underline-class"></div>
         if rgb_image.shape[:2] != depth_image.shape:
             depth_resized = cv2.resize(depth_image, (rgb_image.shape[1], rgb_image.shape[0]))
         else:
             depth_resized = depth_image
 
-        # Create 4-channel image: RGB + Depth
+# <h1 className="main-heading">Create 4-channel image: RGB + Depth</h1>
+<div className="underline-class"></div>
         fused_image = np.zeros((rgb_image.shape[0], rgb_image.shape[1], 4), dtype=rgb_image.dtype)
         fused_image[:, :, :3] = rgb_image  # RGB channels
         fused_image[:, :, 3] = (depth_resized * 255).astype(rgb_image.dtype)  # Depth as 4th channel
@@ -390,14 +442,17 @@ class EarlyFusionSystem:
     def early_fusion_audio_visual(self, audio_data: np.ndarray,
                                  visual_features: np.ndarray) -> np.ndarray:
         """Fuse audio and visual features at early stage"""
-        # This could create cross-modal embeddings
-        # For this example, we'll concatenate features
+# <h1 className="main-heading">This could create cross-modal embeddings</h1>
+<div className="underline-class"></div>
+# <h1 className="main-heading">For this example, we'll concatenate features</h1>
+<div className="underline-class"></div>
         if len(audio_data.shape) == 1:
             audio_data = audio_data.reshape(1, -1)
         if len(visual_features.shape) == 1:
             visual_features = visual_features.reshape(1, -1)
 
-        # Pad shorter sequence to match length
+# <h1 className="main-heading">Pad shorter sequence to match length</h1>
+<div className="underline-class"></div>
         max_len = max(audio_data.shape[1], visual_features.shape[1])
         if audio_data.shape[1] < max_len:
             padded_audio = np.pad(audio_data, ((0, 0), (0, max_len - audio_data.shape[1])), mode='constant')
@@ -409,34 +464,40 @@ class EarlyFusionSystem:
         else:
             padded_visual = visual_features
 
-        # Concatenate along feature dimension
+# <h1 className="main-heading">Concatenate along feature dimension</h1>
+<div className="underline-class"></div>
         fused_features = np.concatenate([padded_audio, padded_visual], axis=0)
         return fused_features
 
     def early_fusion_multimodal_tensor(self, sensor_data: Dict[str, np.ndarray]) -> np.ndarray:
         """Create a unified tensor from multiple sensor modalities"""
-        # Determine the common spatial dimensions
+# <h1 className="main-heading">Determine the common spatial dimensions</h1>
+<div className="underline-class"></div>
         spatial_dims = None
         for modality, data in sensor_data.items():
             if len(data.shape) >= 2:  # Has spatial dimensions
                 if spatial_dims is None:
                     spatial_dims = data.shape[:2]
                 else:
-                    # Resize to match the first spatial dimensions found
+# <h1 className="main-heading">Resize to match the first spatial dimensions found</h1>
+<div className="underline-class"></div>
                     if data.shape[:2] != spatial_dims:
                         if len(data.shape) == 3:
                             data = cv2.resize(data, (spatial_dims[1], spatial_dims[0]))
                         else:
                             data = cv2.resize(data, (spatial_dims[1], spatial_dims[0]))
 
-        # Stack modalities along a new dimension
+# <h1 className="main-heading">Stack modalities along a new dimension</h1>
+<div className="underline-class"></div>
         modalities = []
         for modality, data in sensor_data.items():
-            # Normalize data to 0-1 range
+# <h1 className="main-heading">Normalize data to 0-1 range</h1>
+<div className="underline-class"></div>
             if data.dtype == np.uint8:
                 normalized = data.astype(np.float32) / 255.0
             else:
-                # Normalize to 0-1 based on data range
+# <h1 className="main-heading">Normalize to 0-1 based on data range</h1>
+<div className="underline-class"></div>
                 data_min, data_max = data.min(), data.max()
                 if data_max != data_min:
                     normalized = (data - data_min) / (data_max - data_min)
@@ -445,17 +506,22 @@ class EarlyFusionSystem:
 
             modalities.append(normalized)
 
-        # Stack along new dimension
+# <h1 className="main-heading">Stack along new dimension</h1>
+<div className="underline-class"></div>
         fused_tensor = np.stack(modalities, axis=-1)
         return fused_tensor
 ```
 
-### Late Fusion Approaches
+<h3 className="third-heading">
+- Late Fusion Approaches
+</h3>
+<div className="underline-class"></div>
 
 Late fusion combines the outputs of individual modality-specific processors:
 
 ```python
-# Example: Late fusion for multimodal perception
+# <h1 className="main-heading">Example: Late fusion for multimodal perception</h1>
+<div className="underline-class"></div>
 class LateFusionSystem:
     def __init__(self):
         self.confidence_weights = {}
@@ -464,7 +530,8 @@ class LateFusionSystem:
 
     def late_fusion_classification(self, modality_results: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:
         """Fuse classification results from different modalities"""
-        # Each modality result should contain: 'prediction', 'confidence', 'class_probabilities'
+# <h1 className="main-heading">Each modality result should contain: 'prediction', 'confidence', 'class_probabilities'</h1>
+<div className="underline-class"></div>
         predictions = {}
         confidences = {}
         class_probabilities = {}
@@ -474,10 +541,12 @@ class LateFusionSystem:
             confidences[modality] = result.get('confidence', 0.5)
             class_probabilities[modality] = result.get('class_probabilities', {})
 
-        # Combine predictions using weighted voting based on confidence
+# <h1 className="main-heading">Combine predictions using weighted voting based on confidence</h1>
+<div className="underline-class"></div>
         combined_probabilities = self.weighted_combination(class_probabilities, confidences)
 
-        # Find the class with highest probability
+# <h1 className="main-heading">Find the class with highest probability</h1>
+<div className="underline-class"></div>
         final_prediction = max(combined_probabilities, key=combined_probabilities.get)
         final_confidence = combined_probabilities[final_prediction]
 
@@ -512,7 +581,8 @@ class LateFusionSystem:
 
     def late_fusion_detection(self, modality_detections: Dict[str, List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
         """Fuse object detection results from different modalities"""
-        # Each modality provides a list of detections with: 'bbox', 'class', 'confidence'
+# <h1 className="main-heading">Each modality provides a list of detections with: 'bbox', 'class', 'confidence'</h1>
+<div className="underline-class"></div>
         all_detections = []
 
         for modality, detections in modality_detections.items():
@@ -522,7 +592,8 @@ class LateFusionSystem:
                 detection_with_modality['original_confidence'] = detection.get('confidence', 0.5)
                 all_detections.append(detection_with_modality)
 
-        # Apply non-maximum suppression across modalities
+# <h1 className="main-heading">Apply non-maximum suppression across modalities</h1>
+<div className="underline-class"></div>
         fused_detections = self.cross_modal_nms(all_detections)
 
         return fused_detections
@@ -532,23 +603,27 @@ class LateFusionSystem:
         if not detections:
             return []
 
-        # Sort by confidence (descending)
+# <h1 className="main-heading">Sort by confidence (descending)</h1>
+<div className="underline-class"></div>
         sorted_detections = sorted(detections, key=lambda x: x.get('confidence', x.get('original_confidence', 0)), reverse=True)
 
         keep = []
         while sorted_detections:
-            # Take the detection with highest confidence
+# <h1 className="main-heading">Take the detection with highest confidence</h1>
+<div className="underline-class"></div>
             current = sorted_detections.pop(0)
             keep.append(current)
 
-            # Remove overlapping detections
+# <h1 className="main-heading">Remove overlapping detections</h1>
+<div className="underline-class"></div>
             remaining = []
             for detection in sorted_detections:
                 iou = self.calculate_iou(current['bbox'], detection['bbox'])
                 if iou < iou_threshold:
                     remaining.append(detection)
                 else:
-                    # If overlapping, potentially update confidence based on multimodal evidence
+# <h1 className="main-heading">If overlapping, potentially update confidence based on multimodal evidence</h1>
+<div className="underline-class"></div>
                     detection['confidence'] = max(
                         detection.get('confidence', detection.get('original_confidence', 0)),
                         current.get('confidence', current.get('original_confidence', 0))
@@ -564,7 +639,8 @@ class LateFusionSystem:
         x1_min, y1_min, x1_max, y1_max = bbox1
         x2_min, y2_min, x2_max, y2_max = bbox2
 
-        # Calculate intersection
+# <h1 className="main-heading">Calculate intersection</h1>
+<div className="underline-class"></div>
         inter_x_min = max(x1_min, x2_min)
         inter_y_min = max(y1_min, y2_min)
         inter_x_max = min(x1_max, x2_max)
@@ -575,7 +651,8 @@ class LateFusionSystem:
 
         inter_area = (inter_x_max - inter_x_min) * (inter_y_max - inter_y_min)
 
-        # Calculate union
+# <h1 className="main-heading">Calculate union</h1>
+<div className="underline-class"></div>
         area1 = (x1_max - x1_min) * (y1_max - y1_min)
         area2 = (x2_max - x2_min) * (y2_max - y2_min)
         union_area = area1 + area2 - inter_area
@@ -583,12 +660,16 @@ class LateFusionSystem:
         return inter_area / union_area if union_area > 0 else 0.0
 ```
 
-### Deep Learning Fusion Architectures
+<h3 className="third-heading">
+- Deep Learning Fusion Architectures
+</h3>
+<div className="underline-class"></div>
 
 Modern multimodal fusion often leverages deep learning architectures:
 
 ```python
-# Example: Deep learning fusion architecture
+# <h1 className="main-heading">Example: Deep learning fusion architecture</h1>
+<div className="underline-class"></div>
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -600,12 +681,14 @@ class MultimodalFusionNetwork(nn.Module):
         self.input_dims = input_dims
         self.fusion_method = fusion_method
 
-        # Feature extractors for each modality
+# <h1 className="main-heading">Feature extractors for each modality</h1>
+<div className="underline-class"></div>
         self.rgb_extractor = self.create_cnn_extractor(input_dims.get('rgb', 512))
         self.depth_extractor = self.create_cnn_extractor(input_dims.get('depth', 256))
         self.audio_extractor = self.create_audio_extractor(input_dims.get('audio', 128))
 
-        # Fusion layer
+# <h1 className="main-heading">Fusion layer</h1>
+<div className="underline-class"></div>
         if fusion_method == 'cross_attention':
             self.fusion_layer = CrossModalAttention(
                 input_dims['rgb'], input_dims['depth'], input_dims['audio']
@@ -616,7 +699,8 @@ class MultimodalFusionNetwork(nn.Module):
         else:
             raise ValueError(f"Unknown fusion method: {fusion_method}")
 
-        # Output layers
+# <h1 className="main-heading">Output layers</h1>
+<div className="underline-class"></div>
         self.classifier = nn.Linear(
             input_dims.get('rgb', 512),  # Will be updated based on fusion output
             10  # Number of classes - adjust as needed
@@ -650,34 +734,39 @@ class MultimodalFusionNetwork(nn.Module):
 
     def forward(self, modalities: Dict[str, torch.Tensor]) -> torch.Tensor:
         """Forward pass through the multimodal network"""
-        # Extract features from each modality
+# <h1 className="main-heading">Extract features from each modality</h1>
+<div className="underline-class"></div>
         features = {}
 
         if 'rgb' in modalities:
             features['rgb'] = self.rgb_extractor(modalities['rgb'])
 
         if 'depth' in modalities:
-            # Add channel dimension if needed
+# <h1 className="main-heading">Add channel dimension if needed</h1>
+<div className="underline-class"></div>
             depth_input = modalities['depth']
             if len(depth_input.shape) == 3:
                 depth_input = depth_input.unsqueeze(1)  # Add channel dim
             features['depth'] = self.depth_extractor(depth_input)
 
         if 'audio' in modalities:
-            # Add channel dimension if needed
+# <h1 className="main-heading">Add channel dimension if needed</h1>
+<div className="underline-class"></div>
             audio_input = modalities['audio']
             if len(audio_input.shape) == 2:
                 audio_input = audio_input.unsqueeze(1)  # Add channel dim
             features['audio'] = self.audio_extractor(audio_input)
 
-        # Fuse the features
+# <h1 className="main-heading">Fuse the features</h1>
+<div className="underline-class"></div>
         if self.fusion_method == 'cross_attention':
             fused_features = self.fusion_layer(features)
         elif self.fusion_method == 'concatenation':
             concat_features = torch.cat(list(features.values()), dim=1)
             fused_features = self.fusion_layer(concat_features)
 
-        # Apply classification
+# <h1 className="main-heading">Apply classification</h1>
+<div className="underline-class"></div>
         output = self.classifier(fused_features)
 
         return output
@@ -689,7 +778,8 @@ class CrossModalAttention(nn.Module):
 
         self.dim1, self.dim2, self.dim3 = dim1, dim2, dim3
 
-        # Query, key, value projections for each modality
+# <h1 className="main-heading">Query, key, value projections for each modality</h1>
+<div className="underline-class"></div>
         self.q_proj = nn.Linear(dim1, dim1)
         self.k_proj = nn.Linear(dim2, dim1)
         self.v_proj = nn.Linear(dim3, dim1)
@@ -701,32 +791,44 @@ class CrossModalAttention(nn.Module):
         modality_keys = list(features.keys())
 
         if len(modality_keys) < 2:
-            # If only one modality, return as is
+# <h1 className="main-heading">If only one modality, return as is</h1>
+<div className="underline-class"></div>
             return list(features.values())[0] if features else torch.zeros(1, self.dim1)
 
-        # Use the first modality as query, second as key, third as value
-        # (in practice, you'd want to be more flexible about this)
+# <h1 className="main-heading">Use the first modality as query, second as key, third as value</h1>
+<div className="underline-class"></div>
+# <h1 className="main-heading">(in practice, you'd want to be more flexible about this)</h1>
+<div className="underline-class"></div>
         q = self.q_proj(features[modality_keys[0]])
         k = self.k_proj(features[modality_keys[1]])
         v = self.v_proj(features[modality_keys[2]] if len(modality_keys) > 2 else features[modality_keys[1]])
 
-        # Compute attention
+# <h1 className="main-heading">Compute attention</h1>
+<div className="underline-class"></div>
         attn = torch.softmax(torch.matmul(q, k.transpose(-2, -1)) * self.scale, dim=-1)
 
-        # Apply attention to values
+# <h1 className="main-heading">Apply attention to values</h1>
+<div className="underline-class"></div>
         output = torch.matmul(attn, v)
 
         return output
 ```
 
-## Isaac Integration for Multimodal Perception
+<h2 className="second-heading">
+Isaac Integration for Multimodal Perception
+</h2>
+<div className="underline-class"></div>
 
-### Isaac Multimodal Components
+<h3 className="third-heading">
+- Isaac Multimodal Components
+</h3>
+<div className="underline-class"></div>
 
 Isaac provides specialized components for multimodal perception that leverage NVIDIA's hardware acceleration:
 
 ```python
-# Example: Isaac integration for multimodal perception
+# <h1 className="main-heading">Example: Isaac integration for multimodal perception</h1>
+<div className="underline-class"></div>
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image, PointCloud2, CompressedImage
@@ -742,15 +844,18 @@ class IsaacMultimodalPerceptionNode(Node):
     def __init__(self):
         super().__init__('multimodal_perception_node')
 
-        # Initialize ROS interfaces
+# <h1 className="main-heading">Initialize ROS interfaces</h1>
+<div className="underline-class"></div>
         self.bridge = CvBridge()
 
-        # Create synchronized subscribers for multiple modalities
+# <h1 className="main-heading">Create synchronized subscribers for multiple modalities</h1>
+<div className="underline-class"></div>
         self.rgb_sub = message_filters.Subscriber(self, Image, '/camera/rgb/image_raw')
         self.depth_sub = message_filters.Subscriber(self, Image, '/camera/depth/image_raw')
         self.audio_sub = message_filters.Subscriber(self, AudioData, '/audio/input')
 
-        # Synchronize messages with time tolerance
+# <h1 className="main-heading">Synchronize messages with time tolerance</h1>
+<div className="underline-class"></div>
         self.ts = message_filters.ApproximateTimeSynchronizer(
             [self.rgb_sub, self.depth_sub, self.audio_sub],
             queue_size=10,
@@ -758,7 +863,8 @@ class IsaacMultimodalPerceptionNode(Node):
         )
         self.ts.registerCallback(self.multimodal_callback)
 
-        # Publishers for fused results
+# <h1 className="main-heading">Publishers for fused results</h1>
+<div className="underline-class"></div>
         self.fused_features_pub = self.create_publisher(
             String,  # In practice, this would be a custom message type
             '/multimodal_features',
@@ -777,12 +883,14 @@ class IsaacMultimodalPerceptionNode(Node):
             10
         )
 
-        # Initialize multimodal processing components
+# <h1 className="main-heading">Initialize multimodal processing components</h1>
+<div className="underline-class"></div>
         self.sensor_manager = MultimodalSensorManager()
         self.calibration_system = SensorCalibrationSystem()
         self.fusion_system = LateFusionSystem()
 
-        # Store recent data for temporal fusion
+# <h1 className="main-heading">Store recent data for temporal fusion</h1>
+<div className="underline-class"></div>
         self.temporal_buffer = []
         self.buffer_size = 5
 
@@ -791,12 +899,14 @@ class IsaacMultimodalPerceptionNode(Node):
     def multimodal_callback(self, rgb_msg: Image, depth_msg: Image, audio_msg: AudioData):
         """Process synchronized multimodal data"""
         try:
-            # Convert ROS messages to numpy arrays
+# <h1 className="main-heading">Convert ROS messages to numpy arrays</h1>
+<div className="underline-class"></div>
             rgb_image = self.bridge.imgmsg_to_cv2(rgb_msg, desired_encoding='passthrough')
             depth_image = self.bridge.imgmsg_to_cv2(depth_msg, desired_encoding='32FC1')
             audio_data = np.frombuffer(audio_msg.data, dtype=np.int16).astype(np.float32)
 
-            # Create multimodal data dictionary
+# <h1 className="main-heading">Create multimodal data dictionary</h1>
+<div className="underline-class"></div>
             multimodal_data = {
                 'rgb': rgb_image,
                 'depth': depth_image,
@@ -804,10 +914,12 @@ class IsaacMultimodalPerceptionNode(Node):
                 'timestamp': rgb_msg.header.stamp.sec + rgb_msg.header.stamp.nanosec * 1e-9
             }
 
-            # Process the multimodal data
+# <h1 className="main-heading">Process the multimodal data</h1>
+<div className="underline-class"></div>
             results = self.process_multimodal_data(multimodal_data)
 
-            # Publish results
+# <h1 className="main-heading">Publish results</h1>
+<div className="underline-class"></div>
             self.publish_multimodal_results(results)
 
         except Exception as e:
@@ -815,20 +927,24 @@ class IsaacMultimodalPerceptionNode(Node):
 
     def process_multimodal_data(self, multimodal_data: Dict[str, Any]) -> Dict[str, Any]:
         """Process multimodal data through the full pipeline"""
-        # Step 1: Apply calibration and synchronization
+# <h1 className="main-heading">Step 1: Apply calibration and synchronization</h1>
+<div className="underline-class"></div>
         calibrated_data = self.calibration_system.synchronize_sensor_data({
             'rgb': multimodal_data['rgb'],
             'depth': multimodal_data['depth'],
             'audio': multimodal_data['audio']
         })
 
-        # Step 2: Extract features from each modality
+# <h1 className="main-heading">Step 2: Extract features from each modality</h1>
+<div className="underline-class"></div>
         features = self.extract_multimodal_features(calibrated_data)
 
-        # Step 3: Apply fusion
+# <h1 className="main-heading">Step 3: Apply fusion</h1>
+<div className="underline-class"></div>
         fused_results = self.fuse_multimodal_features(features)
 
-        # Step 4: Add temporal context
+# <h1 className="main-heading">Step 4: Add temporal context</h1>
+<div className="underline-class"></div>
         temporal_results = self.add_temporal_context(fused_results)
 
         return temporal_results
@@ -837,20 +953,24 @@ class IsaacMultimodalPerceptionNode(Node):
         """Extract features from each modality"""
         features = {}
 
-        # Visual features (RGB)
+# <h1 className="main-heading">Visual features (RGB)</h1>
+<div className="underline-class"></div>
         if 'rgb' in calibrated_data:
             rgb_data = calibrated_data['rgb']['data']
-            # Extract visual features (in practice, this would use a CNN or similar)
+# <h1 className="main-heading">Extract visual features (in practice, this would use a CNN or similar)</h1>
+<div className="underline-class"></div>
             visual_features = self.extract_visual_features(rgb_data)
             features['rgb'] = visual_features
 
-        # Depth features
+# <h1 className="main-heading">Depth features</h1>
+<div className="underline-class"></div>
         if 'depth' in calibrated_data:
             depth_data = calibrated_data['depth']['data']
             depth_features = self.extract_depth_features(depth_data)
             features['depth'] = depth_features
 
-        # Audio features
+# <h1 className="main-heading">Audio features</h1>
+<div className="underline-class"></div>
         if 'audio' in calibrated_data:
             audio_data = calibrated_data['audio']['data']
             audio_features = self.extract_audio_features(audio_data)
@@ -860,16 +980,20 @@ class IsaacMultimodalPerceptionNode(Node):
 
     def extract_visual_features(self, rgb_image: np.ndarray) -> Dict[str, Any]:
         """Extract visual features from RGB image"""
-        # In practice, this would use a pre-trained CNN
-        # For this example, we'll extract simple features
+# <h1 className="main-heading">In practice, this would use a pre-trained CNN</h1>
+<div className="underline-class"></div>
+# <h1 className="main-heading">For this example, we'll extract simple features</h1>
+<div className="underline-class"></div>
         height, width = rgb_image.shape[:2]
 
-        # Color histogram
+# <h1 className="main-heading">Color histogram</h1>
+<div className="underline-class"></div>
         hist_r = cv2.calcHist([rgb_image], [0], None, [8], [0, 256])
         hist_g = cv2.calcHist([rgb_image], [1], None, [8], [0, 256])
         hist_b = cv2.calcHist([rgb_image], [2], None, [8], [0, 256])
 
-        # Simple edge detection
+# <h1 className="main-heading">Simple edge detection</h1>
+<div className="underline-class"></div>
         gray = cv2.cvtColor(rgb_image, cv2.COLOR_RGB2GRAY) if len(rgb_image.shape) == 3 else rgb_image
         edges = cv2.Canny(gray, 50, 150)
 
@@ -882,7 +1006,8 @@ class IsaacMultimodalPerceptionNode(Node):
 
     def extract_depth_features(self, depth_image: np.ndarray) -> Dict[str, Any]:
         """Extract features from depth image"""
-        # Calculate depth statistics
+# <h1 className="main-heading">Calculate depth statistics</h1>
+<div className="underline-class"></div>
         valid_depths = depth_image[depth_image > 0]  # Remove invalid depth values
 
         return {
@@ -896,11 +1021,13 @@ class IsaacMultimodalPerceptionNode(Node):
 
     def extract_audio_features(self, audio_data: np.ndarray) -> Dict[str, Any]:
         """Extract features from audio data"""
-        # Calculate audio features
+# <h1 className="main-heading">Calculate audio features</h1>
+<div className="underline-class"></div>
         rms_energy = np.sqrt(np.mean(audio_data ** 2))
         zero_crossing_rate = np.sum(np.diff(np.sign(audio_data)) != 0) / len(audio_data)
 
-        # Simple frequency analysis
+# <h1 className="main-heading">Simple frequency analysis</h1>
+<div className="underline-class"></div>
         fft_data = np.fft.fft(audio_data)
         magnitude_spectrum = np.abs(fft_data[:len(fft_data)//2])
 
@@ -921,7 +1048,8 @@ class IsaacMultimodalPerceptionNode(Node):
 
     def estimate_surface_normals(self, depth_image: np.ndarray) -> float:
         """Estimate surface normal consistency from depth image"""
-        # Simple approach: calculate gradients
+# <h1 className="main-heading">Simple approach: calculate gradients</h1>
+<div className="underline-class"></div>
         grad_x = np.gradient(depth_image, axis=1)
         grad_y = np.gradient(depth_image, axis=0)
         gradient_magnitude = np.sqrt(grad_x**2 + grad_y**2)
@@ -929,9 +1057,11 @@ class IsaacMultimodalPerceptionNode(Node):
 
     def fuse_multimodal_features(self, features: Dict[str, Any]) -> Dict[str, Any]:
         """Fuse features from different modalities"""
-        # Apply late fusion for classification
+# <h1 className="main-heading">Apply late fusion for classification</h1>
+<div className="underline-class"></div>
         if 'rgb' in features and 'depth' in features:
-            # Create classification results for each modality
+# <h1 className="main-heading">Create classification results for each modality</h1>
+<div className="underline-class"></div>
             rgb_classification = self.classify_from_visual_features(features['rgb'])
             depth_classification = self.classify_from_depth_features(features['depth'])
 
@@ -940,7 +1070,8 @@ class IsaacMultimodalPerceptionNode(Node):
                 'depth': depth_classification
             }
 
-            # Fuse classifications
+# <h1 className="main-heading">Fuse classifications</h1>
+<div className="underline-class"></div>
             fused_classification = self.fusion_system.late_fusion_classification(modality_results)
 
             return {
@@ -953,12 +1084,15 @@ class IsaacMultimodalPerceptionNode(Node):
 
     def classify_from_visual_features(self, visual_features: Dict[str, Any]) -> Dict[str, Any]:
         """Simple classification based on visual features"""
-        # This would use a trained classifier in practice
-        # For this example, we'll use simple heuristics
+# <h1 className="main-heading">This would use a trained classifier in practice</h1>
+<div className="underline-class"></div>
+# <h1 className="main-heading">For this example, we'll use simple heuristics</h1>
+<div className="underline-class"></div>
         mean_color = visual_features.get('mean_color', [0, 0, 0])
         edge_density = visual_features.get('edge_density', 0)
 
-        # Simple classification based on color and texture
+# <h1 className="main-heading">Simple classification based on color and texture</h1>
+<div className="underline-class"></div>
         if np.std(mean_color) < 20:  # Low color variation
             predicted_class = 'uniform_surface'
         elif edge_density > 0.1:  # High edge density
@@ -992,12 +1126,14 @@ class IsaacMultimodalPerceptionNode(Node):
 
     def add_temporal_context(self, current_results: Dict[str, Any]) -> Dict[str, Any]:
         """Add temporal context to current results"""
-        # Add current results to temporal buffer
+# <h1 className="main-heading">Add current results to temporal buffer</h1>
+<div className="underline-class"></div>
         self.temporal_buffer.append(current_results)
         if len(self.temporal_buffer) > self.buffer_size:
             self.temporal_buffer.pop(0)
 
-        # Calculate temporal consistency
+# <h1 className="main-heading">Calculate temporal consistency</h1>
+<div className="underline-class"></div>
         if len(self.temporal_buffer) > 1:
             temporal_consistency = self.calculate_temporal_consistency()
             current_results['temporal_consistency'] = temporal_consistency
@@ -1013,14 +1149,16 @@ class IsaacMultimodalPerceptionNode(Node):
         classifications = [result.get('classification', {}).get('prediction', 'unknown')
                           for result in self.temporal_buffer]
 
-        # Calculate consistency as ratio of same classifications
+# <h1 className="main-heading">Calculate consistency as ratio of same classifications</h1>
+<div className="underline-class"></div>
         current_class = classifications[-1]
         same_count = sum(1 for cls in classifications if cls == current_class)
         return same_count / len(classifications)
 
     def publish_multimodal_results(self, results: Dict[str, Any]):
         """Publish multimodal processing results"""
-        # Publish fused features
+# <h1 className="main-heading">Publish fused features</h1>
+<div className="underline-class"></div>
         features_msg = String()
         features_msg.data = json.dumps({
             'features': results,
@@ -1028,7 +1166,8 @@ class IsaacMultimodalPerceptionNode(Node):
         })
         self.fused_features_pub.publish(features_msg)
 
-        # Publish classification results
+# <h1 className="main-heading">Publish classification results</h1>
+<div className="underline-class"></div>
         if 'classification' in results and results['classification']:
             classification_msg = String()
             classification_msg.data = json.dumps({
@@ -1039,12 +1178,16 @@ class IsaacMultimodalPerceptionNode(Node):
             self.classification_pub.publish(classification_msg)
 ```
 
-### Multimodal Object Detection and Recognition
+<h3 className="third-heading">
+- Multimodal Object Detection and Recognition
+</h3>
+<div className="underline-class"></div>
 
 Advanced multimodal systems can perform object detection and recognition using multiple sensors:
 
 ```python
-# Example: Multimodal object detection and recognition
+# <h1 className="main-heading">Example: Multimodal object detection and recognition</h1>
+<div className="underline-class"></div>
 class MultimodalObjectDetector:
     def __init__(self):
         self.visual_detector = self.initialize_visual_detector()
@@ -1055,8 +1198,10 @@ class MultimodalObjectDetector:
         """Initialize visual object detection system"""
         class MockVisualDetector:
             def detect_objects(self, image):
-                # In practice, this would use YOLO, Detectron2, or similar
-                # For this example, return mock detections
+# <h1 className="main-heading">In practice, this would use YOLO, Detectron2, or similar</h1>
+<div className="underline-class"></div>
+# <h1 className="main-heading">For this example, return mock detections</h1>
+<div className="underline-class"></div>
                 height, width = image.shape[:2]
                 return [
                     {
@@ -1079,8 +1224,10 @@ class MultimodalObjectDetector:
         """Initialize audio event detection system"""
         class MockAudioDetector:
             def detect_events(self, audio_data):
-                # In practice, this would use audio classification models
-                # For this example, return mock detections
+# <h1 className="main-heading">In practice, this would use audio classification models</h1>
+<div className="underline-class"></div>
+# <h1 className="main-heading">For this example, return mock detections</h1>
+<div className="underline-class"></div>
                 return [
                     {
                         'start_time': 0.0,
@@ -1104,17 +1251,20 @@ class MultimodalObjectDetector:
         """Perform multimodal object detection"""
         results = {}
 
-        # Visual detection
+# <h1 className="main-heading">Visual detection</h1>
+<div className="underline-class"></div>
         if 'rgb' in multimodal_data:
             visual_detections = self.visual_detector.detect_objects(multimodal_data['rgb'])
             results['visual'] = visual_detections
 
-        # Audio detection
+# <h1 className="main-heading">Audio detection</h1>
+<div className="underline-class"></div>
         if 'audio' in multimodal_data:
             audio_events = self.audio_detector.detect_events(multimodal_data['audio'])
             results['audio'] = audio_events
 
-        # Spatial alignment (if depth information available)
+# <h1 className="main-heading">Spatial alignment (if depth information available)</h1>
+<div className="underline-class"></div>
         if 'depth' in multimodal_data and 'visual' in results:
             results['aligned_detections'] = self.align_visual_audio_detections(
                 results['visual'],
@@ -1122,7 +1272,8 @@ class MultimodalObjectDetector:
                 multimodal_data['depth']
             )
 
-        # Fuse detections
+# <h1 className="main-heading">Fuse detections</h1>
+<div className="underline-class"></div>
         if 'visual' in results or 'audio' in results:
             fused_detections = self.fuse_multimodal_detections(results)
             results['fused'] = fused_detections
@@ -1140,12 +1291,15 @@ class MultimodalObjectDetector:
             center_x = int((bbox[0] + bbox[2]) / 2)
             center_y = int((bbox[1] + bbox[3]) / 2)
 
-            # Get depth at bounding box center
+# <h1 className="main-heading">Get depth at bounding box center</h1>
+<div className="underline-class"></div>
             if center_y < depth_image.shape[0] and center_x < depth_image.shape[1]:
                 depth = depth_image[center_y, center_x]
 
-                # Convert 2D image coordinates to 3D world coordinates
-                # This requires camera intrinsics (simplified here)
+# <h1 className="main-heading">Convert 2D image coordinates to 3D world coordinates</h1>
+<div className="underline-class"></div>
+# <h1 className="main-heading">This requires camera intrinsics (simplified here)</h1>
+<div className="underline-class"></div>
                 world_x = (center_x - depth_image.shape[1] / 2) * depth / 500  # fx approximation
                 world_y = (center_y - depth_image.shape[0] / 2) * depth / 500  # fy approximation
                 world_z = depth
@@ -1154,7 +1308,8 @@ class MultimodalObjectDetector:
 
             aligned_detections.append(vis_det)
 
-        # Match audio events to visual detections based on spatial proximity
+# <h1 className="main-heading">Match audio events to visual detections based on spatial proximity</h1>
+<div className="underline-class"></div>
         for audio_event in audio_events:
             audio_location = audio_event.get('location', [0, 0, 0])
             closest_vis_det = self.find_closest_visual_detection(
@@ -1163,7 +1318,8 @@ class MultimodalObjectDetector:
             )
 
             if closest_vis_det:
-                # Associate audio event with visual detection
+# <h1 className="main-heading">Associate audio event with visual detection</h1>
+<div className="underline-class"></div>
                 closest_vis_det['associated_audio'] = audio_event
 
         return aligned_detections
@@ -1191,13 +1347,15 @@ class MultimodalObjectDetector:
         """Fuse visual and audio detections"""
         all_detections = []
 
-        # Add visual detections
+# <h1 className="main-heading">Add visual detections</h1>
+<div className="underline-class"></div>
         for det in detection_results.get('visual', []):
             det_with_modality = det.copy()
             det_with_modality['modality'] = 'visual'
             all_detections.append(det_with_modality)
 
-        # Add audio events (converted to object-like detections)
+# <h1 className="main-heading">Add audio events (converted to object-like detections)</h1>
+<div className="underline-class"></div>
         for event in detection_results.get('audio', []):
             audio_detection = {
                 'class': event['class'],
@@ -1209,27 +1367,37 @@ class MultimodalObjectDetector:
             }
             all_detections.append(audio_detection)
 
-        # Apply cross-modal NMS
+# <h1 className="main-heading">Apply cross-modal NMS</h1>
+<div className="underline-class"></div>
         fused_detections = self.fusion_strategy.cross_modal_nms(all_detections)
 
         return fused_detections
 
     def estimate_bbox_from_audio_location(self, location: List[float]) -> List[float]:
         """Estimate bounding box from audio event location"""
-        # Create a rough bounding box around the audio source location
-        # This is a simplification - in practice, this would be more sophisticated
+# <h1 className="main-heading">Create a rough bounding box around the audio source location</h1>
+<div className="underline-class"></div>
+# <h1 className="main-heading">This is a simplification - in practice, this would be more sophisticated</h1>
+<div className="underline-class"></div>
         x, y, z = location
         return [x - 0.5, y - 0.5, z - 0.5, x + 0.5, y + 0.5, z + 0.5]
 ```
 
-## Evaluation and Performance Metrics
+<h2 className="second-heading">
+Evaluation and Performance Metrics
+</h2>
+<div className="underline-class"></div>
 
-### Multimodal Perception Evaluation
+<h3 className="third-heading">
+- Multimodal Perception Evaluation
+</h3>
+<div className="underline-class"></div>
 
 Evaluating multimodal systems requires specialized metrics that account for the integration of multiple sensor modalities:
 
 ```python
-# Example: Multimodal perception evaluation framework
+# <h1 className="main-heading">Example: Multimodal perception evaluation framework</h1>
+<div className="underline-class"></div>
 class MultimodalEvaluator:
     def __init__(self):
         self.metrics = {
@@ -1247,17 +1415,20 @@ class MultimodalEvaluator:
             'fusion_analysis': {}
         }
 
-        # Evaluate each modality individually
+# <h1 className="main-heading">Evaluate each modality individually</h1>
+<div className="underline-class"></div>
         modality_results = {}
         for modality in ['rgb', 'depth', 'audio']:
             modality_results[modality] = self.evaluate_individual_modality(
                 test_data, modality
             )
 
-        # Evaluate fused system
+# <h1 className="main-heading">Evaluate fused system</h1>
+<div className="underline-class"></div>
         fused_results = self.evaluate_fused_system(test_data)
 
-        # Calculate fusion gain
+# <h1 className="main-heading">Calculate fusion gain</h1>
+<div className="underline-class"></div>
         fusion_analysis = self.analyze_fusion_gain(
             modality_results, fused_results
         )
@@ -1277,7 +1448,8 @@ class MultimodalEvaluator:
 
         for sample in test_data:
             if modality in sample['modalities']:
-                # Process with single modality
+# <h1 className="main-heading">Process with single modality</h1>
+<div className="underline-class"></div>
                 prediction = self.process_single_modality(
                     sample['modalities'][modality], modality
                 )
@@ -1305,7 +1477,8 @@ class MultimodalEvaluator:
         confidences = []
 
         for sample in test_data:
-            # Process with all available modalities
+# <h1 className="main-heading">Process with all available modalities</h1>
+<div className="underline-class"></div>
             prediction = self.process_multimodal_fusion(
                 sample['modalities']
             )
@@ -1345,7 +1518,8 @@ class MultimodalEvaluator:
                 'fused_accuracy': fused_accuracy
             }
 
-        # Overall fusion statistics
+# <h1 className="main-heading">Overall fusion statistics</h1>
+<div className="underline-class"></div>
         best_single_accuracy = max(
             results['accuracy'] for results in individual_results.values()
         )
@@ -1366,7 +1540,8 @@ class MultimodalEvaluator:
         """Evaluate system robustness to sensor failure"""
         robustness_results = {}
 
-        # Test with different sensor configurations
+# <h1 className="main-heading">Test with different sensor configurations</h1>
+<div className="underline-class"></div>
         sensor_configs = [
             ['rgb', 'depth', 'audio'],  # All sensors
             ['rgb', 'depth'],           # Vision only
@@ -1391,12 +1566,14 @@ class MultimodalEvaluator:
         total_samples = 0
 
         for sample in test_data:
-            # Check if sample has required modalities
+# <h1 className="main-heading">Check if sample has required modalities</h1>
+<div className="underline-class"></div>
             available_modalities = set(sample['modalities'].keys())
             required_modalities = set(sensor_config)
 
             if required_modalities.issubset(available_modalities):
-                # Process with available modalities
+# <h1 className="main-heading">Process with available modalities</h1>
+<div className="underline-class"></div>
                 available_data = {
                     mod: sample['modalities'][mod]
                     for mod in sensor_config if mod in sample['modalities']
@@ -1420,8 +1597,10 @@ class MultimodalEvaluator:
 
     def process_single_modality(self, modality_data: Any, modality_type: str) -> Dict[str, Any]:
         """Process single modality data (mock implementation)"""
-        # This would use actual modality-specific processing
-        # For this example, return mock results
+# <h1 className="main-heading">This would use actual modality-specific processing</h1>
+<div className="underline-class"></div>
+# <h1 className="main-heading">For this example, return mock results</h1>
+<div className="underline-class"></div>
         return {
             'prediction': 'class_a',
             'confidence': 0.7
@@ -1429,32 +1608,46 @@ class MultimodalEvaluator:
 
     def process_multimodal_fusion(self, modalities: Dict[str, Any]) -> Dict[str, Any]:
         """Process multimodal fusion (mock implementation)"""
-        # This would use actual fusion algorithm
-        # For this example, return mock results
+# <h1 className="main-heading">This would use actual fusion algorithm</h1>
+<div className="underline-class"></div>
+# <h1 className="main-heading">For this example, return mock results</h1>
+<div className="underline-class"></div>
         return {
             'prediction': 'class_a',
             'confidence': 0.85
         }
 ```
 
-## Best Practices and Guidelines
+<h2 className="second-heading">
+Best Practices and Guidelines
+</h2>
+<div className="underline-class"></div>
 
-### Design Principles
+<h3 className="third-heading">
+- Design Principles
+</h3>
+<div className="underline-class"></div>
 
-- **Complementary Fusion**: Combine modalities that provide complementary rather than redundant information
-- **Uncertainty Awareness**: Account for uncertainty in each modality when fusing information
-- **Real-time Constraints**: Design fusion algorithms that meet real-time performance requirements
-- **Fault Tolerance**: Ensure system continues to operate when individual sensors fail
-- **Calibration Maintenance**: Regularly update sensor calibrations to maintain fusion accuracy
+- • **Complementary Fusion**: Combine modalities that provide complementary rather than redundant information
+- • **Uncertainty Awareness**: Account for uncertainty in each modality when fusing information
+- • **Real-time Constraints**: Design fusion algorithms that meet real-time performance requirements
+- • **Fault Tolerance**: Ensure system continues to operate when individual sensors fail
+- • **Calibration Maintenance**: Regularly update sensor calibrations to maintain fusion accuracy
 
-### Performance Optimization
+<h3 className="third-heading">
+- Performance Optimization
+</h3>
+<div className="underline-class"></div>
 
-- **Efficient Feature Extraction**: Use lightweight feature extraction for real-time applications
-- **Adaptive Fusion**: Adjust fusion weights based on sensor reliability and environmental conditions
-- **Parallel Processing**: Process different modalities in parallel when possible
-- **Memory Management**: Efficiently manage memory for storing and processing multimodal data
+- • **Efficient Feature Extraction**: Use lightweight feature extraction for real-time applications
+- • **Adaptive Fusion**: Adjust fusion weights based on sensor reliability and environmental conditions
+- • **Parallel Processing**: Process different modalities in parallel when possible
+- • **Memory Management**: Efficiently manage memory for storing and processing multimodal data
 
-## Summary
+<h2 className="second-heading">
+Summary
+</h2>
+<div className="underline-class"></div>
 
 Multimodal perception systems provide significant advantages over unimodal approaches by combining information from multiple sensory channels to create more robust, accurate, and reliable perception capabilities. The integration of visual, auditory, tactile, and other sensory modalities enables robots to operate effectively in challenging environments and provides redundancy that improves overall system reliability.
 
@@ -1462,7 +1655,10 @@ The key to successful multimodal perception lies in proper sensor calibration an
 
 As robotic systems become more sophisticated, the ability to effectively integrate and reason about information from multiple sensory modalities will become increasingly important for achieving human-level perception capabilities.
 
-## Exercises
+<h2 className="second-heading">
+Exercises
+</h2>
+<div className="underline-class"></div>
 
 1. Implement a multimodal object detection system that combines RGB and depth data
 2. Create a sensor calibration pipeline for a multimodal robotic system
@@ -1470,9 +1666,12 @@ As robotic systems become more sophisticated, the ability to effectively integra
 4. Build an evaluation framework to assess the benefits of multimodal fusion
 5. Develop a robustness test that evaluates system performance under sensor failure conditions
 
-## Further Reading
+<h2 className="second-heading">
+Further Reading
+</h2>
+<div className="underline-class"></div>
 
-- "Multimodal Machine Learning: A Survey and Taxonomy" by Baltrusaitis et al.
-- "Deep Multimodal Representation Learning" by Ngiam et al.
-- NVIDIA Isaac documentation on multimodal perception
-- "Sensor Fusion for Robotics: A Survey" by Khaleghi et al.
+- • "Multimodal Machine Learning: A Survey and Taxonomy" by Baltrusaitis et al.
+- • "Deep Multimodal Representation Learning" by Ngiam et al.
+- • NVIDIA Isaac documentation on multimodal perception
+- • "Sensor Fusion for Robotics: A Survey" by Khaleghi et al.

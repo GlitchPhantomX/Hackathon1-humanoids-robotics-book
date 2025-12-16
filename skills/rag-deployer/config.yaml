@@ -1,0 +1,40 @@
+skill:
+  name: "RAG Deployer"
+  version: "1.0.0"
+  capabilities:
+    - "Container orchestration (Docker, Kubernetes)"
+    - "Cloud platform deployment (AWS, Azure, GCP)"
+    - "Infrastructure as Code (Terraform, CloudFormation)"
+    - "CI/CD pipeline configuration"
+    - "Monitoring and logging setup"
+  supported_platforms:
+    - "Docker"
+    - "Kubernetes"
+    - "AWS ECS/EKS"
+    - "Azure AKS"
+    - "GCP GKE"
+    - "Heroku"
+    - "Railway"
+  deployment_types:
+    - "Development"
+    - "Staging"
+    - "Production"
+  parameters:
+    environment: "production"
+    replicas: 3
+    cpu_request: "500m"
+    memory_request: "1Gi"
+    cpu_limit: "1000m"
+    memory_limit: "2Gi"
+    enable_monitoring: true
+    enable_logging: true
+    enable_autoscaling: true
+  conventions:
+    - "Follow security best practices for containers"
+    - "Use resource limits and requests appropriately"
+    - "Implement proper health checks"
+    - "Configure monitoring and logging"
+    - "Use secrets management for sensitive data"
+    - "Implement proper networking and ingress"
+    - "Follow infrastructure as code principles"
+    - "Include disaster recovery configurations"

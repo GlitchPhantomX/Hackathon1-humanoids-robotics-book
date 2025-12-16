@@ -9,23 +9,29 @@ import ViewToggle from '@site/src/components/ViewToggle';
 
 <ReadingTime minutes={205} />
 
-<ViewToggle />
+<!-- <ViewToggle /> -->
 
 <h1 className="main-heading">Robotic Manipulation System</h1>
 <div className="underline-class"></div>
 
 <div className="full-content">
 
-## Learning Objectives
+<h2 className="second-heading">
+Learning Objectives
+</h2>
+<div className="underline-class"></div>
 
 After completing this chapter, you will be able to:
-- Design and implement a comprehensive manipulation system for humanoid robots
-- Integrate perception, planning, and control for dexterous manipulation
-- Implement grasp planning and execution for various object types
-- Create robust manipulation strategies for human-robot interaction
-- Ensure safe and efficient manipulation in complex environments
+- • Design and implement a comprehensive manipulation system for humanoid robots
+- • Integrate perception, planning, and control for dexterous manipulation
+- • Implement grasp planning and execution for various object types
+- • Create robust manipulation strategies for human-robot interaction
+- • Ensure safe and efficient manipulation in complex environments
 
-## Introduction to Robotic Manipulation
+<h2 className="second-heading">
+Introduction to Robotic Manipulation
+</h2>
+<div className="underline-class"></div>
 
 Robotic manipulation represents one of the most challenging and essential capabilities for humanoid robots, enabling them to interact with the physical world in meaningful ways. Unlike simple pick-and-place operations, humanoid manipulation must handle complex kinematics, dexterous grasping, and the need to operate in environments designed for human use.
 
@@ -33,9 +39,15 @@ The manipulation system for a humanoid robot must address multiple interconnecte
 
 This chapter explores the implementation of a comprehensive manipulation system for humanoid robots, focusing on the Vision-Language-Action paradigm that connects environmental perception to goal-directed manipulation. The system must be robust enough to handle real-world conditions while maintaining the safety and dexterity required for human-robot interaction.
 
-## Perception for Manipulation
+<h2 className="second-heading">
+Perception for Manipulation
+</h2>
+<div className="underline-class"></div>
 
-### 3D Object Detection and Pose Estimation
+<h3 className="third-heading">
+- 3D Object Detection and Pose Estimation
+</h3>
+<div className="underline-class"></div>
 
 Accurate perception of objects in 3D space is fundamental to successful manipulation:
 
@@ -509,7 +521,10 @@ class GraspPointEstimator:
         return grasps
 ```
 
-### Collision Detection and Avoidance
+<h3 className="third-heading">
+- Collision Detection and Avoidance
+</h3>
+<div className="underline-class"></div>
 
 Safe manipulation requires comprehensive collision detection:
 
@@ -770,9 +785,15 @@ class CollisionDetector:
         return max_dim / 2 + self.collision_threshold
 ```
 
-## Grasp Planning and Execution
+<h2 className="second-heading">
+Grasp Planning and Execution
+</h2>
+<div className="underline-class"></div>
 
-### Grasp Synthesis and Evaluation
+<h3 className="third-heading">
+- Grasp Synthesis and Evaluation
+</h3>
+<div className="underline-class"></div>
 
 Creating stable grasps requires understanding object properties and robot capabilities:
 
@@ -1225,7 +1246,10 @@ class ForceClosureAnalyzer:
         return contact_points, contact_normals
 ```
 
-### Manipulation Trajectory Planning
+<h3 className="third-heading">
+- Manipulation Trajectory Planning
+</h3>
+<div className="underline-class"></div>
 
 Planning safe and efficient manipulation trajectories:
 
@@ -1697,9 +1721,15 @@ class InverseKinematicsSolver:
         return target_rot - current_rot
 ```
 
-## Isaac Integration for Manipulation
+<h2 className="second-heading">
+Isaac Integration for Manipulation
+</h2>
+<div className="underline-class"></div>
 
-### Isaac Manipulation Components
+<h3 className="third-heading">
+- Isaac Manipulation Components
+</h3>
+<div className="underline-class"></div>
 
 The Isaac ecosystem provides specialized components for manipulation that leverage NVIDIA's hardware acceleration:
 
@@ -2020,7 +2050,10 @@ class IsaacGripperControlNode(Node):
         self.get_logger().info(f'Gripper commanded to position: {target_position:.3f}')
 ```
 
-### Manipulation Safety and Control
+<h3 className="third-heading">
+- Manipulation Safety and Control
+</h3>
+<div className="underline-class"></div>
 
 Safety is paramount in manipulation systems, especially for humanoid robots operating near humans:
 
@@ -2363,9 +2396,15 @@ class ManipulationController:
         pass
 ```
 
-## Performance Optimization and Real-Time Considerations
+<h2 className="second-heading">
+Performance Optimization and Real-Time Considerations
+</h2>
+<div className="underline-class"></div>
 
-### Real-Time Manipulation Performance
+<h3 className="third-heading">
+- Real-Time Manipulation Performance
+</h3>
+<div className="underline-class"></div>
 
 Manipulation systems must meet real-time constraints while maintaining precision and safety:
 
@@ -2582,40 +2621,55 @@ class PerformanceMonitor:
         return summary
 ```
 
-## Summary
+<div className="border-line"></div>
+---
+<h2 className="second-heading">
+ Summary
+</h2>
+<div className="underline-class"></div>
 
 The robotic manipulation system for humanoid robots represents a sophisticated integration of perception, planning, control, and safety technologies. The system must handle the unique challenges of dexterous manipulation, including complex kinematics, grasp planning, and the need to operate safely in human-populated environments.
 
 Key components of the manipulation system include:
 
-1. **Perception**: 3D object detection and pose estimation systems that accurately identify objects in the environment and their spatial relationships.
+1. • **Perception**: 3D object detection and pose estimation systems that accurately identify objects in the environment and their spatial relationships.
 
-2. **Grasp Planning**: Sophisticated grasp synthesis and evaluation systems that determine optimal ways to grasp objects based on their geometry, material properties, and the robot's capabilities.
+2. • **Grasp Planning**: Sophisticated grasp synthesis and evaluation systems that determine optimal ways to grasp objects based on their geometry, material properties, and the robot's capabilities.
 
-3. **Trajectory Planning**: Advanced path planning systems that create safe, collision-free trajectories for manipulation tasks while considering robot kinematics and environmental constraints.
+3. • **Trajectory Planning**: Advanced path planning systems that create safe, collision-free trajectories for manipulation tasks while considering robot kinematics and environmental constraints.
 
-4. **Isaac Integration**: Specialized components that leverage the Isaac ecosystem for enhanced manipulation capabilities.
+4. • **Isaac Integration**: Specialized components that leverage the Isaac ecosystem for enhanced manipulation capabilities.
 
-5. **Safety Systems**: Comprehensive safety and control systems that ensure safe operation around humans and objects.
+5. • **Safety Systems**: Comprehensive safety and control systems that ensure safe operation around humans and objects.
 
-6. **Performance Optimization**: Real-time optimization techniques that ensure manipulation systems meet timing constraints while maintaining precision.
+6. • **Performance Optimization**: Real-time optimization techniques that ensure manipulation systems meet timing constraints while maintaining precision.
 
 The success of the manipulation system depends on careful integration of these components, with particular attention to the unique requirements of humanoid robots, including their complex kinematics, dexterous capabilities, and the need for safe human interaction.
 
-## Exercises
+<div className="border-line"></div>
+---
+<h2 className="second-heading">
+ Exercises
+</h2>
+<div className="underline-class"></div>
 
-1. Implement a 3D object detection system using point cloud data from RGB-D sensors
-2. Create a grasp planner that considers object properties and robot capabilities
-3. Design a trajectory planning system for complex manipulation tasks
-4. Build a safety validation system for manipulation performance
-5. Optimize manipulation algorithms for real-time performance on your robot platform
+1. • Implement a 3D object detection system using point cloud data from RGB-D sensors
+2. • Create a grasp planner that considers object properties and robot capabilities
+3. • Design a trajectory planning system for complex manipulation tasks
+4. • Build a safety validation system for manipulation performance
+5. • Optimize manipulation algorithms for real-time performance on your robot platform
 
-## Further Reading
+<div className="border-line"></div>
+---
+<h2 className="second-heading">
+ Further Reading
+</h2>
+<div className="underline-class"></div>
 
-- "Handbook of Robotics" by Siciliano and Khatib
-- "Robotics: Control, Sensing, Vision, and Intelligence" by Fu et al.
-- "Grasping in Robotics" by Bicchi and Kumar
-- "Planning Algorithms" by LaValle
-- NVIDIA Isaac documentation on manipulation
+- • "Handbook of Robotics" by Siciliano and Khatib
+- • "Robotics: Control, Sensing, Vision, and Intelligence" by Fu et al.
+- • "Grasping in Robotics" by Bicchi and Kumar
+- • "Planning Algorithms" by LaValle
+- • NVIDIA Isaac documentation on manipulation
 
 </div>
