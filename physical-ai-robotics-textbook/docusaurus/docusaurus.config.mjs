@@ -6,12 +6,11 @@ const config = {
   tagline: 'Learning Robotics with Physical AI',
   favicon: 'img/favicon.ico',
 
-  // ✅ VERCEL KE LIYE - root path use karo
-  url: 'https://your-vercel-domain.vercel.app',  // Vercel URL dalo
-  baseUrl: '/',  // ✅ Changed from /physical-ai-robotics-textbook/ to /
+  url: 'https://hackathon1-humanoids-robotics-book-lygshd3nv.vercel.app',
+  baseUrl: '/',
 
-  organizationName: 'your-organization',
-  projectName: 'physical-ai-robotics-textbook',
+  organizationName: 'GlitchPhantomX',
+  projectName: 'Hackathon1-humanoids-robotics-book',
 
   onBrokenLinks: 'throw',
   

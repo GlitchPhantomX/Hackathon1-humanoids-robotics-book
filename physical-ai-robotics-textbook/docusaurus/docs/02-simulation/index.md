@@ -6,9 +6,7 @@ description: 'Gazebo, SDF, and simulation environments for humanoid robots'
 
 import ReadingTime from '@site/src/components/ReadingTime';
 import ViewToggle from '@site/src/components/ViewToggle';
-import TranslatedContent from '@site/src/components/TranslatedContent';
 
-<TranslatedContent chapterId="02-simulation">
 
 <ReadingTime minutes={12} />
 <!-- <ViewToggle /> -->
@@ -56,5 +54,3 @@ This module covers:
 6. Simulation-to-Reality Transfer
 
 <div className="border-line"></div>
-
-</TranslatedContent>

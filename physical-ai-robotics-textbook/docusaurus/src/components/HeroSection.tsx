@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { TextGenerateEffectDemo } from "./TextGenerateEffectDemo";
 
 const HeroSection = () => {
@@ -8,7 +8,7 @@ const HeroSection = () => {
   const closeMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen mt-20">
       {/* Font */}
       <style>
         {`
@@ -96,16 +96,19 @@ const HeroSection = () => {
         </h1>
 
         <p className="text-base text-center text-[var(--color-description-text)] dark:text-gray-300 max-w-3xl mt-6">
-          Learn how AI systems interact with the physical world. Build, simulate,
-          and control humanoid robots using ROS 2, Gazebo, and NVIDIA Isaac—
-          bringing embodied intelligence to life.
+          Learn how AI systems interact with the physical world. Build,
+          simulate, and control humanoid robots using ROS 2, Gazebo, and NVIDIA
+          Isaac— bringing embodied intelligence to life.
         </p>
 
         <a
           href="/docs/Introduction/introduction"
-          className="hover:border mt-8"
+          className="mt-8 inline-block no-underline hover:no-underline focus:no-underline"
         >
-          <button className="flex items-center gap-2 bg-[var(--color-dark-button-background)] text-white font-medium px-5 py-3 rounded-lg hover:bg-[var(--color-hover-button-background)] transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
+          <button
+            type="button"
+            className="flex items-center gap-2 bg-[var(--color-dark-button-background)] text-white font-medium px-5 py-3 rounded-lg hover:bg-[var(--color-hover-button-background)] transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -124,7 +127,7 @@ const HeroSection = () => {
           </button>
         </a>
 
-        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-14 mt-12">
+        <div className="flex flex-wrap justify-center items-center gap-4 md:gap-14 mt-8">
           {[
             "Hands-on Humanoid Robotics",
             "Build AI Systems for the Physical World",

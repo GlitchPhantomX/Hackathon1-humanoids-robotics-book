@@ -6,9 +6,7 @@ description: Getting started with Physical AI and Humanoid Robotics
 
 import ReadingTime from '@site/src/components/ReadingTime';
 import ViewToggle from '@site/src/components/ViewToggle';
-import TranslatedContent from '@site/src/components/TranslatedContent';
 
-<TranslatedContent chapterId="00-introduction">
 
 <h1 className="main-heading" id="introduction">Introduction to Physical AI & Humanoid Robotics</h1>
 <div className="underline-class"></div>
@@ -336,5 +334,3 @@ Ready to dive deeper? Continue to the next section:
   <h3 style={{color: 'var(--color-accent)'}}>Questions or Feedback?</h3>
   <p>Feel free to reach out through the course forum or office hours!</p>
 </div>
-
-</TranslatedContent>

@@ -40,20 +40,15 @@ function HomepageHeader() {
   );
 }
 
-export default function Home() {  // `: JSX.Element` hata diya
+export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
-  <div className="">
-   <Banner/>
-      <Layout
+    <Layout
       title={`Welcome to ${siteConfig.title}`}
-      description="Learn about Physical AI and Humanoid Robotics">
-      {/* <HomepageHeader /> */}
+      description="Learn about Physical AI and Humanoid Robotics"
+    >
+      {/* ❌ Banner yahan se remove kar diya */}
       <main>
-         {/* <div className="docs-chatbot-sidebar">
-          <ChatWidget />
-        </div>  */}
-      
         <HeroSection/>
         <PhysicalAISection/>
         <ThreePoints/>
@@ -63,8 +58,6 @@ export default function Home() {  // `: JSX.Element` hata diya
         <PhysicalAICTA/>
         <Footer/>
       </main>
-
     </Layout>
-  </div>
   );
 }

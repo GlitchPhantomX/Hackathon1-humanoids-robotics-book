@@ -6,9 +6,7 @@ description: 'Voice interfaces and LLM integration for humanoid robots'
 
 import ReadingTime from '@site/src/components/ReadingTime';
 import ViewToggle from '@site/src/components/ViewToggle';
-import TranslatedContent from '@site/src/components/TranslatedContent';
 
-<TranslatedContent chapterId="04-vla">
 
 # <h1 className="main-heading">VLA: Voice-to-Action Systems</h1>
 <div className="underline-class"></div>
@@ -53,5 +51,3 @@ This module covers:
 
 <ReadingTime minutes={3} />
 <!-- <ViewToggle /> -->
-
-</TranslatedContent>

@@ -1,17 +1,12 @@
-import React, { memo } from 'react';
+import React from 'react';
 import OriginalNavbar from '@theme-original/Navbar';
-import LanguageToggle from '@site/src/components/LanguageToggle';
-import styles from './styles.module.css';
+import Banner from '@site/src/components/Banner';
 
-const Navbar = memo(function Navbar(props) {
+export default function Navbar(props) {
   return (
-    <div className={styles.navbarContainer}>
+    <>
+      <Banner />
       <OriginalNavbar {...props} />
-      <div className={styles.languageToggleWrapper}>
-        <LanguageToggle />
-      </div>
-    </div>
+    </>
   );
-});
-
-export default Navbar;
+}

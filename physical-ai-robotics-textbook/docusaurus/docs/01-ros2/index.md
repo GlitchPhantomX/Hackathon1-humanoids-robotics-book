@@ -6,9 +6,7 @@ description: 'Core ROS 2 concepts and architecture for humanoid robotics'
 
 import ReadingTime from '@site/src/components/ReadingTime';
 import ViewToggle from '@site/src/components/ViewToggle';
-import TranslatedContent from '@site/src/components/TranslatedContent';
 
-<TranslatedContent chapterId="01-ros2">
 
 <ReadingTime minutes={10} />
 <h1 className="main-heading">ROS 2: The Robotic Nervous System</h1>
@@ -50,5 +48,3 @@ This module covers:
 
 
 <!-- <ViewToggle /> -->
-
-</TranslatedContent>

@@ -1,7 +1,7 @@
 export default function Banner() {
     return (
         <div
-            className="flex items-center justify-center group w-full py-1.5 font-medium text-sm text-white bg-orange-500"
+            className="fixed top-0 left-0 right-0 z-[1001] flex items-center justify-center group w-full py-1.5 font-medium text-sm text-white bg-orange-500"
         >
             <div className="flex items-center gap-2 transition duration-300 px-4 py-1 rounded-full">
                 <span className="text-white">

@@ -6,9 +6,6 @@ description: 'Bringing it all together - Complete humanoid robot integration'
 
 import ReadingTime from '@site/src/components/ReadingTime';
 import ViewToggle from '@site/src/components/ViewToggle';
-import TranslatedContent from '@site/src/components/TranslatedContent';
-
-<TranslatedContent chapterId="05-capstone">
 
 <ReadingTime minutes={3} />
 <!-- <ViewToggle /> -->
@@ -19,7 +16,6 @@ import TranslatedContent from '@site/src/components/TranslatedContent';
 This capstone module brings together all the concepts learned throughout the textbook to create a complete humanoid robot system. You'll integrate ROS 2, simulation, NVIDIA Isaac, and voice-to-action systems into a cohesive application.
 
 <div className="border-line"></div>
----
 
 <h2 className="second-heading">
  Learning Objectives
@@ -34,7 +30,6 @@ By the end of this module, you will be able to:
 - • Deploy and test the complete humanoid robot application
 
 <div className="border-line"></div>
----
 
 <h2 className="second-heading">
  Prerequisites
@@ -48,7 +43,6 @@ Before starting this module, you should have:
 - • Ability to synthesize knowledge from multiple domains
 
 <div className="border-line"></div>
----
 
 <h2 className="second-heading">
  Module Overview
@@ -62,5 +56,3 @@ This module covers:
 4. • Comprehensive Testing and Validation
 5. • Deployment and Real-World Testing
 6. • Future Directions and Advanced Topics
-
-</TranslatedContent>
