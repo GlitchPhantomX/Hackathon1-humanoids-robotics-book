@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../theme/Layout';
+import Layout from '@theme/Layout';
 import styles from '../css/auth.module.css';
 
 export default function Signup() {

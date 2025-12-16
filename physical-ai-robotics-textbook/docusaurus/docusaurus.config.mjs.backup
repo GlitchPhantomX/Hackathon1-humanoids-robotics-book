@@ -1,3 +1,4 @@
+
 // @ts-check
 
 /** @type {import('@docusaurus/types').Config} */
@@ -54,6 +55,8 @@ const config = {
           position: 'left',
           label: 'Book',
         },
+        // Auth buttons are handled by custom AuthButtons component
+        // No need to add them here
       ],
     },
 

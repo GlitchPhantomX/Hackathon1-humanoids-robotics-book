@@ -161,7 +161,6 @@
 
 
 /* Navbar background with transparency */
-/* Navbar background with transparency */
 [data-theme='light'] .navbar {
   background-color: rgba(255, 255, 255, 0.95);
 }
@@ -229,51 +228,117 @@ article {
   background-clip: text;
 }
 
+/* ========================================
+   AUTH BUTTONS STYLING (FIXED)
+   ======================================== */
+
 /* Signup Button Styling */
 .navbar-signup-button {
-  background: linear-gradient(135deg, #f77e3d 0%, #ffa879 100%);
+  display: inline-block !important;
+  background: linear-gradient(135deg, #f77e3d 0%, #ffa879 100%) !important;
   color: white !important;
   padding: 8px 20px !important;
-  border-radius: 20px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  margin-right: 10px;
-  border: none;
+  border-radius: 20px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  margin-left: 8px !important;
+  border: none !important;
+  cursor: pointer !important;
 }
 
 .navbar-signup-button:hover {
-  background: linear-gradient(135deg, #fd803d 0%, #ea844d 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgb(255, 195, 173);
+  background: linear-gradient(135deg, #fd803d 0%, #ea844d 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(247, 126, 61, 0.4) !important;
+  color: white !important;
+  text-decoration: none !important;
 }
 
 /* Login Button Styling */
 .navbar-login-button {
-  background: transparent;
+  display: inline-block !important;
+  background: transparent !important;
   color: var(--ifm-navbar-link-color) !important;
   padding: 8px 20px !important;
-  border-radius: 20px;
-  font-weight: 600;
-  border: 2px solid #f77e3d;
-  transition: all 0.3s ease;
-  margin-right: 10px;
+  border-radius: 20px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  border: 2px solid #f77e3d !important;
+  transition: all 0.3s ease !important;
+  margin-left: 8px !important;
+  cursor: pointer !important;
 }
 
 .navbar-login-button:hover {
-  background: linear-gradient(135deg, #f77e3d 0%, #ffa879 100%);
+  background: linear-gradient(135deg, #f77e3d 0%, #ffa879 100%) !important;
   color: white !important;
-  border-color: transparent;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgb(255, 195, 173);
+  border-color: transparent !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(247, 126, 61, 0.4) !important;
+  text-decoration: none !important;
 }
 
 /* Dark mode button adjustments */
 [data-theme='dark'] .navbar-login-button {
-  border-color: #f77e3d;
+  border-color: #f77e3d !important;
+  color: #ffa879 !important;
 }
 
 [data-theme='dark'] .navbar-login-button:hover {
- background: linear-gradient(135deg, #fd803d 0%, #ea844d 100%);
+  background: linear-gradient(135deg, #fd803d 0%, #ea844d 100%) !important;
+  color: white !important;
+}
+
+[data-theme='dark'] .navbar-signup-button {
+  background: linear-gradient(135deg, #f77e3d 0%, #ffa879 100%) !important;
+}
+
+/* ========================================
+   DARK MODE TOGGLE FIX
+   ======================================== */
+
+/* Fix for color mode toggle hover issue - Remove red error indicator */
+.react-toggle-thumb {
+  border: none !important;
+  background-color: #fafafa !important;
+}
+
+[data-theme='dark'] .react-toggle-thumb {
+  background-color: #4d4d4d !important;
+}
+
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-thumb {
+  box-shadow: 0 0 2px 3px rgba(247, 126, 61, 0.2) !important;
+}
+
+/* Remove any error states on toggle */
+button[aria-label*="Switch between dark and light mode"] {
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+}
+
+button[aria-label*="Switch between dark and light mode"]:hover {
+  background: transparent !important;
+}
+
+button[aria-label*="Switch between dark and light mode"]:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Ensure toggle track has proper colors */
+.react-toggle-track {
+  background-color: #4d4d4d !important;
+}
+
+[data-theme='light'] .react-toggle-track {
+  background-color: #e0e0e0 !important;
+}
+
+.react-toggle--checked .react-toggle-track {
+  background-color: #f77e3d !important;
 }
 
 /* Language dropdown styling */
@@ -304,12 +369,12 @@ article {
 
 /* Theme toggle enhancement */
 .navbar button[class*='toggle'] {
- border-radius: 50%;
- transition: all 0.3s ease;
+  border-radius: 50%;
+  transition: all 0.3s ease;
 }
 
 .navbar button[class*='toggle']:hover {
- transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 /* Responsive adjustments */
@@ -321,7 +386,7 @@ article {
   .navbar-signup-button,
   .navbar-login-button {
     padding: 6px 16px !important;
-    font-size: 0.9rem;
+    font-size: 0.9rem !important;
   }
 }
 

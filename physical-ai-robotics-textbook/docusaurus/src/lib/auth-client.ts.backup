@@ -1,44 +1,54 @@
-// Temporary - No backend needed
+// Temporary auth client without backend (for development/demo)
+// Replace this with the better-auth version when backend is ready
+
 export const authClient = {
   getSession: async () => {
+    // Return no session for now
     return { 
-      data: { session: null, user: null },
+      data: { 
+        session: null, 
+        user: null 
+      },
       error: null 
     };
   },
   
   signOut: async () => {
+    console.log('Sign out clicked');
     return { data: null, error: null };
   },
   
   signIn: {
-    email: async ({ email, password }: any) => {
+    email: async ({ email, password }: { email: string; password: string }) => {
+      console.log('Sign in attempt:', email);
+      // Simulate login for demo
       return { 
         data: null, 
-        error: { message: 'Authentication coming soon!' } 
+        error: { message: 'Backend not connected. This is demo mode.' } 
       };
     }
   },
   
   signUp: {
-    email: async ({ email, password, name }: any) => {
+    email: async ({ email, password, name }: { email: string; password: string; name: string }) => {
+      console.log('Sign up attempt:', name, email);
+      // Simulate signup for demo
       return { 
         data: null, 
-        error: { message: 'Authentication coming soon!' } 
+        error: { message: 'Backend not connected. This is demo mode.' } 
       };
     }
   }
 };
 
+// Export individual functions for easier use
 export const signIn = authClient.signIn;
 export const signOut = authClient.signOut;
 
-// Keep accessibility functions
+// Accessibility-focused helper functions
 let announcementElement: HTMLDivElement | null = null;
 
 export const announceToScreenReader = (message: string) => {
-  if (typeof window === 'undefined') return;
-  
   if (!announcementElement) {
     announcementElement = document.createElement('div');
     announcementElement.setAttribute('aria-live', 'polite');
@@ -59,8 +69,6 @@ export const announceToScreenReader = (message: string) => {
 };
 
 export const focusElement = (elementId: string) => {
-  if (typeof window === 'undefined') return;
-  
   const element = document.getElementById(elementId);
   if (element) {
     element.focus();
