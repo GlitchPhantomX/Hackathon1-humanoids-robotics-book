@@ -3,7 +3,9 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
-import { auth } from './lib/auth';
+import cookieParser from 'cookie-parser';
+import { toNodeHandler } from 'better-auth/node';
+import auth from "./lib/auth"
 import { requestLogger, errorLogger } from './utils/logger';
 
 const app = express();
@@ -14,7 +16,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 // Security middleware
 app.use(
   helmet({
-    contentSecurityPolicy: false, // disable for dev; enable in prod
+    contentSecurityPolicy: false,
     crossOriginEmbedderPolicy: false,
   })
 );
@@ -29,138 +31,161 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// Additional security headers
-app.use((req, res, next) => {
-  res.setHeader('X-Content-Type-Options', 'nosniff');
-  res.setHeader('X-Frame-Options', 'DENY');
-  res.setHeader('X-XSS-Protection', '1; mode=block');
-  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  next();
-});
+// -----------------------------
+// Parsing middleware
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // -----------------------------
-// JSON parsing & CORS
-app.use(express.json());
+// CORS Configuration
 app.use(
   cors({
-    origin: isProduction
-      ? process.env.FRONTEND_URL
-      : process.env.FRONTEND_URL || 'http://localhost:3000',
+    origin: 'http://localhost:3000',
     credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization', 'Cache-Control', 'X-Requested-With'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
     exposedHeaders: ['Set-Cookie'],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   })
 );
+
+app.options('*', cors());
 
 // -----------------------------
 // Logging
 app.use(requestLogger);
-app.use(errorLogger);
 
 // -----------------------------
-// Auth routes using auth.api (no auth.handler)
-app.post('/api/auth/sign-up/email', async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    if (!email || !password) return res.status(400).json({ message: 'Email & password required.' });
-
-    const result = await auth.api.signUp({
-      body: { email, password },
-      headers: req.headers as any,
-    });
-
-    res.json(result);
-  } catch (error) {
-    console.error('Sign up error:', error);
-    res.status(500).json({ error: 'Sign up failed', details: error });
-  }
-});
-
-app.post('/api/auth/sign-in/email', async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    if (!email || !password) return res.status(400).json({ message: 'Email & password required.' });
-
-    const result = await auth.api.signIn.email({
-      body: { email, password },
-      headers: req.headers as any,
-    });
-
-    res.json(result);
-  } catch (error) {
-    console.error('Sign in error:', error);
-    res.status(500).json({ error: 'Sign in failed', details: error });
-  }
-});
-
-app.post('/api/auth/sign-out', async (req, res) => {
-  try {
-    await auth.api.signOut({ headers: req.headers as any });
-    res.json({ message: 'Logged out successfully' });
-  } catch (error) {
-    console.error('Sign out error:', error);
-    res.status(500).json({ error: 'Sign out failed', details: error });
-  }
-});
-
-app.get('/api/auth/get-session', async (req, res) => {
-  try {
-    const session = await auth.api.getSession({ headers: req.headers as any });
-    if (!session) return res.status(401).json({ error: 'No active session' });
-    res.json(session);
-  } catch (error) {
-    console.error('Get session error:', error);
-    res.status(500).json({ error: 'Failed to fetch session', details: error });
-  }
-});
+// Better Auth Handler - USE THIS FOR ALL AUTH ROUTES
+// This automatically handles cookies correctly
+app.all('/api/auth/*', toNodeHandler(auth));
 
 // -----------------------------
 // User profile endpoints
 app.get('/api/user/profile', async (req, res) => {
   try {
-    const session = await auth.api.getSession({ headers: req.headers as any });
-    if (!session) return res.status(401).json({ error: 'Unauthorized' });
+    const session = await auth.api.getSession({
+      headers: req.headers as any,
+    });
+    
+    if (!session || !session.session) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
 
-    res.json({ user: session.user });
+    return res.status(200).json({ user: session.user });
+    
   } catch (error) {
     console.error('Profile fetch error:', error);
-    res.status(500).json({ error: 'Failed to fetch profile' });
+    return res.status(500).json({ error: 'Failed to fetch profile' });
   }
 });
 
 app.patch('/api/user/profile', async (req, res) => {
   try {
-    const session = await auth.api.getSession({ headers: req.headers as any });
-    if (!session) return res.status(401).json({ error: 'Unauthorized' });
+    console.log('📝 Profile update request received');
+    console.log('Request body:', req.body);
+    console.log('Cookies:', req.cookies);
 
-    const updatedUser = await auth.api.updateUser({
-      body: { id: session.user.id, ...req.body },
+    // Get session
+    const session = await auth.api.getSession({
       headers: req.headers as any,
     });
+    
+    console.log('Session:', session);
 
-    res.json({ user: updatedUser.user || updatedUser });
-  } catch (error) {
-    console.error('Profile update error:', error);
-    res.status(500).json({ error: 'Failed to update profile' });
+    if (!session || !session.session) {
+      console.log('❌ No session found');
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    console.log('✅ User authenticated:', session.user.id);
+
+    // Better Auth's updateUser expects specific format
+    // We need to update the user in the database directly
+    const { 
+      name,
+      softwareBackground,
+      hardwareBackground,
+      programmingLanguages,
+      roboticsExperience,
+      aiMlExperience,
+      hasRosExperience,
+      hasGpuAccess,
+      learningGoals 
+    } = req.body;
+
+    // Use database directly to update custom fields
+    const { db } = await import('./db/index');
+    const { users } = await import('./db/schema');
+    const { eq } = await import('drizzle-orm');
+
+    const updateData: any = {};
+    
+    // Only include fields that are provided
+    if (name !== undefined) updateData.name = name;
+    if (softwareBackground !== undefined) updateData.softwareBackground = softwareBackground;
+    if (hardwareBackground !== undefined) updateData.hardwareBackground = hardwareBackground;
+    if (programmingLanguages !== undefined) updateData.programmingLanguages = programmingLanguages;
+    if (roboticsExperience !== undefined) updateData.roboticsExperience = roboticsExperience;
+    if (aiMlExperience !== undefined) updateData.aiMlExperience = aiMlExperience;
+    if (hasRosExperience !== undefined) updateData.hasRosExperience = hasRosExperience;
+    if (hasGpuAccess !== undefined) updateData.hasGpuAccess = hasGpuAccess;
+    if (learningGoals !== undefined) updateData.learningGoals = learningGoals;
+
+    console.log('Update data:', updateData);
+
+    // Update user in database
+    const [updatedUser] = await db
+      .update(users)
+      .set(updateData)
+      .where(eq(users.id, session.user.id))
+      .returning();
+
+    console.log('✅ Profile updated successfully');
+
+    return res.status(200).json({ 
+      success: true,
+      user: updatedUser 
+    });
+    
+  } catch (error: any) {
+    console.error('❌ Profile update error:', error);
+    console.error('Error stack:', error.stack);
+    return res.status(500).json({ 
+      error: 'Failed to update profile',
+      message: error.message 
+    });
   }
 });
 
 app.put('/api/user/profile', async (req, res) => {
   try {
-    const session = await auth.api.getSession({ headers: req.headers as any });
-    if (!session) return res.status(401).json({ error: 'Unauthorized' });
+    const session = await auth.api.getSession({
+      headers: req.headers as any,
+    });
+    
+    if (!session || !session.session) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
 
     const updatedUser = await auth.api.updateUser({
-      body: { id: session.user.id, ...req.body },
+      body: req.body,
       headers: req.headers as any,
     });
 
-    res.json({ user: updatedUser.user || updatedUser });
+    return res.status(200).json({ user: updatedUser });
+    
   } catch (error) {
     console.error('Profile update error:', error);
-    res.status(500).json({ error: 'Failed to update profile' });
+    return res.status(500).json({ error: 'Failed to update profile' });
   }
 });
+
+
+
+// -----------------------------
+// Error logging
+app.use(errorLogger);
 
 // -----------------------------
 // Root route
@@ -172,4 +197,5 @@ app.get('/', (_req, res) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`🔥 Auth server running on http://localhost:${PORT}`);
+  console.log(`📍 CORS enabled for: http://localhost:3000`);
 });

@@ -45,7 +45,8 @@ const auth = betterAuth({
     process.env.FRONTEND_URL || '',
   ],
   baseURL: process.env.BETTER_AUTH_URL || 'http://localhost:5000',
-  secret: process.env.BETTER_AUTH_SECRET!,
+  basePath: '/api/auth', // Add this line
+  secret: process.env.BETTER_AUTH_SECRET || 'fallback-secret-key-min-32-chars',
 });
 
 export default auth;
