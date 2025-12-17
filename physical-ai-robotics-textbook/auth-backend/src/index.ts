@@ -6,7 +6,7 @@ import rateLimit from 'express-rate-limit';
 import cookieParser from 'cookie-parser';
 import { toNodeHandler } from 'better-auth/node';
 import auth from "./lib/auth.js";
-import { requestLogger, errorLogger } from './utils/logger';
+import { requestLogger, errorLogger } from './utils/logger.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
