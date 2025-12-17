@@ -3,6 +3,8 @@ import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { db } from '../db/index.js';
 import * as schema from '../db/schema.js';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: 'pg',
@@ -25,7 +27,14 @@ const auth = betterAuth({
     cookieCache: {
       enabled: true,
       maxAge: 5 * 60,
-    }
+    },
+    // Cookie options for cross-origin
+    cookie: {
+      name: 'better-auth.session_token',
+      sameSite: 'none',  // Cross-origin ke liye
+      secure: true,      // HTTPS required
+      httpOnly: true,
+    },
   },
   user: {
     additionalFields: {
@@ -42,10 +51,12 @@ const auth = betterAuth({
   trustedOrigins: [
     'http://localhost:3000',
     'http://localhost:3001',
-    process.env.FRONTEND_URL || '',
+    'https://hackathon1-humanoids-robotics-book.vercel.app',
   ],
-  baseURL: process.env.BETTER_AUTH_URL || 'http://localhost:5000',
-  basePath: '/api/auth', // Add this line
+  baseURL: isProduction 
+    ? 'https://hackathon1-humanoids-robotics-book-production.up.railway.app'
+    : 'http://localhost:5000',
+  basePath: '/api/auth',
   secret: process.env.BETTER_AUTH_SECRET || 'fallback-secret-key-min-32-chars',
 });
 
