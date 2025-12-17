@@ -5,14 +5,16 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import cookieParser from 'cookie-parser';
 import { toNodeHandler } from 'better-auth/node';
-import auth from './lib/auth.js';      // lib/auth.ts
-import { requestLogger, errorLogger } from './utils/logger.js'; // utils/logger.ts
+import auth from './lib/auth.js';
+import { requestLogger, errorLogger } from './utils/logger.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 const isProduction = process.env.NODE_ENV === 'production';
 
-// -----------------------------
+// ✅ CRITICAL: Trust proxy for Railway - MUST be before other middleware
+app.set('trust proxy', 1);
+
 // Security middleware
 app.use(
   helmet({
@@ -21,29 +23,28 @@ app.use(
   })
 );
 
-// Rate limiting
+// Rate limiting - trust proxy is handled by app.set above
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
   message: 'Too many requests from this IP, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
+  // trust proxy handled by app.set('trust proxy', 1) above
 });
 app.use(limiter);
 
-// -----------------------------
 // Parsing middleware
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// -----------------------------
 // CORS Configuration
 app.use(
   cors({
     origin: [
-      'http://localhost:3000', // local dev
-      'https://hackathon1-humanoids-robotics-book.vercel.app' // production frontend
+      'http://localhost:3000',
+      'https://hackathon1-humanoids-robotics-book.vercel.app'
     ],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
@@ -52,19 +53,14 @@ app.use(
   })
 );
 
-
 app.options('*', cors());
 
-// -----------------------------
 // Logging
 app.use(requestLogger);
 
-// -----------------------------
-// Better Auth Handler - USE THIS FOR ALL AUTH ROUTES
-// This automatically handles cookies correctly
+// Better Auth Handler
 app.all('/api/auth/*', toNodeHandler(auth));
 
-// -----------------------------
 // User profile endpoints
 app.get('/api/user/profile', async (req, res) => {
   try {
@@ -90,7 +86,6 @@ app.patch('/api/user/profile', async (req, res) => {
     console.log('Request body:', req.body);
     console.log('Cookies:', req.cookies);
 
-    // Get session
     const session = await auth.api.getSession({
       headers: req.headers as any,
     });
@@ -104,8 +99,6 @@ app.patch('/api/user/profile', async (req, res) => {
 
     console.log('✅ User authenticated:', session.user.id);
 
-    // Better Auth's updateUser expects specific format
-    // We need to update the user in the database directly
     const { 
       name,
       softwareBackground,
@@ -118,14 +111,12 @@ app.patch('/api/user/profile', async (req, res) => {
       learningGoals 
     } = req.body;
 
-    // Use database directly to update custom fields
     const { db } = await import('./db/index.js');
     const { users } = await import('./db/schema.js');
     const { eq } = await import('drizzle-orm');
 
     const updateData: any = {};
     
-    // Only include fields that are provided
     if (name !== undefined) updateData.name = name;
     if (softwareBackground !== undefined) updateData.softwareBackground = softwareBackground;
     if (hardwareBackground !== undefined) updateData.hardwareBackground = hardwareBackground;
@@ -138,7 +129,6 @@ app.patch('/api/user/profile', async (req, res) => {
 
     console.log('Update data:', updateData);
 
-    // Update user in database
     const [updatedUser] = await db
       .update(users)
       .set(updateData)
@@ -185,19 +175,14 @@ app.put('/api/user/profile', async (req, res) => {
   }
 });
 
-
-
-// -----------------------------
 // Error logging
 app.use(errorLogger);
 
-// -----------------------------
 // Root route
 app.get('/', (_req, res) => {
   res.send('Backend server is running!');
 });
 
-// -----------------------------
 // Start server
 app.listen(PORT, () => {
   console.log(`🔥 Auth server running on port ${PORT}`);
