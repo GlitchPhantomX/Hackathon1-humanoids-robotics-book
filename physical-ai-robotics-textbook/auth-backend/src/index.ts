@@ -5,7 +5,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import cookieParser from 'cookie-parser';
 import { toNodeHandler } from 'better-auth/node';
-import auth from "./lib/auth.js"
+import auth from "./lib/auth.js";
 import { requestLogger, errorLogger } from './utils/logger';
 
 const app = express();
