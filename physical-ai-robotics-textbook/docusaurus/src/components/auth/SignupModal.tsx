@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './Auth.module.css';
-import { authClient, announceToScreenReader } from '../../lib/auth-client';
+import { authClient, announceToScreenReader, getApiUrl  } from '../../lib/auth-client';
 import { FormData, SignupModalProps } from './types';
 
 const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSuccess }) => {
@@ -227,10 +227,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     try {
-      // ✅ DYNAMIC API URL
-      const API_URL = window.location.hostname === 'localhost' 
-        ? 'http://localhost:5000' 
-        : 'https://hackathon1-humanoids-robotics-book-production.up.railway.app';
+      const API_URL = getApiUrl(); // ✅ Use helper function
 
       const profileResponse = await fetch(`${API_URL}/api/user/profile`, {
         method: 'PATCH',
@@ -251,15 +248,16 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
       });
 
       if (!profileResponse.ok) {
-        console.warn('Profile update failed:', await profileResponse.text());
+        const errorText = await profileResponse.text();
+        console.warn('❌ Profile update failed:', errorText);
       } else {
-        console.log('Profile updated successfully');
+        console.log('✅ Profile updated successfully');
       }
     } catch (profileError) {
-      console.warn('Profile update failed:', profileError);
+      console.warn('❌ Profile update error:', profileError);
     }
 
-    console.log('Account created successfully');
+    console.log('✅ Account created successfully');
     announceToScreenReader('Account created successfully! Welcome to our platform.');
     
     localStorage.clear();
