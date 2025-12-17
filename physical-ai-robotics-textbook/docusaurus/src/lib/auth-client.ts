@@ -1,25 +1,19 @@
 import { createAuthClient } from "better-auth/react";
 
-// Docusaurus uses window.location.origin or custom fields in docusaurus.config.js
-// For client-side code, you can use window.location.origin or define a custom field
 const getApiUrl = () => {
   if (typeof window === 'undefined') {
     return "http://localhost:5000";
   }
   
-  // Option 1: Use a different domain in production
-  // return window.location.hostname === 'localhost' 
-  //   ? 'http://localhost:5000' 
-  //   : 'https://your-production-api.com';
-  
-  // Option 2: Use same domain with /api path
-  // return `${window.location.origin}/api`;
-  
-  // Option 3: For development, just use localhost
-  return "http://localhost:5000";
+  // Production mein Railway backend, development mein localhost
+  return window.location.hostname === 'localhost' 
+    ? 'http://localhost:5000' 
+    : 'https://hackathon1-humanoids-robotics-book-production.up.railway.app';
 };
 
 const API_URL = getApiUrl();
+
+console.log('🔗 API URL:', API_URL); // Debug ke liye - baad mein hata dena
 
 // Real Better Auth client configuration
 export const authClient = createAuthClient({
