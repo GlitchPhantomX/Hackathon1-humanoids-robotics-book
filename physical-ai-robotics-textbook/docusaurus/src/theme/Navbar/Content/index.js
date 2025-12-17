@@ -13,7 +13,7 @@ import NavbarSearch from '@theme/Navbar/Search';
 
 // ADD THESE IMPORTS
 import AuthButtons from '../../../components/auth/AuthButtons';
-import { authClient } from '../../../lib/auth-client';
+import { authClient, getApiUrl } from '../../../lib/auth-client'; // ✅ Add getApiUrl
 
 import styles from './styles.module.css';
 
@@ -54,7 +54,8 @@ export default function NavbarContent() {
   React.useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/auth/get-session', {
+        const API_URL = getApiUrl(); // ✅ Dynamic URL
+        const response = await fetch(`${API_URL}/api/auth/get-session`, {
           credentials: 'include',
         });
         setIsLoggedIn(response.ok);

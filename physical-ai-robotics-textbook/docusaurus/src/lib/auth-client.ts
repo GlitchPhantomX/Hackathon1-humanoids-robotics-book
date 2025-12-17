@@ -5,7 +5,6 @@ const getApiUrl = () => {
     return "http://localhost:5000";
   }
   
-  // Production mein Railway backend, development mein localhost
   return window.location.hostname === 'localhost' 
     ? 'http://localhost:5000' 
     : 'https://hackathon1-humanoids-robotics-book-production.up.railway.app';
@@ -13,17 +12,19 @@ const getApiUrl = () => {
 
 const API_URL = getApiUrl();
 
-console.log('🔗 API URL:', API_URL); // Debug ke liye - baad mein hata dena
+console.log('🔗 API URL:', API_URL);
 
-// Real Better Auth client configuration
 export const authClient = createAuthClient({
   baseURL: API_URL,
   fetchOptions: {
-    credentials: 'include', // Important for cookies
+    credentials: 'include',
   },
 });
 
 export const { signIn, signUp, signOut, useSession } = authClient;
+
+// Export getApiUrl for other components to use
+export { getApiUrl };
 
 // Keep accessibility functions
 let announcementElement: HTMLDivElement | null = null;
