@@ -5,8 +5,8 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import cookieParser from 'cookie-parser';
 import { toNodeHandler } from 'better-auth/node';
-import auth from "./lib/auth.js";
-import { requestLogger, errorLogger } from './utils/logger.js';
+import auth from './lib/auth';      // lib/auth.ts
+import { requestLogger, errorLogger } from './utils/logger'; // utils/logger.ts
 
 const app = express();
 const PORT = process.env.PORT || 5000;
