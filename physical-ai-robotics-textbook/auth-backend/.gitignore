@@ -9,7 +9,7 @@ node_modules/
 .env.production
 
 # Build outputs
-dist/
+# dist/ - We need this for Railway deployment with build command
 build/
 .nyc_output/
 coverage/
