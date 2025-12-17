@@ -41,7 +41,10 @@ app.use(express.urlencoded({ extended: true }));
 // CORS Configuration
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: [
+      'http://localhost:3000', // local dev
+      'https://hackathon1-humanoids-robotics-book.vercel.app' // production frontend
+    ],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
     exposedHeaders: ['Set-Cookie'],
