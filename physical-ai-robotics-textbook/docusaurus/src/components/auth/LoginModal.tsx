@@ -128,7 +128,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
         return;
       }
 
-      console.log('Attempting login...');
+      console.log('Attempting login with Better Auth client...');
 
       // Use Better Auth client (handles cookies properly)
       const loginResult = await authClient.signIn.email({
@@ -142,6 +142,18 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
         console.error('Login error:', loginResult.error);
         
         let errorMessage = 'Invalid email or password. Please try again.';
+        
+        // Handle specific error messages
+        if (loginResult.error.message) {
+          if (loginResult.error.message.includes('Invalid email')) {
+            errorMessage = 'Invalid email or password.';
+          } else if (loginResult.error.message.includes('User not found')) {
+            errorMessage = 'No account found with this email.';
+          } else {
+            errorMessage = loginResult.error.message;
+          }
+        }
+        
         throw new Error(errorMessage);
       }
 
@@ -149,15 +161,23 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
         throw new Error('Login completed but no data returned.');
       }
 
-      console.log('Login successful');
+      console.log('✅ Login successful!');
       announceToScreenReader('Login successful. Welcome back!');
       
-      // Clear cache and reload
+      // Call success callback if provided
+      if (onLoginSuccess) {
+        onLoginSuccess(loginResult.data);
+      }
+      
+      // Close modal
+      onClose();
+      
+      // Clear cache and reload to refresh auth state
       localStorage.clear();
       window.location.href = '/?refresh=' + Date.now();
       
     } catch (error: any) {
-      console.error('Login error:', error);
+      console.error('❌ Login error:', error);
       const errorMessage = error.message || 'An error occurred during login. Please try again.';
       setErrors({ submit: errorMessage });
       announceToScreenReader(`Login failed: ${errorMessage}`);
@@ -188,7 +208,6 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
         backgroundColor: 'var(--color-bg)',
         color: 'var(--color-text)',
         border: '1px solid var(--color-modal-border)',
-        // boxShadow: '0 20px 60px rgba(255, 107, 53, 0.3)',
       }}
     >
       <div className={styles.authForm}>
@@ -196,7 +215,6 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
           id="login-modal-title" 
           className={styles.authFormHeader}
           style={{ color: 'var(--color-text)', fontSize: '1.5rem', fontWeight: '600' }}
-          
         >
           Sign In
         </h2>
@@ -223,11 +241,13 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
               aria-invalid={errors.email ? 'true' : 'false'}
               aria-describedby={errors.email ? 'email-error' : undefined}
               required
+              disabled={loading}
               style={{
                 backgroundColor: 'var(--color-physical-from-CTA-background)',
                 color: 'var(--color-text)',
                 border: `1px solid ${errors.email ? '#dc2626' : 'var(--color-input-border)'}`,
                 transition: 'border-color 0.2s',
+                opacity: loading ? 0.7 : 1,
               }}
               onFocus={(e) => {
                 if (!errors.email) {
@@ -268,11 +288,13 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
                 aria-invalid={errors.password ? 'true' : 'false'}
                 aria-describedby={errors.password ? 'password-error' : undefined}
                 required
+                disabled={loading}
                 style={{
                   backgroundColor: 'var(--color-physical-from-CTA-background)',
                   color: 'var(--color-text)',
                   border: `1px solid ${errors.password ? '#dc2626' : 'var(--color-input-border)'}`,
                   transition: 'border-color 0.2s',
+                  opacity: loading ? 0.7 : 1,
                 }}
                 onFocus={(e) => {
                   if (!errors.password) {
@@ -290,8 +312,10 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
                 className={styles.eyeIcon}
                 onClick={() => setShowPassword(!showPassword)}
                 aria-label={showPassword ? 'Hide password' : 'Show password'}
+                disabled={loading}
                 style={{
                   color: 'var(--color-muted)',
+                  opacity: loading ? 0.5 : 1,
                 }}
               >
                 {showPassword ? '👁️' : '👁️‍🗨️'}
@@ -348,6 +372,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
               }}
               className={styles.authLink}
               aria-label="Switch to sign up form"
+              disabled={loading}
               style={{
                 color: 'var(--color-accent)',
                 background: 'none',
@@ -355,6 +380,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
                 textDecoration: 'underline',
                 cursor: 'pointer',
                 fontWeight: '600',
+                opacity: loading ? 0.5 : 1,
               }}
             >
               Sign up
