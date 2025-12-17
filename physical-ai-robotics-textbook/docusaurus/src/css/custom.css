@@ -90,6 +90,14 @@
   --color-physical-to-pillars-card-hover-shadow: rgb(255 247 237 / 0.1);
   --color-physical-from-shift-hover-shadow-effect: rgb(249 250 251 / 0.5);
   --color-physical-to-shift-hover-shadow-effect: rgb(249 250 251 / 0.2);
+  --color-profile-card-background-color: rgb(255, 255, 255);
+  --color-profile-card-border-color: rgb(214, 214, 214);
+  --color-profile-language-bg-color: #ffeae2;
+  
+  /* Modal & Input Colors */
+  --color-modal-border: #ff8c42;
+  --color-input-border: #d1d5db;
+  --color-input-border-focus: #ff6b35;
 }
 
 
@@ -118,6 +126,14 @@
   --color-physical-to-pillars-card-hover-shadow:  rgba(103, 100, 95, 0.1);
   --color-physical-from-shift-hover-shadow-effect: rgba(23, 24, 24, 0.5);
   --color-physical-to-shift-hover-shadow-effect: rgba(16, 17, 17, 0.2);
+  --color-profile-card-background-color: rgb(50, 50, 50);
+  --color-profile-card-border-color: rgb(253, 214, 200);
+  --color-profile-language-bg-color: rgb(255, 212, 196);
+  
+  /* Modal & Input Colors */
+  --color-modal-border: #ff8c42;
+  --color-input-border: #4a4a4a;
+  --color-input-border-focus: #ff8c42;
 }
 
 /* ========================================
@@ -506,4 +522,44 @@ body.modal-open {
   line-height: 1.4;   
   padding-left: 10px; 
   border-radius: 7px;       
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Scrollbar styling */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.dark .overflow-y-auto::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dark .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }

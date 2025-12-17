@@ -5,7 +5,6 @@ description: 'Core ROS 2 concepts and architecture for humanoid robotics'
 ---
 
 import ReadingTime from '@site/src/components/ReadingTime';
-import ViewToggle from '@site/src/components/ViewToggle';
 
 
 <ReadingTime minutes={10} />
@@ -47,4 +46,3 @@ This module covers:
 <div className="border-line"></div>
 
 
-<!-- <ViewToggle /> -->

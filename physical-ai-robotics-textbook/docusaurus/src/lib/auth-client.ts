@@ -1,37 +1,14 @@
-// Temporary - No backend needed
-export const authClient = {
-  getSession: async () => {
-    return { 
-      data: { session: null, user: null },
-      error: null 
-    };
-  },
-  
-  signOut: async () => {
-    return { data: null, error: null };
-  },
-  
-  signIn: {
-    email: async ({ email, password }: any) => {
-      return { 
-        data: null, 
-        error: { message: 'Authentication coming soon!' } 
-      };
-    }
-  },
-  
-  signUp: {
-    email: async ({ email, password, name }: any) => {
-      return { 
-        data: null, 
-        error: { message: 'Authentication coming soon!' } 
-      };
-    }
-  }
-};
+import { createAuthClient } from "better-auth/react";
 
-export const signIn = authClient.signIn;
-export const signOut = authClient.signOut;
+// Real Better Auth client configuration
+export const authClient = createAuthClient({
+  baseURL: "http://localhost:5000", // Your backend URL
+  fetchOptions: {
+    credentials: 'include', // Important for cookies
+  },
+});
+
+export const { signIn, signUp, signOut, useSession } = authClient;
 
 // Keep accessibility functions
 let announcementElement: HTMLDivElement | null = null;

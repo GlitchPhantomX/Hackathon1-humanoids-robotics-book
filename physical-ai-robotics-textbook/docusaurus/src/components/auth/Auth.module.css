@@ -19,6 +19,30 @@
   color: var(--auth-text-dark);
 }
 
+.authContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-right: 12px;
+}
+
+/* Enhance the navbar avatar with hover effect */
+.navbarUserAvatar:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+  transition: all 0.2s ease;
+}
+
+.navbarUserAvatar:active {
+  transform: scale(1.05);
+}
+
+/* Loading state for auth button */
+.authButton.loading {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
 /* Button styling with orange theme */
 .authButton {
   background-color: var(--auth-primary-orange);

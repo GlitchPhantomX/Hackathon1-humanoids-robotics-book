@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styles from './Auth.module.css';
-import { authClient } from '../../lib/auth-client';
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
 import ProfileDropdown from './ProfileDropdown';
 import { AuthButtonsProps } from './types';
 import ReactDOM from 'react-dom';
+import { authClient } from '../../lib/auth-client';
 
 const AuthButtonsComponent: React.FC<AuthButtonsProps> = ({ onAuthChange }) => {
   const [session, setSession] = useState<any>(null);
@@ -15,19 +15,19 @@ const AuthButtonsComponent: React.FC<AuthButtonsProps> = ({ onAuthChange }) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   /**
-   * Fetch session via authClient only
-   * Enhanced with better error handling and retry logic
+   * Fetch session directly from backend API
    */
   const fetchSession = useCallback(async (retryCount = 0) => {
     try {
+      // Force fresh fetch - no cache
       const result = await authClient.getSession();
-      console.log('AuthClient session:', result);
+      console.log('Session fetched:', result);
 
-      if (result?.data?.session) {
-        setSession(result.data.session);
-        setLoading(false);
-      } else if (result?.data?.user) {
-        setSession(result.data);
+      if (result?.data?.session && result?.data?.user) {
+        setSession({ 
+          session: result.data.session, 
+          user: result.data.user 
+        });
         setLoading(false);
       } else {
         if (retryCount < 2) {
@@ -38,15 +38,13 @@ const AuthButtonsComponent: React.FC<AuthButtonsProps> = ({ onAuthChange }) => {
         }
       }
     } catch (err) {
-      console.log('Session fetch failed (backend may be unavailable):', err);
-      // Don't retry indefinitely if backend is down
+      console.log('Session fetch failed:', err);
       setSession(null);
       setLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    // Add a small delay to avoid race conditions
     const timer = setTimeout(() => {
       fetchSession();
     }, 100);
@@ -54,10 +52,30 @@ const AuthButtonsComponent: React.FC<AuthButtonsProps> = ({ onAuthChange }) => {
     return () => clearTimeout(timer);
   }, [fetchSession]);
 
+  // Listen for profile updates
+  useEffect(() => {
+    const handleProfileUpdate = () => {
+      console.log('Profile updated event received, refreshing session...');
+      setLoading(true);
+      fetchSession();
+    };
+
+    // Listen for custom event
+    window.addEventListener('profileUpdated', handleProfileUpdate);
+
+    // Listen for storage event (cross-tab updates)
+    window.addEventListener('storage', handleProfileUpdate);
+
+    return () => {
+      window.removeEventListener('profileUpdated', handleProfileUpdate);
+      window.removeEventListener('storage', handleProfileUpdate);
+    };
+  }, [fetchSession]);
+
   const handleLoginSuccess = useCallback(async () => {
     setShowLoginModal(false);
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 400));
+    await new Promise((r) => setTimeout(r, 500));
     await fetchSession();
     if (onAuthChange) onAuthChange();
   }, [fetchSession, onAuthChange]);
@@ -65,7 +83,7 @@ const AuthButtonsComponent: React.FC<AuthButtonsProps> = ({ onAuthChange }) => {
   const handleSignupSuccess = useCallback(async () => {
     setShowSignupModal(false);
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 400));
+    await new Promise((r) => setTimeout(r, 500));
     await fetchSession();
     if (onAuthChange) onAuthChange();
   }, [fetchSession, onAuthChange]);
@@ -80,30 +98,59 @@ const AuthButtonsComponent: React.FC<AuthButtonsProps> = ({ onAuthChange }) => {
     setShowLoginModal(true);
   };
 
-  // Loading skeleton - show for shorter time to avoid flash
+  const handleLogout = async () => {
+    try {
+      await authClient.signOut();
+      setSession(null);
+      setShowDropdown(false);
+      if (onAuthChange) onAuthChange();
+      window.location.href = '/';
+    } catch (err) {
+      console.error('Logout error:', err);
+      setSession(null);
+      setShowDropdown(false);
+    }
+  };
+
+  // Loading skeleton
   if (loading) {
     return (
       <div className={styles.authContainer}>
-        <div className={`${styles.authButton} ${styles.loading}`} style={{ opacity: 0.6 }}>
-          <span style={{ fontSize: '12px' }}>⏳</span>
+        <div className={styles.authButton} style={{ opacity: 0.6, cursor: 'default' }}>
+          <span className={styles.spinner} style={{ margin: 0 }}></span>
         </div>
       </div>
     );
   }
 
-  // Authenticated user
+  // Authenticated user - PROFILE ICON
   if (session?.user) {
     const userName = session.user.name || session.user.email || 'User';
     const userInitial = userName.charAt(0).toUpperCase();
+    const userImage = session.user.image;
 
     return (
       <div className={styles.authContainer}>
         <button
-          className={`${styles.authButton} ${styles.navbarUserAvatar}`}
+          className={styles.navbarUserAvatar}
           onClick={() => setShowDropdown(!showDropdown)}
           aria-label={`User menu for ${userName}`}
+          title={userName}
         >
-          {userInitial}
+          {userImage ? (
+            <img 
+              src={userImage} 
+              alt={userName}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                borderRadius: '50%',
+              }}
+            />
+          ) : (
+            userInitial
+          )}
         </button>
 
         {showDropdown &&
@@ -112,19 +159,7 @@ const AuthButtonsComponent: React.FC<AuthButtonsProps> = ({ onAuthChange }) => {
               user={session.user}
               isOpen={showDropdown}
               onClose={() => setShowDropdown(false)}
-              onLogout={async () => {
-                try {
-                  await authClient.signOut();
-                  setSession(null);
-                  setShowDropdown(false);
-                  if (onAuthChange) onAuthChange();
-                } catch (err) {
-                  console.error('Logout failed:', err);
-                  // Still clear session locally even if backend fails
-                  setSession(null);
-                  setShowDropdown(false);
-                }
-              }}
+              onLogout={handleLogout}
             />,
             document.body
           )}
@@ -132,9 +167,9 @@ const AuthButtonsComponent: React.FC<AuthButtonsProps> = ({ onAuthChange }) => {
     );
   }
 
-  // Not authenticated
+  // Not authenticated - LOGIN & SIGNUP BUTTONS
   return (
-    <div className={`${styles.authContainer} flex gap-3 mr-3`}>
+    <div className={styles.authContainer}>
       <button
         className={`${styles.authButton} ${styles.authButtonSecondary}`}
         onClick={() => setShowLoginModal(true)}

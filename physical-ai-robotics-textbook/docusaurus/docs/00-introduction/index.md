@@ -5,7 +5,6 @@ description: Getting started with Physical AI and Humanoid Robotics
 ---
 
 import ReadingTime from '@site/src/components/ReadingTime';
-import ViewToggle from '@site/src/components/ViewToggle';
 
 
 <h1 className="main-heading" id="introduction">Introduction to Physical AI & Humanoid Robotics</h1>

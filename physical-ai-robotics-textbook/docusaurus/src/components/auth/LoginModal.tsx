@@ -123,38 +123,39 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
       if (Object.keys(newErrors).length > 0) {
         setErrors(newErrors);
         setLoading(false);
-        // Announce errors to screen readers
         const errorMessages = Object.values(newErrors).join(', ');
         announceToScreenReader(`Login form errors: ${errorMessages}`);
         return;
       }
 
-      // Attempt login with Better Auth
+      console.log('Attempting login...');
+
+      // Use Better Auth client (handles cookies properly)
       const loginResult = await authClient.signIn.email({
         email: formData.email,
         password: formData.password,
-        callbackURL: '/', // Redirect to home after login
       });
 
+      console.log('Login result:', loginResult);
+
       if (loginResult.error) {
-        // Provide more user-friendly error messages
-        let errorMessage = 'Login failed';
-        if (loginResult.error.message?.includes('email') || loginResult.error.message?.includes('password')) {
-          errorMessage = 'Invalid email or password. Please try again.';
-        } else if (loginResult.error.message?.includes('verify')) {
-          errorMessage = 'Please verify your email address before logging in.';
-        } else if (loginResult.error.message?.includes('network') || loginResult.error.message?.includes('timeout')) {
-          errorMessage = 'Network error. Please check your connection and try again.';
-        } else {
-          errorMessage = 'Invalid email or password. Please try again.';
-        }
+        console.error('Login error:', loginResult.error);
+        
+        let errorMessage = 'Invalid email or password. Please try again.';
         throw new Error(errorMessage);
       }
 
-      // On successful login
-      onLoginSuccess();
-      onClose();
+      if (!loginResult.data) {
+        throw new Error('Login completed but no data returned.');
+      }
+
+      console.log('Login successful');
       announceToScreenReader('Login successful. Welcome back!');
+      
+      // Clear cache and reload
+      localStorage.clear();
+      window.location.href = '/?refresh=' + Date.now();
+      
     } catch (error: any) {
       console.error('Login error:', error);
       const errorMessage = error.message || 'An error occurred during login. Please try again.';
@@ -168,129 +169,203 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLoginSuccess
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
+  <div
+    className={styles.modalOverlay}
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="login-modal-title"
+    onClick={onClose}
+    style={{
+      backgroundColor: 'rgba(0, 0, 0, 0.6)',
+      zIndex: 10000, // Higher z-index to appear above hero section
+    }}
+  >
     <div
-      className={styles.modalOverlay}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="login-modal-title"
-      onClick={onClose} // Close on backdrop click
+      className={styles.modalContent}
+      ref={modalRef}
+      onClick={(e) => e.stopPropagation()}
+      style={{
+        backgroundColor: 'var(--color-bg)',
+        color: 'var(--color-text)',
+        border: '1px solid var(--color-modal-border)',
+        // boxShadow: '0 20px 60px rgba(255, 107, 53, 0.3)',
+      }}
     >
-      <div
-        className={styles.modalContent}
-        ref={modalRef}
-        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
-      >
-        <div className={styles.authForm}>
-          <h2 id="login-modal-title" className={styles.authFormHeader}>
-            Sign In
-          </h2>
+      <div className={styles.authForm}>
+        <h2 
+          id="login-modal-title" 
+          className={styles.authFormHeader}
+          style={{ color: 'var(--color-text)', fontSize: '1.5rem', fontWeight: '600' }}
+          
+        >
+          Sign In
+        </h2>
 
-          <form onSubmit={handleSubmit}>
-            <div className={styles.fieldGroup}>
-              <label className={styles.authLabel} htmlFor="email">
-                Email
-                {errors.email && <span className={styles.visuallyHidden}> Error: {errors.email}</span>}
-              </label>
-              <input
-                ref={firstInputRef}
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className={`${styles.authInput} ${errors.email ? styles.error : ''}`}
-                placeholder="Enter your email"
-                aria-invalid={errors.email ? 'true' : 'false'}
-                aria-describedby={errors.email ? 'email-error' : undefined}
-                required
-              />
-              {errors.email && (
-                <div id="email-error" className={styles.authErrorMessage} role="alert">
-                  {errors.email}
-                </div>
-              )}
-            </div>
-
-            <div className={styles.fieldGroup}>
-              <label className={styles.authLabel} htmlFor="password">
-                Password
-                {errors.password && <span className={styles.visuallyHidden}> Error: {errors.password}</span>}
-              </label>
-              <div style={{ position: 'relative' }}>
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  id="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className={`${styles.authInput} ${errors.password ? styles.error : ''}`}
-                  placeholder="Enter your password"
-                  aria-invalid={errors.password ? 'true' : 'false'}
-                  aria-describedby={errors.password ? 'password-error' : undefined}
-                  required
-                />
-                <button
-                  type="button"
-                  className={styles.eyeIcon}
-                  onClick={() => setShowPassword(!showPassword)}
-                  aria-label={showPassword ? 'Hide password' : 'Show password'}
-                >
-                  {showPassword ? '👁️' : '👁️‍🗨️'}
-                </button>
-              </div>
-              {errors.password && (
-                <div id="password-error" className={styles.authErrorMessage} role="alert">
-                  {errors.password}
-                </div>
-              )}
-            </div>
-
-            {errors.submit && (
-              <div className={styles.authErrorMessage} role="alert">
-                {errors.submit}
+        <form onSubmit={handleSubmit}>
+          <div className={styles.fieldGroup}>
+            <label 
+              className={styles.authLabel} 
+              htmlFor="email"
+              style={{ color: 'var(--color-text)' }}
+            >
+              Email
+              {errors.email && <span className={styles.visuallyHidden}> Error: {errors.email}</span>}
+            </label>
+            <input
+              ref={firstInputRef}
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className={`${styles.authInput} ${errors.email ? styles.error : ''}`}
+              placeholder="Enter your email"
+              aria-invalid={errors.email ? 'true' : 'false'}
+              aria-describedby={errors.email ? 'email-error' : undefined}
+              required
+              style={{
+                backgroundColor: 'var(--color-physical-from-CTA-background)',
+                color: 'var(--color-text)',
+                border: `1px solid ${errors.email ? '#dc2626' : 'var(--color-input-border)'}`,
+                transition: 'border-color 0.2s',
+              }}
+              onFocus={(e) => {
+                if (!errors.email) {
+                  e.target.style.borderColor = 'var(--color-input-border-focus)';
+                }
+              }}
+              onBlur={(e) => {
+                if (!errors.email) {
+                  e.target.style.borderColor = 'var(--color-input-border)';
+                }
+              }}
+            />
+            {errors.email && (
+              <div id="email-error" className={styles.authErrorMessage} role="alert">
+                {errors.email}
               </div>
             )}
+          </div>
 
-            <button
-              type="submit"
-              className={styles.authButton}
-              disabled={loading}
-              aria-busy={loading}
+          <div className={styles.fieldGroup}>
+            <label 
+              className={styles.authLabel} 
+              htmlFor="password"
+              style={{ color: 'var(--color-text)' }}
             >
-              {loading ? (
-                <span>
-                  <span className={styles.spinner} aria-hidden="true"></span> Signing in...
-                </span>
-              ) : (
-                'Sign In'
-              )}
-            </button>
-          </form>
-
-          <div className={styles.authFormFooter}>
-            <div className={styles.textCenter}>
-              Don't have an account?{' '}
-              <button
-                type="button"
-                onClick={onSwitchToSignup}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onSwitchToSignup();
+              Password
+              {errors.password && <span className={styles.visuallyHidden}> Error: {errors.password}</span>}
+            </label>
+            <div style={{ position: 'relative' }}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className={`${styles.authInput} ${errors.password ? styles.error : ''}`}
+                placeholder="Enter your password"
+                aria-invalid={errors.password ? 'true' : 'false'}
+                aria-describedby={errors.password ? 'password-error' : undefined}
+                required
+                style={{
+                  backgroundColor: 'var(--color-physical-from-CTA-background)',
+                  color: 'var(--color-text)',
+                  border: `1px solid ${errors.password ? '#dc2626' : 'var(--color-input-border)'}`,
+                  transition: 'border-color 0.2s',
+                }}
+                onFocus={(e) => {
+                  if (!errors.password) {
+                    e.target.style.borderColor = 'var(--color-input-border-focus)';
                   }
                 }}
-                className={styles.authLink}
-                aria-label="Switch to sign up form"
+                onBlur={(e) => {
+                  if (!errors.password) {
+                    e.target.style.borderColor = 'var(--color-input-border)';
+                  }
+                }}
+              />
+              <button
+                type="button"
+                className={styles.eyeIcon}
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                style={{
+                  color: 'var(--color-muted)',
+                }}
               >
-                Sign up
+                {showPassword ? '👁️' : '👁️‍🗨️'}
               </button>
             </div>
+            {errors.password && (
+              <div id="password-error" className={styles.authErrorMessage} role="alert">
+                {errors.password}
+              </div>
+            )}
+          </div>
+
+          {errors.submit && (
+            <div className={styles.authErrorMessage} role="alert">
+              {errors.submit}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            className={styles.authButton}
+            disabled={loading}
+            aria-busy={loading}
+            style={{
+              backgroundColor: loading ? 'var(--color-hover-button-background)' : 'var(--color-dark-button-background)',
+              color: 'white',
+              opacity: loading ? 0.7 : 1,
+            }}
+          >
+            {loading ? (
+              <span>
+                <span className={styles.spinner} aria-hidden="true"></span> Signing in...
+              </span>
+            ) : (
+              'Sign In'
+            )}
+          </button>
+        </form>
+
+        <div className={styles.authFormFooter}>
+          <div 
+            className={styles.textCenter}
+            style={{ color: 'var(--color-text)' }}
+          >
+            Don't have an account?{' '}
+            <button
+              type="button"
+              onClick={onSwitchToSignup}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onSwitchToSignup();
+                }
+              }}
+              className={styles.authLink}
+              aria-label="Switch to sign up form"
+              style={{
+                color: 'var(--color-accent)',
+                background: 'none',
+                border: 'none',
+                textDecoration: 'underline',
+                cursor: 'pointer',
+                fontWeight: '600',
+              }}
+            >
+              Sign up
+            </button>
           </div>
         </div>
       </div>
-    </div>,
-    document.body
-  );
+    </div>
+  </div>,
+  document.body
+);
 };
 
 export default LoginModal;

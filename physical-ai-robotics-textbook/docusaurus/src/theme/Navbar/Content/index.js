@@ -47,6 +47,23 @@ export default function NavbarContent() {
   const items = useNavbarItems();
   const [leftItems, rightItems] = splitNavbarItems(items);
   const searchBarItem = items.find((item) => item.type === 'search');
+  
+  // Check if user is logged in
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/get-session', {
+          credentials: 'include',
+        });
+        setIsLoggedIn(response.ok);
+      } catch {
+        setIsLoggedIn(false);
+      }
+    };
+    checkAuth();
+  }, []);
 
   return (
     <NavbarContentLayout
@@ -60,7 +77,10 @@ export default function NavbarContent() {
       right={
         <>
           <NavbarItems items={rightItems} />
-          <AuthButtons client={authClient} />
+          <AuthButtons onAuthChange={() => {
+            // Refresh auth state
+            window.location.reload();
+          }} />
           <NavbarColorModeToggle className={styles.colorModeToggle} />
           {!searchBarItem && (
             <NavbarSearch>

@@ -60,7 +60,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
     if (isOpen && firstInputRef.current) {
       firstInputRef.current.focus();
     }
-  }, [isOpen]);
+  }, [isOpen, step]);
 
   // Trap focus within modal when open
   useEffect(() => {
@@ -191,62 +191,75 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
     setErrors({});
 
     try {
-      // FIXED: Send ALL fields in one signup request
+      console.log('Starting signup process...');
+
       const signUpResult = await authClient.signUp.email({
-        name: formData.name,
         email: formData.email,
         password: formData.password,
-        // Custom fields - send as callbackURL data instead
-        callbackURL: '/dashboard',
+        name: formData.name,
       });
 
+      console.log('SignUp result:', signUpResult);
+
       if (signUpResult.error) {
-        // Provide more user-friendly error messages
+        console.error('Signup error:', signUpResult.error);
+        
         let errorMessage = 'Signup failed';
         const errMsg = signUpResult.error.message || '';
 
-        if (errMsg.toLowerCase().includes('email')) {
+        if (errMsg.toLowerCase().includes('email') || errMsg.toLowerCase().includes('already exists')) {
           errorMessage = 'An account with this email already exists. Please try logging in instead.';
         } else if (errMsg.toLowerCase().includes('password')) {
           errorMessage = 'Password does not meet requirements. Please use at least 8 characters.';
-        } else if (errMsg.toLowerCase().includes('network') || errMsg.toLowerCase().includes('timeout')) {
-          errorMessage = 'Network error. Please check your connection and try again.';
         } else {
-          errorMessage = 'An error occurred during signup. Please try again.';
+          errorMessage = errMsg || 'An error occurred during signup. Please try again.';
         }
+        
         throw new Error(errorMessage);
       }
 
-      // After successful signup, update profile with custom fields
-      if (signUpResult.data) {
-        try {
-          await fetch('http://localhost:5000/api/user/profile', {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-            body: JSON.stringify({
-              softwareBackground: formData.softwareBackground,
-              hardwareBackground: formData.hardwareBackground,
-              programmingLanguages: formData.programmingLanguages,
-              roboticsExperience: formData.roboticsExperience,
-              aiMlExperience: formData.aiMlExperience,
-              hasRosExperience: formData.hasRosExperience,
-              hasGpuAccess: formData.hasGpuAccess,
-              learningGoals: formData.learningGoals,
-            }),
-          });
-        } catch (profileError) {
-          console.warn('Profile update failed:', profileError);
-          // Continue anyway - user is created
-        }
+      if (!signUpResult.data) {
+        throw new Error('Signup completed but no data returned.');
       }
 
-      // On success
-      onSignupSuccess();
-      onClose();
+      console.log('Signup successful, now updating profile with custom fields...');
+
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      try {
+        const profileResponse = await fetch('http://localhost:5000/api/user/profile', {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            softwareBackground: formData.softwareBackground,
+            hardwareBackground: formData.hardwareBackground,
+            programmingLanguages: formData.programmingLanguages,
+            roboticsExperience: formData.roboticsExperience,
+            aiMlExperience: formData.aiMlExperience,
+            hasRosExperience: formData.hasRosExperience,
+            hasGpuAccess: formData.hasGpuAccess,
+            learningGoals: formData.learningGoals,
+          }),
+        });
+
+        if (!profileResponse.ok) {
+          console.warn('Profile update failed:', await profileResponse.text());
+        } else {
+          console.log('Profile updated successfully');
+        }
+      } catch (profileError) {
+        console.warn('Profile update failed:', profileError);
+      }
+
+      console.log('Account created successfully');
       announceToScreenReader('Account created successfully! Welcome to our platform.');
+      
+      localStorage.clear();
+      window.location.href = '/?refresh=' + Date.now();
+      
     } catch (error: any) {
       console.error('Signup error:', error);
       const errorMessage = error.message || 'An error occurred during signup. Please try again.';
@@ -259,21 +272,63 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
 
   if (!isOpen) return null;
 
+  const inputStyle = (hasError: boolean) => ({
+    backgroundColor: 'var(--color-physical-from-CTA-background)',
+    color: 'var(--color-text)',
+    border: `1px solid ${hasError ? '#dc2626' : 'var(--color-input-border)'}`,
+    transition: 'border-color 0.2s',
+  });
+
+  const inputFocusHandlers = (fieldName: string) => ({
+    onFocus: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+      if (!errors[fieldName]) {
+        e.target.style.borderColor = 'var(--color-input-border-focus)';
+      }
+    },
+    onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+      if (!errors[fieldName]) {
+        e.target.style.borderColor = 'var(--color-input-border)';
+      }
+    },
+  });
+
   return ReactDOM.createPortal(
     <div
       className={styles.modalOverlay}
       role="dialog"
       aria-modal="true"
       aria-labelledby="signup-modal-title"
-      onClick={onClose} // Close on backdrop click
+      onClick={onClose}
+      style={{
+        backgroundColor: 'rgba(0, 0, 0, 0.6)',
+        zIndex: 10000,
+      }}
     >
       <div
         className={styles.modalContent}
         ref={modalRef}
-        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          backgroundColor: 'var(--color-bg)',
+          color: 'var(--color-text)',
+          border: '1px solid var(--color-modal-border)',
+          maxHeight: '90vh',
+          overflowY: 'auto',
+        }}
       >
         <div className={styles.authForm}>
-          <h2 id="signup-modal-title" className={styles.authFormHeader}>Create Account</h2>
+          <h2 
+            id="signup-modal-title" 
+            className={styles.authFormHeader}
+            style={{ 
+              color: 'var(--color-text)', 
+              fontSize: '1.5rem', 
+              fontWeight: '600',
+              marginBottom: '1.5rem',
+            }}
+          >
+            Create Account
+          </h2>
 
           {/* Step indicator */}
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }} role="tablist" aria-label="Signup progress">
@@ -282,7 +337,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                 width: '30px',
                 height: '30px',
                 borderRadius: '50%',
-                backgroundColor: step === 1 ? '#3498db' : '#bdc3c7',
+                backgroundColor: step === 1 ? 'var(--color-dark-button-background)' : 'var(--color-learning-journey-card-shadow-color)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -301,7 +356,7 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                 width: '30px',
                 height: '30px',
                 borderRadius: '50%',
-                backgroundColor: step === 2 ? '#3498db' : '#bdc3c7',
+                backgroundColor: step === 2 ? 'var(--color-dark-button-background)' : 'var(--color-learning-journey-card-shadow-color)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -320,7 +375,11 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
             {step === 1 && (
               <div role="tabpanel" aria-label="Account Information">
                 <div className={styles.fieldGroup}>
-                  <label className={styles.authLabel} htmlFor="name">
+                  <label 
+                    className={styles.authLabel} 
+                    htmlFor="name"
+                    style={{ color: 'var(--color-text)' }}
+                  >
                     Full Name
                     {errors.name && <span className={styles.visuallyHidden}> Error: {errors.name}</span>}
                   </label>
@@ -336,6 +395,8 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                     aria-invalid={errors.name ? 'true' : 'false'}
                     aria-describedby={errors.name ? 'name-error' : undefined}
                     required
+                    style={inputStyle(!!errors.name)}
+                    {...inputFocusHandlers('name')}
                   />
                   {errors.name && (
                     <div id="name-error" className={styles.authErrorMessage} role="alert">
@@ -345,7 +406,11 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                 </div>
 
                 <div className={styles.fieldGroup}>
-                  <label className={styles.authLabel} htmlFor="email">
+                  <label 
+                    className={styles.authLabel} 
+                    htmlFor="email"
+                    style={{ color: 'var(--color-text)' }}
+                  >
                     Email
                     {errors.email && <span className={styles.visuallyHidden}> Error: {errors.email}</span>}
                   </label>
@@ -360,6 +425,8 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                     aria-invalid={errors.email ? 'true' : 'false'}
                     aria-describedby={errors.email ? 'email-error' : undefined}
                     required
+                    style={inputStyle(!!errors.email)}
+                    {...inputFocusHandlers('email')}
                   />
                   {errors.email && (
                     <div id="email-error" className={styles.authErrorMessage} role="alert">
@@ -369,7 +436,11 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                 </div>
 
                 <div className={styles.fieldGroup}>
-                  <label className={styles.authLabel} htmlFor="password">
+                  <label 
+                    className={styles.authLabel} 
+                    htmlFor="password"
+                    style={{ color: 'var(--color-text)' }}
+                  >
                     Password (minimum 8 characters)
                     {errors.password && <span className={styles.visuallyHidden}> Error: {errors.password}</span>}
                   </label>
@@ -386,12 +457,15 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                       aria-describedby={errors.password ? 'password-error' : undefined}
                       required
                       minLength={8}
+                      style={inputStyle(!!errors.password)}
+                      {...inputFocusHandlers('password')}
                     />
                     <button
                       type="button"
                       className={styles.eyeIcon}
                       onClick={() => setShowPassword(!showPassword)}
                       aria-label={showPassword ? 'Hide password' : 'Show password'}
+                      style={{ color: 'var(--color-muted)' }}
                     >
                       {showPassword ? '👁️' : '👁️‍🗨️'}
                     </button>
@@ -406,14 +480,18 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                     <div className={styles.passwordStrengthBar}>
                       <div className={`${styles.passwordStrengthLevel} ${styles[`passwordStrength-${calculatePasswordStrength(formData.password).level}`]}`}></div>
                     </div>
-                    <div className={styles.passwordStrengthLabel}>
+                    <div className={styles.passwordStrengthLabel} style={{ color: 'var(--color-text)' }}>
                       {calculatePasswordStrength(formData.password).label}
                     </div>
                   </div>
                 </div>
 
                 <div className={styles.fieldGroup}>
-                  <label className={styles.authLabel} htmlFor="confirmPassword">
+                  <label 
+                    className={styles.authLabel} 
+                    htmlFor="confirmPassword"
+                    style={{ color: 'var(--color-text)' }}
+                  >
                     Confirm Password
                     {errors.confirmPassword && <span className={styles.visuallyHidden}> Error: {errors.confirmPassword}</span>}
                   </label>
@@ -429,12 +507,15 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                       aria-invalid={errors.confirmPassword ? 'true' : 'false'}
                       aria-describedby={errors.confirmPassword ? 'confirmPassword-error' : undefined}
                       required
+                      style={inputStyle(!!errors.confirmPassword)}
+                      {...inputFocusHandlers('confirmPassword')}
                     />
                     <button
                       type="button"
                       className={styles.eyeIcon}
                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                       aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+                      style={{ color: 'var(--color-muted)' }}
                     >
                       {showConfirmPassword ? '👁️' : '👁️‍🗨️'}
                     </button>
@@ -451,7 +532,11 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
             {step === 2 && (
               <div className={styles.personalizationForm} role="tabpanel" aria-label="Personalization">
                 <div className={styles.fieldGroup}>
-                  <label className={styles.authLabel} htmlFor="softwareBackground">
+                  <label 
+                    className={styles.authLabel} 
+                    htmlFor="softwareBackground"
+                    style={{ color: 'var(--color-text)' }}
+                  >
                     Software Background
                     {errors.softwareBackground && <span className={styles.visuallyHidden}> Error: {errors.softwareBackground}</span>}
                   </label>
@@ -464,8 +549,13 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                     aria-invalid={errors.softwareBackground ? 'true' : 'false'}
                     aria-describedby={errors.softwareBackground ? 'softwareBackground-error' : undefined}
                     required
+                    style={{
+                      ...inputStyle(!!errors.softwareBackground),
+                      cursor: 'pointer',
+                    }}
+                    {...inputFocusHandlers('softwareBackground')}
                   >
-                    <option value="">Select your software background</option>
+                    <option value="" style={{ color: 'var(--color-muted)' }}>Select level</option>
                     <option value="beginner">Beginner</option>
                     <option value="intermediate">Intermediate</option>
                     <option value="advanced">Advanced</option>
@@ -479,7 +569,11 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                 </div>
 
                 <div className={styles.fieldGroup}>
-                  <label className={styles.authLabel} htmlFor="hardwareBackground">
+                  <label 
+                    className={styles.authLabel} 
+                    htmlFor="hardwareBackground"
+                    style={{ color: 'var(--color-text)' }}
+                  >
                     Hardware Background
                     {errors.hardwareBackground && <span className={styles.visuallyHidden}> Error: {errors.hardwareBackground}</span>}
                   </label>
@@ -492,8 +586,13 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                     aria-invalid={errors.hardwareBackground ? 'true' : 'false'}
                     aria-describedby={errors.hardwareBackground ? 'hardwareBackground-error' : undefined}
                     required
+                    style={{
+                      ...inputStyle(!!errors.hardwareBackground),
+                      cursor: 'pointer',
+                    }}
+                    {...inputFocusHandlers('hardwareBackground')}
                   >
-                    <option value="">Select your hardware background</option>
+                    <option value="" style={{ color: 'var(--color-muted)' }}>Select level</option>
                     <option value="none">No experience</option>
                     <option value="basic">Basic</option>
                     <option value="intermediate">Intermediate</option>
@@ -507,7 +606,11 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                 </div>
 
                 <div className={styles.fieldGroup}>
-                  <label className={styles.authLabel} htmlFor="programmingLanguages">
+                  <label 
+                    className={styles.authLabel} 
+                    htmlFor="programmingLanguages"
+                    style={{ color: 'var(--color-text)' }}
+                  >
                     Programming Languages
                   </label>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -534,16 +637,32 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                               programmingLanguages: newLanguages.join(',')
                             }));
                           }}
-                          style={{ marginRight: '8px' }}
+                          style={{ 
+                            marginRight: '8px',
+                            cursor: 'pointer',
+                            accentColor: 'var(--color-dark-button-background)',
+                          }}
                         />
-                        <label htmlFor={`lang-${lang}`}>{lang}</label>
+                        <label 
+                          htmlFor={`lang-${lang}`}
+                          style={{ 
+                            color: 'var(--color-text)',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          {lang}
+                        </label>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 <div className={styles.fieldGroup}>
-                  <label className={styles.authLabel} htmlFor="roboticsExperience">
+                  <label 
+                    className={styles.authLabel} 
+                    htmlFor="roboticsExperience"
+                    style={{ color: 'var(--color-text)' }}
+                  >
                     Robotics Experience
                     {errors.roboticsExperience && <span className={styles.visuallyHidden}> Error: {errors.roboticsExperience}</span>}
                   </label>
@@ -556,8 +675,13 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                     aria-invalid={errors.roboticsExperience ? 'true' : 'false'}
                     aria-describedby={errors.roboticsExperience ? 'roboticsExperience-error' : undefined}
                     required
+                    style={{
+                      ...inputStyle(!!errors.roboticsExperience),
+                      cursor: 'pointer',
+                    }}
+                    {...inputFocusHandlers('roboticsExperience')}
                   >
-                    <option value="">Select your robotics experience</option>
+                    <option value="" style={{ color: 'var(--color-muted)' }}>Select level</option>
                     <option value="none">No experience</option>
                     <option value="hobbyist">Hobbyist</option>
                     <option value="academic">Academic</option>
@@ -571,7 +695,11 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                 </div>
 
                 <div className={styles.fieldGroup}>
-                  <label className={styles.authLabel} htmlFor="aiMlExperience">
+                  <label 
+                    className={styles.authLabel} 
+                    htmlFor="aiMlExperience"
+                    style={{ color: 'var(--color-text)' }}
+                  >
                     AI/ML Experience
                     {errors.aiMlExperience && <span className={styles.visuallyHidden}> Error: {errors.aiMlExperience}</span>}
                   </label>
@@ -584,8 +712,13 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                     aria-invalid={errors.aiMlExperience ? 'true' : 'false'}
                     aria-describedby={errors.aiMlExperience ? 'aiMlExperience-error' : undefined}
                     required
+                    style={{
+                      ...inputStyle(!!errors.aiMlExperience),
+                      cursor: 'pointer',
+                    }}
+                    {...inputFocusHandlers('aiMlExperience')}
                   >
-                    <option value="">Select your AI/ML experience</option>
+                    <option value="" style={{ color: 'var(--color-muted)' }}>Select level</option>
                     <option value="none">No experience</option>
                     <option value="basic">Basic</option>
                     <option value="intermediate">Intermediate</option>
@@ -608,10 +741,30 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                       onChange={handleChange}
                       className={styles.checkboxInput}
                       aria-describedby="hasRosExperience-help"
+                      style={{
+                        cursor: 'pointer',
+                        accentColor: 'var(--color-dark-button-background)',
+                      }}
                     />
-                    <label htmlFor="hasRosExperience">Do you have ROS experience?</label>
+                    <label 
+                      htmlFor="hasRosExperience"
+                      style={{ 
+                        color: 'var(--color-text)',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      Do you have ROS experience?
+                    </label>
                   </div>
-                  <div id="hasRosExperience-help" className={styles.fieldHelp} style={{ fontSize: '0.8rem', color: '#6c757d', marginTop: '0.25rem' }}>
+                  <div 
+                    id="hasRosExperience-help" 
+                    className={styles.fieldHelp} 
+                    style={{ 
+                      fontSize: '0.8rem', 
+                      color: 'var(--color-muted)', 
+                      marginTop: '0.25rem',
+                    }}
+                  >
                     ROS (Robot Operating System) experience
                   </div>
                 </div>
@@ -626,16 +779,40 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                       onChange={handleChange}
                       className={styles.checkboxInput}
                       aria-describedby="hasGpuAccess-help"
+                      style={{
+                        cursor: 'pointer',
+                        accentColor: 'var(--color-dark-button-background)',
+                      }}
                     />
-                    <label htmlFor="hasGpuAccess">Do you have access to a GPU?</label>
+                    <label 
+                      htmlFor="hasGpuAccess"
+                      style={{ 
+                        color: 'var(--color-text)',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      Do you have access to a GPU?
+                    </label>
                   </div>
-                  <div id="hasGpuAccess-help" className={styles.fieldHelp} style={{ fontSize: '0.8rem', color: '#6c757d', marginTop: '0.25rem' }}>
+                  <div 
+                    id="hasGpuAccess-help" 
+                    className={styles.fieldHelp} 
+                    style={{ 
+                      fontSize: '0.8rem', 
+                      color: 'var(--color-muted)', 
+                      marginTop: '0.25rem',
+                    }}
+                  >
                     Access to a graphics processing unit for AI/ML tasks
                   </div>
                 </div>
 
                 <div className={styles.fieldGroup}>
-                  <label className={styles.authLabel} htmlFor="learningGoals">
+                  <label 
+                    className={styles.authLabel} 
+                    htmlFor="learningGoals"
+                    style={{ color: 'var(--color-text)' }}
+                  >
                     Learning Goals
                   </label>
                   <textarea
@@ -647,11 +824,28 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                     placeholder="What are your learning goals?"
                     aria-describedby="learningGoals-help"
                     maxLength={1000}
+                    style={{
+                      ...inputStyle(false),
+                      minHeight: '100px',
+                      resize: 'vertical',
+                    }}
+                    {...inputFocusHandlers('learningGoals')}
                   />
-                  <div className={styles.characterCount}>
+                  <div 
+                    className={styles.characterCount}
+                    style={{ color: 'var(--color-muted)' }}
+                  >
                     {formData.learningGoals.length}/1000
                   </div>
-                  <div id="learningGoals-help" className={styles.fieldHelp} style={{ fontSize: '0.8rem', color: '#6c757d', marginTop: '0.25rem' }}>
+                  <div 
+                    id="learningGoals-help" 
+                    className={styles.fieldHelp} 
+                    style={{ 
+                      fontSize: '0.8rem', 
+                      color: 'var(--color-muted)', 
+                      marginTop: '0.25rem',
+                    }}
+                  >
                     Describe your learning goals for this course
                   </div>
                 </div>
@@ -676,7 +870,10 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                     }
                   }}
                   className={styles.authButton}
-                  style={{ backgroundColor: '#95a5a6' }}
+                  style={{ 
+                    backgroundColor: 'var(--color-learning-journey-card-shadow-color)',
+                    color: 'var(--color-text)',
+                  }}
                   disabled={loading}
                   aria-label="Go to previous step"
                 >
@@ -696,6 +893,11 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                   className={styles.authButton}
                   disabled={loading}
                   aria-label="Go to next step"
+                  style={{
+                    backgroundColor: loading ? 'var(--color-hover-button-background)' : 'var(--color-dark-button-background)',
+                    color: 'white',
+                    opacity: loading ? 0.7 : 1,
+                  }}
                 >
                   Next
                 </button>
@@ -706,6 +908,11 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                   disabled={loading}
                   aria-label="Create your account"
                   aria-busy={loading}
+                  style={{
+                    backgroundColor: loading ? 'var(--color-hover-button-background)' : 'var(--color-dark-button-background)',
+                    color: 'white',
+                    opacity: loading ? 0.7 : 1,
+                  }}
                 >
                   {loading ? (
                     <span>
@@ -720,7 +927,10 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
           </form>
 
           <div className={styles.authFormFooter}>
-            <div className={styles.textCenter}>
+            <div 
+              className={styles.textCenter}
+              style={{ color: 'var(--color-text)' }}
+            >
               Already have an account?{' '}
               <button
                 type="button"
@@ -733,6 +943,14 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
                 }}
                 className={styles.authLink}
                 aria-label="Switch to sign in form"
+                style={{
+                  color: 'var(--color-accent)',
+                  background: 'none',
+                  border: 'none',
+                  textDecoration: 'underline',
+                  cursor: 'pointer',
+                  fontWeight: '600',
+                }}
               >
                 Sign in
               </button>
