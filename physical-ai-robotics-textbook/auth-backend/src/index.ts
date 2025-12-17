@@ -5,7 +5,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import cookieParser from 'cookie-parser';
 import { toNodeHandler } from 'better-auth/node';
-import auth from "./lib/auth"
+import auth from "./lib/auth.js"
 import { requestLogger, errorLogger } from './utils/logger';
 
 const app = express();
@@ -41,13 +41,14 @@ app.use(express.urlencoded({ extended: true }));
 // CORS Configuration
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: process.env.FRONTEND_URL,
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
     exposedHeaders: ['Set-Cookie'],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   })
 );
+
 
 app.options('*', cors());
 
@@ -115,8 +116,8 @@ app.patch('/api/user/profile', async (req, res) => {
     } = req.body;
 
     // Use database directly to update custom fields
-    const { db } = await import('./db/index');
-    const { users } = await import('./db/schema');
+    const { db } = await import('./db/index.js');
+    const { users } = await import('./db/schema.js');
     const { eq } = await import('drizzle-orm');
 
     const updateData: any = {};
@@ -196,6 +197,6 @@ app.get('/', (_req, res) => {
 // -----------------------------
 // Start server
 app.listen(PORT, () => {
-  console.log(`🔥 Auth server running on http://localhost:${PORT}`);
+  console.log(`🔥 Auth server running on port ${PORT}`);
   console.log(`📍 CORS enabled for: http://localhost:3000`);
 });
