@@ -84,7 +84,12 @@ export default function ProfilePage() {
   setMessage(null);
 
   try {
-    const response = await fetch('http://localhost:5000/api/user/profile', {
+    // ✅ DYNAMIC API URL
+    const API_URL = window.location.hostname === 'localhost' 
+      ? 'http://localhost:5000' 
+      : 'https://hackathon1-humanoids-robotics-book-production.up.railway.app';
+
+    const response = await fetch(`${API_URL}/api/user/profile`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -96,13 +101,9 @@ export default function ProfilePage() {
     if (response.ok) {
       setMessage({ type: 'success', text: 'Profile updated successfully! Redirecting...' });
       
-      // Dispatch custom event to notify other components
       window.dispatchEvent(new CustomEvent('profileUpdated'));
-      
-      // Also set a flag in localStorage for cross-tab sync
       localStorage.setItem('profileLastUpdated', Date.now().toString());
       
-      // Wait 1.5 seconds to show success message, then redirect
       setTimeout(() => {
         window.location.href = '/';
       }, 1500);

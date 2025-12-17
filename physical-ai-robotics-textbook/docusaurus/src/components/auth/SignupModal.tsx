@@ -186,89 +186,94 @@ const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose, onSignupSucc
   }, []);
 
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setErrors({});
+  e.preventDefault();
+  setLoading(true);
+  setErrors({});
+
+  try {
+    console.log('Starting signup process...');
+
+    const signUpResult = await authClient.signUp.email({
+      email: formData.email,
+      password: formData.password,
+      name: formData.name,
+    });
+
+    console.log('SignUp result:', signUpResult);
+
+    if (signUpResult.error) {
+      console.error('Signup error:', signUpResult.error);
+      
+      let errorMessage = 'Signup failed';
+      const errMsg = signUpResult.error.message || '';
+
+      if (errMsg.toLowerCase().includes('email') || errMsg.toLowerCase().includes('already exists')) {
+        errorMessage = 'An account with this email already exists. Please try logging in instead.';
+      } else if (errMsg.toLowerCase().includes('password')) {
+        errorMessage = 'Password does not meet requirements. Please use at least 8 characters.';
+      } else {
+        errorMessage = errMsg || 'An error occurred during signup. Please try again.';
+      }
+      
+      throw new Error(errorMessage);
+    }
+
+    if (!signUpResult.data) {
+      throw new Error('Signup completed but no data returned.');
+    }
+
+    console.log('Signup successful, now updating profile with custom fields...');
+
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     try {
-      console.log('Starting signup process...');
+      // ✅ DYNAMIC API URL
+      const API_URL = window.location.hostname === 'localhost' 
+        ? 'http://localhost:5000' 
+        : 'https://hackathon1-humanoids-robotics-book-production.up.railway.app';
 
-      const signUpResult = await authClient.signUp.email({
-        email: formData.email,
-        password: formData.password,
-        name: formData.name,
+      const profileResponse = await fetch(`${API_URL}/api/user/profile`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          softwareBackground: formData.softwareBackground,
+          hardwareBackground: formData.hardwareBackground,
+          programmingLanguages: formData.programmingLanguages,
+          roboticsExperience: formData.roboticsExperience,
+          aiMlExperience: formData.aiMlExperience,
+          hasRosExperience: formData.hasRosExperience,
+          hasGpuAccess: formData.hasGpuAccess,
+          learningGoals: formData.learningGoals,
+        }),
       });
 
-      console.log('SignUp result:', signUpResult);
-
-      if (signUpResult.error) {
-        console.error('Signup error:', signUpResult.error);
-        
-        let errorMessage = 'Signup failed';
-        const errMsg = signUpResult.error.message || '';
-
-        if (errMsg.toLowerCase().includes('email') || errMsg.toLowerCase().includes('already exists')) {
-          errorMessage = 'An account with this email already exists. Please try logging in instead.';
-        } else if (errMsg.toLowerCase().includes('password')) {
-          errorMessage = 'Password does not meet requirements. Please use at least 8 characters.';
-        } else {
-          errorMessage = errMsg || 'An error occurred during signup. Please try again.';
-        }
-        
-        throw new Error(errorMessage);
+      if (!profileResponse.ok) {
+        console.warn('Profile update failed:', await profileResponse.text());
+      } else {
+        console.log('Profile updated successfully');
       }
-
-      if (!signUpResult.data) {
-        throw new Error('Signup completed but no data returned.');
-      }
-
-      console.log('Signup successful, now updating profile with custom fields...');
-
-      await new Promise(resolve => setTimeout(resolve, 1000));
-
-      try {
-        const profileResponse = await fetch('http://localhost:5000/api/user/profile', {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-          body: JSON.stringify({
-            softwareBackground: formData.softwareBackground,
-            hardwareBackground: formData.hardwareBackground,
-            programmingLanguages: formData.programmingLanguages,
-            roboticsExperience: formData.roboticsExperience,
-            aiMlExperience: formData.aiMlExperience,
-            hasRosExperience: formData.hasRosExperience,
-            hasGpuAccess: formData.hasGpuAccess,
-            learningGoals: formData.learningGoals,
-          }),
-        });
-
-        if (!profileResponse.ok) {
-          console.warn('Profile update failed:', await profileResponse.text());
-        } else {
-          console.log('Profile updated successfully');
-        }
-      } catch (profileError) {
-        console.warn('Profile update failed:', profileError);
-      }
-
-      console.log('Account created successfully');
-      announceToScreenReader('Account created successfully! Welcome to our platform.');
-      
-      localStorage.clear();
-      window.location.href = '/?refresh=' + Date.now();
-      
-    } catch (error: any) {
-      console.error('Signup error:', error);
-      const errorMessage = error.message || 'An error occurred during signup. Please try again.';
-      setErrors({ submit: errorMessage });
-      announceToScreenReader(`Signup failed: ${errorMessage}`);
-    } finally {
-      setLoading(false);
+    } catch (profileError) {
+      console.warn('Profile update failed:', profileError);
     }
-  }, [formData, onSignupSuccess, onClose]);
+
+    console.log('Account created successfully');
+    announceToScreenReader('Account created successfully! Welcome to our platform.');
+    
+    localStorage.clear();
+    window.location.href = '/?refresh=' + Date.now();
+    
+  } catch (error: any) {
+    console.error('Signup error:', error);
+    const errorMessage = error.message || 'An error occurred during signup. Please try again.';
+    setErrors({ submit: errorMessage });
+    announceToScreenReader(`Signup failed: ${errorMessage}`);
+  } finally {
+    setLoading(false);
+  }
+}, [formData, onSignupSuccess, onClose]);
 
   if (!isOpen) return null;
 
