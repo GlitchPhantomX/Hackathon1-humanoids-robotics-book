@@ -5,9 +5,10 @@ const getApiUrl = () => {
     return "http://localhost:5000";
   }
   
+  // Production mein Vercel proxy use karo (same origin!)
   return window.location.hostname === 'localhost' 
     ? 'http://localhost:5000' 
-    : 'https://hackathon1-humanoids-robotics-book-production.up.railway.app';
+    : window.location.origin; // Same origin - cookies will work!
 };
 
 const API_URL = getApiUrl();
@@ -22,8 +23,6 @@ export const authClient = createAuthClient({
 });
 
 export const { signIn, signUp, signOut, useSession } = authClient;
-
-// Export getApiUrl for other components to use
 export { getApiUrl };
 
 // Keep accessibility functions
