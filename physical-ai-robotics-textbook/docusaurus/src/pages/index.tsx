@@ -19,6 +19,8 @@ import PhysicalAIParadigmShift from '../components/PhysicalAIParadigmShift';
 import PhysicalAICTA from '../components/PhysicalAICTA';
 import ThreePoints from '../components/ThreePoints';
 // import ChatWidget from '../components/ChatWidget'; // Import ChatWidget
+// import Chatbot from '../components/Chatbot';
+import NewChatbot from '../components/NewChatbot';
 
 
 function HomepageHeader() {
@@ -50,6 +52,8 @@ export default function Home() {
       {/* ❌ Banner yahan se remove kar diya */}
       <main>
         <HeroSection/>
+        {/* <Chatbot/> */}
+        <NewChatbot/>
         <PhysicalAISection/>
         <ThreePoints/>
         <PhysicalAIPillars/>

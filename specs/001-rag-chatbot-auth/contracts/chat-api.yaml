@@ -1,0 +1,193 @@
+# Chat API Contract: RAG Chatbot Integration With Auth + Advanced Features
+
+## Overview
+This document defines the API contracts for the authenticated RAG chatbot system with advanced features.
+
+## Base URL
+`/api/chat`
+
+## Authentication
+All endpoints require valid authentication via session token in headers or cookies, except for health check endpoints.
+
+## Endpoints
+
+### POST /chat
+Initiates a chat conversation or continues an existing one.
+
+#### Request
+**Headers**:
+- `Authorization`: Bearer {session_token} OR `session_id` cookie
+- `Content-Type`: application/json
+
+**Body**:
+```json
+{
+  "message": "Explain inverse kinematics",
+  "selected_text": "Inverse kinematics is the process of computing joint angles...",
+  "streaming": true,
+  "chat_session_id": "session-123"
+}
+```
+
+**Fields**:
+- `message` (string, required): The user's question or message (1-2000 characters)
+- `selected_text` (string, optional): Text that restricts the answer scope (1-10000 characters)
+- `streaming` (boolean, optional, default: false): Whether to stream the response
+- `chat_session_id` (string, optional): ID of existing chat session
+
+#### Response
+**Success (200 for non-streaming, 200 for first streaming chunk)**:
+```json
+{
+  "id": "response-123",
+  "request_id": "request-456",
+  "answer": "Inverse kinematics is...",
+  "sources": [
+    {
+      "title": "Chapter 3 – Humanoid Kinematics",
+      "page": "Section 3.2",
+      "url": "/docs/03-isaac#section-3.2",
+      "score": 0.87,
+      "content_preview": "Inverse kinematics is the mathematical process..."
+    }
+  ],
+  "status": "complete",
+  "timestamp": "2025-12-18T10:30:00Z"
+}
+```
+
+**Streaming Response (Content-Type: text/event-stream)**:
+```
+data: {"id": "response-123", "chunk": "Inverse kinematics is the process", "status": "streaming"}
+
+data: {"id": "response-123", "chunk": " of computing joint angles", "status": "streaming"}
+
+data: {"id": "response-123", "chunk": " for humanoid robots.", "status": "complete", "sources": [...]}
+```
+
+**Error (400, 401, 429, 500)**:
+```json
+{
+  "error": "error_code",
+  "message": "Descriptive error message",
+  "details": "Additional error details if applicable"
+}
+```
+
+**Status Codes**:
+- `200`: Success (non-streaming) or streaming chunk
+- `400`: Bad request (invalid input)
+- `401`: Unauthorized (invalid session)
+- `429`: Rate limited
+- `500`: Internal server error
+
+### GET /chat/session/{session_id}
+Retrieves information about a specific chat session.
+
+#### Request
+**Path Parameters**:
+- `session_id` (string): The ID of the chat session
+
+**Headers**:
+- `Authorization`: Bearer {session_token}
+
+#### Response
+**Success (200)**:
+```json
+{
+  "session_id": "session-123",
+  "user_id": "user-456",
+  "created_at": "2025-12-18T10:00:00Z",
+  "last_message_at": "2025-12-18T10:30:00Z",
+  "message_count": 5,
+  "active": true
+}
+```
+
+**Error (401, 404, 500)**:
+- `401`: Unauthorized
+- `404`: Session not found
+- `500`: Internal server error
+
+### POST /chat/session
+Creates a new chat session.
+
+#### Request
+**Headers**:
+- `Authorization`: Bearer {session_token}
+- `Content-Type`: application/json
+
+**Body**:
+```json
+{
+  "initial_context": "Optional initial context for the session"
+}
+```
+
+#### Response
+**Success (201)**:
+```json
+{
+  "session_id": "session-789",
+  "user_id": "user-456",
+  "created_at": "2025-12-18T10:30:00Z",
+  "active": true
+}
+```
+
+**Error (401, 500)**:
+- `401`: Unauthorized
+- `500`: Internal server error
+
+### GET /chat/health
+Health check endpoint that doesn't require authentication.
+
+#### Response
+**Success (200)**:
+```json
+{
+  "status": "healthy",
+  "timestamp": "2025-12-18T10:30:00Z",
+  "version": "1.0.0"
+}
+```
+
+## Error Codes
+
+| Code | Description | User Message |
+|------|-------------|--------------|
+| `INVALID_INPUT` | Request body validation failed | "Please check your input and try again" |
+| `UNAUTHORIZED` | Invalid or expired session | "Please log in to continue" |
+| `RATE_LIMITED` | Too many requests | "Too many requests. Please try again later" |
+| `INSUFFICIENT_CONTEXT` | Selected text doesn't contain answer | "The selected text does not contain enough information to answer this question" |
+| `CHAT_ERROR` | General chat processing error | "Sorry, there was an error processing your request" |
+| `SESSION_EXPIRED` | Session token has expired | "Your session has expired. Please log in again" |
+
+## Validation Rules
+
+### Request Validation
+- Message length: 1-2000 characters
+- Selected text length: 1-10000 characters (if provided)
+- Session token must be valid and unexpired
+- Rate limits: 10 requests per minute per user
+
+### Response Validation
+- Answer length: maximum 10000 characters
+- Sources required for RAG-based responses
+- Status field must match defined values
+- Timestamps in ISO 8601 format
+
+## Security Considerations
+
+1. All requests must be authenticated
+2. Input sanitization for message and selected_text fields
+3. Rate limiting per user session
+4. Session timeout after 30 minutes of inactivity
+5. HTTPS required for all endpoints
+
+## Performance Requirements
+
+1. Response time: <500ms for non-streaming requests
+2. Streaming: Initial response within 500ms, subsequent chunks every 100ms
+3. Concurrent users: Support for 1000+ simultaneous users
+4. Throughput: Handle 100 requests per second

@@ -1,0 +1,135 @@
+/* Chatbot component styles */
+.chatbotButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #4F46E5;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.chatbotButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.chatbotButton.hidden {
+  display: none;
+}
+
+.chatbotModal {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
+  width: 350px;
+  height: 500px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.chatHeader {
+  padding: 16px;
+  background-color: #4F46E5;
+  color: white;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.messagesContainer {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  background-color: #F9FAFB;
+}
+
+.welcomeMessage {
+  text-align: center;
+  padding: 20px;
+  color: #6B7280;
+}
+
+.message {
+  margin-bottom: 12px;
+  display: flex;
+}
+
+.userMessage {
+  justify-content: flex-end;
+}
+
+.botMessage {
+  justify-content: flex-start;
+}
+
+.inputArea {
+  padding: 12px;
+  border-top: 1px solid #E5E7EB;
+  background-color: white;
+}
+
+/* Typing indicator animation */
+.typingIndicator {
+  display: flex;
+  align-items: center;
+}
+
+.typingDot {
+  width: 8px;
+  height: 8px;
+  background-color: #374151;
+  border-radius: 50%;
+  margin: 0 2px;
+  animation: typing 1.4s infinite;
+}
+
+.typingDot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.typingDot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typingDot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  30% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .chatbotModal {
+    width: calc(100vw - 40px);
+    height: 50vh;
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+  }
+}

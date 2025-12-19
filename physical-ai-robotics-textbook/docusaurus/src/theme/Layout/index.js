@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Layout from "@theme-original/Layout";
 import { useColorMode } from "@docusaurus/theme-common";
-
+import NewChatbot from "../../components/NewChatbot";
 export default function LayoutWrapper(props) {
   try {
     const { colorMode } = useColorMode();
@@ -18,5 +18,8 @@ export default function LayoutWrapper(props) {
     // Provider not available yet
   }
 
-  return <Layout {...props} />;
+  return <>
+  <Layout {...props} />
+  <NewChatbot/>
+  </>;
 }
