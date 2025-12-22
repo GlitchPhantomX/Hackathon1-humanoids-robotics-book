@@ -1,0 +1,159 @@
+openapi: 3.0.0
+info:
+  title: Chapter Personalization API
+  description: API for personalizing textbook chapter content based on user profile
+  version: 1.0.0
+servers:
+  - url: /api
+    description: Base API path
+
+paths:
+  /personalize/chapter:
+    post:
+      summary: Personalize chapter content
+      description: Transform chapter content based on user profile using AI
+      operationId: personalizeChapter
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonalizeChapterRequest'
+      responses:
+        '200':
+          description: Successfully personalized content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalizeChapterResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - user not authenticated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error or AI service unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: "AI service temporarily unavailable"
+                fallback_content: "Original markdown content"
+                code: "AI_SERVICE_ERROR"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Better Auth session token
+
+  schemas:
+    PersonalizeChapterRequest:
+      type: object
+      required:
+        - chapter_id
+        - chapter_content
+        - user_profile
+      properties:
+        chapter_id:
+          type: string
+          description: Unique identifier for the chapter
+          example: "introduction-to-robotics"
+        chapter_content:
+          type: string
+          description: Raw markdown content to be personalized
+          example: "# Introduction\nThis chapter covers the basics of robotics..."
+        user_profile:
+          type: object
+          required:
+            - softwareBackground
+            - hardwareBackground
+            - programmingLanguages
+            - roboticsExperience
+            - aiMlExperience
+            - hasRosExperience
+            - hasGpuAccess
+            - learningGoals
+          properties:
+            softwareBackground:
+              type: string
+              description: User's software background
+              example: "beginner"
+            hardwareBackground:
+              type: string
+              description: User's hardware background
+              example: "maker"
+            programmingLanguages:
+              type: string
+              description: Programming languages known
+              example: "Python, C++"
+            roboticsExperience:
+              type: string
+              description: Robotics experience level
+              example: "none"
+            aiMlExperience:
+              type: string
+              description: AI/ML experience level
+              example: "intermediate"
+            hasRosExperience:
+              type: boolean
+              description: Whether user has ROS experience
+              example: false
+            hasGpuAccess:
+              type: boolean
+              description: Whether user has GPU access
+              example: true
+            learningGoals:
+              type: string
+              description: User's learning goals
+              example: "Build autonomous robots"
+
+    PersonalizeChapterResponse:
+      type: object
+      required:
+        - personalized_content
+        - processing_time_ms
+      properties:
+        personalized_content:
+          type: string
+          description: AI-transformed markdown content
+          example: "# Introduction\nAs a beginner in robotics, this chapter will guide you..."
+        processing_time_ms:
+          type: integer
+          description: Time taken for personalization in milliseconds
+          example: 2450
+        section_id:
+          type: string
+          description: ID of the section that was processed (for per-section processing)
+          example: "introduction-to-robotics#introduction"
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+        - code
+      properties:
+        error:
+          type: string
+          description: Error message
+          example: "Invalid chapter content provided"
+        code:
+          type: string
+          description: Error code for client handling
+          example: "INVALID_CONTENT"
+        fallback_content:
+          type: string
+          description: Original content as fallback (for 500 errors)
+          example: "# Introduction\nThis chapter covers the basics of robotics..."

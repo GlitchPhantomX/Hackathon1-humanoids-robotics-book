@@ -5,7 +5,9 @@ description: 'Core ROS 2 concepts and architecture for humanoid robotics'
 ---
 
 import ReadingTime from '@site/src/components/ReadingTime';
+import PersonalizeButton from "@site/src/components/PersonalizeButton"
 
+<PersonalizeButton/>
 
 <ReadingTime minutes={10} />
 <h1 className="main-heading">ROS 2: The Robotic Nervous System</h1>

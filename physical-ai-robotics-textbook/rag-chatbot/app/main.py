@@ -60,6 +60,7 @@ app.add_middleware(
 
 class ChatRequest(BaseModel):
     message: str
+    language: str = "en"  # 🔥 NEW: Language parameter with default
 
 # ======================================================
 # TOOL: EMBEDDINGS + RETRIEVAL
@@ -163,17 +164,60 @@ TOOLS = [{
 }]
 
 # ======================================================
-# SMART AGENT WITH STREAMING
+# SYSTEM PROMPTS
 # ======================================================
 
-async def smart_agent_stream(user_query: str):
-    """
-    Main agent function with streaming support
-    """
-    messages = [
-        {
-            "role": "system",
-            "content": """You are a **Professional AI Tutor** for Physical AI & Humanoid Robotics.
+def get_system_prompt(language: str) -> str:
+    """Return system prompt based on selected language"""
+    
+    if language == "ur":
+        return """آپ Physical AI اور Humanoid Robotics کے لیے ایک **پیشہ ور AI ٹیوٹر** ہیں۔
+
+## آپ کا کردار:
+آپ robotics، ROS2، simulation، اور humanoid systems پر ماہرانہ رہنمائی فراہم کرتے ہیں۔
+
+## اہم ہدایات:
+
+### 1. ہمیشہ اردو میں جواب دیں:
+- **تمام جوابات مکمل طور پر اردو میں ہونے چاہیے**
+- صرف technical terms انگریزی میں رہ سکتے ہیں (جیسے ROS2, URDF, Isaac Sim)
+- مثال: "ROS2 ایک robot operating system ہے جو..."
+
+### 2. MARKDOWN استعمال کریں:
+- **## اہم عنوانات** topics کے لیے
+- **### ذیلی عنوانات** sections کے لیے  
+- **• bullet points** lists کے لیے
+- **1. 2. 3.** numbered lists steps کے لیے
+- **bold** اہم الفاظ کے لیے
+- **```language کوڈ بلاکس```** code کے لیے
+
+### 3. بصری عناصر:
+- ✅ مثبت نکات کے لیے
+- ❌ warnings/مسائل کے لیے
+- 🔥 اہم highlights کے لیے
+- 💡 tips کے لیے
+- ⚡ quick facts کے لیے
+
+### 4. TEXTBOOK سوالات:
+- پہلے `retrieve_textbook` استعمال کریں
+- Retrieved content کی بنیاد پر جواب دیں
+- ہمیشہ sources کا حوالہ دیں
+
+### 5. GREETING جوابات:
+"hi", "hello", "hey" جیسے سادہ سلام کے لیے:
+- گرمجوشی سے emojis کے ساتھ جواب دیں
+- ایک formatted list میں دکھائیں کہ آپ کس میں مدد کر سکتے ہیں
+
+### 6. CODE مثالیں:
+کوڈ فراہم کرتے وقت syntax highlighting استعمال کریں:
+```python
+# آپ کا کوڈ یہاں
+```
+
+یاد رکھیں: ہر جواب اردو میں، بصری طور پر دلکش اور آسانی سے سمجھ آنے والا ہونا چاہیے!"""
+    
+    else:  # English
+        return """You are a **Professional AI Tutor** for Physical AI & Humanoid Robotics.
 
 ## YOUR ROLE:
 You provide expert guidance on robotics, ROS2, simulation, and humanoid systems with exceptional clarity and structure.
@@ -245,6 +289,21 @@ When providing code, always use proper syntax highlighting:
 ```
 
 Remember: Every response should be visually appealing and easy to scan!"""
+
+# ======================================================
+# SMART AGENT WITH STREAMING
+# ======================================================
+
+async def smart_agent_stream(user_query: str, language: str = "en"):
+    """
+    Main agent function with streaming support and language selection
+    """
+    print(f"🌐 Language selected: {language}")  # Debug log
+    
+    messages = [
+        {
+            "role": "system",
+            "content": get_system_prompt(language)  # 🔥 Dynamic system prompt
         },
         {"role": "user", "content": user_query}
     ]
@@ -297,7 +356,7 @@ Remember: Every response should be visually appealing and easy to scan!"""
 
     except Exception as e:
         print(f"❌ Agent Error: {e}")
-        error_msg = f"Sorry, I encountered an error: {str(e)}"
+        error_msg = f"Sorry, I encountered an error: {str(e)}" if language == "en" else f"معذرت، ایک خرابی واقع ہوئی: {str(e)}"
         yield f"data: {json.dumps({'type': 'content', 'data': error_msg})}\n\n"
         yield f"data: {json.dumps({'type': 'done'})}\n\n"
 
@@ -311,7 +370,8 @@ async def root():
     return {
         "status": "online",
         "message": "🤖 AI Tutor Backend with Streaming",
-        "version": "2.0",
+        "version": "2.1",
+        "features": ["streaming", "multilingual"],
         "endpoints": {
             "chat": "/chat (POST)",
             "health": "/ (GET)"
@@ -325,13 +385,16 @@ async def chat_endpoint(request: ChatRequest):
     
     Request body:
     {
-        "message": "Your question here"
+        "message": "Your question here",
+        "language": "en" or "ur"
     }
     
     Returns: Server-Sent Events (SSE) stream
     """
+    print(f"📥 Received request - Message: {request.message[:50]}..., Language: {request.language}")
+    
     return StreamingResponse(
-        smart_agent_stream(request.message),
+        smart_agent_stream(request.message, request.language),  # 🔥 Pass language
         media_type="text/event-stream",
         headers={
             "Cache-Control": "no-cache",
@@ -362,6 +425,7 @@ if __name__ == "__main__":
     print(f"✅ OpenAI: {'Connected' if OPENAI_API_KEY else '❌ Missing'}")
     print(f"✅ Cohere: {'Connected' if cohere_client else '⚠️ Not configured'}")
     print(f"✅ Qdrant: {'Connected' if qdrant else '⚠️ Not configured'}")
+    print("🌐 Languages: English (en) | Urdu (ur)")
     print("="*50)
     print("🚀 Server running at: http://127.0.0.1:8000")
     print("📚 Docs available at: http://127.0.0.1:8000/docs")

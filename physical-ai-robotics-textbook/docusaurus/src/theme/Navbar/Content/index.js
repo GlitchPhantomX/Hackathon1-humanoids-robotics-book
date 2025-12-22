@@ -13,7 +13,7 @@ import NavbarSearch from '@theme/Navbar/Search';
 
 // ADD THESE IMPORTS
 import AuthButtons from '../../../components/auth/AuthButtons';
-import { authClient, getApiUrl } from '../../../lib/auth-client'; // ✅ Add getApiUrl
+import { authClient, getApiUrl } from '../../../lib/auth-client';
 
 import styles from './styles.module.css';
 
@@ -54,7 +54,7 @@ export default function NavbarContent() {
   React.useEffect(() => {
     const checkAuth = async () => {
       try {
-        const API_URL = getApiUrl(); // ✅ Dynamic URL
+        const API_URL = getApiUrl(); 
         const response = await fetch(`${API_URL}/api/auth/get-session`, {
           credentials: 'include',
         });
@@ -79,7 +79,6 @@ export default function NavbarContent() {
         <>
           <NavbarItems items={rightItems} />
           <AuthButtons onAuthChange={() => {
-            // Refresh auth state
             window.location.reload();
           }} />
           <NavbarColorModeToggle className={styles.colorModeToggle} />

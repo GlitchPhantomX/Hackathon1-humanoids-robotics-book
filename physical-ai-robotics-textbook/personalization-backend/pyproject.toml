@@ -1,0 +1,18 @@
+[project]
+name = "personalization-backend"
+version = "0.1.0"
+description = "Chapter personalization service for AI textbook"
+readme = "README.md"
+requires-python = ">=3.11"
+
+dependencies = [
+    "fastapi>=0.125.0",
+    "uvicorn>=0.38.0",
+    "python-dotenv>=1.0.0",
+    "openai>=2.13.0",
+    "httpx>=0.28.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

@@ -2,52 +2,225 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Urdu Font */
-@font-face {
-  font-family: 'Noto Nastaliq Urdu';
-  src: url('/fonts/urdu/NotoNastaliqUrdu-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+/* Import Urdu Font from Google */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
 
-/* Arabic Font */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap');
+/* ============================================ */
+/* URDU RTL BASE STYLES */
+/* ============================================ */
 
-/* Language-specific styling */
-[data-language="ur"] {
-  font-family: 'Noto Nastaliq Urdu', serif !important;
+/* Apply RTL to article when dir='rtl' */
+article[dir='rtl'] {
+  direction: rtl !important;
+  text-align: right !important;
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', Arial, sans-serif !important;
+  font-size: 1.15rem;
   line-height: 2.2;
-  letter-spacing: 0.02em;
 }
 
-[data-language="ar"] {
-  font-family: 'Noto Naskh Arabic', serif !important;
-  line-height: 1.8;
+/* ============================================ */
+/* URDU FONT FOR ALL TEXT ELEMENTS */
+/* ============================================ */
+
+article[dir='rtl'] *:not(code):not(pre) {
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', Arial, sans-serif !important;
 }
 
-/* RTL base support */
-[dir="rtl"] {
+/* ============================================ */
+/* HEADINGS */
+/* ============================================ */
+
+article[dir='rtl'] h1,
+article[dir='rtl'] .main-heading {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 1.5rem !important;
+  color: var(--ifm-heading-color) !important;
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  text-align: right !important;
+}
+
+article[dir='rtl'] h2,
+article[dir='rtl'] .second-heading {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+  color: var(--ifm-heading-color) !important;
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  text-align: right !important;
+}
+
+article[dir='rtl'] h3,
+article[dir='rtl'] .third-heading {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.75rem !important;
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  text-align: right !important;
+}
+
+article[dir='rtl'] h4,
+article[dir='rtl'] .fourth-heading {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  margin-top: 1rem !important;
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  text-align: right !important;
+}
+
+article[dir='rtl'] h5,
+article[dir='rtl'] h6 {
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  text-align: right !important;
+}
+
+/* ============================================ */
+/* PARAGRAPHS & TEXT */
+/* ============================================ */
+
+article[dir='rtl'] p,
+article[dir='rtl'] li,
+article[dir='rtl'] span,
+article[dir='rtl'] div {
+  text-align: right !important;
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', Arial, sans-serif !important;
+}
+
+/* ============================================ */
+/* LISTS */
+/* ============================================ */
+
+article[dir='rtl'] ul,
+article[dir='rtl'] ol {
+  margin-right: 2rem;
+  margin-left: 0;
+  padding-right: 2rem;
+  padding-left: 0;
   text-align: right;
 }
 
-[dir="rtl"] .navbar__item {
-  margin-left: 0;
-  margin-right: var(--ifm-navbar-item-padding-horizontal);
+article[dir='rtl'] li {
+  margin-bottom: 0.5rem;
+  text-align: right !important;
 }
 
-/* Preserve code blocks LTR */
-[dir="rtl"] pre,
-[dir="rtl"] code {
+/* ============================================ */
+/* TABLES */
+/* ============================================ */
+
+article[dir='rtl'] table {
+  direction: rtl;
+  width: 100%;
+  margin: 1rem 0;
+  border-collapse: collapse;
+}
+
+article[dir='rtl'] th,
+article[dir='rtl'] td {
+  text-align: right !important;
+  padding: 0.75rem;
+  border: 1px solid var(--ifm-table-border-color);
+  font-family: 'Noto Nastaliq Urdu', Arial, sans-serif !important;
+}
+
+article[dir='rtl'] th {
+  background: var(--ifm-table-stripe-background);
+  font-weight: bold;
+}
+
+/* ============================================ */
+/* CODE BLOCKS - KEEP ENGLISH (LTR) */
+/* ============================================ */
+
+article[dir='rtl'] pre,
+article[dir='rtl'] code,
+article[dir='rtl'] .language-bash,
+article[dir='rtl'] .language-python,
+article[dir='rtl'] .language-javascript,
+article[dir='rtl'] .language-mermaid {
   direction: ltr !important;
   text-align: left !important;
+  font-family: 'Courier New', 'Consolas', 'Monaco', monospace !important;
+  font-size: 0.9rem !important;
 }
 
-/* Preserve Mermaid diagrams LTR */
-[dir="rtl"] .mermaid {
+/* Code block wrapper */
+article[dir='rtl'] pre {
   direction: ltr !important;
+  text-align: left !important;
+  padding: 1rem;
+  border-radius: 4px;
 }
 
+/* Inline code */
+article[dir='rtl'] code {
+  font-family: 'Courier New', monospace !important;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+}
+
+/* ============================================ */
+/* LINKS */
+/* ============================================ */
+
+article[dir='rtl'] a {
+  color: var(--ifm-link-color);
+  text-decoration: none;
+  font-family: 'Noto Nastaliq Urdu', Arial, sans-serif !important;
+}
+
+article[dir='rtl'] a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================ */
+/* BLOCKQUOTES */
+/* ============================================ */
+
+article[dir='rtl'] blockquote {
+  border-right: 4px solid var(--ifm-color-primary);
+  border-left: none;
+  padding-right: 1rem;
+  padding-left: 0;
+  margin-right: 0;
+  background: var(--ifm-color-emphasis-100);
+  border-radius: 4px;
+  padding: 1rem;
+  font-family: 'Noto Nastaliq Urdu', Arial, sans-serif !important;
+}
+
+/* ============================================ */
+/* DIVIDERS */
+/* ============================================ */
+
+article[dir='rtl'] .border-line,
+article[dir='rtl'] .underline-class,
+article[dir='rtl'] hr {
+  margin: 1.5rem 0;
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+/* ============================================ */
+/* ADMONITIONS (Info boxes) */
+/* ============================================ */
+
+article[dir='rtl'] .admonition {
+  text-align: right;
+  font-family: 'Noto Nastaliq Urdu', Arial, sans-serif !important;
+}
+
+/* ============================================ */
+/* STRONG & EMPHASIS */
+/* ============================================ */
+
+article[dir='rtl'] strong,
+article[dir='rtl'] b,
+article[dir='rtl'] em,
+article[dir='rtl'] i {
+  font-family: 'Noto Nastaliq Urdu', Arial, sans-serif !important;
+}
 /* Smooth transitions for language toggle elements */
 .languageToggle,
 .dropdown,
@@ -562,4 +735,165 @@ body.modal-open {
 
 .dark .overflow-y-auto::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.3);
+}
+
+.languageToggle {
+  background: none;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+  margin-left: 8px;
+}
+
+.languageToggle:hover {
+  background: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .languageToggle {
+  border-color: var(--ifm-color-emphasis-600);
+}
+
+[data-theme='dark'] .languageToggle:hover {
+  background: var(--ifm-color-emphasis-200);
+}
+
+/* RTL Support for Urdu */
+[data-lang='ur'] {
+  direction: rtl;
+}
+
+[data-lang='ur'] .navbar {
+  direction: rtl;
+}
+
+[data-lang='ur'] .navbar__items {
+  flex-direction: row-reverse;
+}
+
+[data-lang='ur'] .menu {
+  direction: rtl;
+}
+
+.rtl-content {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+}
+
+/* Loading state */
+.translation-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Translation overlay */
+.translation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.translation-spinner {
+  color: white;
+  font-size: 1.5rem;
+}
+[data-lang='ur'],
+[dir='rtl'] {
+  direction: rtl !important;
+}
+
+/* Preserve Docusaurus styling in Urdu */
+.urdu-translated-content {
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', Arial, sans-serif;
+  font-size: 1.1rem;
+  line-height: 2;
+}
+
+/* Preserve heading styles */
+.urdu-translated-content h1,
+.urdu-translated-content .main-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: var(--ifm-heading-color);
+}
+
+.urdu-translated-content h2,
+.urdu-translated-content .second-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: var(--ifm-heading-color);
+}
+
+.urdu-translated-content h3,
+.urdu-translated-content .third-heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.urdu-translated-content h4,
+.urdu-translated-content .fourth-heading {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Preserve list styling */
+.urdu-translated-content ul,
+.urdu-translated-content ol {
+  margin-right: 1.5rem;
+  margin-left: 0;
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+.urdu-translated-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Preserve code blocks */
+.urdu-translated-content pre,
+.urdu-translated-content code {
+  direction: ltr !important;
+  text-align: left !important;
+  font-family: 'Courier New', monospace;
+}
+
+/* Preserve tables */
+.urdu-translated-content table {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Preserve borders */
+.urdu-translated-content .border-line,
+.urdu-translated-content .underline-class {
+  margin: 1rem 0;
+}
+
+/* Preserve links */
+.urdu-translated-content a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.urdu-translated-content a:hover {
+  text-decoration: underline;
 }

@@ -13,7 +13,7 @@ const config = {
   projectName: 'Hackathon1-humanoids-robotics-book',
 
   onBrokenLinks: 'throw',
-  
+
   markdown: {
     hooks: {
       onBrokenMarkdownLinks: 'warn',
@@ -21,7 +21,7 @@ const config = {
   },
 
   customFields: {
-    translationEnabled: false,
+    translationEnabled: true,
     requiresAuth: true,
     apiUrl: process.env.API_URL || 'http://localhost:8000',
   },
@@ -32,7 +32,8 @@ const config = {
       {
         docs: {
           sidebarPath: './sidebars.js',
-          editUrl: 'https://github.com/GlitchPhantomX/Hackathon1-humanoids-robotics-book/edit/main/',
+          editUrl:
+            'https://github.com/GlitchPhantomX/Hackathon1-humanoids-robotics-book/edit/main/',
         },
         blog: false,
         theme: {
@@ -54,6 +55,28 @@ const config = {
           position: 'left',
           label: 'Book',
         },
+
+        // 🔁 LANGUAGE DROPDOWN
+        {
+          type: 'dropdown',
+          label: '🌐 Language',
+          position: 'right',
+          items: [
+            {
+              label: 'English',
+              href: '#',
+              className: 'language-switch',
+              'data-lang': 'en',
+            },
+            {
+              label: 'اردو (Urdu)',
+              href: '#',
+              className: 'language-switch',
+              'data-lang': 'ur',
+            },
+          ],
+        },
+
       ],
     },
 

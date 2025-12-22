@@ -5,6 +5,9 @@ description: "Introduction to Physical AI and Humanoid Robotics textbook, coveri
 ---
 
 import ReadingTime from '@site/src/components/ReadingTime';
+import PersonalizeButton from "@site/src/components/PersonalizeButton"
+
+<PersonalizeButton/>
 
 <ReadingTime minutes={8} />
 # <h1 className="main-heading">Welcome to Physical AI & Humanoid Robotics</h1>

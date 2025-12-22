@@ -1,8 +1,13 @@
 import React, { useEffect } from "react";
 import Layout from "@theme-original/Layout";
 import { useColorMode } from "@docusaurus/theme-common";
+import { useLocation } from "@docusaurus/router";
 import NewChatbot from "../../components/NewChatbot";
+import PersonalizeButton from "../../components/PersonalizeButton";
+
 export default function LayoutWrapper(props) {
+  const location = useLocation();
+  
   try {
     const { colorMode } = useColorMode();
 
@@ -18,8 +23,15 @@ export default function LayoutWrapper(props) {
     // Provider not available yet
   }
 
-  return <>
-  <Layout {...props} />
-  <NewChatbot/>
-  </>;
+  // ✅ Only show PersonalizeButton on docs pages
+  const isDocsPage = location.pathname.startsWith('/docs');
+  const chapterId = isDocsPage ? location.pathname.replace('/docs/', '') : '';
+
+  return (
+    <>
+      <Layout {...props} />
+      <NewChatbot />
+      {isDocsPage && <PersonalizeButton chapterId={chapterId} />}
+    </>
+  );
 }

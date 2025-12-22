@@ -21,6 +21,7 @@ import ThreePoints from '../components/ThreePoints';
 // import ChatWidget from '../components/ChatWidget'; // Import ChatWidget
 // import Chatbot from '../components/Chatbot';
 import NewChatbot from '../components/NewChatbot';
+import PersonalizeButton from '../components/PersonalizeButton';
 
 
 function HomepageHeader() {
@@ -54,6 +55,7 @@ export default function Home() {
         <HeroSection/>
         {/* <Chatbot/> */}
         <NewChatbot/>
+        <PersonalizeButton/>
         <PhysicalAISection/>
         <ThreePoints/>
         <PhysicalAIPillars/>

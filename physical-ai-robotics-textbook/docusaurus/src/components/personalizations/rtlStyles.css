@@ -1,0 +1,178 @@
+/* Translation Toggle Button Styles */
+.translation-button-container {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.translation-toggle-btn {
+  background-color: white;
+  color: #333;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.translation-toggle-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.translation-toggle-btn:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Urdu active state - orange background */
+.translation-toggle-btn.urdu-active {
+  background-color: orange;
+  color: white;
+  border-color: darkorange;
+}
+
+.translation-toggle-btn.urdu-active:hover {
+  background-color: darkorange;
+}
+
+/* English active state - white background */
+.translation-toggle-btn.english-active {
+  background-color: white;
+  color: #333;
+}
+
+/* Translating state */
+.translation-toggle-btn.translating {
+  opacity: 0.7;
+  position: relative;
+  overflow: hidden;
+}
+
+.translation-toggle-btn.translating::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: loading-shine 1.5s infinite;
+}
+
+@keyframes loading-shine {
+  100% {
+    left: 100%;
+  }
+}
+
+/* Loading indicator */
+.loading-indicator {
+  font-size: 1.2rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Loading spinner inside button */
+.loading-spinner {
+  margin-right: 0.5rem;
+  animation: spin 1s linear infinite;
+}
+
+/* Loading text styling */
+.loading-text {
+  vertical-align: middle;
+}
+
+/* Disabled button state */
+.translation-toggle-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Translation content styles */
+.translation-content {
+  margin-top: 1rem;
+}
+
+.translation-content.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+.translation-content.ltr {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Ensure code blocks remain LTR even in RTL context */
+.translation-content.rtl :where(code, pre, kbd, samp) {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: embed;
+}
+
+.translation-content.rtl pre {
+  text-align: left;
+  direction: ltr;
+}
+
+.translation-content.rtl code {
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* RTL list styling */
+.translation-content.rtl ul,
+.translation-content.rtl ol {
+  text-align: right;
+  direction: rtl;
+  padding-right: 2rem;
+}
+
+.translation-content.rtl li {
+  text-align: right;
+  direction: rtl;
+}
+
+/* RTL table styling */
+.translation-content.rtl table {
+  margin-right: auto;
+  margin-left: 0;
+}
+
+.translation-content.rtl th,
+.translation-content.rtl td {
+  text-align: right;
+}
+
+/* Error message styling */
+.translation-error {
+  color: #d32f2f;
+  background-color: #ffebee;
+  border: 1px solid #ffcdd2;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+/* Authentication required notice */
+.auth-required-notice {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  text-align: center;
+}

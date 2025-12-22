@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, CSSProperties, KeyboardEvent } from "react";
-import { Send, X, Bot, Loader2, MessageSquare, Sparkles } from "lucide-react";
+import { Send, X, Bot, Loader2, MessageSquare, Trash2, Languages } from "lucide-react";
 
 interface Message {
   role: "user" | "assistant";
@@ -10,17 +10,18 @@ export default function ProfessionalChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [chatHistory, setChatHistory] = useState<Message[]>([
-  {
+    {
       role: "assistant",
       content: "Hi! I'm your AI tutor for Physical AI & Humanoid Robotics. Ask me anything! 🤖",
     },
   ]);
   const [loading, setLoading] = useState(false);
   const [streamingContent, setStreamingContent] = useState("");
+  const [language, setLanguage] = useState<'en' | 'ur'>('en'); // ✅ Language state
   const chatEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  // Auto-scroll to bottom when new messages arrive
+  // Auto-scroll to bottom
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chatHistory, streamingContent]);
@@ -32,7 +33,39 @@ export default function ProfessionalChatbot() {
     }
   }, [isOpen]);
 
-  // Markdown to HTML converter (simple version)
+  // ✅ Toggle language
+  function toggleLanguage() {
+    const newLang = language === 'en' ? 'ur' : 'en';
+    setLanguage(newLang);
+    
+    // Update welcome message based on language
+    const welcomeMessage = newLang === 'ur'
+      ? "السلام علیکم! میں Physical AI اور Humanoid Robotics کا AI ٹیوٹر ہوں۔ مجھ سے کچھ بھی پوچھیں! 🤖"
+      : "Hi! I'm your AI tutor for Physical AI & Humanoid Robotics. Ask me anything! 🤖";
+    
+    setChatHistory([
+      {
+        role: "assistant",
+        content: welcomeMessage,
+      },
+    ]);
+  }
+
+  // ✅ Clear chat history
+  function clearChat() {
+    const welcomeMessage = language === 'ur'
+      ? "السلام علیکم! میں Physical AI اور Humanoid Robotics کا AI ٹیوٹر ہوں۔ مجھ سے کچھ بھی پوچھیں! 🤖"
+      : "Hi! I'm your AI tutor for Physical AI & Humanoid Robotics. Ask me anything! 🤖";
+    
+    setChatHistory([
+      {
+        role: "assistant",
+        content: welcomeMessage,
+      },
+    ]);
+  }
+
+  // Markdown parser
   function parseMarkdown(text: string): string {
     let html = text;
 
@@ -50,21 +83,14 @@ export default function ProfessionalChatbot() {
     // Inline code
     html = html.replace(/`([^`]+)`/g, '<code style="background: #FEF3F0; color: #FF6B35; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 13px;">$1</code>');
 
-    // Bullet points (multiple formats)
+    // Bullet points
     html = html.replace(/^[•\-\*] (.*$)/gim, '<li style="margin-left: 20px; margin-bottom: 6px; color: #374151;">$1</li>');
 
     // Numbered lists
     html = html.replace(/^(\d+)\. (.*$)/gim, '<li style="margin-left: 20px; margin-bottom: 6px; color: #374151; list-style-type: decimal;">$2</li>');
 
-    // Wrap consecutive <li> in <ul>
+    // Wrap lists
     html = html.replace(/(<li[^>]*>.*?<\/li>(\s*<li[^>]*>.*?<\/li>)*)/gs, '<ul style="margin: 8px 0; padding-left: 0;">$1</ul>');
-
-    // Tables (basic support)
-    html = html.replace(/\|(.+)\|/g, (match) => {
-      const cells = match.split('|').filter(cell => cell.trim());
-      return '<tr>' + cells.map(cell => `<td style="padding: 8px; border: 1px solid #E5E7EB;">${cell.trim()}</td>`).join('') + '</tr>';
-    });
-    html = html.replace(/(<tr>.*<\/tr>)+/gs, '<table style="width: 100%; border-collapse: collapse; margin: 12px 0;">$&</table>');
 
     // Line breaks
     html = html.replace(/\n/g, '<br>');
@@ -78,17 +104,21 @@ export default function ProfessionalChatbot() {
     const userMessage = message.trim();
     setMessage("");
 
-    // Add user message to chat
+    // Add user message
     setChatHistory((prev) => [...prev, { role: "user", content: userMessage }]);
 
     setLoading(true);
     setStreamingContent("");
 
     try {
+      // ✅ Send language preference with message
       const res = await fetch("http://127.0.0.1:8000/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userMessage }),
+        body: JSON.stringify({ 
+          message: userMessage,
+          language: language // ✅ Send language to backend
+        }),
       });
 
       if (!res.ok) {
@@ -121,7 +151,6 @@ export default function ProfessionalChatbot() {
                 fullContent += data.data;
                 setStreamingContent(fullContent);
               } else if (data.type === "done") {
-                // Streaming complete
                 setChatHistory((prev) => [
                   ...prev,
                   { role: "assistant", content: fullContent },
@@ -136,12 +165,13 @@ export default function ProfessionalChatbot() {
         }
       }
     } catch (error) {
+      const errorMsg = language === 'ur'
+        ? "❌ **خرابی:** سرور سے رابطہ نہیں ہو سکا۔ براہ کرم یقینی بنائیں کہ backend `http://127.0.0.1:8000` پر چل رہا ہے"
+        : "❌ **Error:** Could not connect to server. Please ensure the backend is running on `http://127.0.0.1:8000`";
+      
       setChatHistory((prev) => [
         ...prev,
-        { 
-          role: "assistant", 
-          content: "❌ **Error:** Could not connect to server. Please ensure the backend is running on `http://127.0.0.1:8000`" 
-        },
+        { role: "assistant", content: errorMsg },
       ]);
       setLoading(false);
       setStreamingContent("");
@@ -178,23 +208,62 @@ export default function ProfessionalChatbot() {
             <div style={styles.headerLeft}>
               <Bot size={24} color="white" />
               <div>
-                <div style={styles.headerTitle}>AI Tutor</div>
+                <div style={styles.headerTitle}>
+                  {language === 'ur' ? 'AI ٹیوٹر' : 'AI Tutor'}
+                </div>
                 <div style={styles.headerSubtitle}>
-                  {loading ? "Thinking..." : "Online"}
+                  {loading 
+                    ? (language === 'ur' ? 'سوچ رہا ہے...' : 'Thinking...') 
+                    : (language === 'ur' ? 'آن لائن' : 'Online')
+                  }
                 </div>
               </div>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              style={styles.closeButton}
-              aria-label="Close chat"
-            >
-              <X size={24} color="white" />
-            </button>
+            
+            {/* ✅ Action Buttons */}
+            <div style={styles.headerActions}>
+              {/* Language Toggle */}
+              <button
+                onClick={toggleLanguage}
+                style={styles.actionButton}
+                aria-label="Toggle language"
+                title={language === 'ur' ? 'Switch to English' : 'اردو میں تبدیل کریں'}
+              >
+                <Languages size={20} color="white" />
+                <span style={styles.langLabel}>{language.toUpperCase()}</span>
+              </button>
+              
+              {/* Clear Chat */}
+              <button
+                onClick={clearChat}
+                style={styles.actionButton}
+                aria-label="Clear chat"
+                title={language === 'ur' ? 'چیٹ صاف کریں' : 'Clear chat'}
+              >
+                <Trash2 size={20} color="white" />
+              </button>
+              
+              {/* Close */}
+              <button
+                onClick={() => setIsOpen(false)}
+                style={styles.closeButton}
+                aria-label="Close chat"
+              >
+                <X size={24} color="white" />
+              </button>
+            </div>
           </div>
 
           {/* Chat Messages */}
-          <div style={styles.messagesContainer}>
+          <div 
+            style={{
+              ...styles.messagesContainer,
+              direction: language === 'ur' ? 'rtl' : 'ltr',
+              fontFamily: language === 'ur' 
+                ? "'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', Arial, sans-serif" 
+                : 'inherit'
+            }}
+          >
             {chatHistory.map((msg, index) => (
               <div
                 key={index}
@@ -207,19 +276,33 @@ export default function ProfessionalChatbot() {
                   style={{
                     ...styles.message,
                     ...(msg.role === "user" ? styles.userMessage : styles.assistantMessage),
+                    textAlign: language === 'ur' ? 'right' : 'left',
                   }}
-                >
-                  {msg.content}
-                </div>
+                  dangerouslySetInnerHTML={{ __html: parseMarkdown(msg.content) }}
+                />
               </div>
             ))}
 
+            {/* Streaming message */}
+            {streamingContent && (
+              <div style={styles.messageWrapper}>
+                <div 
+                  style={{ 
+                    ...styles.message, 
+                    ...styles.assistantMessage,
+                    textAlign: language === 'ur' ? 'right' : 'left',
+                  }}
+                  dangerouslySetInnerHTML={{ __html: parseMarkdown(streamingContent) }}
+                />
+              </div>
+            )}
+
             {/* Loading indicator */}
-            {loading && (
+            {loading && !streamingContent && (
               <div style={styles.messageWrapper}>
                 <div style={{ ...styles.message, ...styles.assistantMessage }}>
                   <Loader2 size={16} style={styles.spinner} />
-                  <span>Thinking...</span>
+                  <span>{language === 'ur' ? 'سوچ رہا ہے...' : 'Thinking...'}</span>
                 </div>
               </div>
             )}
@@ -234,8 +317,19 @@ export default function ProfessionalChatbot() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Ask about ROS2, Isaac Sim, URDF..."
-              style={styles.input}
+              placeholder={
+                language === 'ur' 
+                  ? 'ROS2، Isaac Sim، URDF کے بارے میں پوچھیں...'
+                  : 'Ask about ROS2, Isaac Sim, URDF...'
+              }
+              style={{
+                ...styles.input,
+                direction: language === 'ur' ? 'rtl' : 'ltr',
+                textAlign: language === 'ur' ? 'right' : 'left',
+                fontFamily: language === 'ur' 
+                  ? "'Noto Nastaliq Urdu', Arial, sans-serif" 
+                  : 'inherit'
+              }}
               rows={1}
               disabled={loading}
             />
@@ -254,12 +348,17 @@ export default function ProfessionalChatbot() {
 
           {/* Footer */}
           <div style={styles.footer}>
-            Powered by AI • Humanoid Robotics Tutor
+            {language === 'ur' 
+              ? 'AI سے چلایا گیا • Humanoid Robotics ٹیوٹر'
+              : 'Powered by AI • Humanoid Robotics Tutor'
+            }
           </div>
         </div>
       )}
 
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+
         @keyframes slideIn {
           from {
             opacity: 0;
@@ -272,12 +371,8 @@ export default function ProfessionalChatbot() {
         }
 
         @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
 
         @keyframes pulse {
@@ -291,7 +386,6 @@ export default function ProfessionalChatbot() {
           }
         }
 
-        /* Custom scrollbar */
         div::-webkit-scrollbar {
           width: 6px;
         }
@@ -314,11 +408,10 @@ export default function ProfessionalChatbot() {
 }
 
 // ============================================
-// STYLES (with proper TypeScript types)
+// STYLES
 // ============================================
 
 const styles: { [key: string]: CSSProperties } = {
-  // Floating button
   floatingButton: {
     position: "fixed" as const,
     bottom: "24px",
@@ -362,8 +455,6 @@ const styles: { [key: string]: CSSProperties } = {
     boxShadow: "0 2px 8px rgba(0, 217, 255, 0.4)",
   },
 
-
-  // Chat container
   chatContainer: {
     position: "fixed" as const,
     bottom: "24px",
@@ -380,7 +471,6 @@ const styles: { [key: string]: CSSProperties } = {
     animation: "slideIn 0.3s ease",
   },
 
-  // Header
   header: {
     background: "linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%)",
     padding: "20px",
@@ -408,6 +498,35 @@ const styles: { [key: string]: CSSProperties } = {
     marginTop: "2px",
   },
 
+  // ✅ Header Actions Container
+  headerActions: {
+    display: "flex",
+    gap: "8px",
+    alignItems: "center",
+  },
+
+  // ✅ Action Buttons (Language, Clear)
+  actionButton: {
+    background: "rgba(255, 255, 255, 0.2)",
+    border: "none",
+    borderRadius: "8px",
+    padding: "8px 12px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "6px",
+    cursor: "pointer",
+    transition: "all 0.2s ease",
+    fontSize: "11px",
+    fontWeight: "600" as const,
+    color: "white",
+  },
+
+  langLabel: {
+    fontSize: "11px",
+    fontWeight: "700" as const,
+  },
+
   closeButton: {
     background: "rgba(255, 255, 255, 0.2)",
     border: "none",
@@ -421,7 +540,6 @@ const styles: { [key: string]: CSSProperties } = {
     transition: "all 0.2s ease",
   },
 
-  // Messages
   messagesContainer: {
     flex: 1,
     overflowY: "auto" as const,
@@ -442,7 +560,7 @@ const styles: { [key: string]: CSSProperties } = {
     padding: "12px 16px",
     borderRadius: "12px",
     fontSize: "14px",
-    lineHeight: "1.5",
+    lineHeight: "1.6",
     wordWrap: "break-word" as const,
   },
 
@@ -458,16 +576,12 @@ const styles: { [key: string]: CSSProperties } = {
     color: "#1F2937",
     border: "1px solid #E5E7EB",
     borderBottomLeftRadius: "4px",
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
   },
 
   spinner: {
     animation: "spin 1s linear infinite",
   },
 
-  // Input area
   inputContainer: {
     padding: "16px 20px",
     background: "white",
@@ -509,7 +623,6 @@ const styles: { [key: string]: CSSProperties } = {
     cursor: "not-allowed",
   },
 
-  // Footer
   footer: {
     padding: "12px 20px",
     background: "#F9FAFB",
