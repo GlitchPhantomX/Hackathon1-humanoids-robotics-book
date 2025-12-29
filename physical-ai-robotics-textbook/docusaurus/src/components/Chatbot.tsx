@@ -111,15 +111,12 @@ export default function ProfessionalChatbot() {
     setStreamingContent("");
 
     try {
-      // ✅ Send language preference with message
-      const res = await fetch("http://127.0.0.1:8000/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          message: userMessage,
-          language: language // ✅ Send language to backend
-        }),
-      });
+     const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const res = await fetch(`${API_URL}/chat`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ message: userMessage, language }),
+});
 
       if (!res.ok) {
         throw new Error("Network error");
