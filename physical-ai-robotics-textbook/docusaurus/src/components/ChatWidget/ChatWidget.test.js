@@ -56,7 +56,7 @@ describe('ChatWidget', () => {
           sources: []
         })
       })
-    ) as jest.Mock;
+    );
 
     render(<ChatWidget />);
     
@@ -93,12 +93,12 @@ describe('ChatWidget', () => {
 
   test('shows typing indicator when loading', async () => {
     // Create a promise that doesn't resolve immediately to simulate loading
-    let resolvePromise: (value: Response) => void;
-    const fetchPromise = new Promise<Response>((resolve) => {
-      resolvePromise = (value: Response) => resolve(value);
+    let resolvePromise;
+    const fetchPromise = new Promise((resolve) => {
+      resolvePromise = resolve;
     });
     
-    global.fetch = jest.fn(() => fetchPromise) as jest.Mock;
+    global.fetch = jest.fn(() => fetchPromise);
 
     render(<ChatWidget />);
     
@@ -125,7 +125,7 @@ describe('ChatWidget', () => {
         conversation_id: 'test-conversation-id',
         sources: []
       })
-    } as Response);
+    });
   });
 
   test('stores conversation ID in sessionStorage', () => {

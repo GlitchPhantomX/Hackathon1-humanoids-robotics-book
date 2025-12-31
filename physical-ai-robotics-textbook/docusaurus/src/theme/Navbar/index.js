@@ -1,6 +1,6 @@
 import React from "react";
 import OriginalNavbar from "@theme-original/Navbar";
-import NavbarLanguageToggle from "@site/src/components/translation/NavbarLanguageToggle";
+// import NavbarLanguageToggle from "@site/src/components/translation/NavbarLanguageToggle";
 import Banner from "../../components/Banner";
 
 export default function Navbar(props) {
@@ -22,7 +22,7 @@ export default function Navbar(props) {
             pointerEvents: "auto", // ✅ Add this
           }}
         >
-          <NavbarLanguageToggle />
+          {/* <NavbarLanguageToggle /> */}
         </div>
       </div>
     </>

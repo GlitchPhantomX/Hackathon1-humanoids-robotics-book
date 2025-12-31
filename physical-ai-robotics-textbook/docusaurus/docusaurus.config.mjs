@@ -12,6 +12,31 @@ const config = {
   organizationName: 'GlitchPhantomX',
   projectName: 'Hackathon1-humanoids-robotics-book',
 
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'ur', 'hi'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+        direction: 'ltr',
+        htmlLang: 'en-US',
+        calendar: 'gregory',
+      },
+      ur: {
+        label: 'اردو',
+        direction: 'rtl',
+        htmlLang: 'ur-PK',
+        calendar: 'gregory',
+      },
+      hi: {
+        label: 'हिंदी',
+        direction: 'ltr',
+        htmlLang: 'hi-IN',
+        calendar: 'gregory',
+      },
+    },
+  },
+
   onBrokenLinks: 'throw',
 
   markdown: {
@@ -56,27 +81,20 @@ const config = {
           label: 'Book',
         },
 
-        // 🔁 LANGUAGE DROPDOWN
+        // ✅ FIXED: Simple localeDropdown without extra options
         {
-          type: 'dropdown',
-          label: '🌐 Language',
+          type: 'localeDropdown',
           position: 'right',
-          items: [
-            {
-              label: 'English',
-              href: '#',
-              className: 'language-switch',
-              'data-lang': 'en',
-            },
-            {
-              label: 'اردو (Urdu)',
-              href: '#',
-              className: 'language-switch',
-              'data-lang': 'ur',
-            },
-          ],
         },
 
+        // Spacing before auth buttons
+        {
+          type: 'html',
+          position: 'right',
+          value: '<div style="width: 20px;"></div>',
+        },
+
+        // Add your existing Login/Signup buttons here if you have them
       ],
     },
 

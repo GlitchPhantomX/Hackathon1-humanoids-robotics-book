@@ -1,11 +1,16 @@
 {
   "name": "physical-ai-robotics-textbook",
-  "version": "0.0.0",
+  "version": "1.2.0",
   "private": true,
+  "description": "Physical AI & Humanoid Robotics Textbook with multi-language translation support for Urdu, Hindi, and Arabic",
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
+    "start:ur": "docusaurus start --locale ur",
+    "start:hi": "docusaurus start --locale hi",
     "build": "docusaurus build",
+    "build:ur": "docusaurus build --locale ur",
+    "build:hi": "docusaurus build --locale hi",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",

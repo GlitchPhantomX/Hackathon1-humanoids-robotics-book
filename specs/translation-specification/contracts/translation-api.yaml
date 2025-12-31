@@ -1,0 +1,241 @@
+openapi: 3.0.0
+info:
+  title: Translation System API
+  description: API for managing and accessing multi-language translations in the Physical AI & Humanoid Robotics textbook
+  version: 1.0.0
+  contact:
+    name: Translation System Team
+    email: translation@physical-ai-robotics.org
+
+servers:
+  - url: https://api.physical-ai-robotics.org/v1
+    description: Production server
+  - url: https://staging-api.physical-ai-robotics.org/v1
+    description: Staging server
+
+paths:
+  /translations/{locale}/{documentPath}:
+    get:
+      summary: Get translated content for a specific document
+      description: Retrieves the translated content for a specific document in the requested locale
+      parameters:
+        - name: locale
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [en, ur, hi]
+          description: The target locale for translation
+        - name: documentPath
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The document path (e.g., "00-introduction/01-welcome.md")
+        - name: fallback
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: true
+          description: Whether to fallback to English if translation is missing
+      responses:
+        '200':
+          description: Successfully retrieved translation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  locale:
+                    type: string
+                    description: The requested locale
+                  documentPath:
+                    type: string
+                    description: The requested document path
+                  content:
+                    type: string
+                    description: The translated markdown content
+                  frontmatter:
+                    type: object
+                    description: The frontmatter of the document
+                  lastModified:
+                    type: string
+                    format: date-time
+                    description: Last modification timestamp
+                  fallback:
+                    type: boolean
+                    description: Whether the response is a fallback to English
+        '404':
+          description: Translation not found and no fallback requested
+        '400':
+          description: Invalid parameters
+
+  /locales:
+    get:
+      summary: Get available locales
+      description: Returns a list of all supported locales in the system
+      responses:
+        '200':
+          description: List of available locales
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  locales:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          description: Locale code (e.g., 'en', 'ur', 'hi')
+                        label:
+                          type: string
+                          description: Display label for the locale
+                        direction:
+                          type: string
+                          enum: [ltr, rtl]
+                          description: Text direction for the locale
+                        htmlLang:
+                          type: string
+                          description: HTML language code
+                        path:
+                          type: string
+                          description: URL path prefix for the locale
+                      required:
+                        - code
+                        - label
+                        - direction
+                        - htmlLang
+                        - path
+
+  /user/preferences:
+    get:
+      summary: Get user language preferences
+      description: Retrieves the current user's language preferences
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: User preferences retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  preferredLocale:
+                    type: string
+                    description: User's preferred locale
+                  fallbackLocales:
+                    type: array
+                    items:
+                      type: string
+                    description: Ordered list of fallback locales
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    description: Last update timestamp
+        '401':
+          description: Unauthorized - user not authenticated
+    put:
+      summary: Update user language preferences
+      description: Updates the current user's language preferences
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                preferredLocale:
+                  type: string
+                  enum: [en, ur, hi]
+                  description: User's preferred locale
+                fallbackLocales:
+                  type: array
+                  items:
+                    type: string
+                    enum: [en, ur, hi]
+                  description: Ordered list of fallback locales
+              required:
+                - preferredLocale
+      responses:
+        '200':
+          description: Preferences updated successfully
+        '400':
+          description: Invalid locale specified
+        '401':
+          description: Unauthorized - user not authenticated
+
+  /translations/status:
+    get:
+      summary: Get translation status overview
+      description: Returns status information for all document translations
+      parameters:
+        - name: locale
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [en, ur, hi]
+          description: Filter by specific locale
+      responses:
+        '200':
+          description: Translation status overview
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalDocuments:
+                    type: integer
+                    description: Total number of documents
+                  translatedDocuments:
+                    type: integer
+                    description: Number of documents with translations
+                  completionPercentage:
+                    type: number
+                    format: float
+                    description: Percentage of documents translated
+                  locales:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        locale:
+                          type: string
+                          description: Locale code
+                        total:
+                          type: integer
+                          description: Total documents for this locale
+                        translated:
+                          type: integer
+                          description: Number of translated documents
+                        percentage:
+                          type: number
+                          format: float
+                          description: Completion percentage
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication using Better-Auth
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: translations
+    description: Operations related to document translations
+  - name: locales
+    description: Operations related to supported locales
+  - name: user
+    description: Operations related to user preferences
+  - name: status
+    description: Operations related to translation status tracking

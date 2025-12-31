@@ -7,6 +7,7 @@ description: Getting started with Physical AI and Humanoid Robotics
 import ReadingTime from '@site/src/components/ReadingTime';
 import PersonalizeButton from "@site/src/components/PersonalizeButton"
 
+
 <PersonalizeButton/>
 
 <h1 className="main-heading" id="introduction">Introduction to Physical AI & Humanoid Robotics</h1>

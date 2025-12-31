@@ -5,11 +5,11 @@ const sidebars = {
       label: '00 - Introduction',
       items: [
         'introduction/index',
-        'introduction/welcome',
-        'introduction/prerequisites',
-        'introduction/hardware-requirements',
-        'introduction/how-to-use',
-        'introduction/syllabus',
+        'introduction/welcome',                  // ✅ NO prefix
+        'introduction/prerequisites',            // ✅ NO prefix
+        'introduction/hardware-requirements',    // ✅ NO prefix
+        'introduction/how-to-use',               // ✅ NO prefix
+        'introduction/syllabus',                 // ✅ NO prefix
       ],
     },
     {
@@ -17,7 +17,7 @@ const sidebars = {
       label: '01 - ROS 2 Architecture & Concepts',
       items: [
         'ros2/index',
-        'ros2/01-ros2-architecture',
+        'ros2/01-ros2-architecture',     // ✅ Keep prefix (ye available hai)
         'ros2/01-ros2-nodes-topics',
         'ros2/01-ros2-services-actions',
         'ros2/python-packages',

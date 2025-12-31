@@ -1,0 +1,22 @@
+{
+  "title": {
+    "message": "ह्यूमनॉइड रोबोटिक्स",
+    "description": "The title in the navbar"
+  },
+  "item.label.Book": {
+    "message": "पुस्तक",
+    "description": "Navbar item with label Book"
+  },
+  "item.label.🌐 Language": {
+    "message": "🌐 भाषा",
+    "description": "Navbar item with label 🌐 Language"
+  },
+  "item.label.English": {
+    "message": "अंग्रेज़ी",
+    "description": "Navbar item with label English"
+  },
+  "item.label.اردو (Urdu)": {
+    "message": "اردو (उर्दू)",
+    "description": "Navbar item with label اردو (Urdu)"
+  }
+}

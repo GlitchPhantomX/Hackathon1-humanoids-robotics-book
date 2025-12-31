@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 from openai import AsyncOpenAI
 import cohere
 from qdrant_client import QdrantClient
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
@@ -81,7 +81,7 @@ def get_embedding(text: str):
         )
         return res.embeddings[0]
     except Exception as e:
-        print(f"❌ Embedding Error: {e}")
+        print(f"ERROR - Embedding Error: {e}")
         return None
 
 
@@ -137,7 +137,7 @@ def retrieve_textbook(query: str) -> dict:
         }
 
     except Exception as e:
-        print(f"❌ Retrieval Error: {e}")
+        print(f"ERROR - Retrieval Error: {e}")
         return {
             "found": False,
             "content": f"Error retrieving content: {str(e)}",
@@ -301,7 +301,7 @@ async def smart_agent_stream(user_query: str, language: str = "en"):
     """
     Main agent function with streaming support and language selection
     """
-    print(f"🌐 Language selected: {language}")  # Debug log
+    print(f"Language selected: {language}")  # Debug log
     
     messages = [
         {
@@ -327,7 +327,7 @@ async def smart_agent_stream(user_query: str, language: str = "en"):
             tool_call = msg.tool_calls[0]
             args = json.loads(tool_call.function.arguments)
             
-            print(f"🔍 Searching textbook for: {args['query']}")
+            print(f"Searching textbook for: {args['query']}")
             tool_result = retrieve_textbook(args["query"])
             
             messages.append({
@@ -358,7 +358,7 @@ async def smart_agent_stream(user_query: str, language: str = "en"):
         yield f"data: {json.dumps({'type': 'done'})}\n\n"
 
     except Exception as e:
-        print(f"❌ Agent Error: {e}")
+        print(f"ERROR - Agent Error: {e}")
         error_msg = f"Sorry, I encountered an error: {str(e)}" if language == "en" else f"معذرت، ایک خرابی واقع ہوئی: {str(e)}"
         yield f"data: {json.dumps({'type': 'content', 'data': error_msg})}\n\n"
         yield f"data: {json.dumps({'type': 'done'})}\n\n"
@@ -381,28 +381,44 @@ async def root():
         }
     }
 
+@app.options("/chat")
+async def chat_options():
+    """Handle CORS preflight requests for /chat endpoint"""
+    return Response(
+        status_code=200,
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST, OPTIONS",
+            "Access-Control-Allow-Headers": "*",
+            "Access-Control-Max-Age": "3600"
+        }
+    )
+
 @app.post("/chat")
 async def chat_endpoint(request: ChatRequest):
     """
     Main chat endpoint with streaming support
-    
+
     Request body:
     {
         "message": "Your question here",
         "language": "en" or "ur"
     }
-    
+
     Returns: Server-Sent Events (SSE) stream
     """
-    print(f"📥 Received request - Message: {request.message[:50]}..., Language: {request.language}")
-    
+    print(f"Received request - Message: {request.message[:50]}..., Language: {request.language}")
+
     return StreamingResponse(
         smart_agent_stream(request.message, request.language),  # 🔥 Pass language
         media_type="text/event-stream",
         headers={
             "Cache-Control": "no-cache",
             "Connection": "keep-alive",
-            "X-Accel-Buffering": "no"  # Disable nginx buffering
+            "X-Accel-Buffering": "no",  # Disable nginx buffering
+            "Access-Control-Allow-Origin": "*",  # Explicit CORS header for streaming
+            "Access-Control-Allow-Methods": "POST, OPTIONS",
+            "Access-Control-Allow-Headers": "*"
         }
     )
 

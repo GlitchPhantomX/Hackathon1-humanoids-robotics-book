@@ -6,18 +6,319 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
 
 /* ============================================ */
-/* URDU RTL BASE STYLES */
+/* URDU LANGUAGE SPECIFIC - FULL RTL SUPPORT */
 /* ============================================ */
 
-/* Apply RTL to article when dir='rtl' */
-article[dir='rtl'] {
+/* Force RTL on HTML when Urdu is selected */
+html[lang="ur-PK"],
+html[lang="ur-PK"] body,
+html[lang="ur-PK"] #__docusaurus {
   direction: rtl !important;
-  text-align: right !important;
-  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', Arial, sans-serif !important;
-  font-size: 1.15rem;
-  line-height: 2.2;
 }
 
+/* Main content area RTL */
+html[lang="ur-PK"] .main-wrapper,
+html[lang="ur-PK"] main,
+html[lang="ur-PK"] .container,
+html[lang="ur-PK"] .row {
+  direction: rtl !important;
+}
+
+/* ============================================ */
+/* SIDEBAR FIX - Shift to Right Edge */
+/* ============================================ */
+
+html[lang="ur-PK"] .theme-doc-sidebar-container {
+  direction: rtl !important;
+  right: 0 !important;
+  left: auto !important;
+  width: 300px !important;
+}
+
+html[lang="ur-PK"] aside[class*="sidebar"],
+html[lang="ur-PK"] .menu {
+  direction: rtl !important;
+  text-align: right !important;
+  padding-right: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Sidebar items */
+html[lang="ur-PK"] .menu__list-item,
+html[lang="ur-PK"] .menu__link {
+  text-align: right !important;
+  direction: rtl !important;
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  padding-right: 1rem !important;
+  padding-left: 0.5rem !important;
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  overflow: visible !important;
+  height: auto !important;
+  min-height: 2rem !important;
+  line-height: 1.8 !important;
+}
+
+html[lang="ur-PK"] .menu__list-item-collapsible {
+  overflow: visible !important;
+}
+
+/* ============================================ */
+/* ALL TEXT - NOTO NASTALIQ URDU FONT */
+/* ============================================ */
+
+html[lang="ur-PK"] body,
+html[lang="ur-PK"] p,
+html[lang="ur-PK"] div,
+html[lang="ur-PK"] span,
+html[lang="ur-PK"] li,
+html[lang="ur-PK"] td,
+html[lang="ur-PK"] th,
+html[lang="ur-PK"] label,
+html[lang="ur-PK"] a,
+html[lang="ur-PK"] article,
+html[lang="ur-PK"] article * {
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+}
+
+/* ============================================ */
+/* HEADINGS - NOTO FONT & RTL */
+/* ============================================ */
+
+html[lang="ur-PK"] .main-heading,
+html[lang="ur-PK"] h1.main-heading,
+html[lang="ur-PK"] [class*="main-heading"],
+html[lang="ur-PK"] h1,
+html[lang="ur-PK"] h2,
+html[lang="ur-PK"] h3,
+html[lang="ur-PK"] h4,
+html[lang="ur-PK"] h5,
+html[lang="ur-PK"] h6 {
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+html[lang="ur-PK"] .main-heading {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+}
+
+html[lang="ur-PK"] .second-heading {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+}
+
+html[lang="ur-PK"] .third-heading {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+}
+
+html[lang="ur-PK"] .fourth-heading {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+}
+
+/* ============================================ */
+/* PARAGRAPHS & TEXT - RTL & NOTO FONT */
+/* ============================================ */
+
+html[lang="ur-PK"] .theme-doc-markdown p,
+html[lang="ur-PK"] .markdown p,
+html[lang="ur-PK"] p {
+  text-align: right !important;
+  direction: rtl !important;
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  line-height: 2 !important;
+}
+
+/* Lists */
+html[lang="ur-PK"] ul,
+html[lang="ur-PK"] ol {
+  text-align: right !important;
+  direction: rtl !important;
+  padding-right: 2rem !important;
+  padding-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+html[lang="ur-PK"] li {
+  text-align: right !important;
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+}
+
+/* ============================================ */
+/* UNDERLINE/BORDER ALIGNMENT FIX */
+/* ============================================ */
+
+html[lang="ur-PK"] .underline-class,
+html[lang="ur-PK"] .border-line {
+  margin-right: 0 !important;
+  margin-left: auto !important;
+  direction: rtl !important;
+}
+
+/* ============================================ */
+/* DOC CONTENT WRAPPER */
+/* ============================================ */
+
+html[lang="ur-PK"] .theme-doc-markdown,
+html[lang="ur-PK"] article {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+html[lang="ur-PK"] .theme-doc-markdown > * {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* ============================================ */
+/* TABLE OF CONTENTS (TOC) FIX */
+/* ============================================ */
+
+html[lang="ur-PK"] .table-of-contents {
+  direction: rtl !important;
+  text-align: right !important;
+  padding-right: 0.5rem !important;
+  padding-left: 0 !important;
+}
+
+html[lang="ur-PK"] .table-of-contents li {
+  text-align: right !important;
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+}
+
+/* ============================================ */
+/* CODE BLOCKS - KEEP ENGLISH (LTR) */
+/* ============================================ */
+
+html[lang="ur-PK"] pre,
+html[lang="ur-PK"] pre *,
+html[lang="ur-PK"] code,
+html[lang="ur-PK"] code *,
+html[lang="ur-PK"] .prism-code,
+html[lang="ur-PK"] [class*="codeBlock"],
+html[lang="ur-PK"] [class*="language-"] {
+  direction: ltr !important;
+  text-align: left !important;
+  font-family: 'Courier New', 'Consolas', 'Monaco', monospace !important;
+}
+
+/* Code block container */
+html[lang="ur-PK"] div[class*="codeBlock"],
+html[lang="ur-PK"] .theme-code-block {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/* Inline code */
+html[lang="ur-PK"] code:not(pre code) {
+  direction: ltr !important;
+  text-align: left !important;
+  display: inline-block !important;
+}
+
+/* Pre wrapper */
+html[lang="ur-PK"] pre {
+  direction: ltr !important;
+  text-align: left !important;
+  padding: 1rem !important;
+  border-radius: 4px !important;
+  overflow-x: auto !important;
+}
+
+/* Code content inside pre */
+html[lang="ur-PK"] pre > code {
+  direction: ltr !important;
+  text-align: left !important;
+  display: block !important;
+}
+
+/* Syntax highlighting classes */
+html[lang="ur-PK"] .token,
+html[lang="ur-PK"] .keyword,
+html[lang="ur-PK"] .operator,
+html[lang="ur-PK"] .string {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+/* ============================================ */
+/* TABLES */
+/* ============================================ */
+
+html[lang="ur-PK"] table {
+  direction: rtl !important;
+  width: 100% !important;
+}
+
+html[lang="ur-PK"] th,
+html[lang="ur-PK"] td {
+  text-align: right !important;
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+}
+
+/* ============================================ */
+/* BLOCKQUOTES */
+/* ============================================ */
+
+html[lang="ur-PK"] blockquote {
+  border-right: 4px solid var(--ifm-color-primary) !important;
+  border-left: none !important;
+  padding-right: 1rem !important;
+  padding-left: 0 !important;
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+}
+
+/* ============================================ */
+/* ADMONITIONS */
+/* ============================================ */
+
+html[lang="ur-PK"] .admonition {
+  text-align: right !important;
+  direction: rtl !important;
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+}
+
+/* ============================================ */
+/* NAVBAR LANGUAGE TOGGLE ALIGNMENT FIX */
+/* ============================================ */
+
+.navbar__items {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.navbar__item {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.navbar__link--active,
+.navbar__link {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+}
+
+.navbar__item.dropdown {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.navbar__link.dropdown__toggle {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+}
+
+.navbar__items--right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+}
 /* ============================================ */
 /* URDU FONT FOR ALL TEXT ELEMENTS */
 /* ============================================ */
@@ -896,4 +1197,57 @@ body.modal-open {
 
 .urdu-translated-content a:hover {
   text-decoration: underline;
+}
+
+/* ==================== Language Dropdown Styling ==================== */
+
+/* Language dropdown spacing */
+.language-dropdown-custom {
+  margin-right: 20px;
+}
+
+/* Dropdown button styling */
+.navbar__link--active .dropdown__menu {
+  background: linear-gradient(135deg, #fff5f0 0%, #ffffff 100%);
+  border: 2px solid #ff6b35;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(255, 107, 53, 0.1);
+}
+
+/* Dropdown items */
+.dropdown__link {
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.dropdown__link:hover {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  color: white !important;
+  border-radius: 6px;
+}
+
+.dropdown__link--active {
+  background: #ff6b35;
+  color: white !important;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+/* Mobile responsive */
+@media (max-width: 996px) {
+  .language-dropdown-custom {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Dark mode support */
+[data-theme='dark'] .navbar__link--active .dropdown__menu {
+  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+  border-color: #ff8c42;
+}
+
+[data-theme='dark'] .dropdown__link:hover {
+  background: linear-gradient(135deg, #ff8c42 0%, #ff6b35 100%);
 }

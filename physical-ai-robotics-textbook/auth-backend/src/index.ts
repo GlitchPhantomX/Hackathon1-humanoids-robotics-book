@@ -89,7 +89,7 @@ app.patch('/api/user/profile', async (req, res) => {
     const session = await auth.api.getSession({
       headers: req.headers as any,
     });
-    
+
     console.log('Session:', session);
 
     if (!session || !session.session) {
@@ -99,7 +99,7 @@ app.patch('/api/user/profile', async (req, res) => {
 
     console.log('✅ User authenticated:', session.user.id);
 
-    const { 
+    const {
       name,
       softwareBackground,
       hardwareBackground,
@@ -108,7 +108,7 @@ app.patch('/api/user/profile', async (req, res) => {
       aiMlExperience,
       hasRosExperience,
       hasGpuAccess,
-      learningGoals 
+      learningGoals
     } = req.body;
 
     const { db } = await import('./db/index.js');
@@ -116,7 +116,7 @@ app.patch('/api/user/profile', async (req, res) => {
     const { eq } = await import('drizzle-orm');
 
     const updateData: any = {};
-    
+
     if (name !== undefined) updateData.name = name;
     if (softwareBackground !== undefined) updateData.softwareBackground = softwareBackground;
     if (hardwareBackground !== undefined) updateData.hardwareBackground = hardwareBackground;
@@ -137,18 +137,105 @@ app.patch('/api/user/profile', async (req, res) => {
 
     console.log('✅ Profile updated successfully');
 
-    return res.status(200).json({ 
+    return res.status(200).json({
       success: true,
-      user: updatedUser 
+      user: updatedUser
     });
-    
+
   } catch (error: any) {
     console.error('❌ Profile update error:', error);
     console.error('Error stack:', error.stack);
-    return res.status(500).json({ 
+    return res.status(500).json({
       error: 'Failed to update profile',
-      message: error.message 
+      message: error.message
     });
+  }
+});
+
+// Language preference endpoints
+app.get('/api/user/preferences', async (req, res) => {
+  try {
+    const session = await auth.api.getSession({
+      headers: req.headers as any,
+    });
+
+    if (!session || !session.session) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const { db } = await import('./db/index.js');
+    const { users } = await import('./db/schema.js');
+    const { eq } = await import('drizzle-orm');
+
+    const [user] = await db
+      .select({
+        languagePreference: users.languagePreference
+      })
+      .from(users)
+      .where(eq(users.id, session.user.id));
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    return res.status(200).json({
+      language: user.languagePreference,
+      theme: 'dark', // Default theme
+      notifications: true, // Default notifications
+      lastUpdated: new Date().toISOString()
+    });
+
+  } catch (error) {
+    console.error('User preferences fetch error:', error);
+    return res.status(500).json({ error: 'Failed to fetch user preferences' });
+  }
+});
+
+app.post('/api/user/preferences', async (req, res) => {
+  try {
+    const session = await auth.api.getSession({
+      headers: req.headers as any,
+    });
+
+    if (!session || !session.session) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+
+    const { language } = req.body;
+
+    // Validate language
+    const validLanguages = ['en', 'ur', 'hi'];
+    if (!language || !validLanguages.includes(language)) {
+      return res.status(400).json({ error: 'Invalid language preference' });
+    }
+
+    const { db } = await import('./db/index.js');
+    const { users } = await import('./db/schema.js');
+    const { eq } = await import('drizzle-orm');
+
+    const [updatedUser] = await db
+      .update(users)
+      .set({ languagePreference: language })
+      .where(eq(users.id, session.user.id))
+      .returning();
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    return res.status(200).json({
+      success: true,
+      preferences: {
+        language: updatedUser.languagePreference,
+        theme: 'dark', // Default theme
+        notifications: true, // Default notifications
+        lastUpdated: new Date().toISOString()
+      }
+    });
+
+  } catch (error) {
+    console.error('User preferences update error:', error);
+    return res.status(500).json({ error: 'Failed to update user preferences' });
   }
 });
 

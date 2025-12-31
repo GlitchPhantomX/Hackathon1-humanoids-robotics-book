@@ -1,75 +1,140 @@
-/* Translation button styles */
-.translation-btn {
-  background: none;
-  border: 1px solid var(--ifm-color-emphasis-300);
-  border-radius: 6px;
-  padding: 6px 12px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  margin-left: 8px;
-  color: var(--ifm-font-color-base);
-}
-
-.translation-btn:hover:not(:disabled) {
-  background: var(--ifm-color-emphasis-100);
-  border-color: var(--ifm-color-primary);
-  color: var(--ifm-color-primary);
-}
-
-.translation-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.translation-btn.active {
-  background: var(--ifm-color-primary);
-  color: white;
-  border-color: var(--ifm-color-primary);
-}
-
-/* Dark mode support */
-[data-theme='dark'] .translation-btn {
-  border-color: var(--ifm-color-emphasis-600);
-}
-
-[data-theme='dark'] .translation-btn:hover:not(:disabled) {
-  background: var(--ifm-color-emphasis-200);
-}
+/* Translation-specific styles */
 
 /* RTL support for Urdu */
-[data-lang='ur'] {
-  direction: rtl;
-}
-
-[data-lang='ur'] article {
+[dir='rtl'] {
   direction: rtl;
   text-align: right;
 }
 
-[data-lang='ur'] .navbar {
+[dir='rtl'] .navbar {
+  text-align: right;
+}
+
+[dir='rtl'] .menu__list-item {
+  text-align: right;
+}
+
+[dir='rtl'] .pagination-nav__link {
+  text-align: right;
+}
+
+/* Font loading for Urdu and Hindi */
+.urdu-font {
+  font-family: 'Noto Nastaliq Urdu', 'Noto Nastaliq Urdu Regular', serif;
+  font-size: 1.1em;
+  line-height: 1.8;
+}
+
+.hindi-font {
+  font-family: 'Noto Sans Devanagari', 'Noto Sans Devanagari Regular', sans-serif;
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+/* Ensure proper rendering for RTL languages */
+html[dir='rtl'] body {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Adjust margins and padding for RTL */
+[dir='rtl'] .container {
+  text-align: right;
+}
+
+[dir='rtl'] .alert {
+  text-align: right;
+}
+
+/* Specific adjustments for Docusaurus components in RTL */
+[dir='rtl'] .theme-doc-sidebar-container {
   direction: rtl;
 }
 
-[data-lang='ur'] .navbar__items {
+[dir='rtl'] .table-of-contents {
+  direction: rtl;
+}
+
+/* Translation button styling */
+.translation-button-container {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+/* Font loading */
+@font-face {
+  font-family: 'Noto Nastaliq Urdu';
+  src: url('/fonts/NotoNastaliqUrdu/NotoNastaliqUrdu-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Nastaliq Urdu';
+  src: url('/fonts/NotoNastaliqUrdu/NotoNastaliqUrdu-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  src: url('/fonts/NotoSansDevanagari/NotoSansDevanagari-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Noto Sans Devanagari';
+  src: url('/fonts/NotoSansDevanagari/NotoSansDevanagari-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* RTL layout adjustments */
+[dir='rtl'] .button {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+[dir='rtl'] .alert--info,
+[dir='rtl'] .alert--warning,
+[dir='rtl'] .alert--success,
+[dir='rtl'] .alert--danger {
+  text-align: right;
+}
+
+/* Ensure proper spacing in RTL */
+[dir='rtl'] .margin-right--md {
+  margin-right: unset;
+  margin-left: 1rem;
+}
+
+[dir='rtl'] .margin-left--md {
+  margin-left: unset;
+  margin-right: 1rem;
+}
+
+/* Code block RTL adjustments */
+[dir='rtl'] .prism-code {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Navbar RTL adjustments */
+[dir='rtl'] .navbar__items {
   flex-direction: row-reverse;
 }
 
-/* Urdu content styling */
-.urdu-content {
-  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
-  font-size: 1.1rem;
-  line-height: 2;
-  direction: rtl;
-  text-align: right;
+[dir='rtl'] .navbar__item {
+  margin-left: 1rem;
+  margin-right: 0;
 }
 
-.urdu-content p {
-  margin-bottom: 1rem;
-}
-
-/* Loading state */
-.translation-btn:disabled::after {
-  content: ' ⏳';
+[dir='rtl'] .navbar__item:last-child {
+  margin-left: 0;
 }

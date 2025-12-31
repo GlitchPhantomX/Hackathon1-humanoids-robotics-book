@@ -1,10 +1,10 @@
 import React from 'react';
-import { TranslationProvider } from '@site/src/contexts/TranslationContext';
+// import { TranslationProvider } from '@site/src/contexts/TranslationContext';
 
 export default function Root({ children }) {
   return (
-    <TranslationProvider>
+    // <TranslationProvider>
       {children}
-    </TranslationProvider>
+    // </TranslationProvider>
   );
 }

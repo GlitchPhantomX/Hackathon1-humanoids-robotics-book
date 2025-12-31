@@ -1,0 +1,30 @@
+{
+  "version.label": {
+    "message": "اگلا",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.00 - Introduction": {
+    "message": "00 - تعارف",
+    "description": "The label for category '00 - Introduction' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.01 - ROS 2 Architecture & Concepts": {
+    "message": "01 - ROS 2 آرکیٹیکچر اور تصورات",
+    "description": "The label for category '01 - ROS 2 Architecture & Concepts' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.02 - Simulation with Gazebo": {
+    "message": "02 - گیزبو کے ساتھ سمیولیشن",
+    "description": "The label for category '02 - Simulation with Gazebo' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.03 - NVIDIA Isaac Sim": {
+    "message": "03 - NVIDIA Isaac Sim",
+    "description": "The label for category '03 - NVIDIA Isaac Sim' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.04 - Vision-Language-Action (VLA)": {
+    "message": "04 - ویژن-لینگویج-ایکشن (VLA)",
+    "description": "The label for category '04 - Vision-Language-Action (VLA)' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.05 - Capstone Project": {
+    "message": "05 - کیپ اسٹون پروجیکٹ",
+    "description": "The label for category '05 - Capstone Project' in sidebar 'tutorialSidebar'"
+  }
+}

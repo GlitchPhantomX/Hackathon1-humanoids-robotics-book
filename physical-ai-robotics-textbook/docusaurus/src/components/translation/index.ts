@@ -1,1 +1,0 @@
-export { default as NavbarLanguageToggle } from './NavbarLanguageToggle';

@@ -1,0 +1,22 @@
+{
+  "title": {
+    "message": "Humanoid Robotics",
+    "description": "The title in the navbar"
+  },
+  "item.label.Book": {
+    "message": "Book",
+    "description": "Navbar item with label Book"
+  },
+  "item.label.🌐 Language": {
+    "message": "🌐 Language",
+    "description": "Navbar item with label 🌐 Language"
+  },
+  "item.label.English": {
+    "message": "English",
+    "description": "Navbar item with label English"
+  },
+  "item.label.اردو (Urdu)": {
+    "message": "اردو (Urdu)",
+    "description": "Navbar item with label اردو (Urdu)"
+  }
+}
